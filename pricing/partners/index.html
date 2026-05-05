@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hoa Hồng Đối Tác | Beta.vn</title>
-  <meta name="description" content="Bảng tính hoa hồng đối tác theo Phụ lục 3 — tự động theo số địa điểm, onboarding và chiết khấu." />
+  <meta name="description" content="Bảng tính hoa hồng đối tác theo Phụ lục 3." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
@@ -25,16 +25,15 @@
     .pop { animation: pop .18s ease; }
     .row-active { background: oklch(var(--p)/0.06) !important; }
     .row-active td:first-child { border-left: 2px solid oklch(var(--p)); }
-    /* Commission tier highlight */
     .comm-active { background: oklch(var(--su)/0.08) !important; }
     .comm-active td:first-child { border-left: 2px solid oklch(var(--su)); }
   </style>
 </head>
 
-<body class="bg-base-200 p-2 flex flex-col gap-1.5">
-  <div class="max-w-[840px] w-full mx-auto flex flex-col gap-1.5 h-full">
+<body class="bg-base-200 p-3 flex flex-col gap-2">
+  <div class="max-w-[840px] w-full mx-auto flex flex-col gap-2 h-full">
 
-    <!-- ── HEADER ── -->
+    <!-- HEADER -->
     <div class="flex items-center justify-between px-1">
       <div class="flex items-center gap-2">
         <span class="font-bold text-lg text-primary">Beta.vn</span>
@@ -42,18 +41,17 @@
         <span class="badge badge-ghost badge-sm text-base-content/40">Phụ lục 3</span>
       </div>
       <code class="text-sm bg-base-100 border border-base-300 px-2 py-0.5 rounded font-mono text-primary">
-        HH thực tế = Tỷ lệ cơ sở × (1 − CK ÷ 25% × 50%)
+        HH = Tỷ lệ cơ sở × (1 − CK ÷ 25% × 50%)
       </code>
     </div>
 
-    <!-- ── ZONE 1: SERVICE FEE CALCULATOR ── -->
-    <div class="grid grid-cols-2 gap-1.5">
+    <!-- ZONE 1: SERVICE FEE -->
+    <div class="grid grid-cols-2 gap-2">
 
       <!-- Inputs -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
-        <div class="card-body gap-1.5 p-2">
+        <div class="card-body gap-2 p-3">
           <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Số lượng địa điểm</p>
-
           <div class="join w-full">
             <button class="btn btn-sm join-item btn-ghost font-bold text-lg w-10" onclick="adj(-10)">−</button>
             <input id="loc-input" type="number" min="50" max="10000" value="100"
@@ -61,127 +59,129 @@
               oninput="sync(this.value)" />
             <button class="btn btn-sm join-item btn-ghost font-bold text-lg w-10" onclick="adj(+10)">+</button>
           </div>
-
           <input id="loc-slider" type="range" min="50" max="3000" step="10" value="100"
             class="range range-primary range-xs w-full" oninput="syncSlider(this.value)" />
-
-          <div class="flex justify-between gap-1">
-            <button class="btn btn-xs preset flex-1" onclick="setN(50)">50</button>
-            <button class="btn btn-xs preset flex-1" onclick="setN(100)">100</button>
-            <button class="btn btn-xs preset flex-1" onclick="setN(200)">200</button>
-            <button class="btn btn-xs preset flex-1" onclick="setN(500)">500</button>
-            <button class="btn btn-xs preset flex-1" onclick="setN(1000)">1k</button>
-            <button class="btn btn-xs preset flex-1" onclick="setN(2000)">2k</button>
+          <div class="flex justify-between text-sm text-base-content/30 -mt-1 px-0.5 leading-none">
+            <span>50</span><span>500</span><span>1k</span><span>2k</span><span>3k+</span>
+          </div>
+          <div class="flex flex-wrap gap-1">
+            <span class="text-sm text-base-content/30 self-center">Nhanh:</span>
+            <button class="btn btn-sm preset" onclick="setN(50)">50</button>
+            <button class="btn btn-sm preset" onclick="setN(100)">100</button>
+            <button class="btn btn-sm preset" onclick="setN(200)">200</button>
+            <button class="btn btn-sm preset" onclick="setN(500)">500</button>
+            <button class="btn btn-sm preset" onclick="setN(1000)">1,000</button>
+            <button class="btn btn-sm preset" onclick="setN(2000)">2,000</button>
           </div>
         </div>
       </div>
 
       <!-- Service fee results -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
-        <div class="card-body p-2 gap-0">
-          <div class="flex items-center justify-between border-b border-base-200 pb-1.5 mb-1.5">
+        <div class="card-body p-3 gap-0">
+          <div class="flex items-center justify-between border-b border-base-200 pb-2 mb-2">
             <div>
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">Đơn giá / địa điểm / tháng</p>
-              <p id="r-unit" class="text-3xl font-bold text-primary tabular-nums">$36</p>
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Đơn giá / địa điểm / tháng</p>
+              <p id="r-unit" class="text-4xl font-bold text-primary tabular-nums">$36</p>
             </div>
-            <span id="r-badge" class="badge badge-success badge-sm">Tiết kiệm 23%</span>
+            <span id="r-badge" class="badge badge-success badge-md">Tiết kiệm 23%</span>
           </div>
-          <div class="grid grid-cols-3 gap-1">
-            <div class="bg-base-200 rounded p-1.5">
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">Phí/tháng</p>
-              <p id="r-monthly" class="text-sm font-semibold tabular-nums">$3,600</p>
-              <p id="r-vnd" class="text-xs text-base-content/30 leading-none mt-0.5">≈ 91M ₫</p>
+          <div class="grid grid-cols-3 gap-1.5">
+            <div class="bg-base-200 rounded p-2">
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Phí/tháng</p>
+              <p id="r-monthly" class="text-base font-semibold tabular-nums">$3,600</p>
+              <p id="r-vnd" class="text-sm text-base-content/30 leading-none mt-0.5">≈ 91M ₫</p>
             </div>
-            <div class="bg-base-200 rounded p-1.5">
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">Phí thiết lập</p>
-              <p id="r-setup" class="text-sm font-semibold tabular-nums">$10,000</p>
-              <p id="r-setup-per" class="text-xs text-base-content/30 leading-none mt-0.5">$100/ĐĐ</p>
+            <div class="bg-base-200 rounded p-2">
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Phí thiết lập</p>
+              <p id="r-setup" class="text-base font-semibold tabular-nums">$10,000</p>
+              <p id="r-setup-per" class="text-sm text-base-content/30 leading-none mt-0.5">$100/ĐĐ</p>
             </div>
-            <div class="bg-primary/10 rounded p-1.5 border border-primary/20">
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">Năm đầu</p>
-              <p id="r-annual" class="text-sm font-bold tabular-nums text-primary">$53,200</p>
-              <p class="text-xs text-base-content/30 leading-none mt-0.5">×12 + setup</p>
+            <div class="bg-primary/10 rounded p-2 border border-primary/20">
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Năm đầu</p>
+              <p id="r-annual" class="text-base font-bold tabular-nums text-primary">$53,200</p>
+              <p class="text-sm text-base-content/30 leading-none mt-0.5">×12 + setup</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ── ZONE 2: COMMISSION CALCULATOR (Phụ lục 3) ── -->
-    <div class="grid grid-cols-2 gap-1.5">
+    <!-- ZONE 2: COMMISSION (Phụ lục 3) -->
+    <div class="grid grid-cols-2 gap-2">
 
       <!-- Commission inputs -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
-        <div class="card-body gap-1.5 p-2">
+        <div class="card-body gap-2 p-3">
           <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Thông số hoa hồng</p>
-
-          <!-- Onboarding toggle -->
-          <div class="flex items-center justify-between bg-base-200 rounded-lg px-2 py-1.5">
-            <p class="text-sm font-medium leading-none">Thực hiện Onboarding</p>
+          <div class="flex items-center justify-between bg-base-200 rounded-lg px-3 py-2">
+            <p class="text-sm font-medium">Thực hiện Onboarding</p>
             <input id="ob-toggle" type="checkbox" class="toggle toggle-success toggle-sm"
-              onchange="updateCommission()" checked />
+              onchange="update()" checked />
           </div>
-
-          <!-- Discount slider -->
           <div>
-            <div class="flex items-center justify-between mb-0.5">
+            <div class="flex items-center justify-between mb-1">
               <p class="text-sm font-medium">Chiết khấu cho khách hàng</p>
               <span id="disc-label" class="text-sm font-bold text-warning tabular-nums">0%</span>
             </div>
             <input id="disc-slider" type="range" min="0" max="25" step="5" value="0"
               class="range range-warning range-xs w-full" oninput="onDiscChange(this.value)" />
+            <div class="flex justify-between text-sm text-base-content/30 -mt-1 px-0.5 leading-none">
+              <span>0%</span><span>5%</span><span>10%</span><span>15%</span><span>20%</span><span>25%</span>
+            </div>
           </div>
-
-          <!-- Discount presets -->
-          <div class="flex justify-between gap-1">
-            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(0)">0%</button>
-            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(5)">5%</button>
-            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(10)">10%</button>
-            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(15)">15%</button>
-            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(20)">20%</button>
-            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(25)">25%</button>
+          <div class="flex flex-wrap gap-1">
+            <span class="text-sm text-base-content/30 self-center">Nhanh:</span>
+            <button class="btn btn-sm disc-preset" onclick="setDisc(0)">0%</button>
+            <button class="btn btn-sm disc-preset" onclick="setDisc(5)">5%</button>
+            <button class="btn btn-sm disc-preset" onclick="setDisc(10)">10%</button>
+            <button class="btn btn-sm disc-preset" onclick="setDisc(15)">15%</button>
+            <button class="btn btn-sm disc-preset" onclick="setDisc(20)">20%</button>
+            <button class="btn btn-sm disc-preset" onclick="setDisc(25)">25%</button>
           </div>
         </div>
       </div>
 
       <!-- Commission results -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
-        <div class="card-body p-2 gap-0">
-          <div class="flex items-center justify-between border-b border-base-200 pb-1.5 mb-1.5">
+        <div class="card-body p-3 gap-0">
+          <div class="flex items-center justify-between border-b border-base-200 pb-2 mb-2">
             <div>
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">Hoa hồng / tháng (phí DV)</p>
-              <p id="c-amount" class="text-3xl font-bold text-success tabular-nums">$360</p>
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Hoa hồng / tháng (phí DV)</p>
+              <p id="c-amount" class="text-4xl font-bold text-success tabular-nums">$360</p>
             </div>
             <div class="text-right">
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">Tỷ lệ</p>
+              <p class="text-xs text-base-content/40 leading-none mb-0.5">Tỷ lệ thực tế</p>
               <p id="c-rate" class="text-xl font-bold text-success tabular-nums">10%</p>
             </div>
           </div>
-          <div class="grid grid-cols-3 gap-1">
-            <div class="bg-base-200 rounded p-1.5">
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">Tỷ lệ cơ sở</p>
-              <p id="c-base-rate" class="text-sm font-semibold tabular-nums">10%</p>
-              <p id="c-ob-label" class="text-xs text-base-content/30 leading-none mt-0.5">Có OB</p>
+          <div class="grid grid-cols-3 gap-1.5">
+            <div class="bg-base-200 rounded p-2">
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Tỷ lệ cơ sở</p>
+              <p id="c-base-rate" class="text-base font-semibold tabular-nums">10%</p>
+              <p id="c-ob-label" class="text-sm text-base-content/30 leading-none mt-0.5">Có OB</p>
             </div>
-            <div class="bg-base-200 rounded p-1.5">
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">HH Setup (1 lần)</p>
-              <p id="c-setup" class="text-sm font-semibold tabular-nums">≈ 9M ₫</p>
+            <div class="bg-base-200 rounded p-2">
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">HH Setup (1 lần)</p>
+              <p id="c-setup" class="text-base font-semibold tabular-nums">$1,000</p>
+              <p class="text-sm text-base-content/30 leading-none mt-0.5">trên phí thiết lập</p>
             </div>
-            <div class="bg-success/10 rounded p-1.5 border border-success/20">
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">Tổng HH năm đầu</p>
-              <p id="c-annual" class="text-sm font-bold tabular-nums text-success">$4,320</p>
+            <div class="bg-success/10 rounded p-2 border border-success/20">
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Tổng HH năm đầu</p>
+              <p id="c-annual" class="text-base font-bold tabular-nums text-success">$5,320</p>
+              <p class="text-sm text-base-content/30 leading-none mt-0.5">HH tháng×12 + Setup</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ── ZONE 3: REFERENCE TABLES ── -->
-    <div class="grid grid-cols-2 gap-1.5">
+    <!-- ZONE 3: REFERENCE TABLES -->
+    <div class="grid grid-cols-2 gap-2">
 
-      <!-- Commission rate table (Phụ lục 3) -->
+      <!-- Commission rate table -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
-        <div class="card-body p-2 gap-1">
+        <div class="card-body p-3 gap-1.5">
           <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Bảng Hoa Hồng Tham Chiếu</p>
           <table class="table table-xs w-full">
             <thead>
@@ -209,7 +209,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="bg-warning/10 border border-warning/20 rounded p-1.5 mt-1">
+          <div class="bg-warning/10 border border-warning/20 rounded p-2 mt-0.5">
             <code class="text-xs text-warning font-mono">HH = Tỷ lệ cơ sở × (1 − CK ÷ 25% × 50%)</code>
             <p class="text-xs text-base-content/40 mt-0.5">Mỗi 5% CK → giảm 10% tỷ lệ · Max CK: 25%</p>
           </div>
@@ -218,7 +218,7 @@
 
       <!-- Service fee ref table -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
-        <div class="card-body p-2 gap-1">
+        <div class="card-body p-3 gap-1.5">
           <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Phí Dịch Vụ Tham Chiếu</p>
           <table class="table table-xs w-full">
             <thead>
@@ -238,43 +238,35 @@
   </div><!-- /max-w wrapper -->
 
   <script>
-    // ── State ──
     let N = 100, DISC = 0;
     const USD_VND = 25400;
 
-    // ── Phụ lục 2: Service fee ──
+    // Phụ lục 2
     function unitPrice(n) { return Math.max(Math.floor(336 / Math.sqrt(n) + 2.5), 10); }
     function setupRate(n) {
       if (n <= 100) return 100; if (n <= 250) return 50;
       if (n <= 500) return 25;  if (n <= 2000) return 15; return 10;
     }
 
-    // ── Phụ lục 3: Commission ──
+    // Phụ lục 3
     function baseCommRate(n, hasOB) {
-      // Tỷ lệ cơ sở theo tổng địa điểm tích lũy
-      if (n <= 100)  return hasOB ? 10 : 7;
-      if (n <= 200)  return hasOB ? 15 : 10;
+      if (n <= 100) return hasOB ? 10 : 7;
+      if (n <= 200) return hasOB ? 15 : 10;
       return hasOB ? 20 : 15;
     }
-    function actualCommRate(baseRate, disc) {
-      // Hoa hồng thực tế = Tỷ lệ cơ sở × (1 − Chiết khấu ÷ 25% × 50%)
-      // Giới hạn disc tối đa 25%
-      const d = Math.min(disc, 25);
-      return baseRate * (1 - (d / 25) * 0.5);
+    function actualCommRate(base, disc) {
+      return base * (1 - (Math.min(disc, 25) / 25) * 0.5);
     }
 
-    // ── Formatters ──
     const fmt    = v => '$' + v.toLocaleString('en-US');
     const fmtVND = v => '≈ ' + Math.round(v * USD_VND / 1e6) + 'M ₫';
     const fmtPct = v => v.toFixed(1).replace(/\.0$/, '') + '%';
 
-    // ── Main update ──
     function update() {
-      const n   = N;
-      const disc = DISC;
+      const n   = Math.max(50, Math.min(10000, N));
       const ob  = document.getElementById('ob-toggle')?.checked ?? true;
 
-      // Service fee (Phụ lục 2)
+      // Service fee
       const up  = unitPrice(n);
       const mo  = up * n;
       const sfp = setupRate(n);
@@ -297,27 +289,26 @@
 
       const badge = document.getElementById('r-badge');
       badge.textContent = save > 0 ? `Tiết kiệm ${save}%` : 'Giá sàn';
-      badge.className = 'badge badge-md ' + (save > 0 ? 'badge-success' : 'badge-ghost');
+      badge.className = 'badge badge-sm ' + (save > 0 ? 'badge-success' : 'badge-ghost');
 
-      // Commission (Phụ lục 3) — áp dụng cả phí DV lẫn phí setup
+      // Commission
       const baseRate   = baseCommRate(n, ob);
-      const actualRate = actualCommRate(baseRate, disc);
-      const commMo     = mo * actualRate / 100;          // HH trên phí hàng tháng
-      const commSetup  = sft * actualRate / 100;         // HH trên phí setup (1 lần)
-      const commAnn    = commMo * 12 + commSetup;        // Tổng HH năm đầu
+      const actRate    = actualCommRate(baseRate, DISC);
+      const commMo     = mo * actRate / 100;
+      const commSetup  = sft * actRate / 100;
+      const commAnn    = commMo * 12 + commSetup;
 
       setVal('c-base-rate', fmtPct(baseRate));
       setVal('c-ob-label',  ob ? 'Có Onboarding' : 'Không OB');
-      setVal('c-rate',      fmtPct(actualRate));
+      setVal('c-rate',      fmtPct(actRate));
       setVal('c-amount',    fmt(Math.round(commMo)));
-      setVal('c-vnd',       fmtVND(commMo));
       setVal('c-setup',     fmt(Math.round(commSetup)));
       setVal('c-annual',    fmt(Math.round(commAnn)));
 
-      // Highlight monthly service fee table
-      const serviceRefs = [50, 100, 200, 500, 1000, 1500, 2000];
-      let closest = serviceRefs[0];
-      serviceRefs.forEach(r => { if (n >= r) closest = r; });
+      // Highlight service fee table
+      const refs = [50, 100, 200, 500, 1000, 1500, 2000];
+      let closest = refs[0];
+      refs.forEach(r => { if (n >= r) closest = r; });
       document.querySelectorAll('#monthly-tbody tr').forEach(tr => {
         tr.classList.toggle('row-active', +tr.dataset.n === closest);
       });
@@ -328,7 +319,7 @@
         tr.classList.toggle('comm-active', n >= mn && n <= mx);
       });
 
-      // Active preset (location)
+      // Active location preset
       document.querySelectorAll('.preset').forEach(b => {
         const v = +b.textContent.replace(/,/g, '');
         b.className = 'btn btn-sm preset ' + (v === n ? 'btn-primary' : 'btn-ghost');
@@ -337,7 +328,7 @@
       // Active discount preset
       document.querySelectorAll('.disc-preset').forEach(b => {
         const v = parseInt(b.textContent);
-        b.className = 'btn btn-xs disc-preset ' + (v === disc ? 'btn-warning' : 'btn-ghost');
+        b.className = 'btn btn-sm disc-preset ' + (v === DISC ? 'btn-warning' : 'btn-ghost');
       });
     }
 
@@ -348,12 +339,10 @@
       el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
     }
 
-    // ── Input handlers ──
-    function sync(v)       { const n = parseInt(v, 10); if (!isNaN(n)) { N = Math.max(50, Math.min(10000, n)); update(); } }
+    function sync(v)       { const n = parseInt(v, 10); if (!isNaN(n)) { N = n; update(); } }
     function syncSlider(v) { N = parseInt(v, 10); document.getElementById('loc-input').value = N; update(); }
     function adj(d)        { N = Math.max(50, Math.min(10000, N + d)); update(); }
     function setN(n)       { N = n; update(); }
-
     function onDiscChange(v) {
       DISC = parseInt(v, 10);
       document.getElementById('disc-label').textContent = DISC + '%';
@@ -365,9 +354,8 @@
       document.getElementById('disc-label').textContent = d + '%';
       update();
     }
-    function updateCommission() { update(); }
 
-    // ── Build service fee table ──
+    // Build service fee table
     const svcRefs = [50, 100, 200, 500, 1000, 1500, 2000];
     const base0   = unitPrice(50);
     document.getElementById('monthly-tbody').innerHTML = svcRefs.map(n => {
@@ -381,9 +369,7 @@
       </tr>`;
     }).join('');
 
-    // ── Init ──
     update();
   </script>
 </body>
-
 </html>
