@@ -11,34 +11,60 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    html, body {
+    html,
+    body {
       font-family: 'Inter', sans-serif;
       height: 100%;
       overflow: hidden;
       font-size: 16px;
     }
-    input[type=range] { accent-color: oklch(var(--p)); }
-    @keyframes pop {
-      0%   { transform: scale(1.06); opacity: .5 }
-      100% { transform: scale(1);    opacity: 1  }
+
+    input[type=range] {
+      accent-color: oklch(var(--p));
     }
-    .pop { animation: pop .18s ease; }
-    .row-active { background: oklch(var(--p)/0.06) !important; }
-    .row-active td:first-child { border-left: 2px solid oklch(var(--p)); }
-    .comm-active { background: oklch(var(--su)/0.08) !important; }
-    .comm-active td:first-child { border-left: 2px solid oklch(var(--su)); }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1.06);
+        opacity: .5
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    .pop {
+      animation: pop .18s ease;
+    }
+
+    .row-active {
+      background: oklch(var(--p)/0.06) !important;
+    }
+
+    .row-active td:first-child {
+      border-left: 2px solid oklch(var(--p));
+    }
+
+    .comm-active {
+      background: oklch(var(--su)/0.08) !important;
+    }
+
+    .comm-active td:first-child {
+      border-left: 2px solid oklch(var(--su));
+    }
   </style>
 </head>
 
 <body class="bg-base-200 p-3 flex flex-col gap-2">
-  <div class="max-w-[840px] w-full mx-auto flex flex-col gap-2 h-full">
+  <div class="max-w-[960px] w-full mx-auto flex flex-col gap-2 h-full">
 
     <!-- HEADER -->
     <div class="flex items-center justify-between px-1">
       <div class="flex items-center gap-2">
         <span class="font-bold text-lg text-primary">Beta.vn</span>
-        <span class="badge badge-outline badge-sm text-base-content/50">Đối tác</span>
-        <span class="badge badge-ghost badge-sm text-base-content/40">Phụ lục 3</span>
+        <span class="badge badge-outline badge-sm text-base-content/50">Hoa hồng đối tác</span>
       </div>
       <code class="text-sm bg-base-100 border border-base-300 px-2 py-0.5 rounded font-mono text-primary">
         HH = Tỷ lệ cơ sở × (1 − CK ÷ 25% × 50%)
@@ -85,8 +111,8 @@
             <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Thông số hoa hồng</p>
             <div class="flex items-center justify-between bg-base-200 rounded-lg px-3 py-2">
               <p class="text-sm font-medium">Thực hiện Onboarding</p>
-              <input id="ob-toggle" type="checkbox" class="toggle toggle-success toggle-sm"
-                onchange="update()" checked />
+              <input id="ob-toggle" type="checkbox" class="toggle toggle-success toggle-sm" onchange="update()"
+                checked />
             </div>
             <div>
               <div class="flex items-center justify-between mb-1">
@@ -196,17 +222,17 @@
               </tr>
             </thead>
             <tbody id="comm-tbody">
-              <tr data-min="50"   data-max="100"   data-no="7"  data-ob="10">
+              <tr data-min="50" data-max="100" data-no="7" data-ob="10">
                 <td class="font-mono text-sm">50 – 100</td>
                 <td class="font-semibold">7%</td>
                 <td class="font-semibold text-success">10%</td>
               </tr>
-              <tr data-min="101"  data-max="200"   data-no="10" data-ob="15">
+              <tr data-min="101" data-max="200" data-no="10" data-ob="15">
                 <td class="font-mono text-sm">101 – 200</td>
                 <td class="font-semibold">10%</td>
                 <td class="font-semibold text-success">15%</td>
               </tr>
-              <tr data-min="201"  data-max="99999" data-no="15" data-ob="20">
+              <tr data-min="201" data-max="99999" data-no="15" data-ob="20">
                 <td class="font-mono text-sm">&gt; 200</td>
                 <td class="font-semibold">15%</td>
                 <td class="font-semibold text-success">20%</td>
@@ -249,7 +275,7 @@
     function unitPrice(n) { return Math.max(Math.floor(336 / Math.sqrt(n) + 2.5), 10); }
     function setupRate(n) {
       if (n <= 100) return 100; if (n <= 250) return 50;
-      if (n <= 500) return 25;  if (n <= 2000) return 15; return 10;
+      if (n <= 500) return 25; if (n <= 2000) return 15; return 10;
     }
     function baseCommRate(n, hasOB) {
       if (n <= 100) return hasOB ? 10 : 7;
@@ -260,16 +286,16 @@
       return base * (1 - (Math.min(disc, 25) / 25) * 0.5);
     }
 
-    const fmt    = v => '$' + v.toLocaleString('en-US');
+    const fmt = v => '$' + v.toLocaleString('en-US');
     const fmtVND = v => '≈ ' + Math.round(v * USD_VND / 1e6) + 'M ₫';
     const fmtPct = v => v.toFixed(1).replace(/\.0$/, '') + '%';
 
     function update() {
-      const n  = Math.max(50, Math.min(10000, N));
+      const n = Math.max(50, Math.min(10000, N));
       const ob = document.getElementById('ob-toggle')?.checked ?? true;
 
-      const up  = unitPrice(n);
-      const mo  = up * n;
+      const up = unitPrice(n);
+      const mo = up * n;
       const sfp = setupRate(n);
       const sft = sfp * n;
       const ann = mo * 12 + sft;
@@ -281,29 +307,29 @@
       if (document.activeElement !== inp) inp.value = n;
       if (document.activeElement !== sld) sld.value = Math.min(n, 3000);
 
-      setVal('r-unit',      fmt(up));
-      setVal('r-monthly',   fmt(mo));
-      setVal('r-vnd',       fmtVND(mo));
-      setVal('r-setup',     fmt(sft));
+      setVal('r-unit', fmt(up));
+      setVal('r-monthly', fmt(mo));
+      setVal('r-vnd', fmtVND(mo));
+      setVal('r-setup', fmt(sft));
       setVal('r-setup-per', fmt(sfp) + '/ĐĐ');
-      setVal('r-annual',    fmt(ann));
+      setVal('r-annual', fmt(ann));
 
       const badge = document.getElementById('r-badge');
       badge.textContent = save > 0 ? `Tiết kiệm ${save}%` : 'Giá sàn';
       badge.className = 'badge badge-sm ' + (save > 0 ? 'badge-success' : 'badge-ghost');
 
-      const baseRate  = baseCommRate(n, ob);
-      const actRate   = actualCommRate(baseRate, DISC);
-      const commMo    = mo * actRate / 100;
+      const baseRate = baseCommRate(n, ob);
+      const actRate = actualCommRate(baseRate, DISC);
+      const commMo = mo * actRate / 100;
       const commSetup = sft * actRate / 100;
-      const commAnn   = commMo * 12 + commSetup;
+      const commAnn = commMo * 12 + commSetup;
 
       setVal('c-base-rate', fmtPct(baseRate));
-      setVal('c-ob-label',  ob ? 'Có Onboarding' : 'Không OB');
-      setVal('c-rate',      fmtPct(actRate));
-      setVal('c-amount',    fmt(Math.round(commMo)));
-      setVal('c-setup',     fmt(Math.round(commSetup)));
-      setVal('c-annual',    fmt(Math.round(commAnn)));
+      setVal('c-ob-label', ob ? 'Có Onboarding' : 'Không OB');
+      setVal('c-rate', fmtPct(actRate));
+      setVal('c-amount', fmt(Math.round(commMo)));
+      setVal('c-setup', fmt(Math.round(commSetup)));
+      setVal('c-annual', fmt(Math.round(commAnn)));
 
       const refs = [50, 100, 200, 500, 1000, 1500, 2000];
       let closest = refs[0];
@@ -333,10 +359,10 @@
       el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
     }
 
-    function sync(v)       { const n = parseInt(v, 10); if (!isNaN(n)) { N = n; update(); } }
+    function sync(v) { const n = parseInt(v, 10); if (!isNaN(n)) { N = n; update(); } }
     function syncSlider(v) { N = parseInt(v, 10); document.getElementById('loc-input').value = N; update(); }
-    function adj(d)        { N = Math.max(50, Math.min(10000, N + d)); update(); }
-    function setN(n)       { N = n; update(); }
+    function adj(d) { N = Math.max(50, Math.min(10000, N + d)); update(); }
+    function setN(n) { N = n; update(); }
     function onDiscChange(v) {
       DISC = parseInt(v, 10);
       document.getElementById('disc-label').textContent = DISC + '%';
@@ -350,7 +376,7 @@
     }
 
     const svcRefs = [50, 100, 200, 500, 1000, 1500, 2000];
-    const base0   = unitPrice(50);
+    const base0 = unitPrice(50);
     document.getElementById('monthly-tbody').innerHTML = svcRefs.map(n => {
       const up = unitPrice(n), tot = up * n;
       const sv = n === 50 ? '—' : `−${Math.round((base0 - up) / base0 * 100)}%`;
@@ -365,4 +391,5 @@
     update();
   </script>
 </body>
+
 </html>
