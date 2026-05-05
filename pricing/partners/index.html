@@ -65,14 +65,13 @@
           <input id="loc-slider" type="range" min="50" max="3000" step="10" value="100"
             class="range range-primary range-xs w-full" oninput="syncSlider(this.value)" />
 
-          <div class="flex flex-wrap gap-1">
-            <span class="text-xs text-base-content/30 self-center">Nhanh:</span>
-            <button class="btn btn-xs preset" onclick="setN(50)">50</button>
-            <button class="btn btn-xs preset" onclick="setN(100)">100</button>
-            <button class="btn btn-xs preset" onclick="setN(200)">200</button>
-            <button class="btn btn-xs preset" onclick="setN(500)">500</button>
-            <button class="btn btn-xs preset" onclick="setN(1000)">1,000</button>
-            <button class="btn btn-xs preset" onclick="setN(2000)">2,000</button>
+          <div class="flex justify-between gap-1">
+            <button class="btn btn-xs preset flex-1" onclick="setN(50)">50</button>
+            <button class="btn btn-xs preset flex-1" onclick="setN(100)">100</button>
+            <button class="btn btn-xs preset flex-1" onclick="setN(200)">200</button>
+            <button class="btn btn-xs preset flex-1" onclick="setN(500)">500</button>
+            <button class="btn btn-xs preset flex-1" onclick="setN(1000)">1k</button>
+            <button class="btn btn-xs preset flex-1" onclick="setN(2000)">2k</button>
           </div>
         </div>
       </div>
@@ -134,14 +133,13 @@
           </div>
 
           <!-- Discount presets -->
-          <div class="flex gap-1">
-            <span class="text-sm text-base-content/30 self-center">Nhanh:</span>
-            <button class="btn btn-xs disc-preset" onclick="setDisc(0)">0%</button>
-            <button class="btn btn-xs disc-preset" onclick="setDisc(5)">5%</button>
-            <button class="btn btn-xs disc-preset" onclick="setDisc(10)">10%</button>
-            <button class="btn btn-xs disc-preset" onclick="setDisc(15)">15%</button>
-            <button class="btn btn-xs disc-preset" onclick="setDisc(20)">20%</button>
-            <button class="btn btn-xs disc-preset" onclick="setDisc(25)">25%</button>
+          <div class="flex justify-between gap-1">
+            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(0)">0%</button>
+            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(5)">5%</button>
+            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(10)">10%</button>
+            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(15)">15%</button>
+            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(20)">20%</button>
+            <button class="btn btn-xs disc-preset flex-1" onclick="setDisc(25)">25%</button>
           </div>
         </div>
       </div>
@@ -151,7 +149,7 @@
         <div class="card-body p-2 gap-0">
           <div class="flex items-center justify-between border-b border-base-200 pb-1.5 mb-1.5">
             <div>
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">Hoa hồng thực tế / tháng</p>
+              <p class="text-xs text-base-content/40 leading-none mb-0.5">Hoa hồng / tháng (phí DV)</p>
               <p id="c-amount" class="text-3xl font-bold text-success tabular-nums">$360</p>
             </div>
             <div class="text-right">
@@ -166,11 +164,11 @@
               <p id="c-ob-label" class="text-xs text-base-content/30 leading-none mt-0.5">Có OB</p>
             </div>
             <div class="bg-base-200 rounded p-1.5">
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">HH/tháng (VND)</p>
-              <p id="c-vnd" class="text-sm font-semibold tabular-nums">≈ 9M ₫</p>
+              <p class="text-xs text-base-content/40 leading-none mb-0.5">HH Setup (1 lần)</p>
+              <p id="c-setup" class="text-sm font-semibold tabular-nums">≈ 9M ₫</p>
             </div>
             <div class="bg-success/10 rounded p-1.5 border border-success/20">
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">HH/năm</p>
+              <p class="text-xs text-base-content/40 leading-none mb-0.5">Tổng HH năm đầu</p>
               <p id="c-annual" class="text-sm font-bold tabular-nums text-success">$4,320</p>
             </div>
           </div>
@@ -301,17 +299,19 @@
       badge.textContent = save > 0 ? `Tiết kiệm ${save}%` : 'Giá sàn';
       badge.className = 'badge badge-md ' + (save > 0 ? 'badge-success' : 'badge-ghost');
 
-      // Commission (Phụ lục 3)
+      // Commission (Phụ lục 3) — áp dụng cả phí DV lẫn phí setup
       const baseRate   = baseCommRate(n, ob);
       const actualRate = actualCommRate(baseRate, disc);
-      const commMo     = mo * actualRate / 100;
-      const commAnn    = commMo * 12;
+      const commMo     = mo * actualRate / 100;          // HH trên phí hàng tháng
+      const commSetup  = sft * actualRate / 100;         // HH trên phí setup (1 lần)
+      const commAnn    = commMo * 12 + commSetup;        // Tổng HH năm đầu
 
       setVal('c-base-rate', fmtPct(baseRate));
       setVal('c-ob-label',  ob ? 'Có Onboarding' : 'Không OB');
       setVal('c-rate',      fmtPct(actualRate));
       setVal('c-amount',    fmt(Math.round(commMo)));
       setVal('c-vnd',       fmtVND(commMo));
+      setVal('c-setup',     fmt(Math.round(commSetup)));
       setVal('c-annual',    fmt(Math.round(commAnn)));
 
       // Highlight monthly service fee table
