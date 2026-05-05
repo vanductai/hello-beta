@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="light">
+<html lang="vi" data-theme="corporate">
 
 <head>
   <meta charset="UTF-8" />
@@ -45,138 +45,142 @@
       </code>
     </div>
 
-    <!-- ZONE 1: SERVICE FEE -->
+    <!-- ZONE 1: CALCULATOR — 2 col (inputs stack | results stack) -->
     <div class="grid grid-cols-2 gap-2">
 
-      <!-- Inputs -->
-      <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
-        <div class="card-body gap-2 p-3">
-          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Số lượng địa điểm</p>
-          <div class="join w-full">
-            <button class="btn btn-sm join-item btn-ghost font-bold text-lg w-10" onclick="adj(-10)">−</button>
-            <input id="loc-input" type="number" min="50" max="10000" value="100"
-              class="input input-sm input-bordered join-item flex-1 text-center text-base font-bold"
-              oninput="sync(this.value)" />
-            <button class="btn btn-sm join-item btn-ghost font-bold text-lg w-10" onclick="adj(+10)">+</button>
-          </div>
-          <input id="loc-slider" type="range" min="50" max="3000" step="10" value="100"
-            class="range range-primary range-xs w-full" oninput="syncSlider(this.value)" />
-          <div class="flex justify-between text-sm text-base-content/30 -mt-1 px-0.5 leading-none">
-            <span>50</span><span>500</span><span>1k</span><span>2k</span><span>3k+</span>
-          </div>
-          <div class="flex flex-wrap gap-1">
-            <span class="text-sm text-base-content/30 self-center">Nhanh:</span>
-            <button class="btn btn-sm preset" onclick="setN(50)">50</button>
-            <button class="btn btn-sm preset" onclick="setN(100)">100</button>
-            <button class="btn btn-sm preset" onclick="setN(200)">200</button>
-            <button class="btn btn-sm preset" onclick="setN(500)">500</button>
-            <button class="btn btn-sm preset" onclick="setN(1000)">1,000</button>
-            <button class="btn btn-sm preset" onclick="setN(2000)">2,000</button>
-          </div>
-        </div>
-      </div>
+      <!-- LEFT: location inputs + commission inputs stacked -->
+      <div class="flex flex-col gap-2">
 
-      <!-- Service fee results -->
-      <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
-        <div class="card-body p-3 gap-0">
-          <div class="flex items-center justify-between border-b border-base-200 pb-2 mb-2">
-            <div>
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Đơn giá / địa điểm / tháng</p>
-              <p id="r-unit" class="text-4xl font-bold text-primary tabular-nums">$36</p>
+        <!-- Location inputs -->
+        <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
+          <div class="card-body gap-2 p-3">
+            <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Số lượng địa điểm</p>
+            <div class="join w-full">
+              <button class="btn btn-sm join-item btn-ghost font-bold text-lg w-10" onclick="adj(-10)">−</button>
+              <input id="loc-input" type="number" min="50" max="10000" value="100"
+                class="input input-sm input-bordered join-item flex-1 text-center text-base font-bold"
+                oninput="sync(this.value)" />
+              <button class="btn btn-sm join-item btn-ghost font-bold text-lg w-10" onclick="adj(+10)">+</button>
             </div>
-            <span id="r-badge" class="badge badge-success badge-md">Tiết kiệm 23%</span>
-          </div>
-          <div class="grid grid-cols-3 gap-1.5">
-            <div class="bg-base-200 rounded p-2">
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Phí/tháng</p>
-              <p id="r-monthly" class="text-base font-semibold tabular-nums">$3,600</p>
-              <p id="r-vnd" class="text-sm text-base-content/30 leading-none mt-0.5">≈ 91M ₫</p>
-            </div>
-            <div class="bg-base-200 rounded p-2">
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Phí thiết lập</p>
-              <p id="r-setup" class="text-base font-semibold tabular-nums">$10,000</p>
-              <p id="r-setup-per" class="text-sm text-base-content/30 leading-none mt-0.5">$100/ĐĐ</p>
-            </div>
-            <div class="bg-primary/10 rounded p-2 border border-primary/20">
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Năm đầu</p>
-              <p id="r-annual" class="text-base font-bold tabular-nums text-primary">$53,200</p>
-              <p class="text-sm text-base-content/30 leading-none mt-0.5">×12 + setup</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ZONE 2: COMMISSION (Phụ lục 3) -->
-    <div class="grid grid-cols-2 gap-2">
-
-      <!-- Commission inputs -->
-      <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
-        <div class="card-body gap-2 p-3">
-          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Thông số hoa hồng</p>
-          <div class="flex items-center justify-between bg-base-200 rounded-lg px-3 py-2">
-            <p class="text-sm font-medium">Thực hiện Onboarding</p>
-            <input id="ob-toggle" type="checkbox" class="toggle toggle-success toggle-sm"
-              onchange="update()" checked />
-          </div>
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <p class="text-sm font-medium">Chiết khấu cho khách hàng</p>
-              <span id="disc-label" class="text-sm font-bold text-warning tabular-nums">0%</span>
-            </div>
-            <input id="disc-slider" type="range" min="0" max="25" step="5" value="0"
-              class="range range-warning range-xs w-full" oninput="onDiscChange(this.value)" />
+            <input id="loc-slider" type="range" min="50" max="3000" step="10" value="100"
+              class="range range-primary range-xs w-full" oninput="syncSlider(this.value)" />
             <div class="flex justify-between text-sm text-base-content/30 -mt-1 px-0.5 leading-none">
-              <span>0%</span><span>5%</span><span>10%</span><span>15%</span><span>20%</span><span>25%</span>
+              <span>50</span><span>500</span><span>1k</span><span>2k</span><span>3k+</span>
+            </div>
+            <div class="flex flex-wrap gap-1">
+              <span class="text-sm text-base-content/30 self-center">Nhanh:</span>
+              <button class="btn btn-sm preset" onclick="setN(50)">50</button>
+              <button class="btn btn-sm preset" onclick="setN(100)">100</button>
+              <button class="btn btn-sm preset" onclick="setN(200)">200</button>
+              <button class="btn btn-sm preset" onclick="setN(500)">500</button>
+              <button class="btn btn-sm preset" onclick="setN(1000)">1,000</button>
+              <button class="btn btn-sm preset" onclick="setN(2000)">2,000</button>
             </div>
           </div>
-          <div class="flex flex-wrap gap-1">
-            <span class="text-sm text-base-content/30 self-center">Nhanh:</span>
-            <button class="btn btn-sm disc-preset" onclick="setDisc(0)">0%</button>
-            <button class="btn btn-sm disc-preset" onclick="setDisc(5)">5%</button>
-            <button class="btn btn-sm disc-preset" onclick="setDisc(10)">10%</button>
-            <button class="btn btn-sm disc-preset" onclick="setDisc(15)">15%</button>
-            <button class="btn btn-sm disc-preset" onclick="setDisc(20)">20%</button>
-            <button class="btn btn-sm disc-preset" onclick="setDisc(25)">25%</button>
+        </div>
+
+        <!-- Commission inputs -->
+        <div class="card card-compact bg-base-100 border border-base-300 shadow-sm flex-1">
+          <div class="card-body gap-2 p-3">
+            <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Thông số hoa hồng</p>
+            <div class="flex items-center justify-between bg-base-200 rounded-lg px-3 py-2">
+              <p class="text-sm font-medium">Thực hiện Onboarding</p>
+              <input id="ob-toggle" type="checkbox" class="toggle toggle-success toggle-sm"
+                onchange="update()" checked />
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <p class="text-sm font-medium">Chiết khấu cho khách hàng</p>
+                <span id="disc-label" class="text-sm font-bold text-warning tabular-nums">0%</span>
+              </div>
+              <input id="disc-slider" type="range" min="0" max="25" step="5" value="0"
+                class="range range-warning range-xs w-full" oninput="onDiscChange(this.value)" />
+              <div class="flex justify-between text-sm text-base-content/30 -mt-1 px-0.5 leading-none">
+                <span>0%</span><span>5%</span><span>10%</span><span>15%</span><span>20%</span><span>25%</span>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-1">
+              <span class="text-sm text-base-content/30 self-center">Nhanh:</span>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(0)">0%</button>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(5)">5%</button>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(10)">10%</button>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(15)">15%</button>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(20)">20%</button>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(25)">25%</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Commission results -->
-      <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
-        <div class="card-body p-3 gap-0">
-          <div class="flex items-center justify-between border-b border-base-200 pb-2 mb-2">
-            <div>
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Hoa hồng / tháng (phí DV)</p>
-              <p id="c-amount" class="text-4xl font-bold text-success tabular-nums">$360</p>
+      <!-- RIGHT: service fee results + commission results stacked -->
+      <div class="flex flex-col gap-2">
+
+        <!-- Service fee results -->
+        <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
+          <div class="card-body p-3 gap-0">
+            <div class="flex items-center justify-between border-b border-base-200 pb-2 mb-2">
+              <div>
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Đơn giá / địa điểm / tháng</p>
+                <p id="r-unit" class="text-4xl font-bold text-primary tabular-nums">$36</p>
+              </div>
+              <span id="r-badge" class="badge badge-success badge-md">Tiết kiệm 23%</span>
             </div>
-            <div class="text-right">
-              <p class="text-xs text-base-content/40 leading-none mb-0.5">Tỷ lệ thực tế</p>
-              <p id="c-rate" class="text-xl font-bold text-success tabular-nums">10%</p>
+            <div class="grid grid-cols-3 gap-1.5">
+              <div class="bg-base-200 rounded p-2">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Phí/tháng</p>
+                <p id="r-monthly" class="text-base font-semibold tabular-nums">$3,600</p>
+                <p id="r-vnd" class="text-sm text-base-content/30 leading-none mt-0.5">≈ 91M ₫</p>
+              </div>
+              <div class="bg-base-200 rounded p-2">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Phí thiết lập</p>
+                <p id="r-setup" class="text-base font-semibold tabular-nums">$10,000</p>
+                <p id="r-setup-per" class="text-sm text-base-content/30 leading-none mt-0.5">$100/ĐĐ</p>
+              </div>
+              <div class="bg-primary/10 rounded p-2 border border-primary/20">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Năm đầu</p>
+                <p id="r-annual" class="text-base font-bold tabular-nums text-primary">$53,200</p>
+                <p class="text-sm text-base-content/30 leading-none mt-0.5">×12 + setup</p>
+              </div>
             </div>
           </div>
-          <div class="grid grid-cols-3 gap-1.5">
-            <div class="bg-base-200 rounded p-2">
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Tỷ lệ cơ sở</p>
-              <p id="c-base-rate" class="text-base font-semibold tabular-nums">10%</p>
-              <p id="c-ob-label" class="text-sm text-base-content/30 leading-none mt-0.5">Có OB</p>
+        </div>
+
+        <!-- Commission results -->
+        <div class="card card-compact bg-base-100 border border-base-300 shadow-sm flex-1">
+          <div class="card-body p-3 gap-0">
+            <div class="flex items-center justify-between border-b border-base-200 pb-2 mb-2">
+              <div>
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Hoa hồng / tháng (phí DV)</p>
+                <p id="c-amount" class="text-4xl font-bold text-success tabular-nums">$360</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xs text-base-content/40 leading-none mb-0.5">Tỷ lệ thực tế</p>
+                <p id="c-rate" class="text-xl font-bold text-success tabular-nums">10%</p>
+              </div>
             </div>
-            <div class="bg-base-200 rounded p-2">
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">HH Setup (1 lần)</p>
-              <p id="c-setup" class="text-base font-semibold tabular-nums">$1,000</p>
-              <p class="text-sm text-base-content/30 leading-none mt-0.5">trên phí thiết lập</p>
-            </div>
-            <div class="bg-success/10 rounded p-2 border border-success/20">
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Tổng HH năm đầu</p>
-              <p id="c-annual" class="text-base font-bold tabular-nums text-success">$5,320</p>
-              <p class="text-sm text-base-content/30 leading-none mt-0.5">HH tháng×12 + Setup</p>
+            <div class="grid grid-cols-3 gap-1.5">
+              <div class="bg-base-200 rounded p-2">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Tỷ lệ cơ sở</p>
+                <p id="c-base-rate" class="text-base font-semibold tabular-nums">10%</p>
+                <p id="c-ob-label" class="text-sm text-base-content/30 leading-none mt-0.5">Có OB</p>
+              </div>
+              <div class="bg-base-200 rounded p-2">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">HH Setup (1 lần)</p>
+                <p id="c-setup" class="text-base font-semibold tabular-nums">$1,000</p>
+                <p class="text-sm text-base-content/30 leading-none mt-0.5">trên phí thiết lập</p>
+              </div>
+              <div class="bg-success/10 rounded p-2 border border-success/20">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Tổng HH năm đầu</p>
+                <p id="c-annual" class="text-base font-bold tabular-nums text-success">$5,320</p>
+                <p class="text-sm text-base-content/30 leading-none mt-0.5">×12 + HH setup</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ZONE 3: REFERENCE TABLES -->
+    <!-- ZONE 2: REFERENCE TABLES -->
     <div class="grid grid-cols-2 gap-2">
 
       <!-- Commission rate table -->
@@ -192,24 +196,25 @@
               </tr>
             </thead>
             <tbody id="comm-tbody">
-              <tr data-min="50"  data-max="100"  data-no="7"  data-ob="10">
+              <tr data-min="50"   data-max="100"   data-no="7"  data-ob="10">
                 <td class="font-mono text-sm">50 – 100</td>
                 <td class="font-semibold">7%</td>
                 <td class="font-semibold text-success">10%</td>
               </tr>
-              <tr data-min="101" data-max="200"  data-no="10" data-ob="15">
+              <tr data-min="101"  data-max="200"   data-no="10" data-ob="15">
                 <td class="font-mono text-sm">101 – 200</td>
                 <td class="font-semibold">10%</td>
                 <td class="font-semibold text-success">15%</td>
               </tr>
-              <tr data-min="201" data-max="99999" data-no="15" data-ob="20">
+              <tr data-min="201"  data-max="99999" data-no="15" data-ob="20">
                 <td class="font-mono text-sm">&gt; 200</td>
                 <td class="font-semibold">15%</td>
                 <td class="font-semibold text-success">20%</td>
               </tr>
             </tbody>
           </table>
-          <div class="bg-warning/10 border border-warning/20 rounded p-2 mt-0.5">
+          <div class="divider my-0"></div>
+          <div class="bg-warning/10 border border-warning/20 rounded p-2">
             <code class="text-xs text-warning font-mono">HH = Tỷ lệ cơ sở × (1 − CK ÷ 25% × 50%)</code>
             <p class="text-xs text-base-content/40 mt-0.5">Mỗi 5% CK → giảm 10% tỷ lệ · Max CK: 25%</p>
           </div>
@@ -241,14 +246,11 @@
     let N = 100, DISC = 0;
     const USD_VND = 25400;
 
-    // Phụ lục 2
     function unitPrice(n) { return Math.max(Math.floor(336 / Math.sqrt(n) + 2.5), 10); }
     function setupRate(n) {
       if (n <= 100) return 100; if (n <= 250) return 50;
       if (n <= 500) return 25;  if (n <= 2000) return 15; return 10;
     }
-
-    // Phụ lục 3
     function baseCommRate(n, hasOB) {
       if (n <= 100) return hasOB ? 10 : 7;
       if (n <= 200) return hasOB ? 15 : 10;
@@ -263,10 +265,9 @@
     const fmtPct = v => v.toFixed(1).replace(/\.0$/, '') + '%';
 
     function update() {
-      const n   = Math.max(50, Math.min(10000, N));
-      const ob  = document.getElementById('ob-toggle')?.checked ?? true;
+      const n  = Math.max(50, Math.min(10000, N));
+      const ob = document.getElementById('ob-toggle')?.checked ?? true;
 
-      // Service fee
       const up  = unitPrice(n);
       const mo  = up * n;
       const sfp = setupRate(n);
@@ -291,12 +292,11 @@
       badge.textContent = save > 0 ? `Tiết kiệm ${save}%` : 'Giá sàn';
       badge.className = 'badge badge-sm ' + (save > 0 ? 'badge-success' : 'badge-ghost');
 
-      // Commission
-      const baseRate   = baseCommRate(n, ob);
-      const actRate    = actualCommRate(baseRate, DISC);
-      const commMo     = mo * actRate / 100;
-      const commSetup  = sft * actRate / 100;
-      const commAnn    = commMo * 12 + commSetup;
+      const baseRate  = baseCommRate(n, ob);
+      const actRate   = actualCommRate(baseRate, DISC);
+      const commMo    = mo * actRate / 100;
+      const commSetup = sft * actRate / 100;
+      const commAnn   = commMo * 12 + commSetup;
 
       setVal('c-base-rate', fmtPct(baseRate));
       setVal('c-ob-label',  ob ? 'Có Onboarding' : 'Không OB');
@@ -305,27 +305,21 @@
       setVal('c-setup',     fmt(Math.round(commSetup)));
       setVal('c-annual',    fmt(Math.round(commAnn)));
 
-      // Highlight service fee table
       const refs = [50, 100, 200, 500, 1000, 1500, 2000];
       let closest = refs[0];
       refs.forEach(r => { if (n >= r) closest = r; });
       document.querySelectorAll('#monthly-tbody tr').forEach(tr => {
         tr.classList.toggle('row-active', +tr.dataset.n === closest);
       });
-
-      // Highlight commission tier table
       document.querySelectorAll('#comm-tbody tr').forEach(tr => {
         const mn = +tr.dataset.min, mx = +tr.dataset.max;
         tr.classList.toggle('comm-active', n >= mn && n <= mx);
       });
 
-      // Active location preset
       document.querySelectorAll('.preset').forEach(b => {
         const v = +b.textContent.replace(/,/g, '');
         b.className = 'btn btn-sm preset ' + (v === n ? 'btn-primary' : 'btn-ghost');
       });
-
-      // Active discount preset
       document.querySelectorAll('.disc-preset').forEach(b => {
         const v = parseInt(b.textContent);
         b.className = 'btn btn-sm disc-preset ' + (v === DISC ? 'btn-warning' : 'btn-ghost');
@@ -355,7 +349,6 @@
       update();
     }
 
-    // Build service fee table
     const svcRefs = [50, 100, 200, 500, 1000, 1500, 2000];
     const base0   = unitPrice(50);
     document.getElementById('monthly-tbody').innerHTML = svcRefs.map(n => {

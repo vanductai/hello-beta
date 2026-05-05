@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="corporate">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Báo Giá Tự Động | Beta.vn</title>
+  <meta name="description" content="Bảng báo giá dịch vụ tự động theo số lượng địa điểm." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html,
+    body {
+      font-family: 'Inter', sans-serif;
+      height: 100%;
+      overflow: hidden;
+      font-size: 16px;
+    }
+
+    input[type=range] {
+      accent-color: oklch(var(--p));
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1.06);
+        opacity: .5
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    .pop {
+      animation: pop .18s ease;
+    }
+
+    .row-active {
+      background: oklch(var(--p)/0.06) !important;
+    }
+
+    .row-active td:first-child {
+      border-left: 2px solid oklch(var(--p));
+    }
+  </style>
+</head>
+
+<body class="bg-base-200 p-3 flex flex-col gap-2">
+  <div class="max-w-[840px] w-full mx-auto flex flex-col gap-2 h-full">
+
+    <!-- ── HEADER ── -->
+    <div class="flex items-center justify-between px-1">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-lg text-primary">Beta.vn</span>
+        <span class="badge badge-outline badge-sm text-base-content/50">Báo giá</span>
+      </div>
+      <code class="text-sm bg-base-100 border border-base-300 px-2 py-0.5 rounded font-mono text-primary">
+      INT( 336 ÷ √n + 2.5 ) USD &nbsp;·&nbsp; min $10
+    </code>
+    </div>
+
+    <!-- ── ZONE 1: CALCULATOR ── -->
+    <div class="grid grid-cols-2 gap-2">
+
+      <!-- Inputs -->
+      <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
+        <div class="card-body gap-2 p-3">
+          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Số lượng địa điểm</p>
+
+          <!-- Number input -->
+          <div class="join w-full">
+            <button class="btn btn-sm join-item btn-ghost font-bold text-lg w-10" onclick="adj(-10)">−</button>
+            <input id="loc-input" type="number" min="50" max="10000" value="100"
+              class="input input-sm input-bordered join-item flex-1 text-center text-base font-bold"
+              oninput="sync(this.value)" />
+            <button class="btn btn-sm join-item btn-ghost font-bold text-lg w-10" onclick="adj(+10)">+</button>
+          </div>
+
+          <!-- Slider -->
+          <input id="loc-slider" type="range" min="50" max="3000" step="10" value="100"
+            class="range range-primary range-xs w-full" oninput="syncSlider(this.value)" />
+          <div class="flex justify-between text-sm text-base-content/30 -mt-1 px-0.5 leading-none">
+            <span>50</span><span>500</span><span>1k</span><span>2k</span><span>3k+</span>
+          </div>
+
+          <!-- Presets -->
+          <div class="flex flex-wrap gap-1">
+            <span class="text-sm text-base-content/30 self-center">Nhanh:</span>
+            <button class="btn btn-sm preset" onclick="set(50)">50</button>
+            <button class="btn btn-sm preset" onclick="set(100)">100</button>
+            <button class="btn btn-sm preset" onclick="set(200)">200</button>
+            <button class="btn btn-sm preset" onclick="set(500)">500</button>
+            <button class="btn btn-sm preset" onclick="set(1000)">1,000</button>
+            <button class="btn btn-sm preset" onclick="set(2000)">2,000</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
+        <div class="card-body p-3 gap-0">
+          <!-- Unit price -->
+          <div class="flex items-center justify-between border-b border-base-200 pb-2 mb-2">
+            <div>
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Đơn giá / địa điểm / tháng</p>
+              <p id="r-unit" class="text-4xl font-bold text-primary tabular-nums">$36</p>
+            </div>
+            <span id="r-badge" class="badge badge-success badge-md">Tiết kiệm 23%</span>
+          </div>
+          <!-- Stats grid 3 cols -->
+          <div class="grid grid-cols-3 gap-1.5">
+            <div class="bg-base-200 rounded p-2">
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Phí/tháng</p>
+              <p id="r-monthly" class="text-base font-semibold tabular-nums">$3,600</p>
+              <p id="r-vnd" class="text-sm text-base-content/30 leading-none mt-0.5">≈ 91M ₫</p>
+            </div>
+            <div class="bg-base-200 rounded p-2">
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Phí thiết lập</p>
+              <p id="r-setup" class="text-base font-semibold tabular-nums">$10,000</p>
+              <p id="r-setup-per" class="text-sm text-base-content/30 leading-none mt-0.5">$100/ĐĐ</p>
+            </div>
+            <div class="bg-primary/10 rounded p-2 border border-primary/20">
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Năm đầu</p>
+              <p id="r-annual" class="text-base font-bold tabular-nums text-primary">$53,200</p>
+              <p class="text-sm text-base-content/30 leading-none mt-0.5">×12 + setup</p>
+            </div>
+          </div>
+          <p class="text-sm text-base-content/25 mt-2 leading-4">USD · VND theo tỷ giá ACB ngày xuất HĐ</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ZONE 2: REFERENCE TABLE ── -->
+    <div class="grid grid-cols-2 gap-2">
+
+      <!-- Monthly fee table -->
+      <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
+        <div class="card-body p-3 gap-1.5">
+          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Phí Dịch Vụ Tham khảo
+          </p>
+          <table class="table table-xs w-full">
+            <thead>
+              <tr class="text-base-content/40">
+                <th class="py-1">Địa điểm</th>
+                <th class="py-1">Đơn giá</th>
+                <th class="py-1">Tổng/tháng</th>
+                <th class="py-1">Tiết kiệm</th>
+              </tr>
+            </thead>
+            <tbody id="monthly-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Setup fee + notes -->
+      <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
+        <div class="card-body p-3 gap-1.5">
+          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Phí Thiết Lập (Một Lần)</p>
+          <table class="table table-xs w-full">
+            <thead>
+              <tr class="text-base-content/40">
+                <th class="py-1">Số địa điểm</th>
+                <th class="py-1">Phí/địa điểm</th>
+                <th class="py-1">Tổng tham khảo</th>
+              </tr>
+            </thead>
+            <tbody id="setup-tbody">
+              <tr data-min="50" data-max="100">
+                <td class="font-mono text-sm">50 – 100</td>
+                <td class="font-semibold">$100</td>
+                <td class="text-base-content/40 text-sm">$5k – $10k</td>
+              </tr>
+              <tr data-min="101" data-max="250">
+                <td class="font-mono text-sm">101 – 250</td>
+                <td class="font-semibold">$50</td>
+                <td class="text-base-content/40 text-sm">$5k – $12.5k</td>
+              </tr>
+              <tr data-min="251" data-max="500">
+                <td class="font-mono text-sm">251 – 500</td>
+                <td class="font-semibold">$25</td>
+                <td class="text-base-content/40 text-sm">$6.3k – $12.5k</td>
+              </tr>
+              <tr data-min="501" data-max="2000">
+                <td class="font-mono text-sm">501 – 2,000</td>
+                <td class="font-semibold">$15</td>
+                <td class="text-base-content/40 text-sm">$7.5k – $30k</td>
+              </tr>
+              <tr data-min="2001" data-max="99999">
+                <td class="font-mono text-sm">2,001+</td>
+                <td class="font-semibold">$10</td>
+                <td class="text-base-content/40 text-sm">$20k+</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="divider my-0"></div>
+          <ul class="text-sm text-base-content/40 space-y-0.5 leading-4">
+            <li>📌 Tối thiểu <strong class="text-base-content/70">50 địa điểm</strong> để áp dụng HĐ.</li>
+            <li>📐 Đơn giá tính qua công thức <code
+                class="bg-base-200 px-1 rounded text-primary">INT(336÷√n+2.5)</code>.</li>
+            <li>💱 Thanh toán VND theo tỷ giá bán ra <strong class="text-base-content/70">ACB</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div><!-- /max-w wrapper -->
+
+  <script>
+    let N = 100;
+    const USD_VND = 25400;
+
+    function unitPrice(n) { return Math.max(Math.floor(336 / Math.sqrt(n) + 2.5), 10); }
+    function setupRate(n) {
+      if (n <= 100) return 100; if (n <= 250) return 50;
+      if (n <= 500) return 25; if (n <= 2000) return 15; return 10;
+    }
+    const fmt = v => '$' + v.toLocaleString('en-US');
+    const fmtVND = v => '≈ ' + Math.round(v * USD_VND / 1e6) + 'M ₫';
+
+    function update(n) {
+      n = Math.max(50, Math.min(10000, Math.round(n)));
+      N = n;
+      const up = unitPrice(n), mo = up * n, sfp = setupRate(n), sft = sfp * n;
+      const ann = mo * 12 + sft, base = unitPrice(50);
+      const save = base > up ? Math.round((base - up) / base * 100) : 0;
+
+      const inp = document.getElementById('loc-input');
+      const sld = document.getElementById('loc-slider');
+      if (document.activeElement !== inp) inp.value = n;
+      if (document.activeElement !== sld) sld.value = Math.min(n, 3000);
+
+      setVal('r-unit', fmt(up));
+      setVal('r-monthly', fmt(mo));
+      setVal('r-vnd', fmtVND(mo));
+      setVal('r-setup', fmt(sft));
+      setVal('r-setup-per', fmt(sfp) + '/ĐĐ');
+      setVal('r-annual', fmt(ann));
+
+      const badge = document.getElementById('r-badge');
+      badge.textContent = save > 0 ? `Tiết kiệm ${save}%` : 'Giá sàn';
+      badge.className = 'badge badge-sm ' + (save > 0 ? 'badge-success' : 'badge-ghost');
+
+      // highlight monthly table
+      const refs = [50, 100, 200, 500, 1000, 1500, 2000];
+      let closest = refs[0];
+      refs.forEach(r => { if (n >= r) closest = r; });
+      document.querySelectorAll('#monthly-tbody tr').forEach(tr => {
+        tr.classList.toggle('row-active', +tr.dataset.n === closest);
+      });
+
+      // highlight setup table
+      document.querySelectorAll('#setup-tbody tr').forEach(tr => {
+        const mn = +tr.dataset.min, mx = +tr.dataset.max;
+        tr.classList.toggle('row-active', n >= mn && n <= mx);
+      });
+
+      // active preset
+      document.querySelectorAll('.preset').forEach(b => {
+        const v = +b.textContent.replace(/,/g, '');
+        b.className = 'btn btn-xs preset ' + (v === n ? 'btn-primary' : 'btn-ghost');
+      });
+    }
+
+    function setVal(id, val) {
+      const el = document.getElementById(id);
+      if (!el || el.textContent === val) return;
+      el.textContent = val;
+      el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+    }
+
+    function sync(v) { const n = parseInt(v, 10); if (!isNaN(n)) update(n); }
+    function syncSlider(v) { update(parseInt(v, 10)); document.getElementById('loc-input').value = v; }
+    function adj(d) { update(N + d); }
+    function set(n) { update(n); }
+
+    // Build monthly table
+    const refs = [50, 100, 200, 500, 1000, 1500, 2000];
+    const base0 = unitPrice(50);
+    document.getElementById('monthly-tbody').innerHTML = refs.map(n => {
+      const up = unitPrice(n), tot = up * n;
+      const sv = n === 50 ? '—' : `−${Math.round((base0 - up) / base0 * 100)}%`;
+      return `<tr data-n="${n}">
+      <td class="font-mono text-sm">${n.toLocaleString('en-US')}</td>
+      <td class="font-semibold">${fmt(up)}</td>
+      <td class="font-semibold">${fmt(tot)}</td>
+      <td class="text-success font-medium text-sm">${sv}</td>
+    </tr>`;
+    }).join('');
+
+    update(100);
+  </script>
+</body>
+
+</html>
