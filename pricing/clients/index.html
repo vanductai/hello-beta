@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="corporate">
+<html lang="en" data-theme="corporate">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Báo Giá Tự Động | Beta.vn</title>
-  <meta name="description" content="Bảng báo giá dịch vụ tự động theo số lượng địa điểm." />
+  <title>Automated Pricing | Beta.vn</title>
+  <meta name="description" content="Automated service pricing table based on number of locations." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
@@ -56,7 +56,7 @@
     <div class="flex items-center justify-between px-1">
       <div class="flex items-center gap-2">
         <span class="font-bold text-lg text-primary">Beta.vn</span>
-        <span class="badge badge-outline badge-sm text-base-content/50">Báo giá khách hàng</span>
+        <span class="badge badge-outline badge-sm text-base-content/50">Client Pricing</span>
       </div>
       <code class="text-sm bg-base-100 border border-base-300 px-2 py-0.5 rounded font-mono text-primary">
       INT( 336 ÷ √n + 2.5 ) USD &nbsp;·&nbsp; min $10
@@ -69,7 +69,7 @@
       <!-- Inputs -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
         <div class="card-body gap-2 p-3">
-          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Số lượng địa điểm</p>
+          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Number of Locations</p>
 
           <!-- Number input -->
           <div class="join w-full">
@@ -89,7 +89,7 @@
 
           <!-- Presets -->
           <div class="flex flex-wrap gap-1">
-            <span class="text-sm text-base-content/30 self-center">Nhanh:</span>
+            <span class="text-sm text-base-content/30 self-center">Quick:</span>
             <button class="btn btn-sm preset" onclick="set(50)">50</button>
             <button class="btn btn-sm preset" onclick="set(100)">100</button>
             <button class="btn btn-sm preset" onclick="set(200)">200</button>
@@ -106,30 +106,30 @@
           <!-- Unit price -->
           <div class="flex items-center justify-between border-b border-base-200 pb-2 mb-2">
             <div>
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Đơn giá / địa điểm / tháng</p>
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Unit price / location / month</p>
               <p id="r-unit" class="text-4xl font-bold text-primary tabular-nums">$36</p>
             </div>
-            <span id="r-badge" class="badge badge-success badge-md">Tiết kiệm 23%</span>
+            <span id="r-badge" class="badge badge-success badge-md">Save 23%</span>
           </div>
           <!-- Stats grid 3 cols -->
           <div class="grid grid-cols-3 gap-1.5">
             <div class="bg-base-200 rounded p-2">
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Phí/tháng</p>
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Fee/month</p>
               <p id="r-monthly" class="text-base font-semibold tabular-nums">$3,600</p>
               <p id="r-vnd" class="text-sm text-base-content/30 leading-none mt-0.5">≈ 91M ₫</p>
             </div>
             <div class="bg-base-200 rounded p-2">
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Phí thiết lập</p>
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Setup fee</p>
               <p id="r-setup" class="text-base font-semibold tabular-nums">$10,000</p>
-              <p id="r-setup-per" class="text-sm text-base-content/30 leading-none mt-0.5">$100/ĐĐ</p>
+              <p id="r-setup-per" class="text-sm text-base-content/30 leading-none mt-0.5">$100/loc</p>
             </div>
             <div class="bg-primary/10 rounded p-2 border border-primary/20">
-              <p class="text-sm text-base-content/40 leading-none mb-0.5">Năm đầu</p>
+              <p class="text-sm text-base-content/40 leading-none mb-0.5">Year 1 Total</p>
               <p id="r-annual" class="text-base font-bold tabular-nums text-primary">$53,200</p>
               <p class="text-sm text-base-content/30 leading-none mt-0.5">×12 + setup</p>
             </div>
           </div>
-          <p class="text-sm text-base-content/25 mt-2 leading-4">USD · VND theo tỷ giá ACB ngày xuất HĐ</p>
+          <p class="text-sm text-base-content/25 mt-2 leading-4">USD · VND at ACB selling rate on invoice date</p>
         </div>
       </div>
     </div>
@@ -140,15 +140,14 @@
       <!-- Monthly fee table -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
         <div class="card-body p-3 gap-1.5">
-          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Phí Dịch Vụ Tham khảo
-          </p>
+          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Reference Service Fees</p>
           <table class="table table-xs w-full">
             <thead>
               <tr class="text-base-content/40">
-                <th class="py-1">Địa điểm</th>
-                <th class="py-1">Đơn giá</th>
-                <th class="py-1">Tổng/tháng</th>
-                <th class="py-1">Tiết kiệm</th>
+                <th class="py-1">Locations</th>
+                <th class="py-1">Unit Price</th>
+                <th class="py-1">Total/month</th>
+                <th class="py-1">Savings</th>
               </tr>
             </thead>
             <tbody id="monthly-tbody"></tbody>
@@ -159,13 +158,13 @@
       <!-- Setup fee + notes -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
         <div class="card-body p-3 gap-1.5">
-          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Phí Thiết Lập (Một Lần)</p>
+          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Setup Fee (One-Time)</p>
           <table class="table table-xs w-full">
             <thead>
               <tr class="text-base-content/40">
-                <th class="py-1">Số địa điểm</th>
-                <th class="py-1">Phí/địa điểm</th>
-                <th class="py-1">Tổng tham khảo</th>
+                <th class="py-1">Locations</th>
+                <th class="py-1">Fee/location</th>
+                <th class="py-1">Est. Total</th>
               </tr>
             </thead>
             <tbody id="setup-tbody">
@@ -198,10 +197,10 @@
           </table>
           <div class="divider my-0"></div>
           <ul class="text-sm text-base-content/40 space-y-0.5 leading-4">
-            <li>📌 Tối thiểu <strong class="text-base-content/70">50 địa điểm</strong> để áp dụng HĐ.</li>
-            <li>📐 Đơn giá tính qua công thức <code
+            <li>📌 Minimum <strong class="text-base-content/70">50 locations</strong> required to apply contract.</li>
+            <li>📐 Unit price calculated via formula <code
                 class="bg-base-200 px-1 rounded text-primary">INT(336÷√n+2.5)</code>.</li>
-            <li>💱 Thanh toán VND theo tỷ giá bán ra <strong class="text-base-content/70">ACB</strong>.</li>
+            <li>💱 VND payments at <strong class="text-base-content/70">ACB</strong> selling rate.</li>
           </ul>
         </div>
       </div>
@@ -210,7 +209,7 @@
 
   <script>
     let N = 100;
-    const USD_VND = 25400;
+    const USD_VND = 26300;
 
     function unitPrice(n) { return Math.max(Math.floor(336 / Math.sqrt(n) + 2.5), 10); }
     function setupRate(n) {
@@ -236,11 +235,11 @@
       setVal('r-monthly', fmt(mo));
       setVal('r-vnd', fmtVND(mo));
       setVal('r-setup', fmt(sft));
-      setVal('r-setup-per', fmt(sfp) + '/ĐĐ');
+      setVal('r-setup-per', fmt(sfp) + '/loc');
       setVal('r-annual', fmt(ann));
 
       const badge = document.getElementById('r-badge');
-      badge.textContent = save > 0 ? `Tiết kiệm ${save}%` : 'Giá sàn';
+      badge.textContent = save > 0 ? `Save ${save}%` : 'Floor price';
       badge.className = 'badge badge-sm ' + (save > 0 ? 'badge-success' : 'badge-ghost');
 
       // highlight monthly table
