@@ -14,8 +14,7 @@
     html,
     body {
       font-family: 'Inter', sans-serif;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100%;
       font-size: 16px;
     }
 
@@ -53,18 +52,18 @@
   <div class="max-w-[960px] w-full mx-auto flex flex-col gap-2 h-full">
 
     <!-- ── HEADER ── -->
-    <div class="flex items-center justify-between px-1">
+    <div class="flex items-center justify-between px-1 gap-2 flex-wrap">
       <div class="flex items-center gap-2">
         <span class="font-bold text-lg text-primary">Beta.vn</span>
         <span class="badge badge-outline badge-sm text-base-content/50">Client Pricing</span>
       </div>
-      <code class="text-sm bg-base-100 border border-base-300 px-2 py-0.5 rounded font-mono text-primary">
-      INT( 336 ÷ √n + 2.5 ) USD &nbsp;·&nbsp; min $10
-    </code>
+      <code class="hidden sm:inline text-sm bg-base-100 border border-base-300 px-2 py-0.5 rounded font-mono text-primary">
+        INT( 336 ÷ √n + 2.5 ) USD &nbsp;·&nbsp; min $10
+      </code>
     </div>
 
     <!-- ── ZONE 1: CALCULATOR ── -->
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
 
       <!-- Inputs -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
@@ -112,7 +111,7 @@
             <span id="r-badge" class="badge badge-success badge-md">Save 23%</span>
           </div>
           <!-- Stats grid 3 cols -->
-          <div class="grid grid-cols-3 gap-1.5">
+          <div class="grid grid-cols-3 gap-1.5 min-w-0">
             <div class="bg-base-200 rounded p-2">
               <p class="text-sm text-base-content/40 leading-none mb-0.5">Fee/month</p>
               <p id="r-monthly" class="text-base font-semibold tabular-nums">$3,600</p>
@@ -135,7 +134,7 @@
     </div>
 
     <!-- ── ZONE 2: REFERENCE TABLE ── -->
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
 
       <!-- Monthly fee table -->
       <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
