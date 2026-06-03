@@ -661,13 +661,28 @@
     .bars3 {
       display: flex;
       align-items: stretch;
-      gap: 30px;
-      height: 320px;
+      gap: 10px;
+      height: 220px;
       background: var(--paper);
       border: 3px solid var(--ink);
       border-radius: 22px;
       box-shadow: 6px 6px 0 var(--ink);
-      padding: 20px 24px;
+      padding: 16px 14px;
+    }
+
+    @media(min-width:620px) {
+      .bars3 {
+        gap: 20px;
+        height: 280px;
+        padding: 20px 24px;
+      }
+    }
+
+    @media(min-width:860px) {
+      .bars3 {
+        gap: 30px;
+        height: 320px;
+      }
     }
 
     .b3col {
@@ -681,8 +696,22 @@
     .b3v {
       font-family: var(--disp);
       font-weight: 800;
-      font-size: 26px;
-      margin-bottom: 12px;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    @media(min-width:620px) {
+      .b3v {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media(min-width:860px) {
+      .b3v {
+        font-size: 26px;
+        margin-bottom: 12px;
+      }
     }
 
     .b3 {
@@ -701,23 +730,47 @@
 
     .b3-1 {
       background: var(--cream-2);
-      height: 52px;
+      height: 30px;
+    }
+
+    @media(min-width:620px) {
+      .b3-1 { height: 40px; }
+    }
+
+    @media(min-width:860px) {
+      .b3-1 { height: 52px; }
     }
 
     .b3-2 {
       background: var(--red);
-      height: 128px;
+      height: 76px;
       transition-delay: .16s;
+    }
+
+    @media(min-width:620px) {
+      .b3-2 { height: 100px; }
+    }
+
+    @media(min-width:860px) {
+      .b3-2 { height: 128px; }
     }
 
     .b3-3 {
       background: var(--gold);
-      height: 230px;
+      height: 140px;
       transition-delay: .32s;
     }
 
+    @media(min-width:620px) {
+      .b3-3 { height: 185px; }
+    }
+
+    @media(min-width:860px) {
+      .b3-3 { height: 230px; }
+    }
+
     .b3-arrow {
-      display: flex;
+      display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -727,12 +780,24 @@
       padding: 0 2px;
     }
 
+    @media(min-width:480px) {
+      .b3-arrow {
+        display: flex;
+      }
+    }
+
     .b3-arrow span {
       font-family: var(--disp);
       font-weight: 800;
-      font-size: 14px;
+      font-size: 12px;
       color: var(--red);
       white-space: nowrap;
+    }
+
+    @media(min-width:620px) {
+      .b3-arrow span {
+        font-size: 14px;
+      }
     }
 
     .b3-arrow svg {
@@ -742,10 +807,24 @@
     .b3l {
       font-family: var(--disp);
       font-weight: 700;
-      font-size: 15px;
+      font-size: 12px;
       color: var(--ink-2);
-      margin-top: 12px;
+      margin-top: 8px;
       white-space: nowrap;
+    }
+
+    @media(min-width:620px) {
+      .b3l {
+        font-size: 14px;
+        margin-top: 10px;
+      }
+    }
+
+    @media(min-width:860px) {
+      .b3l {
+        font-size: 15px;
+        margin-top: 12px;
+      }
     }
 
     /* calculator */
