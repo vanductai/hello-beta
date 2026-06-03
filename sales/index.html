@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Thodia · Freelancer — Poster năng lượng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --red: #CC3330;
+      --red-2: #A4221F;
+      --red-deep: #7E1714;
+      --gold: #F9C846;
+      --gold-2: #EBB52E;
+      --gold-deep: #C8930F;
+      --cream: #FFF7E8;
+      --cream-2: #FFEFCF;
+      --paper: #FFFFFF;
+      --ink: #3A1A16;
+      --ink-2: #7C534B;
+      --ink-3: #A98A82;
+      --disp: 'Baloo 2', 'Be Vietnam Pro', sans-serif;
+      --body: 'Be Vietnam Pro', sans-serif;
+      --maxw: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 26px;
+    }
+
+    @media(min-width:768px) {
+      .wrap {
+        padding: 0 44px;
+      }
+    }
+
+    .ic {
+      display: inline-flex;
+    }
+
+    .logo {
+      display: inline-block;
+    }
+
+    .logo .pin {
+      fill: var(--red);
+    }
+
+    .logo .star {
+      fill: var(--gold);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--disp);
+      margin: 0;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    /* star deco */
+    .starx {
+      display: inline-block;
+    }
+
+    .starx svg {
+      display: block;
+    }
+
+    /* nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--cream);
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .nav-in {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 26px;
+    }
+
+    .brand .logo {
+      width: 1em;
+      height: 1.2em;
+      font-size: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 16px;
+      border: 3px solid var(--ink);
+      border-radius: 16px;
+      padding: 10px 22px;
+      cursor: pointer;
+      transition: .14s;
+      white-space: nowrap;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .btn .ic {
+      font-size: 19px;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .btn-red {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .btn-cream {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .btn-lg {
+      padding: 15px 30px;
+      font-size: 19px;
+      border-radius: 18px;
+    }
+
+    /* hero — red full bleed */
+    .hero {
+      background: var(--red);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      right: -160px;
+      top: -160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--red-2), transparent 70%);
+    }
+
+    .hero .wrap {
+      position: relative;
+      padding: 80px 26px 90px;
+    }
+
+    @media(min-width:768px) {
+      .hero .wrap {
+        padding: 96px 44px 104px;
+      }
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media(min-width:980px) {
+      .hero-grid {
+        grid-template-columns: 1.1fr .9fr;
+        gap: 56px;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 3px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      margin-bottom: 26px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 76px);
+      letter-spacing: -.01em;
+      color: var(--cream);
+      text-wrap: balance;
+      line-height: 1.04;
+    }
+
+    .hero h1 .gold {
+      color: var(--gold);
+    }
+
+    .hero-lede {
+      font-size: 21px;
+      line-height: 1.5;
+      color: rgba(255, 247, 232, .92);
+      margin: 26px 0 0;
+      max-width: 32ch;
+      font-weight: 500;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .hero-stickers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .sticker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      transform: rotate(-2deg);
+    }
+
+    .sticker:nth-child(2) {
+      transform: rotate(1.5deg);
+    }
+
+    .sticker:nth-child(3) {
+      transform: rotate(-1deg);
+    }
+
+    .sticker .ic {
+      color: var(--red);
+      font-size: 16px;
+    }
+
+    /* hero coupon */
+    .coupon {
+      background: var(--cream);
+      color: var(--ink);
+      border: 3px solid var(--ink);
+      border-radius: 24px;
+      box-shadow: 8px 8px 0 var(--ink);
+      overflow: hidden;
+      transform: rotate(2deg);
+    }
+
+    .coupon .ch {
+      background: var(--gold);
+      padding: 20px 26px;
+      border-bottom: 3px dashed var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .coupon .ch b {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 19px;
+      white-space: nowrap;
+    }
+
+    .coupon .ch .starx svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .coupon .cb {
+      padding: 26px;
+    }
+
+    .coupon .cb .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+    }
+
+    .coupon .cb .row+.row {
+      border-top: 2px dotted var(--cream-2);
+    }
+
+    .coupon .cb .row .t {
+      font-weight: 600;
+      color: var(--ink-2);
+      font-size: 15px;
+    }
+
+    .coupon .cb .row .a {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 24px;
+      color: var(--red);
+    }
+
+    .coupon .cf {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 16px 26px;
+      text-align: center;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 17px;
+    }
+
+    .coupon .cf span {
+      color: var(--gold);
+    }
+
+    /* sections */
+    .sec {
+      padding: 84px 0;
+    }
+
+    @media(min-width:768px) {
+      .sec {
+        padding: 104px 0;
+      }
+    }
+
+    .band-cream2 {
+      background: var(--cream-2);
+    }
+
+    .head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 56px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin: 0 0 14px;
+    }
+
+    .kicker .ic {
+      font-size: 17px;
+    }
+
+    .h2 {
+      font-size: clamp(38px, 5.5vw, 68px);
+      letter-spacing: -.01em;
+      text-wrap: balance;
+    }
+
+    .h2 .red {
+      color: var(--red);
+    }
+
+    .h2 .gold {
+      color: var(--gold-deep);
+    }
+
+    .lead {
+      font-size: 19px;
+      color: var(--ink-2);
+      margin: 16px auto 0;
+      max-width: 52ch;
+      font-weight: 500;
+      text-wrap: pretty;
+    }
+
+    /* coupons grid (4 sources) */
+    .coupons {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: 1fr;
+    }
+
+    @media(min-width:620px) {
+      .coupons {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(min-width:1000px) {
+      .coupons {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .cpn {
+      position: relative;
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 6px 6px 0 var(--ink);
+      transition: transform .16s, box-shadow .16s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cpn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 9px 9px 0 var(--ink);
+    }
+
+    .cpn .top {
+      padding: 22px 22px 16px;
+      border-bottom: 3px dashed var(--ink);
+      position: relative;
+    }
+
+    .cpn:nth-child(1) .top {
+      background: var(--gold);
+    }
+
+    .cpn:nth-child(2) .top {
+      background: var(--cream-2);
+    }
+
+    .cpn:nth-child(3) .top {
+      background: #FBD9D7;
+    }
+
+    .cpn:nth-child(4) .top {
+      background: var(--gold);
+    }
+
+    .cpn .top::before,
+    .cpn .top::after {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 3px solid var(--ink);
+    }
+
+    .band-cream2 .cpn .top::before,
+    .band-cream2 .cpn .top::after {
+      background: var(--cream-2);
+    }
+
+    .cpn .top::before {
+      left: -13px;
+    }
+
+    .cpn .top::after {
+      right: -13px;
+    }
+
+    .cpn .num {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 16px;
+      background: var(--ink);
+      color: var(--cream);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+    }
+
+    .cpn .top .ic {
+      font-size: 34px;
+      color: var(--ink);
+      position: absolute;
+      right: 18px;
+      top: 18px;
+    }
+
+    .cpn h3 {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 21px;
+      line-height: 1.05;
+    }
+
+    .cpn .body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cpn .body p {
+      margin: 0 0 16px;
+      font-size: 14.5px;
+      color: var(--ink-2);
+      flex: 1;
+    }
+
+    .cpn .amt {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 38px;
+      line-height: 1;
+      color: var(--red);
+    }
+
+    .cpn .amt small {
+      display: block;
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--ink-3);
+      margin-top: 6px;
+    }
+
+    .cpn .when {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: var(--disp);
+      color: var(--ink);
+      background: var(--cream-2);
+      border: 2px solid var(--ink);
+      padding: 4px 11px;
+      border-radius: 999px;
+      align-self: flex-start;
+    }
+
+    .coupons-foot {
+      text-align: center;
+      margin-top: 44px;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: clamp(20px, 2.4vw, 28px);
+      color: var(--ink);
+    }
+
+    .coupons-foot .red {
+      color: var(--red);
+    }
+
+    /* growth — gold band */
+    .growth {
+      background: var(--gold);
+      border-top: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .growth-grid {
+      display: grid;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media(min-width:860px) {
+      .growth-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+      }
+    }
+
+    .growth .kicker {
+      color: var(--red-2);
+    }
+
+    .bigx {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: clamp(110px, 18vw, 200px);
+      line-height: .82;
+      color: var(--red);
+      letter-spacing: -.02em;
+    }
+
+    .bigx span {
+      font-size: .32em;
+      color: var(--ink);
+      display: block;
+      letter-spacing: 0;
+    }
+
+    .growth p {
+      font-size: 20px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .bars3 {
+      display: flex;
+      align-items: stretch;
+      gap: 30px;
+      height: 320px;
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 22px;
+      box-shadow: 6px 6px 0 var(--ink);
+      padding: 20px 24px;
+    }
+
+    .b3col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .b3v {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+
+    .b3 {
+      width: 100%;
+      border-radius: 12px 12px 0 0;
+      border: 3px solid var(--ink);
+      border-bottom: none;
+      transform-origin: bottom;
+      transform: scaleY(0);
+      transition: transform 1s cubic-bezier(.34, 1.1, .5, 1);
+    }
+
+    .in .b3 {
+      transform: scaleY(1);
+    }
+
+    .b3-1 {
+      background: var(--cream-2);
+      height: 52px;
+    }
+
+    .b3-2 {
+      background: var(--red);
+      height: 128px;
+      transition-delay: .16s;
+    }
+
+    .b3-3 {
+      background: var(--gold);
+      height: 230px;
+      transition-delay: .32s;
+    }
+
+    .b3-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      align-self: center;
+      flex: 0 0 auto;
+      padding: 0 2px;
+    }
+
+    .b3-arrow span {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--red);
+      white-space: nowrap;
+    }
+
+    .b3-arrow svg {
+      color: var(--ink-3);
+    }
+
+    .b3l {
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink-2);
+      margin-top: 12px;
+      white-space: nowrap;
+    }
+
+    /* calculator */
+    .calc {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 8px 8px 0 var(--ink);
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    @media(min-width:880px) {
+      .calc {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .calc-l {
+      padding: 36px 34px;
+    }
+
+    .ctrl {
+      margin-bottom: 28px;
+    }
+
+    .ctrl:last-child {
+      margin-bottom: 4px;
+    }
+
+    .ctrl-h {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 14px;
+      gap: 10px;
+    }
+
+    .ctrl-h label {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink-2);
+    }
+
+    .ctrl-h .v {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 24px;
+      color: var(--red);
+    }
+
+    .ctrl-h .v small {
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--ink-3);
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 10px;
+      border-radius: 99px;
+      background: var(--cream-2);
+      outline: none;
+      border: 2px solid var(--ink);
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--ink);
+      box-shadow: 2px 2px 0 var(--ink);
+      cursor: pointer;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--ink);
+      cursor: pointer;
+    }
+
+    .seg {
+      display: flex;
+      gap: 6px;
+    }
+
+    .seg button {
+      flex: 1;
+      border: 3px solid var(--ink);
+      background: var(--paper);
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink);
+      padding: 10px 6px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: .14s;
+    }
+
+    .seg button.on {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .calc-r {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 38px 34px;
+      position: relative;
+    }
+
+    .calc-r .ol {
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0;
+    }
+
+    .calc-big {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin: 8px 0 4px;
+    }
+
+    .calc-big .num {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: clamp(56px, 8vw, 82px);
+      line-height: 1;
+      color: var(--gold);
+    }
+
+    .calc-big .u {
+      font-weight: 600;
+      font-size: 17px;
+      color: rgba(255, 247, 232, .8);
+    }
+
+    .calc-y2 {
+      font-size: 14px;
+      color: rgba(255, 247, 232, .85);
+      margin: 0 0 22px;
+    }
+
+    .calc-y2 b {
+      color: var(--gold);
+      font-family: var(--disp);
+      font-weight: 700;
+    }
+
+    .bd {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 2px dashed rgba(255, 247, 232, .3);
+    }
+
+    .bd-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .bd-row .l {
+      font-size: 14px;
+      color: rgba(255, 247, 232, .85);
+      width: 140px;
+      flex: none;
+    }
+
+    .bd-track {
+      flex: 1;
+      height: 12px;
+      border-radius: 99px;
+      background: rgba(255, 247, 232, .16);
+      overflow: hidden;
+      border: 2px solid rgba(255, 247, 232, .25);
+    }
+
+    .bd-fill {
+      height: 100%;
+      background: var(--gold);
+      transition: width .5s;
+    }
+
+    .bd-row .bv {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 16px;
+      width: 60px;
+      text-align: right;
+      flex: none;
+    }
+
+    .calc-fine {
+      font-size: 12px;
+      color: rgba(255, 247, 232, .6);
+      margin: 16px 0 0;
+      line-height: 1.5;
+    }
+
+    /* rules */
+    .rules {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+      margin-top: 8px;
+    }
+
+    @media(min-width:820px) {
+      .rules {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .rnote {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 5px 5px 0 var(--ink);
+      transform: rotate(-1deg);
+    }
+
+    .rnote:nth-child(2) {
+      transform: rotate(1deg);
+      background: var(--gold);
+    }
+
+    .rnote:nth-child(3) {
+      transform: rotate(-.5deg);
+    }
+
+    .rnote .rn {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 30px;
+      color: var(--red);
+    }
+
+    .rnote h3 {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 19px;
+      margin: 4px 0 8px;
+    }
+
+    .rnote p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--ink-2);
+    }
+
+    .rnote:nth-child(2) p {
+      color: var(--ink);
+    }
+
+    /* final */
+    .final {
+      background: var(--red);
+      color: var(--cream);
+      text-align: center;
+      border-top: 3px solid var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final .wrap {
+      padding: 96px 26px;
+      position: relative;
+    }
+
+    .final .logo {
+      width: 1em;
+      height: 1.2em;
+      font-size: 70px;
+      margin-bottom: 18px;
+    }
+
+    .final .logo .pin {
+      fill: var(--cream);
+    }
+
+    .final .logo .star {
+      fill: var(--gold);
+    }
+
+    .final h2 {
+      font-size: clamp(40px, 6.5vw, 80px);
+      color: var(--cream);
+      text-wrap: balance;
+    }
+
+    .final h2 .gold {
+      color: var(--gold);
+    }
+
+    .final p {
+      font-size: 20px;
+      color: rgba(255, 247, 232, .9);
+      margin: 20px auto 36px;
+      max-width: 44ch;
+      font-weight: 500;
+    }
+
+    .final .hero-cta {
+      justify-content: center;
+    }
+
+    .confetti {
+      position: absolute;
+    }
+
+    .confetti svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    footer {
+      background: var(--ink);
+      color: #C7AEA6;
+    }
+
+    footer .wrap {
+      padding: 30px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    footer .brand {
+      color: var(--cream);
+      font-size: 22px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s cubic-bezier(.34, 1.05, .5, 1), transform .6s cubic-bezier(.34, 1.05, .5, 1);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .d1 {
+      transition-delay: .08s;
+    }
+
+    .d2 {
+      transition-delay: .16s;
+    }
+
+    .d3 {
+      transition-delay: .24s;
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      .b3 {
+        transform: scaleY(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <template id="__bundler_thumbnail" data-bg-color="#CC3330">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(600 400) scale(3.6) translate(-50 -60)">
+        <path
+          d="M50 4C25.7 4 6 23.7 6 48c0 18.5 12.4 35.4 25.9 49.3C41 105.8 47 112 50 116c3-4 9-10.2 18.1-18.7C81.6 83.4 94 66.5 94 48 94 23.7 74.3 4 50 4Z"
+          fill="#FFF7E8" />
+        <path
+          d="M50 19 L56.76 34.70 L73.78 36.27 L60.94 47.55 L64.69 64.23 L50 55.50 L35.31 64.23 L39.06 47.55 L26.22 36.27 L43.24 34.70 Z"
+          fill="#F9C846" />
+      </g>
+    </svg>
+  </template>
+
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a class="brand" href="#top">
+        <svg class="logo" viewBox="0 0 100 120">
+          <path class="pin"
+            d="M50 4C25.7 4 6 23.7 6 48c0 18.5 12.4 35.4 25.9 49.3C41 105.8 47 112 50 116c3-4 9-10.2 18.1-18.7C81.6 83.4 94 66.5 94 48 94 23.7 74.3 4 50 4Z" />
+          <path class="star"
+            d="M50 19 L56.76 34.70 L73.78 36.27 L60.94 47.55 L64.69 64.23 L50 55.50 L35.31 64.23 L39.06 47.55 L26.22 36.27 L43.24 34.70 Z" />
+        </svg>
+        Thodia
+      </a>
+      <a class="btn btn-red" href="#dangky">Đăng ký ngay<i class="ic" data-ic="arrow-right"></i></a>
+    </div>
+  </header>
+
+  <section id="top" class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="badge reveal"><i class="ic" data-ic="partnership"></i>Tuyển Giám đốc bán hàng</span>
+          <h1 class="reveal d1">Bán giá trị.<br>Nhận hoa hồng.<br><span class="gold">Mãi mãi.</span></h1>
+          <p class="hero-lede reveal d2">Mỗi hợp đồng trả bạn theo 4 cách — và trả trong nhiều năm liền. Càng nhiều
+            khách, túi càng dày.</p>
+          <div class="hero-cta reveal d2">
+            <a class="btn btn-gold btn-lg" href="#dangky">Bắt đầu kiếm tiền<i class="ic" data-ic="arrow-right"></i></a>
+            <a class="btn btn-cream btn-lg" href="#calc">Tính thu nhập</a>
+          </div>
+          <div class="hero-stickers reveal d3">
+            <span class="sticker"><i class="ic" data-ic="time"></i>Giờ giấc tự do</span>
+            <span class="sticker"><i class="ic" data-ic="idea"></i>Sales kit sẵn sàng</span>
+            <span class="sticker"><i class="ic" data-ic="infinity-symbol"></i>Không giới hạn thu nhập</span>
+          </div>
+        </div>
+
+        <div class="coupon reveal d2">
+          <div class="ch">
+            <b>1 HỢP ĐỒNG</b>
+            <span class="starx"><svg viewBox="0 0 100 100">
+                <path fill="#3A1A16" d="M50 6 L62 38 L96 40 L70 62 L78 96 L50 76 L22 96 L30 62 L4 40 L38 38 Z" />
+              </svg></span>
+          </div>
+          <div class="cb">
+            <div class="row"><span class="t">Ký mới hợp đồng</span><span class="a">5tr₫</span></div>
+            <div class="row"><span class="t">Hoa hồng thiết lập</span><span class="a">3%</span></div>
+            <div class="row"><span class="t">Hoa hồng hàng tháng</span><span class="a">2→5%</span></div>
+            <div class="row"><span class="t">Gia hạn hợp đồng</span><span class="a">5tr₫</span></div>
+          </div>
+          <div class="cf">= <span>4 dòng tiền</span> từ 1 chữ ký</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker reveal"><i class="ic" data-ic="wallet"></i>Bạn nhận gì</p>
+        <h2 class="h2 reveal d1">Một chữ ký,<br><span class="red">bốn tấm vé</span> nhận tiền.</h2>
+        <p class="lead reveal d1">Mỗi khách hàng bạn mang về là bốn dòng tiền chảy cùng lúc — <br />và chảy trong nhiều
+          năm.
+        </p>
+      </div>
+      <div class="coupons">
+        <div class="cpn reveal">
+          <div class="top">
+            <div class="num">1</div><i class="ic" data-ic="document-signed"></i>
+            <h3>Ký mới<br>hợp đồng</h3>
+          </div>
+          <div class="body">
+            <p>Trả ngay trong tháng ký. Một lần cho mỗi khách mới.</p>
+            <div class="amt">5tr₫<small>deal ≥ 50 loc · hoặc 100K₫/loc</small></div><span class="when"><i class="ic"
+                data-ic="time"></i>Tháng ký HĐ</span>
+          </div>
+        </div>
+        <div class="cpn reveal d1">
+          <div class="top">
+            <div class="num">2</div><i class="ic" data-ic="settings-adjust"></i>
+            <h3>Hoa hồng<br>thiết lập</h3>
+          </div>
+          <div class="body">
+            <p>Phần trăm trên phí setup khách đã thanh toán.</p>
+            <div class="amt">3%<small>trên phí setup</small></div><span class="when"><i class="ic"
+                data-ic="checkmark-outline"></i>Khi thu tiền</span>
+          </div>
+        </div>
+        <div class="cpn reveal d2">
+          <div class="top">
+            <div class="num">3</div><i class="ic" data-ic="repeat"></i>
+            <h3>Hoa hồng<br>hàng tháng</h3>
+          </div>
+          <div class="body">
+            <p>Hoa hồng hàng tháng trên phí của <strong>tất cả</strong> khách.</p>
+            <div class="amt">2→5%<small>phí hàng tháng</small></div><span class="when"><i class="ic"
+                data-ic="calendar"></i>Mỗi tháng</span>
+          </div>
+        </div>
+        <div class="cpn reveal d3">
+          <div class="top">
+            <div class="num">4</div><i class="ic" data-ic="renew"></i>
+            <h3>Gia hạn<br>hợp đồng</h3>
+          </div>
+          <div class="body">
+            <p>Khách ở lại đủ 12 tháng = nhận lại lương ký lần nữa.</p>
+            <div class="amt">5tr₫<small>= ký mới, lặp lại</small></div><span class="when"><i class="ic"
+                data-ic="renew"></i>Mỗi 12 tháng</span>
+          </div>
+        </div>
+      </div>
+      <p class="coupons-foot reveal">Cộng cả bốn = <span class="red">một khách trả bạn nhiều lần!</span></p>
+    </div>
+  </section>
+
+  <section class="sec growth">
+    <div class="wrap">
+      <div class="growth-grid">
+        <div>
+          <p class="kicker reveal"><i class="ic" data-ic="chart-line-smooth"></i>Thu nhập tích lũy</p>
+          <div class="bigx reveal d1">×2,4<span>NĂM 2 vs NĂM 1</span></div>
+          <p class="reveal d1" style="margin-top:18px">Tích lũy hàng tháng trên cả tất cả khách hàng + thưởng gia hạn
+            của khách
+            cũ. Bạn <strong>không bắt đầu lại</strong> mỗi năm — bạn cộng dồn.</p>
+        </div>
+        <div class="bars3 reveal d2">
+          <div class="b3col"><span class="b3v" style="color:var(--ink-2)">~13tr₫</span>
+            <div class="b3 b3-1"></div><span class="b3l">Năm 1 / tháng</span>
+          </div>
+          <div class="b3-arrow">
+            <span>×2,4</span>
+            <svg viewBox="0 0 32 16" width="32" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h20m0 0l-6-5m6 5l-6 5"/></svg>
+          </div>
+          <div class="b3col"><span class="b3v" style="color:var(--red)">~32tr₫</span>
+            <div class="b3 b3-2"></div><span class="b3l">Năm 2 / tháng</span>
+          </div>
+          <div class="b3-arrow">
+            <span>×1,8</span>
+            <svg viewBox="0 0 32 16" width="32" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h20m0 0l-6-5m6 5l-6 5"/></svg>
+          </div>
+          <div class="b3col"><span class="b3v" style="color:var(--gold-deep)">~58tr₫</span>
+            <div class="b3 b3-3"></div><span class="b3l">Năm 3 / tháng</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="calc">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker reveal"><i class="ic" data-ic="calculator"></i>Máy tính thu nhập</p>
+        <h2 class="h2 reveal d1">Bạn kiếm được<br><span class="gold">bao nhiêu?</span></h2>
+      </div>
+      <div class="calc reveal d1">
+        <div class="calc-l">
+          <div class="ctrl">
+            <div class="ctrl-h"><label for="cCust">Khách hàng ký / năm</label><span class="v"><span id="vCust">6</span>
+                <small>KH</small></span></div>
+            <input type="range" id="cCust" min="1" max="12" step="1" value="6">
+          </div>
+          <div class="ctrl">
+            <div class="ctrl-h"><label>Tỉ lệ deal lớn (≥50 loc)</label></div>
+            <div class="seg" id="cMix">
+              <button data-v="0.25">Nhỏ</button>
+              <button data-v="0.5" class="on">Cân bằng</button>
+              <button data-v="0.75">Lớn</button>
+            </div>
+          </div>
+          <div class="ctrl">
+            <div class="ctrl-h"><label for="cFee">Giá trị hợp đồng trung bình / tháng</label><span class="v"><span
+                  id="vFee">50</span>
+                <small>tr₫</small></span></div>
+            <input type="range" id="cFee" min="10" max="150" step="5" value="50">
+          </div>
+        </div>
+        <div class="calc-r">
+          <p class="ol">Thu nhập năm 1</p>
+          <div class="calc-big"><span class="num" id="oY1">159</span><span class="u">tr ₫ / năm</span></div>
+          <p class="calc-y2">Năm 2 ~ <b id="oY2">382 triệu ₫</b> — gấp 2,4 lần!</p>
+          <div class="bd">
+            <div class="bd-row"><span class="l">Ký mới hợp đồng</span>
+              <div class="bd-track">
+                <div class="bd-fill" id="fSign"></div>
+              </div><span class="bv" id="vSign">21tr</span>
+            </div>
+            <div class="bd-row"><span class="l">Hoa hồng thiết lập</span>
+              <div class="bd-track">
+                <div class="bd-fill" id="fSetup"></div>
+              </div><span class="bv" id="vSetup">18tr</span>
+            </div>
+            <div class="bd-row"><span class="l">Hoa hồng / tháng</span>
+              <div class="bd-track">
+                <div class="bd-fill" id="fRec"></div>
+              </div><span class="bv" id="vRec">120tr</span>
+            </div>
+          </div>
+          <p class="calc-fine">Ước tính minh hoạ theo cơ chế chính sách. Thu nhập thực tế tuỳ deal &amp; tỉ lệ giữ chân
+            khách.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec band-cream2">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker reveal"><i class="ic" data-ic="rule"></i>3 quy tắc vàng</p>
+        <h2 class="h2 reveal d1">Giữ nhịp, <span class="red">giữ tiền.</span></h2>
+      </div>
+      <div class="rules">
+        <div class="rnote reveal">
+          <div class="rn">01</div>
+          <h3>Nhịp bán hàng</h3>
+          <p>Ký ≥1 HĐ mới mỗi 3 tháng. Nghỉ 3 tháng liền sẽ mất hoa hồng &amp; thưởng gia hạn giai đoạn đó.</p>
+        </div>
+        <div class="rnote reveal d1">
+          <div class="rn">02</div>
+          <h3>Giảm giá có kiểm soát</h3>
+          <p>Tối đa 25% (cần duyệt). Mỗi 5% giảm = mất 10% hoa hồng. Lương ký &amp; gia hạn không đổi.</p>
+        </div>
+        <div class="rnote reveal d2">
+          <div class="rn">03</div>
+          <h3>Khách sang năm 2</h3>
+          <p>Hoa hồng của riêng khách đó giảm 50%. Các khách khác vẫn giữ nguyên mức.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="dangky">
+    <div class="wrap">
+      <svg class="logo" viewBox="0 0 100 120">
+        <path class="pin"
+          d="M50 4C25.7 4 6 23.7 6 48c0 18.5 12.4 35.4 25.9 49.3C41 105.8 47 112 50 116c3-4 9-10.2 18.1-18.7C81.6 83.4 94 66.5 94 48 94 23.7 74.3 4 50 4Z" />
+        <path class="star"
+          d="M50 19 L56.76 34.70 L73.78 36.27 L60.94 47.55 L64.69 64.23 L50 55.50 L35.31 64.23 L39.06 47.55 L26.22 36.27 L43.24 34.70 Z" />
+      </svg>
+      <h2 class="reveal">Ký. Nhận tiền.<br><span class="gold">Lặp lại!</span></h2>
+      <p class="reveal d1">Mỗi khách hàng là một dòng thu nhập chảy về.<br />Bắt đầu ngay hôm nay.</p>
+      <div class="hero-cta reveal d2">
+        <a class="btn btn-gold btn-lg" href="#top">Đăng ký làm Freelancer<i class="ic" data-ic="arrow-right"></i></a>
+        <a class="btn btn-cream btn-lg" href="#calc">Tính lại thu nhập</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="brand" style="display:flex;align-items:center;gap:10px">
+        <svg class="logo" viewBox="0 0 100 120" style="font-size:22px;width:1em;height:1.2em">
+          <path class="pin"
+            d="M50 4C25.7 4 6 23.7 6 48c0 18.5 12.4 35.4 25.9 49.3C41 105.8 47 112 50 116c3-4 9-10.2 18.1-18.7C81.6 83.4 94 66.5 94 48 94 23.7 74.3 4 50 4Z" />
+          <path class="star"
+            d="M50 19 L56.76 34.70 L73.78 36.27 L60.94 47.55 L64.69 64.23 L50 55.50 L35.31 64.23 L39.06 47.55 L26.22 36.27 L43.24 34.70 Z" />
+        </svg>
+        Thodia
+      </div>
+      <small>Chương trình Freelancer · Tóm tắt chính sách thu nhập</small>
+    </div>
+  </footer>
+
+  <script src="lib.js"></script>
+</body>
+
+</html>

@@ -1,380 +1,394 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en" data-theme="corporate">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Thodia · Freelancer — Poster năng lượng</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --red:#CC3330; --red-2:#A4221F; --red-deep:#7E1714;
-  --gold:#F9C846; --gold-2:#EBB52E; --gold-deep:#C8930F;
-  --cream:#FFF7E8; --cream-2:#FFEFCF; --paper:#FFFFFF;
-  --ink:#3A1A16; --ink-2:#7C534B; --ink-3:#A98A82;
-  --disp:'Baloo 2','Be Vietnam Pro',sans-serif; --body:'Be Vietnam Pro',sans-serif;
-  --maxw:1180px;
-}
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
-a{color:inherit;text-decoration:none;}
-.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 26px;}
-@media(min-width:768px){.wrap{padding:0 44px;}}
-.ic{display:inline-flex;}
-.logo{display:inline-block;}
-.logo .pin{fill:var(--red);} .logo .star{fill:var(--gold);}
-h1,h2,h3{font-family:var(--disp);margin:0;font-weight:800;line-height:1;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partner Commission | Beta.vn</title>
+  <meta name="description" content="Partner commission calculator per Appendix 3." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html,
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100%;
+      font-size: 16px;
+    }
 
-/* star deco */
-.starx{display:inline-block;}
-.starx svg{display:block;}
+    input[type=range] {
+      accent-color: oklch(var(--p));
+    }
 
-/* nav */
-.nav{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:3px solid var(--ink);}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:74px;}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:800;font-size:26px;}
-.brand .logo{width:1em;height:1.2em;font-size:26px;}
-.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:700;font-size:16px;
-  border:3px solid var(--ink);border-radius:16px;padding:10px 22px;cursor:pointer;transition:.14s;white-space:nowrap;
-  box-shadow:3px 3px 0 var(--ink);}
-.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink);}
-.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);}
-.btn .ic{font-size:19px;}
-.btn-gold{background:var(--gold);color:var(--ink);}
-.btn-red{background:var(--red);color:#fff;}
-.btn-cream{background:var(--paper);color:var(--ink);}
-.btn-lg{padding:15px 30px;font-size:19px;border-radius:18px;}
+    @keyframes pop {
+      0% {
+        transform: scale(1.06);
+        opacity: .5
+      }
 
-/* hero — red full bleed */
-.hero{background:var(--red);color:var(--cream);position:relative;overflow:hidden;border-bottom:3px solid var(--ink);}
-.hero::before{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-160px;border-radius:50%;
-  background:radial-gradient(circle,var(--red-2),transparent 70%);}
-.hero .wrap{position:relative;padding:80px 26px 90px;}
-@media(min-width:768px){.hero .wrap{padding:96px 44px 104px;}}
-.hero-grid{display:grid;gap:48px;align-items:center;}
-@media(min-width:980px){.hero-grid{grid-template-columns:1.1fr .9fr;gap:56px;}}
-.badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:700;font-size:14px;
-  letter-spacing:.04em;text-transform:uppercase;background:var(--gold);color:var(--ink);
-  padding:8px 16px;border-radius:999px;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);margin-bottom:26px;}
-.hero h1{font-size:clamp(42px,6vw,76px);letter-spacing:-.01em;color:var(--cream);text-wrap:balance;line-height:1.04;}
-.hero h1 .gold{color:var(--gold);}
-.hero-lede{font-size:21px;line-height:1.5;color:rgba(255,247,232,.92);margin:26px 0 0;max-width:32ch;font-weight:500;}
-.hero-cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:36px;}
-.hero-stickers{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;}
-.sticker{display:inline-flex;align-items:center;gap:8px;background:var(--cream);color:var(--ink);
-  font-family:var(--disp);font-weight:700;font-size:14px;padding:8px 15px;border-radius:999px;transform:rotate(-2deg);}
-.sticker:nth-child(2){transform:rotate(1.5deg);} .sticker:nth-child(3){transform:rotate(-1deg);}
-.sticker .ic{color:var(--red);font-size:16px;}
+      100% {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
 
-/* hero coupon */
-.coupon{background:var(--cream);color:var(--ink);border:3px solid var(--ink);border-radius:24px;
-  box-shadow:8px 8px 0 var(--ink);overflow:hidden;transform:rotate(2deg);}
-.coupon .ch{background:var(--gold);padding:20px 26px;border-bottom:3px dashed var(--ink);display:flex;align-items:center;justify-content:space-between;}
-.coupon .ch b{font-family:var(--disp);font-weight:800;font-size:19px;white-space:nowrap;}
-.coupon .ch .starx svg{width:30px;height:30px;}
-.coupon .cb{padding:26px;}
-.coupon .cb .row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;}
-.coupon .cb .row+.row{border-top:2px dotted var(--cream-2);}
-.coupon .cb .row .t{font-weight:600;color:var(--ink-2);font-size:15px;}
-.coupon .cb .row .a{font-family:var(--disp);font-weight:800;font-size:24px;color:var(--red);}
-.coupon .cf{background:var(--ink);color:var(--cream);padding:16px 26px;text-align:center;font-family:var(--disp);font-weight:700;font-size:17px;}
-.coupon .cf span{color:var(--gold);}
+    .pop {
+      animation: pop .18s ease;
+    }
 
-/* sections */
-.sec{padding:84px 0;}
-@media(min-width:768px){.sec{padding:104px 0;}}
-.band-cream2{background:var(--cream-2);}
-.head{text-align:center;max-width:720px;margin:0 auto 56px;}
-.kicker{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;font-size:14px;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--red);margin:0 0 14px;}
-.kicker .ic{font-size:17px;}
-.h2{font-size:clamp(38px,5.5vw,68px);letter-spacing:-.01em;text-wrap:balance;}
-.h2 .red{color:var(--red);} .h2 .gold{color:var(--gold-deep);}
-.lead{font-size:19px;color:var(--ink-2);margin:16px auto 0;max-width:52ch;font-weight:500;text-wrap:pretty;}
+    .row-active {
+      background: oklch(var(--p)/0.06) !important;
+    }
 
-/* coupons grid (4 sources) */
-.coupons{display:grid;gap:22px;grid-template-columns:1fr;}
-@media(min-width:620px){.coupons{grid-template-columns:1fr 1fr;}}
-@media(min-width:1000px){.coupons{grid-template-columns:repeat(4,1fr);}}
-.cpn{position:relative;background:var(--paper);border:3px solid var(--ink);border-radius:22px;overflow:hidden;
-  box-shadow:6px 6px 0 var(--ink);transition:transform .16s,box-shadow .16s;display:flex;flex-direction:column;}
-.cpn:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--ink);}
-.cpn .top{padding:22px 22px 16px;border-bottom:3px dashed var(--ink);position:relative;}
-.cpn:nth-child(1) .top{background:var(--gold);} .cpn:nth-child(2) .top{background:var(--cream-2);}
-.cpn:nth-child(3) .top{background:#FBD9D7;} .cpn:nth-child(4) .top{background:var(--gold);}
-.cpn .top::before,.cpn .top::after{content:"";position:absolute;bottom:-12px;width:22px;height:22px;border-radius:50%;background:var(--cream);border:3px solid var(--ink);}
-.band-cream2 .cpn .top::before,.band-cream2 .cpn .top::after{background:var(--cream-2);}
-.cpn .top::before{left:-13px;} .cpn .top::after{right:-13px;}
-.cpn .num{font-family:var(--disp);font-weight:800;font-size:16px;background:var(--ink);color:var(--cream);
-  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;margin-bottom:12px;}
-.cpn .top .ic{font-size:34px;color:var(--ink);position:absolute;right:18px;top:18px;}
-.cpn h3{font-family:var(--disp);font-weight:800;font-size:21px;line-height:1.05;}
-.cpn .body{padding:20px 22px 22px;flex:1;display:flex;flex-direction:column;}
-.cpn .body p{margin:0 0 16px;font-size:14.5px;color:var(--ink-2);flex:1;}
-.cpn .amt{font-family:var(--disp);font-weight:800;font-size:38px;line-height:1;color:var(--red);}
-.cpn .amt small{display:block;font-family:var(--body);font-weight:600;font-size:12px;color:var(--ink-3);margin-top:6px;}
-.cpn .when{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:700;
-  font-family:var(--disp);color:var(--ink);background:var(--cream-2);border:2px solid var(--ink);padding:4px 11px;border-radius:999px;align-self:flex-start;}
-.coupons-foot{text-align:center;margin-top:44px;font-family:var(--disp);font-weight:700;font-size:clamp(20px,2.4vw,28px);color:var(--ink);}
-.coupons-foot .red{color:var(--red);}
+    .row-active td:first-child {
+      border-left: 2px solid oklch(var(--p));
+    }
 
-/* growth — gold band */
-.growth{background:var(--gold);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);}
-.growth-grid{display:grid;gap:40px;align-items:center;}
-@media(min-width:860px){.growth-grid{grid-template-columns:1fr 1fr;gap:56px;}}
-.growth .kicker{color:var(--red-2);}
-.bigx{font-family:var(--disp);font-weight:800;font-size:clamp(110px,18vw,200px);line-height:.82;color:var(--red);letter-spacing:-.02em;}
-.bigx span{font-size:.32em;color:var(--ink);display:block;letter-spacing:0;}
-.growth p{font-size:20px;color:var(--ink);font-weight:500;}
-.bars3{display:flex;align-items:flex-end;gap:30px;height:280px;background:var(--paper);border:3px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--ink);padding:26px 30px;}
-.b3col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
-.b3v{font-family:var(--disp);font-weight:800;font-size:26px;margin-bottom:12px;}
-.b3{width:100%;border-radius:12px 12px 0 0;border:3px solid var(--ink);border-bottom:none;transform-origin:bottom;transform:scaleY(0);transition:transform 1s cubic-bezier(.34,1.1,.5,1);}
-.in .b3{transform:scaleY(1);}
-.b3-1{background:var(--cream-2);height:42%;} .b3-2{background:var(--red);height:100%;transition-delay:.16s;}
-.b3l{font-family:var(--disp);font-weight:700;font-size:15px;color:var(--ink-2);margin-top:12px;}
+    .comm-active {
+      background: oklch(var(--su)/0.08) !important;
+    }
 
-/* calculator */
-.calc{background:var(--paper);border:3px solid var(--ink);border-radius:26px;overflow:hidden;box-shadow:8px 8px 0 var(--ink);max-width:980px;margin:0 auto;}
-@media(min-width:880px){.calc{display:grid;grid-template-columns:1fr 1fr;}}
-.calc-l{padding:36px 34px;}
-.ctrl{margin-bottom:28px;} .ctrl:last-child{margin-bottom:4px;}
-.ctrl-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;gap:10px;}
-.ctrl-h label{font-weight:600;font-size:15px;color:var(--ink-2);}
-.ctrl-h .v{font-family:var(--disp);font-weight:800;font-size:24px;color:var(--red);}
-.ctrl-h .v small{font-family:var(--body);font-weight:600;font-size:12px;color:var(--ink-3);}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:99px;background:var(--cream-2);outline:none;border:2px solid var(--ink);}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--gold);border:3px solid var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:pointer;}
-input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:var(--gold);border:3px solid var(--ink);cursor:pointer;}
-.seg{display:flex;gap:6px;}
-.seg button{flex:1;border:3px solid var(--ink);background:var(--paper);font-family:var(--disp);font-weight:700;font-size:14px;color:var(--ink);padding:10px 6px;border-radius:12px;cursor:pointer;transition:.14s;}
-.seg button.on{background:var(--red);color:#fff;}
-.calc-r{background:var(--ink);color:var(--cream);padding:38px 34px;position:relative;}
-.calc-r .ol{font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);margin:0;}
-.calc-big{display:flex;align-items:baseline;gap:10px;margin:8px 0 4px;}
-.calc-big .num{font-family:var(--disp);font-weight:800;font-size:clamp(56px,8vw,82px);line-height:1;color:var(--gold);}
-.calc-big .u{font-weight:600;font-size:17px;color:rgba(255,247,232,.8);}
-.calc-y2{font-size:14px;color:rgba(255,247,232,.85);margin:0 0 22px;}
-.calc-y2 b{color:var(--gold);font-family:var(--disp);font-weight:700;}
-.bd{display:flex;flex-direction:column;gap:14px;padding-top:20px;border-top:2px dashed rgba(255,247,232,.3);}
-.bd-row{display:flex;align-items:center;gap:14px;}
-.bd-row .l{font-size:14px;color:rgba(255,247,232,.85);width:140px;flex:none;}
-.bd-track{flex:1;height:12px;border-radius:99px;background:rgba(255,247,232,.16);overflow:hidden;border:2px solid rgba(255,247,232,.25);}
-.bd-fill{height:100%;background:var(--gold);transition:width .5s;}
-.bd-row .bv{font-family:var(--disp);font-weight:800;font-size:16px;width:60px;text-align:right;flex:none;}
-.calc-fine{font-size:12px;color:rgba(255,247,232,.6);margin:16px 0 0;line-height:1.5;}
-
-/* rules */
-.rules{display:grid;gap:20px;grid-template-columns:1fr;margin-top:8px;}
-@media(min-width:820px){.rules{grid-template-columns:repeat(3,1fr);}}
-.rnote{background:var(--paper);border:3px solid var(--ink);border-radius:18px;padding:24px;box-shadow:5px 5px 0 var(--ink);transform:rotate(-1deg);}
-.rnote:nth-child(2){transform:rotate(1deg);background:var(--gold);}
-.rnote:nth-child(3){transform:rotate(-.5deg);}
-.rnote .rn{font-family:var(--disp);font-weight:800;font-size:30px;color:var(--red);}
-.rnote h3{font-family:var(--disp);font-weight:800;font-size:19px;margin:4px 0 8px;}
-.rnote p{margin:0;font-size:14.5px;color:var(--ink-2);}
-.rnote:nth-child(2) p{color:var(--ink);}
-
-/* final */
-.final{background:var(--red);color:var(--cream);text-align:center;border-top:3px solid var(--ink);position:relative;overflow:hidden;}
-.final .wrap{padding:96px 26px;position:relative;}
-.final .logo{width:1em;height:1.2em;font-size:70px;margin-bottom:18px;}
-.final .logo .pin{fill:var(--cream);} .final .logo .star{fill:var(--gold);}
-.final h2{font-size:clamp(40px,6.5vw,80px);color:var(--cream);text-wrap:balance;}
-.final h2 .gold{color:var(--gold);}
-.final p{font-size:20px;color:rgba(255,247,232,.9);margin:20px auto 36px;max-width:44ch;font-weight:500;}
-.final .hero-cta{justify-content:center;}
-.confetti{position:absolute;}
-.confetti svg{width:100%;height:100%;}
-footer{background:var(--ink);color:#C7AEA6;}
-footer .wrap{padding:30px 26px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
-footer .brand{color:var(--cream);font-size:22px;}
-
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.34,1.05,.5,1),transform .6s cubic-bezier(.34,1.05,.5,1);}
-.reveal.in{opacity:1;transform:none;}
-.d1{transition-delay:.08s;} .d2{transition-delay:.16s;} .d3{transition-delay:.24s;}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}.b3{transform:scaleY(1);}}
-</style>
+    .comm-active td:first-child {
+      border-left: 2px solid oklch(var(--su));
+    }
+  </style>
 </head>
-<body>
 
-<template id="__bundler_thumbnail" data-bg-color="#CC3330">
-<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(600 400) scale(3.6) translate(-50 -60)">
-    <path d="M50 4C25.7 4 6 23.7 6 48c0 18.5 12.4 35.4 25.9 49.3C41 105.8 47 112 50 116c3-4 9-10.2 18.1-18.7C81.6 83.4 94 66.5 94 48 94 23.7 74.3 4 50 4Z" fill="#FFF7E8"/>
-    <path d="M50 19 L56.76 34.70 L73.78 36.27 L60.94 47.55 L64.69 64.23 L50 55.50 L35.31 64.23 L39.06 47.55 L26.22 36.27 L43.24 34.70 Z" fill="#F9C846"/>
-  </g>
-</svg>
-</template>
+<body class="bg-base-200 p-3 flex flex-col gap-2">
+  <div class="max-w-[960px] w-full mx-auto flex flex-col gap-2 h-full">
 
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="#top">
-      <svg class="logo" viewBox="0 0 100 120"><path class="pin" d="M50 4C25.7 4 6 23.7 6 48c0 18.5 12.4 35.4 25.9 49.3C41 105.8 47 112 50 116c3-4 9-10.2 18.1-18.7C81.6 83.4 94 66.5 94 48 94 23.7 74.3 4 50 4Z"/><path class="star" d="M50 19 L56.76 34.70 L73.78 36.27 L60.94 47.55 L64.69 64.23 L50 55.50 L35.31 64.23 L39.06 47.55 L26.22 36.27 L43.24 34.70 Z"/></svg>
-      Thodia
-    </a>
-    <a class="btn btn-red" href="#dangky">Đăng ký ngay<i class="ic" data-ic="arrow-right"></i></a>
-  </div>
-</header>
-
-<section id="top" class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <span class="badge reveal"><i class="ic" data-ic="partnership"></i>Tuyển Freelancer</span>
-        <h1 class="reveal d1">Bán phần mềm.<br>Ăn hoa hồng.<br><span class="gold">Mãi mãi.</span></h1>
-        <p class="hero-lede reveal d2">Mỗi hợp đồng trả bạn theo 4 cách — và trả lại nhiều năm. Càng nhiều khách, càng dày.</p>
-        <div class="hero-cta reveal d2">
-          <a class="btn btn-gold btn-lg" href="#dangky">Bắt đầu kiếm tiền<i class="ic" data-ic="arrow-right"></i></a>
-          <a class="btn btn-cream btn-lg" href="#calc">Tính thu nhập</a>
-        </div>
-        <div class="hero-stickers reveal d3">
-          <span class="sticker"><i class="ic" data-ic="time"></i>Giờ giấc tự do</span>
-          <span class="sticker"><i class="ic" data-ic="idea"></i>Sales kit free</span>
-          <span class="sticker"><i class="ic" data-ic="infinity-symbol"></i>Không trần</span>
-        </div>
+    <!-- HEADER -->
+    <div class="flex items-center justify-between px-1 gap-2 flex-wrap">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-lg text-primary">Beta.vn</span>
+        <span class="badge badge-outline badge-sm text-base-content/50">Partner Commission</span>
       </div>
-
-      <div class="coupon reveal d2">
-        <div class="ch">
-          <b>1 HỢP ĐỒNG</b>
-          <span class="starx"><svg viewBox="0 0 100 100"><path fill="#3A1A16" d="M50 6 L62 38 L96 40 L70 62 L78 96 L50 76 L22 96 L30 62 L4 40 L38 38 Z"/></svg></span>
-        </div>
-        <div class="cb">
-          <div class="row"><span class="t">Lương ký HĐ</span><span class="a">5tr₫</span></div>
-          <div class="row"><span class="t">Setup bonus</span><span class="a">3%</span></div>
-          <div class="row"><span class="t">Recurring / tháng</span><span class="a">2→5%</span></div>
-          <div class="row"><span class="t">Thưởng gia hạn</span><span class="a">5tr₫</span></div>
-        </div>
-        <div class="cf">= <span>4 dòng tiền</span> từ 1 chữ ký</div>
-      </div>
+      <code class="hidden sm:inline text-sm bg-base-100 border border-base-300 px-2 py-0.5 rounded font-mono text-primary">
+        Comm = Base rate × (1 − Disc ÷ 25% × 50%) &nbsp;·&nbsp; Prices incl. 10% VAT
+      </code>
     </div>
-  </div>
-</section>
 
-<section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <p class="kicker reveal"><i class="ic" data-ic="wallet"></i>Bạn nhận gì</p>
-      <h2 class="h2 reveal d1">Một chữ ký,<br><span class="red">bốn tấm vé</span> nhận tiền.</h2>
-      <p class="lead reveal d1">Mỗi khách hàng bạn mang về là bốn dòng tiền chảy cùng lúc — và chảy nhiều năm.</p>
-    </div>
-    <div class="coupons">
-      <div class="cpn reveal">
-        <div class="top"><div class="num">1</div><i class="ic" data-ic="document-signed"></i><h3>Lương ký<br>hợp đồng</h3></div>
-        <div class="body"><p>Trả ngay trong tháng ký. Một lần cho mỗi khách mới.</p><div class="amt">5tr₫<small>deal ≥ 50 loc · hoặc 100K₫/loc</small></div><span class="when"><i class="ic" data-ic="time"></i>Tháng ký HĐ</span></div>
-      </div>
-      <div class="cpn reveal d1">
-        <div class="top"><div class="num">2</div><i class="ic" data-ic="settings-adjust"></i><h3>Setup<br>Bonus</h3></div>
-        <div class="body"><p>Phần trăm trên phí setup khách đã thanh toán.</p><div class="amt">3%<small>trên phí setup</small></div><span class="when"><i class="ic" data-ic="checkmark-outline"></i>Khi thu tiền</span></div>
-      </div>
-      <div class="cpn reveal d2">
-        <div class="top"><div class="num">3</div><i class="ic" data-ic="repeat"></i><h3>Recurring<br>Bonus</h3></div>
-        <div class="body"><p>Hoa hồng hàng tháng trên phí của <strong>tất cả</strong> khách.</p><div class="amt">2→5%<small>phí hàng tháng</small></div><span class="when"><i class="ic" data-ic="calendar"></i>Mỗi tháng</span></div>
-      </div>
-      <div class="cpn reveal d3">
-        <div class="top"><div class="num">4</div><i class="ic" data-ic="renew"></i><h3>Thưởng<br>gia hạn</h3></div>
-        <div class="body"><p>Khách ở lại đủ 12 tháng = nhận lại lương ký lần nữa.</p><div class="amt">5tr₫<small>= lương ký, lặp lại</small></div><span class="when"><i class="ic" data-ic="renew"></i>Mỗi 12 tháng</span></div>
-      </div>
-    </div>
-    <p class="coupons-foot reveal">Cộng cả bốn = <span class="red">một khách trả bạn nhiều lần!</span></p>
-  </div>
-</section>
+    <!-- ZONE 1: CALCULATOR — 2 col (inputs stack | results stack) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
 
-<section class="sec growth">
-  <div class="wrap">
-    <div class="growth-grid">
-      <div>
-        <p class="kicker reveal"><i class="ic" data-ic="chart-line-smooth"></i>Thu nhập tích lũy</p>
-        <div class="bigx reveal d1">×2,4<span>NĂM 2 so với NĂM 1</span></div>
-        <p class="reveal d1" style="margin-top:18px">Recurring tích lũy trên cả portfolio + thưởng gia hạn của khách cũ. Bạn <strong>không bắt đầu lại</strong> mỗi năm — bạn cộng dồn.</p>
-      </div>
-      <div class="bars3 reveal d2">
-        <div class="b3col"><span class="b3v" style="color:var(--ink-2)">~13tr₫</span><div class="b3 b3-1"></div><span class="b3l">Năm 1 / tháng</span></div>
-        <div class="b3col"><span class="b3v" style="color:var(--red)">~32tr₫</span><div class="b3 b3-2"></div><span class="b3l">Năm 2 / tháng</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+      <!-- LEFT: location inputs + commission inputs stacked -->
+      <div class="flex flex-col gap-2">
 
-<section class="sec" id="calc">
-  <div class="wrap">
-    <div class="head">
-      <p class="kicker reveal"><i class="ic" data-ic="calculator"></i>Máy tính thu nhập</p>
-      <h2 class="h2 reveal d1">Bạn kiếm được<br><span class="gold">bao nhiêu?</span></h2>
-    </div>
-    <div class="calc reveal d1">
-      <div class="calc-l">
-        <div class="ctrl">
-          <div class="ctrl-h"><label for="cCust">Khách hàng ký / năm</label><span class="v"><span id="vCust">6</span> <small>KH</small></span></div>
-          <input type="range" id="cCust" min="1" max="12" step="1" value="6">
-        </div>
-        <div class="ctrl">
-          <div class="ctrl-h"><label>Tỉ lệ deal lớn (≥50 loc)</label></div>
-          <div class="seg" id="cMix">
-            <button data-v="0.25">Nhỏ</button>
-            <button data-v="0.5" class="on">Cân bằng</button>
-            <button data-v="0.75">Lớn</button>
+        <!-- Location inputs -->
+        <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
+          <div class="card-body gap-2 p-3">
+            <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Number of Locations</p>
+            <div class="join w-full">
+              <button class="btn btn-sm join-item btn-ghost font-bold text-lg w-10" onclick="adj(-10)">−</button>
+              <input id="loc-input" type="number" min="50" max="10000" value="100"
+                class="input input-sm input-bordered join-item flex-1 text-center text-base font-bold"
+                oninput="sync(this.value)" />
+              <button class="btn btn-sm join-item btn-ghost font-bold text-lg w-10" onclick="adj(+10)">+</button>
+            </div>
+            <input id="loc-slider" type="range" min="50" max="3000" step="10" value="100"
+              class="range range-primary range-xs w-full" oninput="syncSlider(this.value)" />
+            <div class="flex justify-between text-sm text-base-content/30 -mt-1 px-0.5 leading-none">
+              <span>50</span><span>500</span><span>1k</span><span>2k</span><span>3k+</span>
+            </div>
+            <div class="flex flex-wrap gap-1">
+              <span class="text-sm text-base-content/30 self-center">Quick:</span>
+              <button class="btn btn-sm preset" onclick="setN(50)">50</button>
+              <button class="btn btn-sm preset" onclick="setN(100)">100</button>
+              <button class="btn btn-sm preset" onclick="setN(200)">200</button>
+              <button class="btn btn-sm preset" onclick="setN(500)">500</button>
+              <button class="btn btn-sm preset" onclick="setN(1000)">1,000</button>
+              <button class="btn btn-sm preset" onclick="setN(2000)">2,000</button>
+            </div>
           </div>
         </div>
-        <div class="ctrl">
-          <div class="ctrl-h"><label for="cFee">Giá trị HĐ TB / tháng</label><span class="v"><span id="vFee">50</span> <small>tr₫</small></span></div>
-          <input type="range" id="cFee" min="10" max="150" step="5" value="50">
+
+        <!-- Commission inputs -->
+        <div class="card card-compact bg-base-100 border border-base-300 shadow-sm flex-1">
+          <div class="card-body gap-2 p-3">
+            <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Commission Parameters</p>
+            <div class="flex items-center justify-between bg-base-200 rounded-lg px-3 py-2">
+              <p class="text-sm font-medium">Perform Onboarding</p>
+              <input id="ob-toggle" type="checkbox" class="toggle toggle-success toggle-sm" onchange="update()"
+                checked />
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <p class="text-sm font-medium">Customer Discount</p>
+                <span id="disc-label" class="text-sm font-bold text-warning tabular-nums">0%</span>
+              </div>
+              <input id="disc-slider" type="range" min="0" max="25" step="5" value="0"
+                class="range range-warning range-xs w-full" oninput="onDiscChange(this.value)" />
+              <div class="flex justify-between text-sm text-base-content/30 -mt-1 px-0.5 leading-none">
+                <span>0%</span><span>5%</span><span>10%</span><span>15%</span><span>20%</span><span>25%</span>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-1">
+              <span class="text-sm text-base-content/30 self-center">Quick:</span>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(0)">0%</button>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(5)">5%</button>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(10)">10%</button>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(15)">15%</button>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(20)">20%</button>
+              <button class="btn btn-sm disc-preset" onclick="setDisc(25)">25%</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="calc-r">
-        <p class="ol">Thu nhập năm 1</p>
-        <div class="calc-big"><span class="num" id="oY1">159</span><span class="u">tr₫ / năm</span></div>
-        <p class="calc-y2">Năm 2 ~ <b id="oY2">382 triệu₫</b> — gấp 2,4 lần!</p>
-        <div class="bd">
-          <div class="bd-row"><span class="l">Lương ký HĐ</span><div class="bd-track"><div class="bd-fill" id="fSign"></div></div><span class="bv" id="vSign">21tr</span></div>
-          <div class="bd-row"><span class="l">Setup bonus</span><div class="bd-track"><div class="bd-fill" id="fSetup"></div></div><span class="bv" id="vSetup">18tr</span></div>
-          <div class="bd-row"><span class="l">Recurring</span><div class="bd-track"><div class="bd-fill" id="fRec"></div></div><span class="bv" id="vRec">120tr</span></div>
+
+      <!-- RIGHT: service fee results + commission results stacked -->
+      <div class="flex flex-col gap-2">
+
+        <!-- Service fee results -->
+        <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
+          <div class="card-body p-3 gap-0">
+            <div class="flex items-center justify-between border-b border-base-200 pb-2 mb-2">
+              <div>
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Unit price / location / month <span class="text-xs text-warning">(incl. 10% VAT)</span></p>
+                <p id="r-unit" class="text-4xl font-bold text-primary tabular-nums">$36</p>
+              </div>
+              <span id="r-badge" class="badge badge-success badge-md">Save 23%</span>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 min-w-0">
+              <div class="bg-base-200 rounded p-2">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Fee/month</p>
+                <p id="r-monthly" class="text-base font-semibold tabular-nums">$3,600</p>
+                <p id="r-vnd" class="text-sm text-base-content/30 leading-none mt-0.5">≈ 91M ₫</p>
+              </div>
+              <div class="bg-base-200 rounded p-2">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Setup fee</p>
+                <p id="r-setup" class="text-base font-semibold tabular-nums">$10,000</p>
+                <p id="r-setup-per" class="text-sm text-base-content/30 leading-none mt-0.5">$100/loc</p>
+              </div>
+              <div class="bg-primary/10 rounded p-2 border border-primary/20">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Year 1 Total</p>
+                <p id="r-annual" class="text-base font-bold tabular-nums text-primary">$53,200</p>
+                <p class="text-sm text-base-content/30 leading-none mt-0.5">×12 + setup</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="calc-fine">Ước tính minh hoạ theo cơ chế chính sách. Thu nhập thực tế tuỳ deal &amp; tỉ lệ giữ chân khách.</p>
+
+        <!-- Commission results -->
+        <div class="card card-compact bg-base-100 border border-base-300 shadow-sm flex-1">
+          <div class="card-body p-3 gap-0">
+            <div class="flex items-center justify-between border-b border-base-200 pb-2 mb-2">
+              <div>
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Commission / month (svc fee)</p>
+                <p id="c-amount" class="text-4xl font-bold text-success tabular-nums">$360</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xs text-base-content/40 leading-none mb-0.5">Effective rate</p>
+                <p id="c-rate" class="text-xl font-bold text-success tabular-nums">10%</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 min-w-0">
+              <div class="bg-base-200 rounded p-2">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Base rate</p>
+                <p id="c-base-rate" class="text-base font-semibold tabular-nums">10%</p>
+                <p id="c-ob-label" class="text-sm text-base-content/30 leading-none mt-0.5">Có OB</p>
+              </div>
+              <div class="bg-base-200 rounded p-2">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Setup Comm. (once)</p>
+                <p id="c-setup" class="text-base font-semibold tabular-nums">$1,000</p>
+                <p class="text-sm text-base-content/30 leading-none mt-0.5">on setup fee</p>
+              </div>
+              <div class="bg-success/10 rounded p-2 border border-success/20">
+                <p class="text-sm text-base-content/40 leading-none mb-0.5">Total Comm. Year 1</p>
+                <p id="c-annual" class="text-base font-bold tabular-nums text-success">$5,320</p>
+                <p class="text-sm text-base-content/30 leading-none mt-0.5">×12 + setup comm.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="sec band-cream2">
-  <div class="wrap">
-    <div class="head">
-      <p class="kicker reveal"><i class="ic" data-ic="rule"></i>3 quy tắc vàng</p>
-      <h2 class="h2 reveal d1">Giữ nhịp, <span class="red">giữ tiền.</span></h2>
-    </div>
-    <div class="rules">
-      <div class="rnote reveal"><div class="rn">01</div><h3>Nhịp bán hàng</h3><p>Ký ≥1 HĐ mới mỗi 3 tháng. Nghỉ 3 tháng liền sẽ mất bonus &amp; thưởng gia hạn giai đoạn đó.</p></div>
-      <div class="rnote reveal d1"><div class="rn">02</div><h3>Giảm giá có kiểm soát</h3><p>Tối đa 25% (cần duyệt). Mỗi 5% giảm = mất 10% hoa hồng. Lương ký &amp; gia hạn không đổi.</p></div>
-      <div class="rnote reveal d2"><div class="rn">03</div><h3>Khách sang năm 2</h3><p>Bonus của riêng khách đó giảm 50%. Các khách khác vẫn giữ nguyên mức.</p></div>
-    </div>
-  </div>
-</section>
+    <!-- ZONE 2: REFERENCE TABLES -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
 
-<section class="final" id="dangky">
-  <div class="wrap">
-    <svg class="logo" viewBox="0 0 100 120"><path class="pin" d="M50 4C25.7 4 6 23.7 6 48c0 18.5 12.4 35.4 25.9 49.3C41 105.8 47 112 50 116c3-4 9-10.2 18.1-18.7C81.6 83.4 94 66.5 94 48 94 23.7 74.3 4 50 4Z"/><path class="star" d="M50 19 L56.76 34.70 L73.78 36.27 L60.94 47.55 L64.69 64.23 L50 55.50 L35.31 64.23 L39.06 47.55 L26.22 36.27 L43.24 34.70 Z"/></svg>
-    <h2 class="reveal">Ký. Nhận tiền.<br><span class="gold">Lặp lại!</span></h2>
-    <p class="reveal d1">Mỗi khách hàng là một dòng thu nhập chảy về. Bắt đầu ngay hôm nay.</p>
-    <div class="hero-cta reveal d2">
-      <a class="btn btn-gold btn-lg" href="#top">Đăng ký làm Freelancer<i class="ic" data-ic="arrow-right"></i></a>
-      <a class="btn btn-cream btn-lg" href="#calc">Tính lại thu nhập</a>
-    </div>
-  </div>
-</section>
+      <!-- Commission rate table -->
+      <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
+        <div class="card-body p-3 gap-1.5">
+          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Commission Rate Reference</p>
+          <table class="table table-xs w-full">
+            <thead>
+              <tr class="text-base-content/40">
+                <th class="py-1">Cumulative Locations</th>
+                <th class="py-1">No Onboarding</th>
+                <th class="py-1">With Onboarding</th>
+              </tr>
+            </thead>
+            <tbody id="comm-tbody">
+              <tr data-min="50" data-max="100" data-no="7" data-ob="10">
+                <td class="font-mono text-sm">50 – 100</td>
+                <td class="font-semibold">7%</td>
+                <td class="font-semibold text-success">10%</td>
+              </tr>
+              <tr data-min="101" data-max="200" data-no="10" data-ob="15">
+                <td class="font-mono text-sm">101 – 200</td>
+                <td class="font-semibold">10%</td>
+                <td class="font-semibold text-success">15%</td>
+              </tr>
+              <tr data-min="201" data-max="99999" data-no="15" data-ob="20">
+                <td class="font-mono text-sm">&gt; 200</td>
+                <td class="font-semibold">15%</td>
+                <td class="font-semibold text-success">20%</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="divider my-0"></div>
+          <div class="bg-warning/10 border border-warning/20 rounded p-2">
+            <code class="text-xs text-warning font-mono">Comm = Base rate × (1 − Disc ÷ 25% × 50%)</code>
+            <p class="text-xs text-base-content/40 mt-0.5">Every 5% discount → reduces rate by 10% · Max discount: 25%</p>
+          </div>
+        </div>
+      </div>
 
-<footer>
-  <div class="wrap">
-    <div class="brand" style="display:flex;align-items:center;gap:10px">
-      <svg class="logo" viewBox="0 0 100 120" style="font-size:22px;width:1em;height:1.2em"><path class="pin" d="M50 4C25.7 4 6 23.7 6 48c0 18.5 12.4 35.4 25.9 49.3C41 105.8 47 112 50 116c3-4 9-10.2 18.1-18.7C81.6 83.4 94 66.5 94 48 94 23.7 74.3 4 50 4Z"/><path class="star" d="M50 19 L56.76 34.70 L73.78 36.27 L60.94 47.55 L64.69 64.23 L50 55.50 L35.31 64.23 L39.06 47.55 L26.22 36.27 L43.24 34.70 Z"/></svg>
-      Thodia
+      <!-- Service fee ref table -->
+      <div class="card card-compact bg-base-100 border border-base-300 shadow-sm">
+        <div class="card-body p-3 gap-1.5">
+          <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Service Fee Reference</p>
+          <table class="table table-xs w-full">
+            <thead>
+              <tr class="text-base-content/40">
+                <th class="py-1">Locations</th>
+                <th class="py-1">Unit Price <span class="font-normal text-warning">(+VAT)</span></th>
+                <th class="py-1">Total/month</th>
+                <th class="py-1">Savings</th>
+              </tr>
+            </thead>
+            <tbody id="monthly-tbody"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <small>Chương trình Freelancer · Tóm tắt chính sách thu nhập</small>
-  </div>
-</footer>
 
-<script src="lib.js"></script>
+  </div><!-- /max-w wrapper -->
+
+  <script>
+    let N = 100, DISC = 0;
+    const USD_VND = 26300;
+
+    function unitPrice(n) { return Math.max(Math.round((332.1 / Math.sqrt(n) + 3.03) * 1.1 * 100) / 100, 10); }
+    function setupRate(n) {
+      if (n <= 100) return 100; if (n <= 250) return 50;
+      if (n <= 500) return 25; if (n <= 2000) return 15; return 10;
+    }
+    function baseCommRate(n, hasOB) {
+      if (n <= 100) return hasOB ? 10 : 7;
+      if (n <= 200) return hasOB ? 15 : 10;
+      return hasOB ? 20 : 15;
+    }
+    function actualCommRate(base, disc) {
+      return base * (1 - (Math.min(disc, 25) / 25) * 0.5);
+    }
+
+    const fmt = v => '$' + v.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+    const fmtVND = v => '≈ ' + Math.round(v * USD_VND / 1e6) + 'M ₫';
+    const fmtPct = v => v.toFixed(1).replace(/\.0$/, '') + '%';
+
+    function update() {
+      const n = Math.max(50, Math.min(10000, N));
+      const ob = document.getElementById('ob-toggle')?.checked ?? true;
+
+      const up = unitPrice(n);
+      const mo = up * n;
+      const sfp = setupRate(n);
+      const sft = sfp * n;
+      const ann = mo * 12 + sft;
+      const baseUp = unitPrice(50);
+      const save = baseUp > up ? Math.round((baseUp - up) / baseUp * 100) : 0;
+
+      const inp = document.getElementById('loc-input');
+      const sld = document.getElementById('loc-slider');
+      if (document.activeElement !== inp) inp.value = n;
+      if (document.activeElement !== sld) sld.value = Math.min(n, 3000);
+
+      setVal('r-unit', fmt(up));
+      setVal('r-monthly', fmt(mo));
+      setVal('r-vnd', fmtVND(mo));
+      setVal('r-setup', fmt(sft));
+      setVal('r-setup-per', fmt(sfp) + '/loc');
+      setVal('r-annual', fmt(ann));
+
+      const badge = document.getElementById('r-badge');
+      badge.textContent = save > 0 ? `Save ${save}%` : 'Floor price';
+      badge.className = 'badge badge-sm ' + (save > 0 ? 'badge-success' : 'badge-ghost');
+
+      const baseRate = baseCommRate(n, ob);
+      const actRate = actualCommRate(baseRate, DISC);
+      const commMo = mo * actRate / 100;
+      const commSetup = sft * actRate / 100;
+      const commAnn = commMo * 12 + commSetup;
+
+      setVal('c-base-rate', fmtPct(baseRate));
+      setVal('c-ob-label', ob ? 'With Onboarding' : 'No Onboarding');
+      setVal('c-rate', fmtPct(actRate));
+      setVal('c-amount', fmt(Math.round(commMo)));
+      setVal('c-setup', fmt(Math.round(commSetup)));
+      setVal('c-annual', fmt(Math.round(commAnn)));
+
+      const refs = [50, 100, 200, 500, 1000, 1500, 2000, 3000];
+      let closest = refs[0];
+      refs.forEach(r => { if (n >= r) closest = r; });
+      document.querySelectorAll('#monthly-tbody tr').forEach(tr => {
+        tr.classList.toggle('row-active', +tr.dataset.n === closest);
+      });
+      document.querySelectorAll('#comm-tbody tr').forEach(tr => {
+        const mn = +tr.dataset.min, mx = +tr.dataset.max;
+        tr.classList.toggle('comm-active', n >= mn && n <= mx);
+      });
+
+      document.querySelectorAll('.preset').forEach(b => {
+        const v = +b.textContent.replace(/,/g, '');
+        b.className = 'btn btn-sm preset ' + (v === n ? 'btn-primary' : 'btn-ghost');
+      });
+      document.querySelectorAll('.disc-preset').forEach(b => {
+        const v = parseInt(b.textContent);
+        b.className = 'btn btn-sm disc-preset ' + (v === DISC ? 'btn-warning' : 'btn-ghost');
+      });
+    }
+
+    function setVal(id, val) {
+      const el = document.getElementById(id);
+      if (!el || el.textContent === val) return;
+      el.textContent = val;
+      el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+    }
+
+    function sync(v) { const n = parseInt(v, 10); if (!isNaN(n)) { N = n; update(); } }
+    function syncSlider(v) { N = parseInt(v, 10); document.getElementById('loc-input').value = N; update(); }
+    function adj(d) { N = Math.max(50, Math.min(10000, N + d)); update(); }
+    function setN(n) { N = n; update(); }
+    function onDiscChange(v) {
+      DISC = parseInt(v, 10);
+      document.getElementById('disc-label').textContent = DISC + '%';
+      update();
+    }
+    function setDisc(d) {
+      DISC = d;
+      document.getElementById('disc-slider').value = d;
+      document.getElementById('disc-label').textContent = d + '%';
+      update();
+    }
+
+    const svcRefs = [50, 100, 200, 500, 1000, 1500, 2000, 3000];
+    const base0 = unitPrice(50);
+    document.getElementById('monthly-tbody').innerHTML = svcRefs.map(n => {
+      const up = unitPrice(n), tot = up * n;
+      const sv = n === 50 ? '—' : `−${Math.round((base0 - up) / base0 * 100)}%`;
+      return `<tr data-n="${n}">
+        <td class="font-mono text-sm">${n.toLocaleString('en-US')}</td>
+        <td class="font-semibold">${fmt(up)}</td>
+        <td class="font-semibold">${fmt(tot)}</td>
+        <td class="text-success font-medium text-sm">${sv}</td>
+      </tr>`;
+    }).join('');
+
+    update();
+  </script>
 </body>
+
 </html>
