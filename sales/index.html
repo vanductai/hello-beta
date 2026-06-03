@@ -1098,6 +1098,272 @@
       color: var(--ink);
     }
 
+    /* portfolio bonus — dark band */
+    .port {
+      background: var(--ink);
+      color: var(--cream);
+      border-top: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .port .kicker {
+      color: var(--gold);
+    }
+
+    .port-grid {
+      display: grid;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media(min-width:860px) {
+      .port-grid {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 56px;
+      }
+    }
+
+    .port-copy .h2 {
+      color: var(--cream);
+    }
+
+    .port-copy .lead {
+      color: rgba(255, 247, 232, .78);
+    }
+
+    .port-copy .lead strong {
+      color: var(--cream);
+    }
+
+    .port-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 22px;
+      font-size: 15px;
+      color: rgba(255, 247, 232, .7);
+    }
+
+    .port-note .ic {
+      color: var(--gold);
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    @media(max-width:620px) {
+      .tiers {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .tier {
+      background: rgba(255, 247, 232, .06);
+      border: 2px solid rgba(255, 247, 232, .12);
+      border-radius: 18px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: .2s;
+    }
+
+    .tier:hover {
+      background: rgba(255, 247, 232, .1);
+      transform: translateY(-2px);
+    }
+
+    .tier.tier-max {
+      background: var(--red);
+      border-color: var(--red);
+      box-shadow: 0 8px 24px -6px rgba(204, 51, 48, .5);
+    }
+
+    .tier .t-label {
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255, 247, 232, .5);
+      margin-bottom: 8px;
+    }
+
+    .tier.tier-max .t-label {
+      color: rgba(255, 255, 255, .8);
+    }
+
+    .tier .t-pct {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: clamp(32px, 4vw, 42px);
+      line-height: 1;
+      color: var(--cream);
+    }
+
+    .tier.tier-max .t-tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* scenario + rules merged (light bg) */
+    .scenario {
+      border-top: 2px solid var(--line-2);
+    }
+
+    .scenario .kicker {
+      color: var(--red);
+    }
+
+    .sc-cards {
+      display: grid;
+      gap: 16px;
+      margin-top: 44px;
+    }
+
+    @media(min-width:620px) {
+      .sc-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .sc-card {
+      background: var(--paper);
+      border: 2px solid var(--line-2);
+      border-radius: 20px;
+      padding: 28px 26px;
+    }
+
+    .sc-card .sc-label {
+      font-family: var(--disp);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin: 0 0 12px;
+    }
+
+    .sc-card .sc-val {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: clamp(44px, 6vw, 64px);
+      line-height: 1;
+      color: var(--gold-2);
+      letter-spacing: -.02em;
+    }
+
+    .sc-card .sc-val small {
+      font-size: .45em;
+      color: var(--ink-2);
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .sc-card .sc-sub {
+      margin: 12px 0 0;
+      font-size: 15px;
+      color: var(--ink-2);
+    }
+
+    .sc-card.sc-highlight {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    .sc-card.sc-highlight .sc-label {
+      color: rgba(255, 255, 255, .65);
+    }
+
+    .sc-card.sc-highlight .sc-val {
+      color: var(--gold);
+    }
+
+    .sc-card.sc-highlight .sc-val small {
+      color: rgba(255, 255, 255, .75);
+    }
+
+    .sc-card.sc-highlight .sc-sub {
+      color: rgba(255, 255, 255, .85);
+    }
+
+    .sc-rules {
+      display: grid;
+      gap: 14px;
+      margin-top: 44px;
+    }
+
+    @media(min-width:820px) {
+      .sc-rules {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .sc-rule {
+      background: var(--paper);
+      border: 2px solid var(--line-2);
+      border-radius: 18px;
+      padding: 24px 22px;
+    }
+
+    .sc-rule .sr-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .sc-rule:nth-child(1) .sr-num {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .sc-rule:nth-child(2) .sr-num {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .sc-rule:nth-child(3) .sr-num {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .sc-rule h3 {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 18px;
+      margin: 0 0 8px;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .sc-rule p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--ink-2);
+      line-height: 1.5;
+    }
+
     /* final */
     .final {
       background: var(--red);
@@ -1341,6 +1607,40 @@
     </div>
   </section>
 
+  <section class="sec port">
+    <div class="wrap">
+      <div class="port-grid">
+        <div class="port-copy">
+          <p class="kicker reveal"><i class="ic" data-ic="chart-stepper"></i>Bonus theo portfolio</p>
+          <h2 class="h2 reveal d1">Càng nhiều khách,<br>% càng cao.</h2>
+          <div class="port-note reveal d1">
+            <i class="ic" data-ic="idea"></i>
+            <span>Tỉ lệ recurring áp cho <strong>toàn bộ khách active</strong>. Đạt 4 khách sớm để mở khoá mức tối đa 5% cho cả portfolio.</span>
+          </div>
+        </div>
+        <div class="tiers reveal d2">
+          <div class="tier">
+            <div class="t-label">1 KH</div>
+            <div class="t-pct">2%</div>
+          </div>
+          <div class="tier">
+            <div class="t-label">2 KH</div>
+            <div class="t-pct">3%</div>
+          </div>
+          <div class="tier">
+            <div class="t-label">3 KH</div>
+            <div class="t-pct">4%</div>
+          </div>
+          <div class="tier tier-max">
+            <div class="t-label">4 KH+</div>
+            <div class="t-pct">5%</div>
+            <div class="t-tag">MAX</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="sec growth">
     <div class="wrap">
       <div class="growth-grid">
@@ -1348,8 +1648,7 @@
           <p class="kicker reveal"><i class="ic" data-ic="chart-line-smooth"></i>Thu nhập tích lũy</p>
           <div class="bigx reveal d1">×2,4<span>NĂM 2 vs NĂM 1</span></div>
           <p class="reveal d1" style="margin-top:18px">Tích lũy hàng tháng trên cả tất cả khách hàng + thưởng gia hạn
-            của khách
-            cũ. Bạn <strong>không bắt đầu lại</strong> mỗi năm — bạn cộng dồn.</p>
+            của khách cũ. Bạn <strong>không bắt đầu lại</strong> mỗi năm — bạn cộng dồn.</p>
         </div>
         <div class="bars3 reveal d2">
           <div class="b3col"><span class="b3v" style="color:var(--ink-2)">~13tr₫</span>
@@ -1357,24 +1656,54 @@
           </div>
           <div class="b3-arrow">
             <span>×2,4</span>
-            <svg viewBox="0 0 32 16" width="32" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 8h20m0 0l-6-5m6 5l-6 5" />
-            </svg>
+            <svg viewBox="0 0 32 16" width="32" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h20m0 0l-6-5m6 5l-6 5"/></svg>
           </div>
           <div class="b3col"><span class="b3v" style="color:var(--red)">~32tr₫</span>
             <div class="b3 b3-2"></div><span class="b3l">Năm 2 / tháng</span>
           </div>
           <div class="b3-arrow">
             <span>×1,8</span>
-            <svg viewBox="0 0 32 16" width="32" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 8h20m0 0l-6-5m6 5l-6 5" />
-            </svg>
+            <svg viewBox="0 0 32 16" width="32" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h20m0 0l-6-5m6 5l-6 5"/></svg>
           </div>
           <div class="b3col"><span class="b3v" style="color:var(--gold-deep)">~58tr₫</span>
             <div class="b3 b3-3"></div><span class="b3l">Năm 3 / tháng</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec scenario band-cream2">
+    <div class="wrap">
+      <p class="kicker reveal"><i class="ic" data-ic="meter-alt"></i>Kịch bản thực tế</p>
+      <h2 class="h2 reveal d1">1 deal mỗi 2 tháng.</h2>
+      <div class="sc-cards">
+        <div class="sc-card reveal">
+          <p class="sc-label">// Năm 1</p>
+          <div class="sc-val">~158 <small>tr₫</small></div>
+          <p class="sc-sub">Trung bình ~13 triệu₫ / tháng</p>
+        </div>
+        <div class="sc-card sc-highlight reveal d1">
+          <p class="sc-label">// Năm 2</p>
+          <div class="sc-val">~382 <small>tr₫</small></div>
+          <p class="sc-sub">Trung bình ~32 triệu₫ / tháng — gấp 2,4 lần</p>
+        </div>
+      </div>
+      <div class="sc-rules">
+        <div class="sc-rule reveal">
+          <div class="sr-num">1</div>
+          <h3>Nhịp bán hàng</h3>
+          <p>Ký ≥1 HĐ mới mỗi 3 tháng. Nghỉ 3 tháng liền sẽ mất bonus &amp; thưởng gia hạn giai đoạn đó.</p>
+        </div>
+        <div class="sc-rule reveal d1">
+          <div class="sr-num">2</div>
+          <h3>Giảm giá có kiểm soát</h3>
+          <p>Tối đa 25% (cần duyệt). Mỗi 5% giảm = mất 10% hoa hồng. Lương ký &amp; gia hạn không đổi.</p>
+        </div>
+        <div class="sc-rule reveal d2">
+          <div class="sr-num">3</div>
+          <h3>Khách sang năm 2</h3>
+          <p>Bonus của riêng khách đó giảm 50%. Các khách khác vẫn giữ nguyên mức.</p>
         </div>
       </div>
     </div>
@@ -1436,31 +1765,6 @@
     </div>
   </section>
 
-  <section class="sec band-cream2">
-    <div class="wrap">
-      <div class="head">
-        <p class="kicker reveal"><i class="ic" data-ic="rule"></i>3 quy tắc vàng</p>
-        <h2 class="h2 reveal d1">Giữ nhịp, <span class="red">giữ tiền.</span></h2>
-      </div>
-      <div class="rules">
-        <div class="rnote reveal">
-          <div class="rn">01</div>
-          <h3>Nhịp bán hàng</h3>
-          <p>Ký ≥1 HĐ mới mỗi 3 tháng. Nghỉ 3 tháng liền sẽ mất hoa hồng &amp; thưởng gia hạn giai đoạn đó.</p>
-        </div>
-        <div class="rnote reveal d1">
-          <div class="rn">02</div>
-          <h3>Giảm giá có kiểm soát</h3>
-          <p>Tối đa 25% (cần duyệt). Mỗi 5% giảm = mất 10% hoa hồng. Lương ký &amp; gia hạn không đổi.</p>
-        </div>
-        <div class="rnote reveal d2">
-          <div class="rn">03</div>
-          <h3>Khách sang năm 2</h3>
-          <p>Hoa hồng của riêng khách đó giảm 50%. Các khách khác vẫn giữ nguyên mức.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="final" id="dangky">
     <div class="wrap">
