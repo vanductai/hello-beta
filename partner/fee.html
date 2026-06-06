@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fee Structure | Beta.vn</title>
+  <meta name="description" content="Interactive fee chain calculator: SI → BTS → SRS → Customer with commission and margin breakdown." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafafa;
+      --card: #fff;
+      --border: #e5e5e5;
+      --text: #0a0a0a;
+      --text-2: #525252;
+      --text-3: #a3a3a3;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --amber: #d97706;
+      --red: #dc2626;
+      --purple: #7c3aed;
+      --radius: 8px;
+    }
+
+    html, body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg); color: var(--text);
+      font-size: 14px; line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px 64px; }
+    @media (min-width: 640px) { .container { padding: 32px 24px 64px; } }
+
+    /* Header */
+    .header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .logo { font-weight: 700; font-size: 16px; letter-spacing: -0.02em; }
+    .badge {
+      font-size: 11px; font-weight: 500; padding: 2px 8px;
+      border-radius: 9999px; border: 1px solid var(--border); color: var(--text-2);
+    }
+
+    /* Card */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+
+    /* Params grid */
+    .params {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--border);
+    }
+    .p { display: flex; flex-direction: column; gap: 3px; }
+    .p label {
+      font-size: 10px; font-weight: 600; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.05em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .p input, .p select {
+      height: 30px; padding: 0 8px; font-family: inherit;
+      font-size: 13px; font-weight: 500; color: var(--text);
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px; outline: none; width: 100%;
+      font-variant-numeric: tabular-nums;
+      -moz-appearance: textfield;
+    }
+    .p input::-webkit-outer-spin-button,
+    .p input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .p input:focus, .p select:focus { border-color: var(--text); box-shadow: 0 0 0 1px var(--text); }
+    .p select { cursor: pointer; -webkit-appearance: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a3a3a3' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 8px center; padding-right: 24px;
+    }
+
+    /* Exchange Rate Bar */
+    .fx-bar {
+      display: flex; align-items: center; gap: 10px; padding: 10px 16px;
+      border-bottom: 1px solid var(--border); background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+      flex-wrap: wrap;
+    }
+    .fx-bar .fx-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 6px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: #fff; font-size: 12px; font-weight: 700; flex-shrink: 0;
+    }
+    .fx-bar .fx-label {
+      font-size: 10px; font-weight: 600; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .fx-bar .fx-input-wrap {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .fx-bar input {
+      height: 28px; width: 100px; padding: 0 8px; font-family: inherit;
+      font-size: 13px; font-weight: 600; color: var(--text);
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px; outline: none; text-align: right;
+      font-variant-numeric: tabular-nums;
+      -moz-appearance: textfield;
+    }
+    .fx-bar input::-webkit-outer-spin-button,
+    .fx-bar input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .fx-bar input:focus { border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+    .fx-bar .fx-unit {
+      font-size: 11px; font-weight: 600; color: var(--text-2);
+    }
+    .fx-meta {
+      font-size: 10px; color: var(--text-3);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .fx-toggle {
+      display: flex; align-items: center; gap: 6px; margin-left: auto;
+    }
+    .fx-toggle label {
+      font-size: 11px; color: var(--text-2); cursor: pointer; user-select: none;
+    }
+    .fx-toggle input[type="checkbox"] {
+      width: 14px; height: 14px; cursor: pointer; accent-color: var(--blue);
+    }
+
+    /* Table */
+    .t { width: 100%; border-collapse: collapse; }
+    .t th {
+      font-size: 10px; font-weight: 600; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.05em;
+      padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .t th:not(:first-child) { text-align: right; }
+    .t td {
+      padding: 8px 12px; font-size: 13px;
+      font-variant-numeric: tabular-nums; border-bottom: 1px solid var(--border);
+    }
+    .t td:not(:first-child) { text-align: right; font-weight: 500; }
+    .t tr:last-child td { border-bottom: none; }
+
+    /* VND columns */
+    .col-vnd {
+      color: var(--text-3) !important; font-weight: 400 !important;
+      font-size: 12px !important; white-space: nowrap;
+      border-left: 1px dashed #ebebeb;
+    }
+    th.col-vnd { font-size: 10px !important; font-weight: 600 !important; }
+    .hide-vnd .col-vnd { display: none; }
+
+    /* Row types */
+    .sub td { font-size: 12px; color: var(--text-2); padding: 5px 12px 5px 30px; }
+    .sub td:first-child { color: var(--text-3); }
+    .sub td.col-vnd { padding-left: 12px; }
+    .tot td { font-weight: 600 !important; background: var(--bg); }
+    .tot td.col-vnd { font-weight: 500 !important; }
+    .sep td { padding: 0; height: 1px; border-bottom: 2px solid var(--border); }
+    .warn td { background: #fef2f2; }
+    .ed input {
+      height: 26px; width: 84px; padding: 0 7px;
+      font-family: inherit; font-size: 13px; font-weight: 600;
+      color: var(--text); background: var(--card);
+      border: 1px solid var(--border); border-radius: 5px;
+      outline: none; text-align: right;
+      font-variant-numeric: tabular-nums;
+      -moz-appearance: textfield;
+    }
+    .ed input::-webkit-outer-spin-button,
+    .ed input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .ed input:focus { border-color: var(--text); box-shadow: 0 0 0 1px var(--text); }
+
+    /* Colors */
+    .cb { color: var(--blue) !important; }
+    .cr { color: var(--red) !important; }
+    .cg { color: var(--green) !important; }
+    .ca { color: var(--amber) !important; }
+    .cp { color: var(--purple) !important; }
+    .cm { color: var(--text-3) !important; }
+
+    /* Dot */
+    .d {
+      display: inline-block; width: 7px; height: 7px;
+      border-radius: 50%; margin-right: 5px; vertical-align: middle;
+    }
+
+    /* Edit icon */
+    .ei {
+      display: inline; margin-left: 3px; color: var(--blue); vertical-align: middle;
+    }
+    .ei svg { width: 9px; height: 9px; }
+
+    /* Bar */
+    .bw { padding: 10px 14px; border-top: 1px solid var(--border); }
+    .bl { font-size: 10px; color: var(--text-3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .br { display: flex; height: 6px; border-radius: 3px; overflow: hidden; gap: 1px; }
+    .br > div { transition: flex 200ms; }
+    .lg { display: flex; gap: 12px; margin-top: 6px; flex-wrap: wrap; }
+    .lg span { font-size: 11px; color: var(--text-2); display: flex; align-items: center; gap: 4px; }
+
+    /* Alert */
+    .alert {
+      margin: 0 14px 10px; padding: 6px 10px; border-radius: 6px;
+      font-size: 12px; font-weight: 500; display: none; align-items: center; gap: 6px;
+    }
+    .alert-warn { background: #fef9c3; color: #92400e; border: 1px solid #fde68a; }
+
+    /* Notes */
+    .notes {
+      margin-top: 14px; padding: 12px 14px;
+      border-radius: var(--radius); border: 1px solid var(--border);
+      background: var(--card);
+    }
+    .notes-t {
+      font-size: 10px; font-weight: 600; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px;
+    }
+    .notes code {
+      font-size: 11px; background: var(--bg); padding: 1px 4px;
+      border-radius: 3px; border: 1px solid var(--border);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .notes li {
+      font-size: 12px; color: var(--text-2); padding: 1px 0;
+      list-style: none; padding-left: 12px; position: relative;
+    }
+    .notes li::before { content: '·'; position: absolute; left: 2px; font-weight: 700; color: var(--text-3); }
+
+    /* Animation */
+    @keyframes flash { 0% { background-color: #fef9c3; } 100% { background-color: transparent; } }
+    .flash { animation: flash 0.3s ease-out; }
+
+    /* Responsive */
+    @media (max-width: 639px) {
+      .t th, .t td { padding: 7px 6px; font-size: 12px; }
+      .sub td { padding-left: 18px; }
+      .hide-sm { display: none; }
+      .fx-bar { gap: 8px; }
+      .fx-meta { margin-left: 0; }
+      .col-vnd { font-size: 11px !important; padding: 7px 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="header">
+    <span class="logo">Beta.vn</span>
+    <span class="badge">Fee Structure</span>
+  </div>
+
+  <div class="card">
+
+    <!-- Parameters -->
+    <div class="params">
+      <div class="p">
+        <label>SI Price ($/loc/mo)</label>
+        <input type="number" id="in-si" value="7" step="0.01" min="0" oninput="recalc()" />
+      </div>
+      <div class="p">
+        <label>Locations</label>
+        <input type="number" id="in-loc" value="100" step="1" min="1" oninput="recalc()" />
+      </div>
+      <div class="p">
+        <label>BTS Comm % (from SI)</label>
+        <input type="number" id="in-bts-comm" value="10" step="0.5" min="0" max="100" oninput="recalc()" />
+      </div>
+      <div class="p">
+        <label>SRS Comm %</label>
+        <input type="number" id="in-srs-comm" value="20" step="0.5" min="0" max="100" oninput="recalc()" />
+      </div>
+      <div class="p">
+        <label>FCT VAT %</label>
+        <input type="number" id="in-fct-vat" value="5" step="0.5" min="0" max="100" oninput="recalc()" />
+      </div>
+      <div class="p">
+        <label>FCT CIT %</label>
+        <input type="number" id="in-fct-cit" value="5" step="0.5" min="0" max="100" oninput="recalc()" />
+      </div>
+      <div class="p">
+        <label>Payment Fee %</label>
+        <input type="number" id="in-pmt-fee" value="3" step="0.5" min="0" max="100" oninput="recalc()" />
+      </div>
+      <div class="p">
+        <label>Contract Type</label>
+        <select id="in-contract" onchange="recalc()">
+          <option value="net" selected>Net</option>
+          <option value="gross">Gross</option>
+        </select>
+      </div>
+      <div class="p">
+        <label>Output VAT %</label>
+        <input type="number" id="in-vat" value="10" step="0.5" min="0" max="100" oninput="recalc()" />
+      </div>
+    </div>
+
+    <!-- Exchange Rate Bar -->
+    <div class="fx-bar" id="fx-bar">
+      <div class="fx-icon">FX</div>
+      <div>
+        <div class="fx-label">USD/VND Exchange Rate</div>
+        <div class="fx-input-wrap">
+          <span class="fx-unit">1 USD =</span>
+          <input type="number" id="in-fx-rate" value="26400" step="10" min="1" oninput="onFxChange()" />
+          <span class="fx-unit">VND</span>
+        </div>
+      </div>
+      <div class="fx-meta" id="fx-meta">
+        <span id="fx-meta-text">Nguồn: <a href="https://www.vietcombank.com.vn/vi-VN/KHCN/Cong-cu-Tien-ich/Ty-gia" target="_blank" style="color:var(--blue);text-decoration:none">Vietcombank</a></span>
+      </div>
+      <div class="fx-toggle">
+        <input type="checkbox" id="fx-show-vnd" checked onchange="toggleVnd()" />
+        <label for="fx-show-vnd">Hiện VND</label>
+      </div>
+    </div>
+
+    <!-- Alert -->
+    <div class="alert alert-warn" id="alert">
+      <span>⚠</span>
+      <span id="alert-msg">BTS sell price is below minimum floor price.</span>
+    </div>
+
+    <!-- Fee table -->
+    <div style="overflow-x:auto">
+    <table class="t" id="fee-table">
+      <thead>
+        <tr>
+          <th>Layer</th>
+          <th>Unit (USD)</th>
+          <th class="col-vnd">Unit (VND)</th>
+          <th class="hide-sm">Rate</th>
+          <th>Monthly</th>
+          <th class="col-vnd">Monthly (VND)</th>
+          <th>Yearly</th>
+          <th class="col-vnd">Yearly (VND)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- SI -->
+        <tr>
+          <td><span class="d" style="background:var(--blue)"></span>SI agreed price</td>
+          <td id="c-si">$7.00</td>
+          <td class="col-vnd" id="v-si"></td>
+          <td class="hide-sm">—</td>
+          <td id="c-si-mo">$700</td>
+          <td class="col-vnd" id="v-si-mo"></td>
+          <td id="c-si-yr">$8,400</td>
+          <td class="col-vnd" id="v-si-yr"></td>
+        </tr>
+        <!-- FCT VAT -->
+        <tr class="sub">
+          <td id="c-fv-l">↳ FCT VAT (gross-up)</td>
+          <td class="cr" id="c-fv">$0.37</td>
+          <td class="col-vnd" id="v-fv"></td>
+          <td class="hide-sm cm" id="c-fv-r">5%</td>
+          <td class="cr" id="c-fv-mo">$37</td>
+          <td class="col-vnd" id="v-fv-mo"></td>
+          <td class="cr" id="c-fv-yr">$442</td>
+          <td class="col-vnd" id="v-fv-yr"></td>
+        </tr>
+        <!-- FCT CIT -->
+        <tr class="sub">
+          <td id="c-fc-l">↳ FCT CIT (gross-up)</td>
+          <td class="cr" id="c-fc">$0.35</td>
+          <td class="col-vnd" id="v-fc"></td>
+          <td class="hide-sm cm" id="c-fc-r">5%</td>
+          <td class="cr" id="c-fc-mo">$37</td>
+          <td class="col-vnd" id="v-fc-mo"></td>
+          <td class="cr" id="c-fc-yr">$442</td>
+          <td class="col-vnd" id="v-fc-yr"></td>
+        </tr>
+        <!-- Payment fee -->
+        <tr class="sub">
+          <td>↳ Payment fee</td>
+          <td class="ca" id="c-pf">$0.21</td>
+          <td class="col-vnd" id="v-pf"></td>
+          <td class="hide-sm cm" id="c-pf-r">3%</td>
+          <td class="ca" id="c-pf-mo">$21</td>
+          <td class="col-vnd" id="v-pf-mo"></td>
+          <td class="ca" id="c-pf-yr">$252</td>
+          <td class="col-vnd" id="v-pf-yr"></td>
+        </tr>
+        <!-- Min BTS sell -->
+        <tr class="tot">
+          <td><span class="d" style="background:var(--red)"></span><span id="c-fl-l">Min BTS floor price</span></td>
+          <td id="c-fl">$7.95</td>
+          <td class="col-vnd" id="v-fl"></td>
+          <td class="hide-sm">—</td>
+          <td id="c-fl-mo">$795</td>
+          <td class="col-vnd" id="v-fl-mo"></td>
+          <td id="c-fl-yr">$9,540</td>
+          <td class="col-vnd" id="v-fl-yr"></td>
+        </tr>
+
+        <tr class="sep"><td colspan="8"></td></tr>
+
+        <!-- BTS commission from SI -->
+        <tr class="sub">
+          <td>↳ BTS commission (from SI)</td>
+          <td class="cg" id="c-bc">$0.70</td>
+          <td class="col-vnd" id="v-bc"></td>
+          <td class="hide-sm cm" id="c-bc-r">10%</td>
+          <td class="cg" id="c-bc-mo">$70</td>
+          <td class="col-vnd" id="v-bc-mo"></td>
+          <td class="cg" id="c-bc-yr">$840</td>
+          <td class="col-vnd" id="v-bc-yr"></td>
+        </tr>
+        <!-- BTS sells to SRS -->
+        <tr class="ed">
+          <td>
+            <span class="d" style="background:var(--text)"></span>BTS sells to SRS
+            <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+          </td>
+          <td><input type="number" id="edit-bts" value="10" step="0.01" min="0" oninput="onEdit('bts')" /></td>
+          <td class="col-vnd" id="v-bts"></td>
+          <td class="hide-sm" id="c-bts-r">—</td>
+          <td id="c-bts-mo">$1,000</td>
+          <td class="col-vnd" id="v-bts-mo"></td>
+          <td id="c-bts-yr">$12,000</td>
+          <td class="col-vnd" id="v-bts-yr"></td>
+        </tr>
+        <!-- BTS net margin -->
+        <tr class="sub">
+          <td>↳ BTS total margin</td>
+          <td id="c-bm">$2.75</td>
+          <td class="col-vnd" id="v-bm"></td>
+          <td class="hide-sm" id="c-bm-r">27.5%</td>
+          <td id="c-bm-mo">$275</td>
+          <td class="col-vnd" id="v-bm-mo"></td>
+          <td id="c-bm-yr">$3,300</td>
+          <td class="col-vnd" id="v-bm-yr"></td>
+        </tr>
+
+        <tr class="sep"><td colspan="8"></td></tr>
+
+        <!-- SRS sells at -->
+        <tr class="ed">
+          <td>
+            <span class="d" style="background:var(--purple)"></span>SRS sells at (pre-VAT)
+            <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+          </td>
+          <td><input type="number" id="edit-srs" value="12.5" step="0.01" min="0" oninput="onEdit('srs')" /></td>
+          <td class="col-vnd" id="v-srs"></td>
+          <td class="hide-sm" id="c-srs-r">—</td>
+          <td id="c-srs-mo">$1,250</td>
+          <td class="col-vnd" id="v-srs-mo"></td>
+          <td id="c-srs-yr">$15,000</td>
+          <td class="col-vnd" id="v-srs-yr"></td>
+        </tr>
+        <!-- SRS commission -->
+        <tr class="sub">
+          <td>↳ SRS commission</td>
+          <td class="cp" id="c-sc">$2.50</td>
+          <td class="col-vnd" id="v-sc"></td>
+          <td class="hide-sm cm" id="c-sc-r">20%</td>
+          <td class="cp" id="c-sc-mo">$250</td>
+          <td class="col-vnd" id="v-sc-mo"></td>
+          <td class="cp" id="c-sc-yr">$3,000</td>
+          <td class="col-vnd" id="v-sc-yr"></td>
+        </tr>
+        <!-- Output VAT -->
+        <tr class="sub">
+          <td>↳ Output VAT</td>
+          <td class="ca" id="c-vat">$1.25</td>
+          <td class="col-vnd" id="v-vat"></td>
+          <td class="hide-sm cm" id="c-vat-r">10%</td>
+          <td class="ca" id="c-vat-mo">$125</td>
+          <td class="col-vnd" id="v-vat-mo"></td>
+          <td class="ca" id="c-vat-yr">$1,500</td>
+          <td class="col-vnd" id="v-vat-yr"></td>
+        </tr>
+
+        <tr class="sep"><td colspan="8"></td></tr>
+
+        <!-- Customer pays -->
+        <tr class="ed tot">
+          <td>
+            <span class="d" style="background:var(--green)"></span>Customer pays
+            <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+          </td>
+          <td><input type="number" id="edit-cust" value="13.75" step="0.01" min="0" oninput="onEdit('cust')" /></td>
+          <td class="col-vnd" id="v-cust"></td>
+          <td class="hide-sm">—</td>
+          <td id="c-cust-mo">$1,375</td>
+          <td class="col-vnd" id="v-cust-mo"></td>
+          <td id="c-cust-yr">$16,500</td>
+          <td class="col-vnd" id="v-cust-yr"></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- Bar -->
+    <div class="bw">
+      <div class="bl">Customer price breakdown (pre-VAT)</div>
+      <div class="br" id="bar"></div>
+      <div class="lg" id="legend"></div>
+    </div>
+
+  </div>
+
+  <!-- Notes -->
+  <div class="notes">
+    <div class="notes-t">Pricing model</div>
+    <ul>
+      <li><strong>BTS comm</strong> = y% of SI agreed price (kickback from SI, default 10%)</li>
+      <li><strong>SRS comm</strong> = x% of SRS sell price (default 20%). SRS sell = BTS→SRS price ÷ (1 − x%)</li>
+      <li><strong>Floor price</strong> = SI + FCT + Payment fee — min BTS→SRS price to avoid loss</li>
+      <li><strong>Net contract</strong>: FCT = <code>Net ÷ (1 − r%) × r%</code> (gross-up). Cost = SI + FCT</li>
+      <li><strong>Gross contract</strong>: FCT = <code>Gross × r%</code> (withheld). Cost = SI price</li>
+      <li><strong>BTS margin</strong> = (BTS sell − Floor) + BTS commission from SI</li>
+      <li>Editing <em>SRS sell</em> → recalcs BTS→SRS = SRS × (1 − x%) and Customer</li>
+      <li>Editing <em>Customer</em> → back-calcs SRS = Cust ÷ (1 + VAT%), then BTS→SRS</li>
+      <li><strong>Exchange rate</strong>: VND conversion uses <a href="https://www.vietcombank.com.vn/vi-VN/KHCN/Cong-cu-Tien-ich/Ty-gia" target="_blank" rel="noopener">Vietcombank sell rate</a>. Enter manually or toggle VND columns on/off.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  // ── Formatting ──
+  const fmt = v => (v < 0 ? '−' : '') + '$' + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtI = v => (v < 0 ? '−' : '') + '$' + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  const fmtP = v => (v >= 0 ? '' : '−') + Math.abs(v).toFixed(1) + '%';
+  const fmtVnd = v => {
+    const abs = Math.abs(v);
+    const sign = v < 0 ? '−' : '';
+    if (abs >= 1e9) return sign + (abs / 1e9).toFixed(2) + ' tỷ';
+    if (abs >= 1e6) return sign + (abs / 1e6).toFixed(1) + ' tr';
+    return sign + Math.round(abs).toLocaleString('vi-VN') + 'đ';
+  };
+
+  // ── Exchange Rate State ──
+  let fxRate = 26400; // Default fallback (VCB sell rate)
+  let showVnd = true;
+
+  function setText(id, val) {
+    const el = document.getElementById(id);
+    if (!el || el.textContent === val) return;
+    el.textContent = val;
+    el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+  }
+
+  function setVnd(id, usdVal) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = fmtVnd(usdVal * fxRate);
+  }
+
+  function setInput(id, val) {
+    const el = document.getElementById(id);
+    if (el && document.activeElement !== el) el.value = Math.round(val * 100) / 100;
+  }
+
+  // ── FCT (Circular 103/2014) ──
+  function fct(price, rate, isNet) {
+    if (rate <= 0 || price <= 0) return 0;
+    return isNet
+      ? price / (1 - rate / 100) * (rate / 100)   // gross-up
+      : price * (rate / 100);                       // direct
+  }
+
+  // ── State ──
+  let btsPrice = 10;    // BTS sell price to SRS
+  let srsPrice = 12.5;  // SRS sell price (pre-VAT)
+  let custPrice = 13.75; // Customer price (incl VAT)
+
+  function onFxChange() {
+    const val = parseFloat(document.getElementById('in-fx-rate').value);
+    if (val > 0) {
+      fxRate = val;
+      recalc();
+    }
+  }
+
+  function toggleVnd() {
+    showVnd = document.getElementById('fx-show-vnd').checked;
+    document.getElementById('fee-table').classList.toggle('hide-vnd', !showVnd);
+  }
+
+  // ── Recalculate ──
+  function recalc(source) {
+    const si   = parseFloat(document.getElementById('in-si').value) || 0;
+    const n    = parseInt(document.getElementById('in-loc').value) || 1;
+    const btsR = parseFloat(document.getElementById('in-bts-comm').value) || 0;
+    const srsR = parseFloat(document.getElementById('in-srs-comm').value) || 0;
+    const fvR  = parseFloat(document.getElementById('in-fct-vat').value) || 0;
+    const fcR  = parseFloat(document.getElementById('in-fct-cit').value) || 0;
+    const pfR  = parseFloat(document.getElementById('in-pmt-fee').value) || 0;
+    const vatR = parseFloat(document.getElementById('in-vat').value) || 0;
+    const isNet = document.getElementById('in-contract').value === 'net';
+
+    // ① SI + costs
+    const fctVat = fct(si, fvR, isNet);
+    const fctCit = fct(si, fcR, isNet);
+    const pmtFee = si * pfR / 100;
+    const fctTotal = fctVat + fctCit;
+    const floor = isNet ? si + fctTotal + pmtFee : si + pmtFee;
+
+    // ② BTS commission from SI
+    const btsComm = si * btsR / 100;
+
+    // ③ Derive chain based on source of change
+    if (source === 'srs') {
+      btsPrice = srsPrice * (1 - srsR / 100);
+      custPrice = srsPrice * (1 + vatR / 100);
+    } else if (source === 'cust') {
+      srsPrice = custPrice / (1 + vatR / 100);
+      btsPrice = srsPrice * (1 - srsR / 100);
+    } else if (source === 'bts') {
+      srsPrice = btsPrice / (1 - srsR / 100);
+      custPrice = srsPrice * (1 + vatR / 100);
+    } else {
+      srsPrice = btsPrice / (1 - srsR / 100);
+      custPrice = srsPrice * (1 + vatR / 100);
+    }
+
+    // BTS total margin
+    const btsMarginResale = btsPrice - floor;
+    const btsMarginTotal = btsMarginResale + btsComm;
+    const btsMarginPct = btsPrice > 0 ? btsMarginTotal / btsPrice * 100 : 0;
+
+    // SRS commission
+    const srsComm = srsPrice * srsR / 100;
+    const vatPerLoc = srsPrice * vatR / 100;
+
+    // ── Warning if below floor ──
+    const alertEl = document.getElementById('alert');
+    const alertMsg = document.getElementById('alert-msg');
+    if (btsPrice < floor - 0.005) {
+      alertEl.style.display = 'flex';
+      alertMsg.textContent = `BTS sell ($${btsPrice.toFixed(2)}) is below floor price ($${floor.toFixed(2)}). BTS will lose $${(floor - btsPrice).toFixed(2)}/loc before commission.`;
+    } else {
+      alertEl.style.display = 'none';
+    }
+
+    // ── Update USD cells ──
+    setText('c-si', fmt(si));
+    setText('c-si-mo', fmtI(si * n));
+    setText('c-si-yr', fmtI(si * n * 12));
+
+    setText('c-fv-l', '↳ FCT VAT' + (isNet ? ' (gross-up)' : ''));
+    setText('c-fv', fmt(fctVat));
+    setText('c-fv-r', fvR + '%');
+    setText('c-fv-mo', fmtI(fctVat * n));
+    setText('c-fv-yr', fmtI(fctVat * n * 12));
+
+    setText('c-fc-l', '↳ FCT CIT' + (isNet ? ' (gross-up)' : ''));
+    setText('c-fc', fmt(fctCit));
+    setText('c-fc-r', fcR + '%');
+    setText('c-fc-mo', fmtI(fctCit * n));
+    setText('c-fc-yr', fmtI(fctCit * n * 12));
+
+    setText('c-pf', fmt(pmtFee));
+    setText('c-pf-r', pfR + '%');
+    setText('c-pf-mo', fmtI(pmtFee * n));
+    setText('c-pf-yr', fmtI(pmtFee * n * 12));
+
+    setText('c-fl-l', isNet ? 'Min BTS floor (SI+FCT+fee)' : 'Min BTS floor (SI+fee)');
+    setText('c-fl', fmt(floor));
+    setText('c-fl-mo', fmtI(floor * n));
+    setText('c-fl-yr', fmtI(floor * n * 12));
+
+    setText('c-bc', fmt(btsComm));
+    setText('c-bc-r', btsR + '%');
+    setText('c-bc-mo', fmtI(btsComm * n));
+    setText('c-bc-yr', fmtI(btsComm * n * 12));
+
+    setInput('edit-bts', btsPrice);
+    setText('c-bts-mo', fmtI(btsPrice * n));
+    setText('c-bts-yr', fmtI(btsPrice * n * 12));
+
+    const bmEl = document.getElementById('c-bm');
+    const bmrEl = document.getElementById('c-bm-r');
+    setText('c-bm', fmt(btsMarginTotal));
+    setText('c-bm-r', fmtP(btsMarginPct));
+    setText('c-bm-mo', fmtI(btsMarginTotal * n));
+    setText('c-bm-yr', fmtI(btsMarginTotal * n * 12));
+    const mcls = btsMarginTotal >= 0 ? 'cg' : 'cr';
+    bmEl.className = mcls;
+    bmrEl.className = 'hide-sm ' + mcls;
+    document.getElementById('c-bm-mo').className = mcls;
+    document.getElementById('c-bm-yr').className = mcls;
+
+    setInput('edit-srs', srsPrice);
+    setText('c-srs-mo', fmtI(srsPrice * n));
+    setText('c-srs-yr', fmtI(srsPrice * n * 12));
+
+    setText('c-sc', fmt(srsComm));
+    setText('c-sc-r', srsR + '%');
+    setText('c-sc-mo', fmtI(srsComm * n));
+    setText('c-sc-yr', fmtI(srsComm * n * 12));
+
+    setText('c-vat', fmt(vatPerLoc));
+    setText('c-vat-r', vatR + '%');
+    setText('c-vat-mo', fmtI(vatPerLoc * n));
+    setText('c-vat-yr', fmtI(vatPerLoc * n * 12));
+
+    setInput('edit-cust', custPrice);
+    setText('c-cust-mo', fmtI(custPrice * n));
+    setText('c-cust-yr', fmtI(custPrice * n * 12));
+
+    // ── Update VND columns ──
+    setVnd('v-si', si);          setVnd('v-si-mo', si * n);          setVnd('v-si-yr', si * n * 12);
+    setVnd('v-fv', fctVat);      setVnd('v-fv-mo', fctVat * n);      setVnd('v-fv-yr', fctVat * n * 12);
+    setVnd('v-fc', fctCit);      setVnd('v-fc-mo', fctCit * n);      setVnd('v-fc-yr', fctCit * n * 12);
+    setVnd('v-pf', pmtFee);      setVnd('v-pf-mo', pmtFee * n);      setVnd('v-pf-yr', pmtFee * n * 12);
+    setVnd('v-fl', floor);       setVnd('v-fl-mo', floor * n);       setVnd('v-fl-yr', floor * n * 12);
+    setVnd('v-bc', btsComm);     setVnd('v-bc-mo', btsComm * n);     setVnd('v-bc-yr', btsComm * n * 12);
+    setVnd('v-bts', btsPrice);   setVnd('v-bts-mo', btsPrice * n);   setVnd('v-bts-yr', btsPrice * n * 12);
+    setVnd('v-bm', btsMarginTotal); setVnd('v-bm-mo', btsMarginTotal * n); setVnd('v-bm-yr', btsMarginTotal * n * 12);
+    setVnd('v-srs', srsPrice);   setVnd('v-srs-mo', srsPrice * n);   setVnd('v-srs-yr', srsPrice * n * 12);
+    setVnd('v-sc', srsComm);     setVnd('v-sc-mo', srsComm * n);     setVnd('v-sc-yr', srsComm * n * 12);
+    setVnd('v-vat', vatPerLoc);  setVnd('v-vat-mo', vatPerLoc * n);  setVnd('v-vat-yr', vatPerLoc * n * 12);
+    setVnd('v-cust', custPrice); setVnd('v-cust-mo', custPrice * n); setVnd('v-cust-yr', custPrice * n * 12);
+
+    // ── Bar (pre-VAT breakdown of SRS sell price) ──
+    const parts = [
+      { val: si, color: 'var(--blue)', label: 'SI' },
+      { val: isNet ? fctTotal : 0, color: 'var(--red)', label: 'FCT' },
+      { val: pmtFee, color: 'var(--amber)', label: 'Pmt fee' },
+      { val: Math.max(0, btsMarginResale), color: '#525252', label: 'BTS resale' },
+      { val: btsComm, color: 'var(--green)', label: 'BTS comm' },
+      { val: Math.max(0, srsComm), color: 'var(--purple)', label: 'SRS comm' },
+    ];
+    document.getElementById('bar').innerHTML = parts
+      .filter(p => p.val > 0)
+      .map(p => `<div style="flex:${p.val};background:${p.color}" title="${p.label}"></div>`)
+      .join('');
+    document.getElementById('legend').innerHTML = parts
+      .filter(p => p.val > 0)
+      .map(p => `<span><span class="d" style="background:${p.color}"></span>${p.label} ${fmt(p.val)}</span>`)
+      .join('');
+  }
+
+  function onEdit(src) {
+    if (src === 'bts') { btsPrice = parseFloat(document.getElementById('edit-bts').value) || 0; recalc('bts'); }
+    else if (src === 'srs') { srsPrice = parseFloat(document.getElementById('edit-srs').value) || 0; recalc('srs'); }
+    else if (src === 'cust') { custPrice = parseFloat(document.getElementById('edit-cust').value) || 0; recalc('cust'); }
+  }
+
+  // ── Init ──
+  recalc();
+</script>
+</body>
+</html>
