@@ -348,6 +348,17 @@
           <td id="c-si-yr">$8,400</td>
           <td class="col-vnd" id="v-si-yr"></td>
         </tr>
+        <!-- SI Net -->
+        <tr>
+          <td><span class="d" style="background:var(--blue);opacity:.5"></span>SI Net (retained)</td>
+          <td class="cb" id="c-sn">$6.30</td>
+          <td class="col-vnd" id="v-sn"></td>
+          <td class="hide-sm cm" id="c-sn-r">—</td>
+          <td class="cb" id="c-sn-mo">$630</td>
+          <td class="col-vnd" id="v-sn-mo"></td>
+          <td class="cb" id="c-sn-yr">$7,560</td>
+          <td class="col-vnd" id="v-sn-yr"></td>
+        </tr>
         <!-- FCT VAT -->
         <tr class="sub">
           <td id="c-fv-l">↳ FCT VAT (gross-up)</td>
@@ -638,6 +649,13 @@
     // ── Update USD cells ──
     setText('c-si', fmt(si));
     setText('c-si-mo', fmtI(si * n));
+
+    // SI Net = SI - BTS commission - payment fee on commission
+    const siNet = si - btsComm - pmtFee;
+    setText('c-sn', fmt(siNet));
+    setText('c-sn-r', '—');
+    setText('c-sn-mo', fmtI(siNet * n));
+    setText('c-sn-yr', fmtI(siNet * n * 12));
     setText('c-si-yr', fmtI(si * n * 12));
 
     setText('c-fv-l', '↳ FCT VAT' + (isNet ? ' (gross-up)' : ''));
@@ -703,6 +721,7 @@
 
     // ── Update VND columns ──
     setVnd('v-si', si);          setVnd('v-si-mo', si * n);          setVnd('v-si-yr', si * n * 12);
+    setVnd('v-sn', siNet);       setVnd('v-sn-mo', siNet * n);       setVnd('v-sn-yr', siNet * n * 12);
     setVnd('v-fv', fctVat);      setVnd('v-fv-mo', fctVat * n);      setVnd('v-fv-yr', fctVat * n * 12);
     setVnd('v-fc', fctCit);      setVnd('v-fc-mo', fctCit * n);      setVnd('v-fc-yr', fctCit * n * 12);
     setVnd('v-pf', pmtFee);      setVnd('v-pf-mo', pmtFee * n);      setVnd('v-pf-yr', pmtFee * n * 12);
