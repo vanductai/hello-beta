@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MBV × SingleInterface — Google Business Profile</title>
+  <title>Bảo Việt × SingleInterface — Google Business Profile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -1291,6 +1291,33 @@
   </style>
 </head>
 
+<style>
+    /* trust score gauge */
+    .ts-gauge { width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--good) 0% 92%, var(--paper-2) 92% 100%);display:flex;align-items:center;justify-content:center;flex:none }
+    .ts-inner { width:116px;height:116px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center }
+    .ts-row { display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);font-size:18px }
+    .ts-row:last-child { border-bottom:0 }
+    .ts-lab { font-weight:600;color:var(--ink);flex:1;min-width:0 }
+    .ts-weight { font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-3);flex:none;width:45px;text-align:right }
+    .ts-bar { flex:none;width:120px;height:8px;background:var(--paper-2);border-radius:4px;overflow:hidden }
+    .ts-bar i { display:block;height:100%;border-radius:4px;background:var(--good) }
+    .ts-val { font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px;color:var(--ink);flex:none;width:55px;text-align:right }
+    section.dark .ts-row { border-color:var(--line-dark) }
+    section.dark .ts-lab { color:#fff }
+    section.dark .ts-weight { color:var(--blue-100) }
+    section.dark .ts-bar { background:rgba(255,255,255,.1) }
+    section.dark .ts-val { color:#fff }
+    section.dark .ts-gauge { background:conic-gradient(var(--good) 0% 92%, rgba(255,255,255,.1) 92% 100%) }
+    section.dark .ts-inner { background:var(--navy-800) }
+
+    /* scenario comparison */
+    .scn { display:flex;flex-direction:column;gap:14px;flex:1 }
+    .scn-head { display:flex;align-items:center;gap:12px;font-size:20px;font-weight:700 }
+    .scn-step { display:flex;align-items:center;gap:12px;font-size:17px;padding:10px 16px;border-radius:10px;border:1px solid var(--line) }
+    .scn-step.bad { border-color:rgba(192,73,47,.3);background:rgba(192,73,47,.04);color:var(--ink-2) }
+    .scn-step.good { border-color:rgba(47,143,107,.3);background:rgba(47,143,107,.04);color:var(--ink) }
+</style>
+
 <body>
   <deck-stage width="1920" height="1080">
 
@@ -1301,127 +1328,68 @@
           <span class="kick-dot"></span>
           <span class="kick-text">Đề xuất chiến lược · Google Business Profile</span>
         </div>
-        <h1 class="h h-xl anim" style="max-width:1500px">Mỗi ngày, hàng nghìn người tìm <span class="accent">"ngân hàng
-            gần đây"</span> trên Google.<br>MBV có xuất hiện không?</h1>
-        <p class="sub anim" style="margin-top:30px;font-size:30px">Giải pháp tối ưu Google Business Profile (Map Pack)
-          cho Ngân
-          hàng MBV — để mỗi chi nhánh trở thành điểm chạm đầu tiên với khách hàng.</p>
+        <h1 class="h h-xl anim" style="max-width:1500px">Mỗi ngày, hàng nghìn người tìm <span class="accent">"tư vấn
+            bảo hiểm gần đây"</span> trên Google.<br>Tư vấn viên Bảo Việt có xuất hiện không?</h1>
+        <p class="sub anim" style="margin-top:30px;font-size:30px">Giải pháp tối ưu Google Business Profile cho Bảo
+          hiểm Bảo Việt — để mỗi tư vấn viên trở thành chuyên gia đáng tin cậy trên Google Maps.</p>
         <div class="anim" style="margin-top:64px;display:flex;align-items:center;gap:34px">
           <span class="wm" style="font-size:34px;color:#fff">SingleInterface<span class="x">×</span>Beta</span>
           <span style="width:1px;height:38px;background:rgba(255,255,255,.2)"></span>
           <span
-            style="font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:.1em;color:rgba(255,255,255,.55)">07
+            style="font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:.1em;color:rgba(255,255,255,.55)">06
             · 06 · 2026</span>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
-          Beta</span><span>Đề xuất gửi <b>Ngân hàng MBV</b></span></div>
+          Beta</span><span>Đề xuất gửi <b>Bảo hiểm Bảo Việt</b></span></div>
     </section>
 
-    <!-- ============ SLIDE 2 — 70% top 3 ============ -->
-    <section data-label="88% hành động trong 24h">
+    <!-- ============ SLIDE 2 — COLD CALL vs MAPS ============ -->
+    <section data-label="95% cold call vs 88% Maps">
       <div class="frame with-foot">
         <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Khoảnh khắc quyết định</span><span
             class="kick-num">02 / 27</span></div>
-        <div class="split tilt" style="align-items:center;gap:60px">
-          <div>
-            <h2 class="h h-lg anim"><span class="hl">88% tìm kiếm local</span> trên mobile dẫn đến cuộc gọi hoặc ghé thăm trong 24h.
-            </h2>
-            <p class="sub anim" style="margin-top:24px">Khi ai đó tìm "ngân hàng gần đây" trên điện thoại, Google đưa ra <b>Map
-                Pack</b> — 3 lựa chọn ở trên cùng. Và <b>88% sẽ hành động ngay</b> trong ngày.</p>
-            <div class="anim" style="display:flex;gap:48px;margin-top:46px">
-              <div>
-                <div class="bigstat" style="font-size:108px;color:var(--blue)">88<span style="font-size:54px">%</span>
-                </div>
-                <div style="font-size:20px;color:var(--ink-2);margin-top:6px;max-width:280px">gọi điện hoặc ghé thăm <b>trong vòng 24h</b>
-                  <div style="font-size:15px;color:var(--ink-3);margin-top:4px">Nguồn: Google / comScore</div>
-                </div>
+        <h2 class="h h-md anim" style="max-width:1500px"><span class="hl">95% cold call bị từ chối.</span> Nhưng 88%
+          người tìm trên Google Maps <span class="accent">hành động trong 24h</span>.</h2>
+        <div class="midfill">
+          <div class="split anim d1" style="gap:48px;align-items:stretch;flex:none">
+            <div class="card"
+              style="padding:40px 38px;border-color:rgba(192,73,47,.3);background:rgba(192,73,47,.04);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+              <div style="font-size:20px;font-weight:600;color:var(--bad);margin-bottom:14px">❌ COLD CALL</div>
+              <div class="bigstat" style="font-size:120px;color:var(--bad)">95<span style="font-size:54px">%</span>
               </div>
-              <div>
-                <div class="bigstat" style="font-size:108px;color:var(--ink-3)">46<span style="font-size:54px">%</span>
-                </div>
-                <div style="font-size:20px;color:var(--ink-2);margin-top:6px;max-width:280px">tìm kiếm trên Google <b>có local intent</b>
-                  <div style="font-size:15px;color:var(--ink-3);margin-top:4px">Nguồn: Google (2018)</div>
-                </div>
-              </div>
+              <div style="font-size:22px;font-weight:700;color:var(--ink);margin-top:12px">bị từ chối</div>
+              <p style="font-size:18px;color:var(--ink-2);margin-top:10px;line-height:1.4">TV viên gọi <b>200
+                  cuộc/ngày</b>, chỉ 5% nghe. Thời gian lãng phí, khách hàng khó chịu.</p>
             </div>
-          </div>
-          <div class="anim d2">
-            <div class="pill blue" style="margin-bottom:14px">Kết quả tìm "ngân hàng gần đây"</div>
-            <div class="mp">
-              <div class="res win"><span class="rank">1</span><span class="thumb"><svg class="ic" viewBox="0 0 24 24">
-                    <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
-                  </svg></span>
-                <div class="meta">
-                  <div class="t">Ngân hàng A — Chi nhánh Q1</div>
-                  <div class="s"><span class="stars"><svg viewBox="0 0 24 24">
-                        <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
-                      </svg></span>4.7 · 200 đánh giá</div>
-                </div>
-                <div class="quick"><span><svg class="ic" viewBox="0 0 24 24">
-                      <path
-                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
-                    </svg></span><span><svg class="ic" viewBox="0 0 24 24">
-                      <path d="M3 11l19-9-9 19-2-8-8-2z" />
-                    </svg></span></div>
+            <div class="card"
+              style="padding:40px 38px;border-color:rgba(47,143,107,.3);background:rgba(47,143,107,.04);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+              <div style="font-size:20px;font-weight:600;color:var(--good);margin-bottom:14px">✅ GOOGLE MAPS</div>
+              <div class="bigstat" style="font-size:120px;color:var(--good)">88<span style="font-size:54px">%</span>
               </div>
-              <div class="res win"><span class="rank">2</span><span class="thumb"><svg class="ic" viewBox="0 0 24 24">
-                    <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
-                  </svg></span>
-                <div class="meta">
-                  <div class="t">Ngân hàng B — Chi nhánh Q1</div>
-                  <div class="s"><span class="stars"><svg viewBox="0 0 24 24">
-                        <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
-                      </svg></span>4.5 · 150 đánh giá</div>
-                </div>
-                <div class="quick"><span><svg class="ic" viewBox="0 0 24 24">
-                      <path
-                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
-                    </svg></span><span><svg class="ic" viewBox="0 0 24 24">
-                      <path d="M3 11l19-9-9 19-2-8-8-2z" />
-                    </svg></span></div>
-              </div>
-              <div class="res win"><span class="rank">3</span><span class="thumb"><svg class="ic" viewBox="0 0 24 24">
-                    <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
-                  </svg></span>
-                <div class="meta">
-                  <div class="t">Ngân hàng C — Chi nhánh Q1</div>
-                  <div class="s"><span class="stars"><svg viewBox="0 0 24 24">
-                        <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
-                      </svg></span>3.8 · 50 đánh giá</div>
-                </div>
-                <div class="quick"><span><svg class="ic" viewBox="0 0 24 24">
-                      <path
-                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
-                    </svg></span><span><svg class="ic" viewBox="0 0 24 24">
-                      <path d="M3 11l19-9-9 19-2-8-8-2z" />
-                    </svg></span></div>
-              </div>
-            </div>
-            <div
-              style="display:flex;align-items:center;gap:12px;margin-top:16px;padding:14px 18px;border:1px dashed var(--line);border-radius:12px;background:#fff;color:var(--ink-3);font-size:17px">
-              <svg class="ic" viewBox="0 0 24 24" style="color:var(--ink-3);width:22px;height:22px">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 8v4M12 16h.01" />
-              </svg> Website MBV nằm ở đâu đó <b style="color:var(--ink-2);margin:0 4px">phía dưới</b> — sau Map Pack.
+              <div style="font-size:22px;font-weight:700;color:var(--ink);margin-top:12px">hành động trong 24h</div>
+              <p style="font-size:18px;color:var(--ink-2);margin-top:10px;line-height:1.4">Khách <b>TỰ tìm đến</b>, ĐÃ
+                CÓ nhu cầu. Tỷ lệ chuyển đổi <b>15-25%</b>.</p>
+              <div style="font-size:15px;color:var(--ink-3);margin-top:6px">Nguồn: Google/comScore</div>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Nếu MBV không nằm trong top 3, <b>88% khách hàng mobile sẽ gọi hoặc ghé thăm đối thủ</b> — trong vòng 24h, trước khi kịp biết MBV có chi nhánh ngay gần đó.</p>
+          <p>Nếu TV viên Bảo Việt xuất hiện trên Google Maps khi khách <b>ĐANG CẦN</b> bảo hiểm → tỷ lệ chuyển đổi
+            15-25%. <b>Gấp 5-10 lần cold call.</b></p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+          Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
-    <!-- ============ SLIDE 3 — ANH MINH STORY ============ -->
-    <section data-label="Kịch bản Anh Minh">
+    <!-- ============ SLIDE 3 — CHỊ LAN STORY ============ -->
+    <section data-label="Kịch bản Chị Lan">
       <div class="frame with-foot">
         <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Đặt mình vào vị trí khách
             hàng</span><span class="kick-num">03 / 27</span></div>
-        <h2 class="h h-md anim" style="max-width:1400px">Hãy gặp <span class="accent">anh Minh</span> — một khách hàng
-          MBV chưa bao giờ có.</h2>
+        <h2 class="h h-md anim" style="max-width:1400px">Hãy gặp <span class="accent">chị Lan</span> — một khách hàng
+          Bảo Việt chưa bao giờ có.</h2>
         <div class="midfill">
           <div class="flow anim d1">
             <div class="step">
@@ -1431,9 +1399,9 @@
                   <circle cx="12" cy="8" r="4" />
                   <path d="M4 21a8 8 0 0 1 16 0" />
                 </svg>
-                <div style="font-size:22px;font-weight:700;margin-top:16px">Cần mở tài khoản doanh nghiệp</div>
-                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">Anh Minh mới lập công ty,
-                  muốn tìm ngân hàng thuận tiện gần văn phòng.</p>
+                <div style="font-size:22px;font-weight:700;margin-top:16px">Vừa sinh con đầu lòng</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">Chị Lan muốn mua bảo hiểm
+                  cho bé — an tâm cho tương lai con.</p>
               </div>
             </div>
             <div class="arr"><svg class="ic" viewBox="0 0 24 24">
@@ -1446,9 +1414,9 @@
                   <circle cx="11" cy="11" r="7" />
                   <path d="M21 21l-4.3-4.3" />
                 </svg>
-                <div style="font-size:22px;font-weight:700;margin-top:16px">Search "ngân hàng gần đây"</div>
-                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">Anh ấy mở Google trên điện
-                  thoại — đúng như 9/10 người Việt khác.</p>
+                <div style="font-size:22px;font-weight:700;margin-top:16px">Search "tư vấn BH cho trẻ em gần đây"</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">Mở Google trên điện thoại —
+                  đúng như 9/10 người Việt khác.</p>
               </div>
             </div>
             <div class="arr"><svg class="ic" viewBox="0 0 24 24">
@@ -1462,9 +1430,9 @@
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                <div style="font-size:22px;font-weight:700;margin-top:16px">Maps hiện 3 ngân hàng — không có MBV</div>
-                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">MBV có chi nhánh cách đó
-                  400m, nhưng không xuất hiện trong Map Pack.</p>
+                <div style="font-size:22px;font-weight:700;margin-top:16px">Maps hiện 3 TV viên — không có Bảo Việt</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">TV viên công ty X: 4.9★, 80
+                  reviews, "Chuyên BH trẻ em".</p>
               </div>
             </div>
             <div class="arr"><svg class="ic" viewBox="0 0 24 24">
@@ -1475,22 +1443,23 @@
               <div class="card"
                 style="padding:26px 28px;border-color:rgba(192,73,47,.3);background:rgba(192,73,47,.04)">
                 <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--bad)">
-                  <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
+                  <path
+                    d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
                 </svg>
-                <div style="font-size:22px;font-weight:700;margin-top:16px">Đến ngân hàng đối thủ</div>
-                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">1 tap gọi điện, 1 tap chỉ
-                  đường. MBV mất khách này — vĩnh viễn.</p>
+                <div style="font-size:22px;font-weight:700;margin-top:16px">Gọi TV viên công ty X</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">1 tap gọi điện. Bảo Việt mất
+                  khách này — vĩnh viễn.</p>
               </div>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Anh Minh không ghét MBV. <b>Anh ấy chỉ đơn giản là không thấy MBV.</b> Và mỗi ngày có hàng nghìn "anh Minh"
-            như vậy.</p>
+          <p>Chị Lan không ghét Bảo Việt. <b>Chị ấy chỉ đơn giản là KHÔNG THẤY TV viên Bảo Việt.</b> Và mỗi ngày có
+            hàng nghìn "chị Lan" như vậy.</p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+          Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 4 — MAPS BEFORE WEBSITE ============ -->
@@ -1509,9 +1478,9 @@
                 </svg> Trên cùng · Map Pack</div>
               <div class="card"
                 style="flex:1;border-color:rgba(246,173,85,.4);background:linear-gradient(180deg,rgba(246,173,85,.07),#fff);display:flex;flex-direction:column">
-                <div style="font-size:26px;font-weight:700">Chỉ 3 ngân hàng được hiển thị</div>
-                <p style="font-size:19px;color:var(--ink-2);margin-top:8px">Tên · sao đánh giá · nút gọi · nút chỉ đường
-                  — ngay trên màn hình đầu tiên.</p>
+                <div style="font-size:26px;font-weight:700">Chỉ 3 TV viên / văn phòng được hiển thị</div>
+                <p style="font-size:19px;color:var(--ink-2);margin-top:8px">Tên · sao đánh giá · nút gọi · nút chỉ
+                  đường — ngay trên màn hình đầu tiên.</p>
                 <div style="margin-top:22px;display:flex;flex-direction:column;gap:12px">
                   <div style="display:flex;align-items:center;gap:13px;font-size:19px"><svg class="ic"
                       viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--good)">
@@ -1520,7 +1489,7 @@
                   <div style="display:flex;align-items:center;gap:13px;font-size:19px"><svg class="ic"
                       viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--good)">
                       <path d="M20 6L9 17l-5-5" />
-                    </svg> Không cần biết tên ngân hàng trước</div>
+                    </svg> Không cần biết tên bảo hiểm trước</div>
                 </div>
                 <div style="margin-top:auto;padding-top:24px;display:flex;align-items:baseline;gap:12px"><span
                     class="bigstat" style="font-size:84px;color:var(--amber-700)">88%</span><span
@@ -1536,7 +1505,7 @@
               <div class="card" style="flex:1;display:flex;flex-direction:column">
                 <div style="font-size:26px;font-weight:700">Tất cả website xếp hàng phía dưới</div>
                 <p style="font-size:19px;color:var(--ink-2);margin-top:8px">Khách phải cuộn qua Map Pack, click vào web,
-                  rồi tự đi tìm chi nhánh.</p>
+                  rồi tự đi tìm tư vấn viên.</p>
                 <div style="margin-top:22px;display:flex;flex-direction:column;gap:12px">
                   <div style="display:flex;align-items:center;gap:13px;font-size:19px;color:var(--ink-2)"><svg
                       class="ic" viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--bad)">
@@ -1555,12 +1524,12 @@
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Dù website MBV đẹp đến đâu, nó vẫn nằm <b>bên dưới</b> Google Maps. Cuộc đua thắng — thua diễn ra ở Map
-            Pack, trước khi khách kịp nhìn thấy web của bạn.</p>
+          <p>Dù website Bảo Việt đẹp đến đâu, nó vẫn nằm <b>bên dưới</b> Google Maps. Cuộc đua thắng — thua diễn ra ở
+            Map Pack, trước khi khách kịp nhìn thấy web của bạn.</p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+          Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 5 — 1 TAP VS 5-7 STEPS ============ -->
@@ -1577,7 +1546,7 @@
                 <tr>
                   <th class="lab">Khách muốn làm gì</th>
                   <th>Trên Google Maps</th>
-                  <th class="col-new" style="color:var(--blue)">Trên website MBV</th>
+                  <th class="col-new" style="color:var(--blue)">Trên website Bảo Việt</th>
                 </tr>
               </thead>
               <tbody>
@@ -1586,18 +1555,17 @@
                         viewBox="0 0 24 24" style="width:24px;height:24px;color:var(--blue)">
                         <path
                           d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
-                      </svg> Gọi điện</span></td>
+                      </svg> Gọi TV viên</span></td>
                   <td class="new"><b style="color:var(--good)">1 tap</b> → gọi ngay</td>
-                  <td class="old col-new">Tìm trang "Liên hệ" → copy số tổng đài → gọi<br><span
-                      style="font-size:16px;color:var(--bad)">(số trung tâm, không phải số chi nhánh)</span></td>
+                  <td class="old col-new">Tìm trang "Đại lý" → tìm quận → copy số → gọi</td>
                 </tr>
                 <tr>
                   <td class="lab"><span style="display:inline-flex;align-items:center;gap:12px"><svg class="ic"
                         viewBox="0 0 24 24" style="width:24px;height:24px;color:var(--blue)">
                         <path d="M3 11l19-9-9 19-2-8-8-2z" />
-                      </svg> Chỉ đường</span></td>
+                      </svg> Chỉ đường đến VP</span></td>
                   <td class="new"><b style="color:var(--good)">1 tap</b> → mở dẫn đường</td>
-                  <td class="old col-new">Tìm "Chi nhánh" → tìm quận → copy địa chỉ<br><span
+                  <td class="old col-new">Tìm "Văn phòng" → tìm quận → copy địa chỉ<br><span
                       style="font-size:16px;color:var(--bad)">→ paste vào Maps → dẫn đường</span></td>
                 </tr>
                 <tr>
@@ -1605,8 +1573,8 @@
                         viewBox="0 0 24 24"
                         style="width:24px;height:24px;color:var(--star);fill:var(--star);stroke:none">
                         <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
-                      </svg> Xem đánh giá</span></td>
-                  <td class="new">Thấy ngay <b style="color:var(--star)">4.7★</b>, 200 reviews</td>
+                      </svg> Xem đánh giá TV viên</span></td>
+                  <td class="new">Thấy ngay <b style="color:var(--star)">4.9★</b>, "tận tâm, giải thích rõ ràng"</td>
                   <td class="old col-new">Không có tính năng này</td>
                 </tr>
                 <tr>
@@ -1614,7 +1582,7 @@
                         viewBox="0 0 24 24" style="width:24px;height:24px;color:var(--blue)">
                         <rect x="3" y="4" width="18" height="18" rx="2" />
                         <path d="M3 10h18M8 2v4M16 2v4" />
-                      </svg> Đặt lịch hẹn</span></td>
+                      </svg> Đặt lịch tư vấn</span></td>
                   <td class="new"><b style="color:var(--good)">1 tap</b> → đặt lịch</td>
                   <td class="old col-new">Điền form → chờ xác nhận</td>
                 </tr>
@@ -1623,12 +1591,12 @@
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Khách hàng luôn chọn con đường ngắn nhất. <b>Luôn luôn.</b> Mỗi bước thêm vào là một cơ hội để họ bỏ cuộc —
-            và chọn đối thủ.</p>
+          <p>Khách hàng luôn chọn con đường ngắn nhất. <b>Luôn luôn.</b> Đặc biệt khi họ muốn tìm ai đó ĐÁNG TIN để
+            giao phó tài chính gia đình.</p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+          Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 6 — 7 CHALLENGES ============ -->
@@ -1636,65 +1604,63 @@
       <div class="frame with-foot">
         <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Điều đang xảy ra ngay lúc
             này</span><span class="kick-num">06 / 27</span></div>
-        <h2 class="h h-md anim">7 vấn đề đang khiến MBV <span class="accent">mất khách mỗi ngày</span>.</h2>
+        <h2 class="h h-md anim">7 vấn đề đang khiến Bảo Việt <span class="accent">mất khách mỗi ngày</span>.</h2>
         <div class="midfill">
           <div class="grid anim d1" style="grid-template-columns:repeat(3,1fr);gap:18px">
             <div class="card" style="padding:24px 26px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
                 <circle cx="11" cy="11" r="7" />
                 <path d="M21 21l-4.3-4.3" />
               </svg>
-              <div style="font-size:21px;font-weight:700;margin-top:14px">Thông tin chi nhánh không đầy đủ</div>
-              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Khách tìm nhưng không thấy,
-                hoặc thấy thông tin sai.</p>
+              <div style="font-size:21px;font-weight:700;margin-top:14px">TV viên không hiện diện online</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Khách muốn tìm "tư vấn BH
+                gần đây" → không thấy Bảo Việt.</p>
             </div>
             <div class="card" style="padding:24px 26px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M12 7v5l3 2" />
+                <path
+                  d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
               </svg>
-              <div style="font-size:21px;font-weight:700;margin-top:14px">Giờ mở cửa sai</div>
-              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Khách đến nơi gặp cửa đóng
-                → thất vọng → đánh giá xấu.</p>
+              <div style="font-size:21px;font-weight:700;margin-top:14px">95% cold call bị từ chối</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Lãng phí 80% thời gian đội
+                ngũ sales mỗi ngày.</p>
+            </div>
+            <div class="card" style="padding:24px 26px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+              <div style="font-size:21px;font-weight:700;margin-top:14px">TV viên nghỉ → mất khách hàng</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Khách mất liên lạc → chuyển
+                sang đối thủ hoặc lapse hợp đồng.</p>
             </div>
             <div class="card" style="padding:24px 26px"><svg class="ic" viewBox="0 0 24 24"
                 style="color:var(--amber);fill:var(--amber);stroke:none">
                 <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
               </svg>
-              <div style="font-size:21px;font-weight:700;margin-top:14px">Đánh giá xấu, không phản hồi</div>
-              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Khách mới đọc review tiêu
-                cực → chọn ngay đối thủ.</p>
-            </div>
-            <div class="card" style="padding:24px 26px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
-                <rect x="2" y="5" width="20" height="15" rx="2" />
-                <path d="M2 9h20M7 5l1.5-2h7L17 5" />
-                <circle cx="12" cy="13" r="3" />
-              </svg>
-              <div style="font-size:21px;font-weight:700;margin-top:14px">Không có ảnh chuyên nghiệp</div>
-              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Chi nhánh trông thiếu tin
-                cậy, kém uy tín.</p>
+              <div style="font-size:21px;font-weight:700;margin-top:14px">Không có đánh giá cá nhân</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Rào cản "có tin được
+                không?" — khách không dám giao phó tài chính.</p>
             </div>
             <div class="card" style="padding:24px 26px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
                 <rect x="3" y="11" width="18" height="11" rx="2" />
                 <path d="M7 11V7a5 5 0 0 1 9.9-1" />
               </svg>
-              <div style="font-size:21px;font-weight:700;margin-top:14px">Ai cũng sửa được thông tin</div>
-              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Bất kỳ ai — kể cả đối thủ —
-                có thể "Suggest an edit".</p>
+              <div style="font-size:21px;font-weight:700;margin-top:14px">Thông tin văn phòng sai/thiếu</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Ai cũng sửa được — kể cả
+                đối thủ "Suggest an edit".</p>
             </div>
             <div class="card" style="padding:24px 26px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
-                <path d="M12 2L2 7l10 5 10-5z" />
-                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                <path d="M3 3v18h18" />
+                <path d="M7 14l3-3 3 2 5-6" />
               </svg>
-              <div style="font-size:21px;font-weight:700;margin-top:14px">Quản lý riêng lẻ, không nhất quán</div>
-              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Không thể kiểm soát 100+
-                chi nhánh thủ công.</p>
+              <div style="font-size:21px;font-weight:700;margin-top:14px">Không đo lường hiệu quả online</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Không biết TV viên nào hiệu
+                quả, ai cần hỗ trợ.</p>
             </div>
             <div class="card" style="padding:24px 26px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M4 21a8 8 0 0 1 16 0" />
+                <path
+                  d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.7V17a2 2 0 0 1-1 1.7L8 19v1h8v-1l-1-.3a2 2 0 0 1-1-1.7v-2.3M6 4h12v5a6 6 0 0 1-12 0z" />
               </svg>
-              <div style="font-size:21px;font-weight:700;margin-top:14px">RM không hiện diện online</div>
-              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Mất hoàn toàn cơ hội tư vấn
-                cá nhân hoá.</p>
+              <div style="font-size:21px;font-weight:700;margin-top:14px">Đối thủ chưa ai làm — cơ hội first-mover</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Manulife, Prudential, AIA
+                chưa tối ưu GBP — nhưng có thời hạn.</p>
             </div>
             <div class="card"
               style="padding:24px 26px;background:var(--amber);border-color:var(--amber);display:flex;flex-direction:column;justify-content:center;grid-column:span 2">
@@ -1702,17 +1668,17 @@
                 style="font-family:'IBM Plex Mono',monospace;font-size:42px;font-weight:600;color:var(--navy-900);line-height:1">
                 7×</div>
               <div style="font-size:20px;font-weight:700;color:var(--navy-900);margin-top:8px;line-height:1.3">mỗi ngày,
-                mỗi chi nhánh, cùng một lúc.</div>
+                mỗi TV viên, cùng một lúc.</div>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Không một vấn đề nào lớn. Nhưng cộng lại, chúng âm thầm <b>chuyển khách hàng của bạn sang cho đối thủ</b> —
-            mà không ai trong MBV nhìn thấy.</p>
+          <p>Không một vấn đề nào lớn. Nhưng cộng lại, chúng âm thầm <b>chuyển khách hàng của bạn sang cho đối thủ</b>
+            — mà không ai trong Bảo Việt nhìn thấy.</p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
-          Beta</span><span>Google Business Profile cho <b>MBV</b></span></div>
+          Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 7 — WHAT IS GBP ============ -->
@@ -1722,53 +1688,50 @@
             class="kick-num">07 / 27</span></div>
         <div class="split tilt" style="gap:64px;align-items:center;margin-top:6px">
           <div>
-            <h2 class="h h-md anim">Google Business Profile = <span class="accent">tấm danh thiếp khổng lồ</span> của
-              bạn trên Google.</h2>
+            <h2 class="h h-md anim">Google Business Profile = <span class="accent">tấm danh thiếp thông minh</span>
+              trên Google Maps.</h2>
             <p class="sub anim" style="margin-top:22px">Google tự động dựng "danh thiếp" này khi ai đó tìm kiếm — hoàn
-              toàn <b>miễn phí</b>. Nó gồm 9 thành phần:</p>
-            <div class="anim d1" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:30px">
+              toàn <b>miễn phí</b>. Với TV viên bảo hiểm, nó gồm 8 thành phần:</p>
+            <div class="anim d1" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px">
               <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
-                  <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
-                </svg> Tên chi nhánh</div>
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21a8 8 0 0 1 16 0" />
+                </svg> Tên TV viên + Bảo Việt</div>
               <div class="chip9"><svg class="ic" viewBox="0 0 24 24" style="fill:currentColor;stroke:none">
                   <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
-                </svg> Sao đánh giá</div>
+                </svg> 4.9★ (80 đánh giá)</div>
               <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
-                </svg> Địa chỉ</div>
-              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M12 7v5l3 2" />
-                </svg> Giờ mở cửa</div>
+                </svg> Vùng phục vụ (Q1, Q3, Q5)</div>
               <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
                   <path
                     d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
-                </svg> Số điện thoại</div>
+                </svg> Số tổng đài</div>
               <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
                   <rect x="2" y="5" width="20" height="15" rx="2" />
                   <circle cx="12" cy="13" r="3" />
-                </svg> Ảnh</div>
+                </svg> Ảnh chuyên nghiệp</div>
               <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg> Đánh giá</div>
+                </svg> "Tận tâm, giải thích rõ ràng"</div>
               <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
                   <path d="M4 4h13v16H4z" />
                   <path d="M17 8h3v10a2 2 0 0 1-4 0M7 8h6M7 12h6M7 16h4" />
-                </svg> Tin mới</div>
+                </svg> "3 sai lầm khi mua BH nhân thọ"</div>
               <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="10" />
                   <path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3" />
                   <path d="M12 17h.01" />
-                </svg> Hỏi & Đáp</div>
+                </svg> "Nên mua BH gì cho con nhỏ?"</div>
             </div>
           </div>
           <div class="anim d2" style="max-width:480px;justify-self:center;width:100%">
             <div class="gbp">
-              <div class="photo">[ ẢNH CHI NHÁNH · 50+ ảnh chuyên nghiệp ]</div>
+              <div class="photo">[ ẢNH CHUYÊN NGHIỆP TV VIÊN ]</div>
               <div class="body">
-                <div class="name">MBV — Chi nhánh Quận 1</div>
-                <div class="cat">Ngân hàng · ATM · Tư vấn tài chính</div>
+                <div class="name">Nguyễn Văn A — Tư vấn BH Bảo Việt</div>
+                <div class="cat">Insurance Agent · SAB: Q1, Q3, Q5 — TP.HCM</div>
                 <div class="rate"><span class="stars"><svg viewBox="0 0 24 24">
                       <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
                     </svg><svg viewBox="0 0 24 24">
@@ -1779,20 +1742,20 @@
                       <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
                     </svg><svg viewBox="0 0 24 24">
                       <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
-                    </svg></span><span class="score">4.8</span><span class="count">· 200 đánh giá</span></div>
+                    </svg></span><span class="score">4.9</span><span class="count">· 80 đánh giá</span></div>
                 <div class="rows">
                   <div class="row"><svg class="ic" viewBox="0 0 24 24">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                       <circle cx="12" cy="10" r="3" />
-                    </svg> 123 Nguyễn Huệ, Quận 1, TP.HCM</div>
+                    </svg> Phục vụ: Quận 1, 3, 5 — TP.HCM</div>
                   <div class="row"><svg class="ic" viewBox="0 0 24 24">
                       <circle cx="12" cy="12" r="9" />
-                      <path d="M12 7v5l3 2" />
-                    </svg> <span style="color:var(--good);font-weight:600">Đang mở</span> · 8:00–17:00</div>
+                      <path d="M9 12l2 2 4-4" />
+                    </svg> Chuyên: BH nhân thọ, trẻ em, gia đình</div>
                   <div class="row"><svg class="ic" viewBox="0 0 24 24">
                       <path
                         d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
-                    </svg> 1900 xxxx</div>
+                    </svg> 1900 xxxx (số tổng đài)</div>
                 </div>
                 <div class="actions">
                   <div class="act"><svg class="ic" viewBox="0 0 24 24">
@@ -1812,68 +1775,66 @@
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Tấm danh thiếp này luôn được dựng — câu hỏi duy nhất là: <b>nó hiển thị MBV, hay hiển thị đối thủ?</b>
-            Thông tin sai hoặc thiếu → Google chọn người khác.</p>
+          <p>Google <b>TỰ ĐỘNG</b> hiển thị "tấm danh thiếp" này — MIỄN PHÍ. Nhưng nếu TV viên Bảo Việt không có
+            profile → <b>Google hiển thị ĐỐI THỦ hoặc AI đề xuất người khác.</b></p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+          Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
-    <!-- ============ SLIDE 8 — GBP > WEBSITE ============ -->
-    <section data-label="GBP > Website">
+    <!-- ============ SLIDE 8 — COLD CALL → INBOUND ============ -->
+    <section data-label="Cold Call → Inbound">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Tại sao không chỉ là
-            website</span><span class="kick-num">08 / 27</span></div>
-        <h2 class="h h-md anim">GBP + Website chi nhánh &nbsp;<span class="accent">&gt;</span>&nbsp; chỉ Website thương
-          hiệu.</h2>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Tại sao GBP thay đổi cuộc chơi</span><span
+            class="kick-num">08 / 27</span></div>
+        <h2 class="h h-md anim">Từ Cold Call <span style="color:var(--ink-3)">(95% từ chối)</span> sang <span class="accent">Inbound</span> <span style="color:var(--ink-3)">(khách TỰ GỌI)</span>.</h2>
         <div class="midfill">
           <div class="card anim d1" style="padding:0;overflow:hidden;width:100%">
             <table class="ctab">
               <thead>
                 <tr>
                   <th class="lab"> </th>
-                  <th>Cách cũ — chỉ Website &amp; App</th>
-                  <th class="col-new" style="color:var(--blue)">Cách mới — GBP + Website + App</th>
+                  <th>Cách cũ — Cold Call &amp; Outbound</th>
+                  <th class="col-new" style="color:var(--blue)">Cách mới — GBP + Inbound</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td class="lab">Khách tìm thấy bạn</td>
-                  <td class="old">Phải biết tên MBV → gõ web, tải app</td>
-                  <td class="new col-new">Google <b>tự hiển thị</b> khi khách ở gần</td>
+                  <td class="old">Phải quen biết hoặc bị cold call</td>
+                  <td class="new col-new">Google <b>TỰ hiển thị</b> khi khách ĐANG CẦN bảo hiểm</td>
                 </tr>
                 <tr>
-                  <td class="lab">Chi phí</td>
-                  <td class="old">Chạy quảng cáo → tốn tiền mỗi click</td>
-                  <td class="new col-new">GBP <b>miễn phí</b> → chỉ cần tối ưu</td>
+                  <td class="lab">Tỷ lệ chuyển đổi</td>
+                  <td class="old">Cold call 2-5%</td>
+                  <td class="new col-new">Inbound từ GBP <b>15-25%</b> (khách đã có nhu cầu)</td>
                 </tr>
                 <tr>
                   <td class="lab">Độ tin cậy</td>
-                  <td class="old">Website tự nói về mình</td>
-                  <td class="new col-new">Google Reviews = <b>khách hàng thật nói</b></td>
+                  <td class="old">"Tôi là TV viên BH" (tự nói)</td>
+                  <td class="new col-new"><b>"80 khách hàng đánh giá 4.9★"</b> (người thật chứng nhận)</td>
                 </tr>
                 <tr>
-                  <td class="lab">Tốc độ chuyển đổi</td>
-                  <td class="old">5–7 bước để liên hệ</td>
-                  <td class="new col-new"><b>1 tap</b> gọi điện hoặc chỉ đường</td>
+                  <td class="lab">Chi phí</td>
+                  <td class="old">200 cuộc gọi/ngày, 95% từ chối</td>
+                  <td class="new col-new">GBP <b>MIỄN PHÍ</b> + khách tự gọi đến</td>
                 </tr>
                 <tr>
                   <td class="lab">Phủ sóng</td>
-                  <td class="old">1 website duy nhất</td>
-                  <td class="new col-new">Mỗi chi nhánh = <b>1 "mặt tiền số"</b> riêng</td>
+                  <td class="old">1 TV viên gặp 5-10 khách/ngày</td>
+                  <td class="new col-new"><b>1 TV viên hiển thị cho hàng nghìn người</b> tìm kiếm</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>GBP không thay thế website — nó là <b>cửa trước</b> mà khách bước qua đầu tiên. Website là phòng khách phía
-            sau. Bạn cần cả hai, đúng thứ tự.</p>
+          <p>GBP không thay thế cold call — nó mở ra <b>kênh inbound hoàn toàn mới</b>. TV viên vừa cold call vừa có khách TỰ GỌI ĐẾN. Cả hai kênh cùng hoạt động.</p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+          Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 9 — 3 FACTORS + 5R ============ -->
@@ -1894,7 +1855,7 @@
                 </svg>
                 <div>
                   <div style="font-size:23px;font-weight:700">Relevance</div>
-                  <div style="font-size:17px;color:var(--blue-100)">Chi nhánh có đúng dịch vụ khách cần?</div>
+                  <div style="font-size:17px;color:var(--blue-100)">TV viên có phục vụ đúng loại BH khách cần?</div>
                 </div>
               </div>
               <div class="card" style="padding:20px 24px;display:flex;align-items:center;gap:18px"><svg class="ic ic-lg"
@@ -1904,7 +1865,7 @@
                 </svg>
                 <div>
                   <div style="font-size:23px;font-weight:700">Distance</div>
-                  <div style="font-size:17px;color:var(--blue-100)">Chi nhánh có gần khách không?</div>
+                  <div style="font-size:17px;color:var(--blue-100)">TV viên có phục vụ khu vực của khách?</div>
                 </div>
               </div>
               <div class="card" style="padding:20px 24px;display:flex;align-items:center;gap:18px"><svg class="ic ic-lg"
@@ -1913,7 +1874,7 @@
                 </svg>
                 <div>
                   <div style="font-size:23px;font-weight:700">Prominence</div>
-                  <div style="font-size:17px;color:var(--blue-100)">Chi nhánh có uy tín, nổi bật không?</div>
+                  <div style="font-size:17px;color:var(--blue-100)">TV viên có uy tín (đánh giá, nội dung)?</div>
                 </div>
               </div>
             </div>
@@ -1923,24 +1884,23 @@
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
               <div class="r5">
                 <div class="r5h"><b>Radius</b><span class="map">→ Distance</span></div>
-                <p>Tối ưu bán kính phục vụ, mở rộng vùng hiển thị trên bản đồ.</p>
+                <p>Tối ưu Service Area (vùng phục vụ), mở rộng bán kính hiển thị.</p>
               </div>
               <div class="r5">
                 <div class="r5h"><b>Relevance</b><span class="map">→ Relevance</span></div>
-                <p>Tối ưu danh mục, mô tả, Q&A, dịch vụ phù hợp với từ khóa tìm kiếm.</p>
+                <p>Tối ưu danh mục (Insurance Agent), mô tả, Q&A, chuyên môn.</p>
               </div>
               <div class="r5">
                 <div class="r5h"><b>Reviews</b><span class="map">→ Prominence</span></div>
-                <p>Thu hút đánh giá chất lượng, phản hồi &lt; 24h, nâng uy tín.</p>
+                <p>Thu hút đánh giá CÁ NHÂN từ khách đã tư vấn.</p>
               </div>
               <div class="r5">
                 <div class="r5h"><b>Recency</b><span class="map">→ Prominence</span></div>
-                <p>Tần suất đăng bài, cập nhật nội dung mới, giữ profile luôn "sống".</p>
+                <p>Life Event posts: đăng bài theo mùa (sinh con, khai giảng, cuối năm).</p>
               </div>
               <div class="r5" style="grid-column:span 2">
                 <div class="r5h"><b>Ratings</b><span class="map">→ Prominence</span></div>
-                <p>Nâng điểm đánh giá trung bình, theo dõi xu hướng rating theo thời gian. Mọi chỉ số 5R hiển thị
-                  real-time trên Dashboard.</p>
+                <p>Nâng điểm đánh giá trung bình TV viên, theo dõi xu hướng rating theo thời gian. Mọi chỉ số 5R hiển thị real-time trên Dashboard.</p>
               </div>
             </div>
           </div>
@@ -1951,7 +1911,7 @@
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
-          Beta</span><span>Google Business Profile cho <b>MBV</b></span></div>
+          Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 10 — 2-IN-1 SOLUTION ============ -->
@@ -1966,10 +1926,10 @@
             <div class="node"
               style="flex:.8;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--navy-800);color:#fff;border-color:var(--navy-700)">
               <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber)">
-                <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
+                <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
               </svg>
-              <div style="font-size:24px;font-weight:700;margin-top:12px">Ngân hàng MBV</div>
-              <div style="font-size:16px;color:var(--blue-100);margin-top:4px">Hội sở + 100+ chi nhánh</div>
+              <div style="font-size:24px;font-weight:700;margin-top:12px">Bảo hiểm Bảo Việt</div>
+              <div style="font-size:16px;color:var(--blue-100);margin-top:4px">HQ + Văn phòng + TV viên</div>
             </div>
             <div class="arr"><svg class="ic" viewBox="0 0 24 24">
                 <path d="M5 12h14M13 6l6 6-6 6" />
@@ -1985,9 +1945,9 @@
               <div class="node" style="border-color:var(--amber-700);background:rgba(246,173,85,.08)">
                 <div style="display:flex;align-items:center;gap:10px"><span class="pill amber"
                     style="padding:5px 12px;font-size:13px">Dịch vụ</span><b
-                    style="font-size:20px;color:var(--amber-700)">Services</b></div>
-                <p style="font-size:16px;color:var(--ink-2);margin-top:8px;line-height:1.35">Tổng đài · RM Profile ·
-                  Workflow phê duyệt · CRM · Booking OMS</p>
+                    style="font-size:20px;color:var(--amber-700)">Beta Services</b></div>
+                <p style="font-size:16px;color:var(--ink-2);margin-top:8px;line-height:1.35">Tổng đài · TV viên Profile ·
+                  Trust Score · Landing Page · Life Event · Renewal CRM</p>
               </div>
             </div>
             <div class="arr"><svg class="ic" viewBox="0 0 24 24">
@@ -2000,7 +1960,7 @@
                 <circle cx="12" cy="10" r="3" />
               </svg>
               <div style="font-size:20px;font-weight:700;margin-top:12px">Google Business Profile</div>
-              <div style="font-size:15px;color:var(--ink-3);margin-top:4px">100+ chi nhánh trên Maps</div>
+              <div style="font-size:15px;color:var(--ink-3);margin-top:4px">50+ profiles trên Maps</div>
             </div>
             <div class="arr"><svg class="ic" viewBox="0 0 24 24">
                 <path d="M5 12h14M13 6l6 6-6 6" />
@@ -2012,39 +1972,34 @@
                 <path d="M4 21a8 8 0 0 1 16 0" />
               </svg>
               <div style="font-size:20px;font-weight:700;margin-top:12px">Khách hàng</div>
-              <div style="font-size:15px;color:rgba(255,255,255,.85);margin-top:4px">Thấy MBV đầu tiên</div>
+              <div style="font-size:15px;color:rgba(255,255,255,.85);margin-top:4px">TỰ GỌI ĐẾN</div>
             </div>
           </div>
           <div class="grid anim d2" style="grid-template-columns:1fr 1fr 1.1fr;gap:16px">
             <div class="card" style="padding:20px 24px">
               <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--ink-3);letter-spacing:.06em">
                 CHỈ Platform</div>
-              <div style="font-size:19px;font-weight:600;margin-top:6px">= Nền tảng + nội dung + bảo vệ + tối ưu + hỗ
-                trợ AI
-                Search đa nền tảng.</div>
+              <div style="font-size:19px;font-weight:600;margin-top:6px">= Quản lý bulk + tối ưu nội dung + bảo vệ + AI Search.</div>
             </div>
             <div class="card" style="padding:20px 24px">
               <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--ink-3);letter-spacing:.06em">
                 CHỈ Services</div>
-              <div style="font-size:19px;font-weight:600;margin-top:6px">= Tổng đài, RM, CRM — nhưng thiếu nền tảng
-                scale 100+ chi nhánh.</div>
+              <div style="font-size:19px;font-weight:600;margin-top:6px">= Tổng đài, TV viên, Trust Score — nhưng thiếu nền tảng scale.</div>
             </div>
             <div class="card"
               style="padding:20px 24px;background:var(--navy-800);border-color:var(--navy-800);color:#fff">
               <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--amber);letter-spacing:.06em">
                 KẾT HỢP · 1 + 1 = 3</div>
-              <div style="font-size:19px;font-weight:700;margin-top:6px">Nền tảng + Nội dung + Protection + Tổng đài +
-                RM + CRM/Booking.</div>
+              <div style="font-size:19px;font-weight:700;margin-top:6px">Nền tảng + Protection + Tổng đài + Trust Score + Life Event + CRM.</div>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p><b>Công nghệ quản lý + Dịch vụ tối ưu = Kết quả đo lường được.</b> Một bên không đủ — sức mạnh nằm ở sự kết
-            hợp.</p>
+          <p><b>Công nghệ quản lý + Dịch vụ tối ưu = Khách hàng tự tìm đến thay vì bị cold call.</b> Một bên không đủ — sức mạnh nằm ở sự kết hợp.</p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+          Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 11 — HUB & SPOKE ============ -->
@@ -2052,31 +2007,29 @@
       <div class="frame with-foot">
         <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Mô hình Hub &amp; Spoke</span><span
             class="kick-num">11 / 27</span></div>
-        <h2 class="h h-md anim">Mỗi chi nhánh + mỗi RM = <span class="accent">nhiều "cửa hàng số" hơn đối thủ</span>.
-        </h2>
-        <p class="sub anim" style="margin-top:12px;font-size:24px">Số hoá đội ngũ RM — mỗi RM có GBP riêng như một điểm
-          kinh doanh, tạo hệ sinh thái giúp khách hàng tìm thấy MBV ở mọi nơi.</p>
+        <h2 class="h h-md anim">Mỗi văn phòng + mỗi TV viên = <span class="accent">nhiều "chuyên gia" trên Google Maps</span>.</h2>
+        <p class="sub anim" style="margin-top:12px;font-size:24px">Mỗi TV viên có GBP riêng dạng SAB (Service Area Business) — ẩn địa chỉ nhà, chỉ hiện vùng phục vụ.</p>
         <div class="anim d1" style="display:flex;align-items:center;gap:24px;margin-top:28px;flex:1;min-height:0">
           <div class="node"
             style="background:var(--navy-800);color:#fff;border-color:var(--navy-700);padding:26px 28px;flex:none;width:240px;text-align:center">
             <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber)">
-              <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
+              <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
             </svg>
-            <div style="font-size:22px;font-weight:700;margin-top:12px">MBV Hội sở</div>
+            <div style="font-size:22px;font-weight:700;margin-top:12px">Bảo Việt HQ</div>
             <div style="font-size:15px;color:var(--blue-100);margin-top:4px">Quản lý toàn mạng lưới</div>
           </div>
           <div class="arr"><svg class="ic" viewBox="0 0 24 24">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg></div>
           <div style="display:flex;flex-direction:column;gap:14px;flex:none;width:280px">
-            <div class="node" style="padding:18px 22px"><b style="font-size:19px">Chi nhánh Q1</b>
-              <div style="font-size:15px;color:var(--ink-3)">Bank · ATM · 4.7★</div>
+            <div class="node" style="padding:18px 22px"><b style="font-size:19px">Văn phòng Quận 1</b>
+              <div style="font-size:15px;color:var(--ink-3)">Insurance · 4.7★</div>
             </div>
-            <div class="node" style="padding:18px 22px"><b style="font-size:19px">Chi nhánh Q3</b>
-              <div style="font-size:15px;color:var(--ink-3)">Bank · ATM · 4.5★</div>
+            <div class="node" style="padding:18px 22px"><b style="font-size:19px">Văn phòng Đà Nẵng</b>
+              <div style="font-size:15px;color:var(--ink-3)">Insurance · 4.5★</div>
             </div>
-            <div class="node" style="padding:18px 22px"><b style="font-size:19px">Chi nhánh Bình Dương</b>
-              <div style="font-size:15px;color:var(--ink-3)">Bank · ATM · 4.6★</div>
+            <div class="node" style="padding:18px 22px"><b style="font-size:19px">Văn phòng Hà Nội</b>
+              <div style="font-size:15px;color:var(--ink-3)">Insurance · 4.6★</div>
             </div>
           </div>
           <div class="arr"><svg class="ic" viewBox="0 0 24 24">
@@ -2089,8 +2042,8 @@
                 <circle cx="12" cy="8" r="4" />
                 <path d="M4 21a8 8 0 0 1 16 0" />
               </svg>
-              <div><b style="font-size:19px">RM Nguyễn Văn A</b>
-                <div style="font-size:15px;color:var(--ink-3)">Financial Consultant · vay mua nhà, SME</div>
+              <div><b style="font-size:19px">TV viên Nguyễn Văn A</b>
+                <div style="font-size:15px;color:var(--ink-3)">Insurance Agent · SAB: Q1/Q3/Q5 · Chuyên: Nhân thọ, Trẻ em</div>
               </div>
             </div>
             <div class="node"
@@ -2099,28 +2052,25 @@
                 <circle cx="12" cy="8" r="4" />
                 <path d="M4 21a8 8 0 0 1 16 0" />
               </svg>
-              <div><b style="font-size:19px">RM Trần Thị B</b>
-                <div style="font-size:15px;color:var(--ink-3)">Financial Consultant · đầu tư, bảo hiểm</div>
+              <div><b style="font-size:19px">TV viên Trần Thị B</b>
+                <div style="font-size:15px;color:var(--ink-3)">Insurance Agent · SAB: Q7/BT · Chuyên: Sức khoẻ, Gia đình</div>
               </div>
             </div>
-            <div style="font-size:16px;color:var(--ink-3);font-style:italic;padding-left:6px">…và mỗi chi nhánh đều có
-              RM riêng của mình.</div>
+            <div style="font-size:16px;color:var(--ink-3);font-style:italic;padding-left:6px">…và mỗi văn phòng đều có TV viên riêng của mình.</div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Khi khách search <b>"vay mua nhà Quận 1"</b> → MBV chiếm 2/3 vị trí Map Pack (chi nhánh + RM). Đối thủ chỉ
-            còn 1 slot.</p>
+          <p>Khi khách search <b>"tư vấn bảo hiểm gia đình Quận 3"</b> → Bảo Việt chiếm 2/3 vị trí Map Pack (văn phòng + TV viên). Đối thủ chỉ còn 1 slot.</p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+          Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 12 — SOLUTION #1 BEFORE/AFTER ============ -->
-    <section data-label="Giải pháp #1 — Chi nhánh">
+    <section data-label="Giải pháp #1 — Văn phòng">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #1 · Tối ưu chi
-            nhánh</span><span class="kick-num">12 / 27</span></div>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #1 · Tối ưu văn phòng</span><span class="kick-num">12 / 27</span></div>
         <h2 class="h h-md anim">Trước <span style="color:var(--ink-3)">vs</span> Sau tối ưu.</h2>
         <div class="midfill">
           <div class="split anim d1" style="gap:36px;flex:none">
@@ -2131,11 +2081,11 @@
                   style="font-size:21px;color:var(--ink)">Profile bị bỏ rơi</b>
               </div>
               <div style="padding:14px 28px">
-                <div class="ba"><span>Tên</span><em>"MBV" — chung chung</em></div>
+                <div class="ba"><span>Tên</span><em>"Bảo Việt" — chung chung</em></div>
                 <div class="ba"><span>Danh mục</span><em>1 danh mục</em></div>
                 <div class="ba"><span>Mô tả</span><em>Trống</em></div>
                 <div class="ba"><span>Ảnh</span><em>0 ảnh</em></div>
-                <div class="ba"><span>Đánh giá</span><em>3.5★, không phản hồi</em></div>
+                <div class="ba"><span>Đánh giá</span><em>&lt; 3★, không phản hồi</em></div>
                 <div class="ba"><span>Bài đăng</span><em>0 bài</em></div>
                 <div class="ba" style="border-bottom:0"><span>Q&A</span><em>0 câu</em></div>
               </div>
@@ -2143,62 +2093,58 @@
             <div class="card" style="padding:0;overflow:hidden;border-color:var(--blue)">
               <div
                 style="background:rgba(43,108,176,.07);padding:18px 28px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)">
-                <span class="pill blue">Sau</span><b style="font-size:21px;color:var(--blue)">Chiến lược nội dung bài
-                  bản</b>
+                <span class="pill blue">Sau</span><b style="font-size:21px;color:var(--blue)">Chiến lược nội dung bài bản</b>
               </div>
               <div style="padding:14px 28px">
-                <div class="ba good"><span>Tên</span><em>"MBV — Chi nhánh Quận 1"</em></div>
-                <div class="ba good"><span>Danh mục</span><em>4 danh mục</em></div>
-                <div class="ba good"><span>Mô tả</span><em>750 ký tự riêng cho chi nhánh</em></div>
-                <div class="ba good"><span>Ảnh</span><em>50+ ảnh chuyên nghiệp</em></div>
-                <div class="ba good"><span>Đánh giá</span><em>4.5★, phản hồi 100% / 24h</em></div>
+                <div class="ba good"><span>Tên</span><em>"Bảo hiểm Bảo Việt — Văn phòng Quận 1"</em></div>
+                <div class="ba good"><span>Danh mục</span><em>3+ danh mục</em></div>
+                <div class="ba good"><span>Mô tả</span><em>750 ký tự riêng cho văn phòng</em></div>
+                <div class="ba good"><span>Ảnh</span><em>30+ ảnh chuyên nghiệp</em></div>
+                <div class="ba good"><span>Đánh giá</span><em>4.7★, phản hồi 100% / 24h</em></div>
                 <div class="ba good"><span>Bài đăng</span><em>2–4 bài / tuần</em></div>
-                <div class="ba good" style="border-bottom:0"><span>Q&A</span><em>10+ câu hỏi thường gặp</em></div>
+                <div class="ba good" style="border-bottom:0"><span>Q&A</span><em>10+ câu hỏi (VD: "Nên mua BH gì cho con nhỏ?")</em></div>
               </div>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Tối ưu không phải chỉ là điền thông tin. Đó là <b>một chiến lược nội dung riêng cho từng chi nhánh</b> —
-            điều không thể làm thủ công ở quy mô 100+.</p>
+          <p>Tối ưu không phải chỉ là điền thông tin. Đó là <b>chiến lược nội dung bài bản</b> — từ dịch vụ (Nhân thọ, Sức khoẻ, Xe cơ giới, Tài sản, Đầu tư) đến Q&A đến landing page chuẩn Local SEO.</p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+          Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
-    <!-- ============ SLIDE 13 — SOLUTION #2 RM PROFILE ============ -->
-    <section data-label="Giải pháp #2 — RM Profile">
+    <!-- ============ SLIDE 13 — TV VIÊN PROFILE ============ -->
+    <section data-label="Giải pháp #2 — TV viên Profile">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #2 · RM Profile</span><span
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #2 · TV viên Profile · BREAKTHROUGH</span><span
             class="kick-num">13 / 27</span></div>
         <div class="split tilt" style="gap:60px;align-items:center;margin-top:4px">
           <div>
-            <h2 class="h h-md anim">Biến mỗi RM thành <span class="accent">cố vấn tài chính trên Google Maps</span>.
-            </h2>
-            <p class="sub anim" style="margin-top:22px">Khi khách tìm "tư vấn vay mua nhà Quận 1", họ thấy cả chi nhánh
-              MBV <b>và</b> RM của MBV — chiếm 2/3 Map Pack.</p>
+            <h2 class="h h-md anim">Biến mỗi tư vấn viên thành <span class="accent">"chuyên gia bảo hiểm đáng tin cậy"</span> trên Google Maps.</h2>
+            <p class="sub anim" style="margin-top:22px">Khi khách tìm "tư vấn bảo hiểm cho trẻ em Quận 1", họ thấy cả văn phòng Bảo Việt <b>và</b> TV viên Bảo Việt — chiếm 2/3 Map Pack.</p>
             <div class="anim d1"
               style="margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden">
               <div
                 style="padding:14px 22px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.06em;color:var(--ink-3);border-bottom:1px solid var(--line)">
-                SEARCH: "tư vấn vay mua nhà Quận 1"</div>
+                SEARCH: "tư vấn bảo hiểm cho trẻ em Quận 1"</div>
               <div class="mp" style="border:0;border-radius:0">
                 <div class="res win"><span class="rank">1</span>
                   <div class="meta">
-                    <div class="t">MBV — Chi nhánh Quận 1</div>
-                    <div class="s">Vay mua nhà từ 7.5%/năm · 4.7★</div>
+                    <div class="t">🏢 Bảo hiểm Bảo Việt — Văn phòng Q1</div>
+                    <div class="s">Chuyên: Nhân thọ, Giáo dục, Sức khoẻ · 4.7★</div>
                   </div>
                 </div>
                 <div class="res win"><span class="rank">2</span>
                   <div class="meta">
-                    <div class="t">RM Nguyễn Văn A — MBV Q1</div>
-                    <div class="s">Chuyên vay mua nhà, 8 năm KN · 4.9★</div>
+                    <div class="t">👤 TV viên Nguyễn Văn A — Bảo Việt</div>
+                    <div class="s">Chuyên BH trẻ em, gia đình · 4.9★ · 80 reviews</div>
                   </div>
                 </div>
                 <div class="res"><span class="rank">3</span>
                   <div class="meta">
-                    <div class="t" style="color:var(--ink-3)">Ngân hàng đối thủ</div>
+                    <div class="t" style="color:var(--ink-3)">Đối thủ X</div>
                     <div class="s">Thông tin cơ bản, ít đánh giá</div>
                   </div>
                 </div>
@@ -2210,7 +2156,7 @@
               <div class="photo" style="height:120px">[ HEADSHOT CHUYÊN NGHIỆP ]</div>
               <div class="body">
                 <div class="name">Nguyễn Văn A</div>
-                <div class="cat">MBV Chi nhánh Q1 · Financial Consultant</div>
+                <div class="cat">Tư vấn BH Bảo Việt · Insurance Agent</div>
                 <div class="rate"><span class="stars"><svg viewBox="0 0 24 24">
                       <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
                     </svg><svg viewBox="0 0 24 24">
@@ -2221,12 +2167,15 @@
                       <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
                     </svg><svg viewBox="0 0 24 24">
                       <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
-                    </svg></span><span class="score">4.9</span><span class="count">· 64 đánh giá</span></div>
+                    </svg></span><span class="score">4.9</span><span class="count">· 80 đánh giá</span></div>
                 <div class="rows">
                   <div class="row"><svg class="ic" viewBox="0 0 24 24">
                       <circle cx="12" cy="12" r="9" />
                       <path d="M9 12l2 2 4-4" />
-                    </svg> Chuyên: vay mua nhà, tài khoản DN</div>
+                    </svg> SAB: Q1, Q3, Q5 — TP.HCM</div>
+                  <div class="row"><svg class="ic" viewBox="0 0 24 24">
+                      <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
+                    </svg> Chuyên: BH nhân thọ, trẻ em, gia đình</div>
                   <div class="row"><svg class="ic" viewBox="0 0 24 24">
                       <path
                         d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
@@ -2234,46 +2183,73 @@
                 </div>
               </div>
             </div>
-            <div class="pill amber" style="margin-top:16px">Chưa RM ngân hàng nào ở VN có GBP cá nhân → MBV là đầu tiên
-            </div>
+            <div class="pill amber" style="margin-top:16px">GẦN NHƯ KHÔNG CÓ TV viên BH nào ở VN có GBP → Blue ocean 100%</div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>RM Profile là <b>blue ocean</b>: chưa một ngân hàng Việt Nam nào làm. MBV có thể là người đầu tiên — và
-            chiếm lợi thế lâu dài.</p>
+          <p>TV viên Profile là <b>CỐT LÕI</b> cho bảo hiểm: khách mua dựa trên trust vào NGƯỜI, không phải logo. Ai làm trước, chiếm trước.</p>
         </div>
       </div>
       <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+          Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
-    <!-- ============ SLIDE 14 — GBP PROTECTION ============ -->
-    <section class="dark" data-label="Giải pháp #3 — Protection">
+    <!-- ============ SLIDE 14 — TRUST SCORE (NEW) ============ -->
+    <section class="dark" data-label="Giải pháp #3 — Trust Score">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #3 · GBP
-            Protection</span><span class="kick-num">14 / 27</span></div>
-        <h2 class="h h-sm anim" style="max-width:1400px">Ngay lúc này, <span class="accent">bất kỳ ai cũng có thể sửa
-            thông tin chi nhánh MBV</span> trên Google.</h2>
-        <p class="sub anim" style="margin-top:18px;max-width:1300px">Google <b style="color:#fff">không cho phép tắt</b>
-          tính năng "Suggest an edit". Đối thủ có thể đổi giờ mở cửa, số điện thoại, thậm chí đánh dấu "Đã đóng cửa vĩnh
-          viễn".</p>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #3 · Trust Score · BREAKTHROUGH</span><span
+            class="kick-num">14 / 27</span></div>
+        <h2 class="h h-sm anim" style="max-width:1400px"><span class="accent">Trust Score 92/100</span> — Rào cản "có tin được không?" gần như biến mất.</h2>
+        <div class="split anim d1" style="grid-template-columns:1.2fr 1fr;gap:56px;margin-top:36px;align-items:center">
+          <div>
+            <div class="pill amber" style="margin-bottom:20px">Landing page TV viên với Trust Score</div>
+            <div class="card" style="background:rgba(255,255,255,.06);border-color:var(--line-dark);padding:28px 30px">
+              <div class="ts-row"><span class="ts-lab">Số năm kinh nghiệm</span><span class="ts-weight">20%</span><span class="ts-bar"><i style="width:80%"></i></span><span class="ts-val">80</span></div>
+              <div class="ts-row"><span class="ts-lab">Số khách hàng đã phục vụ</span><span class="ts-weight">20%</span><span class="ts-bar"><i style="width:90%"></i></span><span class="ts-val">90</span></div>
+              <div class="ts-row"><span class="ts-lab">Điểm đánh giá Google</span><span class="ts-weight">30%</span><span class="ts-bar"><i style="width:98%"></i></span><span class="ts-val">98</span></div>
+              <div class="ts-row"><span class="ts-lab">Chứng chỉ chuyên môn (MDRT, TOT)</span><span class="ts-weight">15%</span><span class="ts-bar"><i style="width:100%"></i></span><span class="ts-val">100</span></div>
+              <div class="ts-row"><span class="ts-lab">Tốc độ phản hồi</span><span class="ts-weight">15%</span><span class="ts-bar"><i style="width:95%"></i></span><span class="ts-val">95</span></div>
+            </div>
+          </div>
+          <div style="text-align:center">
+            <div class="ts-gauge" style="margin:0 auto">
+              <div class="ts-inner">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:48px;font-weight:800;color:#fff;line-height:1">92</div>
+                <div style="font-size:14px;color:var(--blue-100);margin-top:2px">/100</div>
+              </div>
+            </div>
+            <div style="margin-top:20px;font-size:28px;font-weight:800;color:var(--good)">🟢 ĐÁNG TIN CẬY</div>
+            <p style="font-size:20px;color:var(--blue-100);margin-top:16px;max-width:380px;margin-left:auto;margin-right:auto;line-height:1.4">
+              Khi khách hàng thấy Trust Score <b style="color:#fff">92/100</b> dựa trên <b style="color:#fff">80+ đánh giá thật</b> → "có tin được không?" không còn là câu hỏi nữa.</p>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Trust Score là <b>breakthrough riêng cho ngành bảo hiểm</b> — vì rào cản #1 khi mua bảo hiểm là niềm tin cá nhân vào tư vấn viên.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
+          Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 15 — GBP PROTECTION ============ -->
+    <section class="dark" data-label="Giải pháp #4 — Protection">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #4 · GBP Protection</span><span class="kick-num">15 / 27</span></div>
+        <h2 class="h h-sm anim" style="max-width:1400px">Ngay lúc này, <span class="accent">bất kỳ ai cũng có thể sửa thông tin TV viên/văn phòng Bảo Việt</span> trên Google.</h2>
+        <p class="sub anim" style="margin-top:18px;max-width:1300px">Google <b style="color:#fff">không cho phép tắt</b> tính năng "Suggest an edit". Đối thủ có thể đổi số điện thoại, thậm chí đánh dấu "Đã đóng cửa vĩnh viễn".</p>
         <div class="midfill">
           <div class="anim d1" style="display:flex;align-items:stretch;gap:16px">
-            <div class="node" style="flex:1.1;display:flex;flex-direction:column;justify-content:center"><svg class="ic"
-                viewBox="0 0 24 24" style="color:var(--bad)">
-                <path
-                  d="M10.3 3.9l-8 13.8A1.5 1.5 0 0 0 3.7 20h16.6a1.5 1.5 0 0 0 1.3-2.3l-8-13.8a1.5 1.5 0 0 0-2.6 0z" />
+            <div class="node" style="flex:1.1;display:flex;flex-direction:column;justify-content:center"><svg class="ic" viewBox="0 0 24 24" style="color:var(--bad)">
+                <path d="M10.3 3.9l-8 13.8A1.5 1.5 0 0 0 3.7 20h16.6a1.5 1.5 0 0 0 1.3-2.3l-8-13.8a1.5 1.5 0 0 0-2.6 0z" />
                 <path d="M12 9v4M12 17h.01" />
               </svg>
               <div style="font-size:19px;font-weight:700;margin-top:12px">Ai đó sửa thông tin</div>
-              <p style="font-size:15px;color:var(--blue-100);margin-top:5px">trên GBP chi nhánh MBV</p>
+              <p style="font-size:15px;color:var(--blue-100);margin-top:5px">trên GBP TV viên/văn phòng Bảo Việt</p>
             </div>
             <div class="arr"><svg class="ic" viewBox="0 0 24 24">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg></div>
-            <div class="node"
-              style="flex:1.1;display:flex;flex-direction:column;justify-content:center;border-color:var(--blue)"><svg
-                class="ic" viewBox="0 0 24 24" style="color:var(--blue-300)">
+            <div class="node" style="flex:1.1;display:flex;flex-direction:column;justify-content:center;border-color:var(--blue)"><svg class="ic" viewBox="0 0 24 24" style="color:var(--blue-300)">
                 <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4" />
                 <circle cx="12" cy="12" r="3" />
               </svg>
@@ -2284,565 +2260,444 @@
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg></div>
             <div style="flex:1.7;display:flex;flex-direction:column;gap:11px">
-              <div class="node"
-                style="padding:15px 20px;display:flex;align-items:center;gap:13px;border-color:var(--bad)"><svg
-                  class="ic" viewBox="0 0 24 24" style="width:24px;height:24px;color:var(--bad)">
+              <div class="node" style="padding:15px 20px;display:flex;align-items:center;gap:13px;border-color:var(--bad)"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px;color:var(--bad)">
                   <path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.4 2.6L3 8" />
                   <path d="M3 3v5h5" />
                 </svg>
-                <div><b style="font-size:17px">Không hợp lệ</b> <span style="color:var(--blue-100);font-size:16px">→ tự
-                    động hoàn tác về thông tin gốc</span></div>
+                <div><b style="font-size:17px">Không hợp lệ</b> <span style="color:var(--blue-100);font-size:16px">→ tự động hoàn tác về thông tin gốc</span></div>
               </div>
-              <div class="node"
-                style="padding:15px 20px;display:flex;align-items:center;gap:13px;border-color:var(--amber-700)"><svg
-                  class="ic" viewBox="0 0 24 24" style="width:24px;height:24px;color:var(--amber)">
-                  <path
-                    d="M10.3 3.9l-8 13.8A1.5 1.5 0 0 0 3.7 20h16.6a1.5 1.5 0 0 0 1.3-2.3l-8-13.8a1.5 1.5 0 0 0-2.6 0z" />
+              <div class="node" style="padding:15px 20px;display:flex;align-items:center;gap:13px;border-color:var(--amber-700)"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px;color:var(--amber)">
+                  <path d="M10.3 3.9l-8 13.8A1.5 1.5 0 0 0 3.7 20h16.6a1.5 1.5 0 0 0 1.3-2.3l-8-13.8a1.5 1.5 0 0 0-2.6 0z" />
                   <path d="M12 9v4M12 17h.01" />
                 </svg>
-                <div><b style="font-size:17px">Cần xem xét</b> <span style="color:var(--blue-100);font-size:16px">→
-                    thông báo HQ MBV duyệt</span></div>
+                <div><b style="font-size:17px">Cần xem xét</b> <span style="color:var(--blue-100);font-size:16px">→ thông báo HQ duyệt</span></div>
               </div>
-              <div class="node" style="padding:15px 20px;display:flex;align-items:center;gap:13px"><svg class="ic"
-                  viewBox="0 0 24 24" style="width:24px;height:24px;color:var(--blue-300)">
-                  <path d="M4 4h13v16H4z" />
-                  <path d="M8 9h6M8 13h6M8 17h3" />
+              <div class="node" style="padding:15px 20px;display:flex;align-items:center;gap:13px;border-color:var(--good)"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px;color:var(--good)">
+                  <path d="M9 11l3 3 8-8" />
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
                 </svg>
-                <div><b style="font-size:17px">Tất cả</b> <span style="color:var(--blue-100);font-size:16px">→ ghi log
-                    &amp; báo cáo HQ</span></div>
+                <div><b style="font-size:17px">Tất cả</b> <span style="color:var(--blue-100);font-size:16px">→ ghi log chi tiết</span></div>
               </div>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Với 100+ chi nhánh, kiểm tra thủ công là bất khả thi. <b>Protection tự động không phải tuỳ chọn — nó là bắt
-              buộc</b> với một ngân hàng.</p>
+          <p>Với <b>50+ profiles</b> (văn phòng + TV viên), không thể kiểm tra thủ công. Protection tự động là <b>BẮT BUỘC</b>.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
-          Beta</span><span>Google Business Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
-    <!-- ============ SLIDE 15 — HOTLINE ============ -->
-    <section data-label="Giải pháp #4 — Tổng đài">
+    <!-- ============ SLIDE 16 — TỔNG ĐÀI ============ -->
+    <section data-label="Giải pháp #5 — Tổng đài">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #4 · Tổng đài tập
-            trung</span><span class="kick-num">15 / 27</span></div>
-        <h2 class="h h-md anim">RM nghỉ việc <span class="accent">≠</span> mất khách hàng.</h2>
-        <div class="midfill" style="gap:22px">
-          <div class="split anim d1" style="gap:36px;flex:none">
-            <div class="card"
-              style="border-color:rgba(192,73,47,.3);background:rgba(192,73,47,.04);display:flex;flex-direction:column">
-              <div style="display:flex;align-items:center;gap:12px"><svg class="ic" viewBox="0 0 24 24"
-                  style="color:var(--bad)">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M15 9l-6 6M9 9l6 6" />
-                </svg><b style="font-size:23px;color:var(--bad)">Không có tổng đài</b></div>
-              <div style="margin-top:22px;display:flex;flex-direction:column;gap:16px">
-                <div class="hstep"><span>1</span> Khách gọi vào <b>số cá nhân của RM</b></div>
-                <div class="hstep"><span>2</span> RM nghỉ việc, mang theo số</div>
-                <div class="hstep" style="color:var(--bad)"><span style="background:var(--bad);color:#fff">3</span>
-                  <b>Mất liên lạc với khách vĩnh viễn</b>
-                </div>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #5 · Tổng đài tập trung</span><span class="kick-num">16 / 27</span></div>
+        <h2 class="h h-md anim">TV viên nghỉ việc <span class="accent">≠</span> Mất khách hàng.</h2>
+        <div class="midfill">
+          <div class="split anim d1" style="gap:36px;align-items:stretch;flex:none">
+            <div class="card" style="padding:0;overflow:hidden;border-color:rgba(192,73,47,.3)">
+              <div style="background:rgba(192,73,47,.08);padding:18px 28px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)">
+                <span class="pill" style="background:rgba(192,73,47,.16);color:var(--bad)">❌ KHÔNG có tổng đài</span>
+              </div>
+              <div style="padding:20px 28px;display:flex;flex-direction:column;gap:14px">
+                <div class="scn-step bad">📞 Khách gọi số cá nhân TV viên</div>
+                <div style="padding-left:24px;color:var(--bad)"><svg class="ic" viewBox="0 0 24 24" style="transform:rotate(90deg);width:22px;height:22px">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg></div>
+                <div class="scn-step bad">🚪 TV viên nghỉ việc</div>
+                <div style="padding-left:24px;color:var(--bad)"><svg class="ic" viewBox="0 0 24 24" style="transform:rotate(90deg);width:22px;height:22px">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg></div>
+                <div class="scn-step bad" style="font-weight:700;color:var(--bad)">💔 Mất liên lạc vĩnh viễn → Khách lapse hợp đồng</div>
               </div>
             </div>
-            <div class="card"
-              style="border-color:var(--good);background:rgba(47,143,107,.05);display:flex;flex-direction:column">
-              <div style="display:flex;align-items:center;gap:12px"><svg class="ic" viewBox="0 0 24 24"
-                  style="color:var(--good)">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M8 12l3 3 5-6" />
-                </svg><b style="font-size:23px;color:var(--good)">Có tổng đài Beta</b></div>
-              <div style="margin-top:22px;display:flex;flex-direction:column;gap:16px">
-                <div class="hstep"><span style="background:var(--good);color:#fff">1</span> GBP hiển thị <b>số tổng đài
-                    tập trung</b></div>
-                <div class="hstep"><span style="background:var(--good);color:#fff">2</span> RM nghỉ → cuộc gọi tự chuyển
-                  RM mới</div>
-                <div class="hstep" style="color:var(--good)"><span style="background:var(--good);color:#fff">3</span>
-                  <b>Zero data loss — giữ trọn khách hàng</b>
-                </div>
+            <div class="card" style="padding:0;overflow:hidden;border-color:rgba(47,143,107,.3)">
+              <div style="background:rgba(47,143,107,.08);padding:18px 28px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)">
+                <span class="pill" style="background:rgba(47,143,107,.16);color:var(--good)">✅ CÓ tổng đài Beta</span>
+              </div>
+              <div style="padding:20px 28px;display:flex;flex-direction:column;gap:14px">
+                <div class="scn-step good">📞 GBP hiển thị số tổng đài</div>
+                <div style="padding-left:24px;color:var(--good)"><svg class="ic" viewBox="0 0 24 24" style="transform:rotate(90deg);width:22px;height:22px">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg></div>
+                <div class="scn-step good">🔄 TV viên nghỉ → cuộc gọi tự động chuyển TV viên mới</div>
+                <div style="padding-left:24px;color:var(--good)"><svg class="ic" viewBox="0 0 24 24" style="transform:rotate(90deg);width:22px;height:22px">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg></div>
+                <div class="scn-step good" style="font-weight:700;color:var(--good)">✅ Zero data loss → Khách được phục vụ liền mạch</div>
               </div>
             </div>
           </div>
-          <div class="anim d2" style="display:flex;gap:14px;flex-wrap:wrap">
-            <span class="featpill"><svg class="ic" viewBox="0 0 24 24">
-                <path d="M3 11l19-9-9 19-2-8-8-2z" />
-              </svg> Routing thông minh</span>
-            <span class="featpill"><svg class="ic" viewBox="0 0 24 24">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M4 21a8 8 0 0 1 16 0" />
-              </svg> RM Matching theo nhu cầu</span>
-            <span class="featpill"><svg class="ic" viewBox="0 0 24 24">
-                <path d="M4 4h13v16H4z" />
-                <path d="M8 9h6M8 13h6" />
-              </svg> Ghi nhận mọi cuộc gọi</span>
-            <span class="featpill"><svg class="ic" viewBox="0 0 24 24">
-                <path d="M3 3v18h18M7 14l4-4 3 3 5-6" />
-              </svg> Dashboard báo cáo</span>
+          <div class="anim d2" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
+            <span class="featpill"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg> Routing thông minh</span>
+            <span class="featpill"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg> Chuyển giao GBP trong 24h</span>
+            <span class="featpill"><svg class="ic" viewBox="0 0 24 24"><path d="M4 4h13v16H4z" /><path d="M17 8h3v10a2 2 0 0 1-4 0" /></svg> Ghi nhận mọi cuộc gọi</span>
+            <span class="featpill"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3v18h18" /><path d="M7 14l3-3 3 2 5-6" /></svg> Dashboard báo cáo</span>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Khách hàng thuộc về <b>MBV</b>, không thuộc về một nhân viên. Tổng đài tập trung biến điều đó thành sự thật
-            — đo lường được từng cuộc gọi.</p>
+          <p><b>Ngành bảo hiểm có turnover cao nhất.</b> Tổng đài là THIẾT YẾU, không phải "nice-to-have". TV viên nghỉ = mất toàn bộ mối quan hệ nếu không có tổng đài.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
-    <!-- ============ SLIDE 16 — RATE ALERT ============ -->
-    <section data-label="Giải pháp #5 — Rate Alert">
+    <!-- ============ SLIDE 17 — 5 SOLUTIONS #6-10 ============ -->
+    <section data-label="Giải pháp #6–10">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #5 · Rate Alert
-            Auto-Posts</span><span class="kick-num">16 / 27</span></div>
-        <h2 class="h h-md anim">Lãi suất thay đổi → <span class="accent">100+ chi nhánh tự động đăng bài</span>.</h2>
-        <div class="split anim d1" style="grid-template-columns:1.25fr 1fr;gap:48px;margin-top:38px;align-items:center">
-          <div style="display:flex;flex-direction:column;gap:18px">
-            <div class="node" style="display:flex;align-items:center;gap:18px;padding:20px 24px"><span
-                class="num-badge">1</span>
-              <div><b style="font-size:21px">HQ MBV cập nhật lãi suất mới</b>
-                <div style="font-size:16px;color:var(--ink-3);margin-top:2px">Một lần, từ dashboard trung tâm.</div>
-              </div>
-            </div>
-            <div style="padding-left:24px;color:var(--blue-300)"><svg class="ic" viewBox="0 0 24 24"
-                style="transform:rotate(90deg)">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg></div>
-            <div class="node" style="display:flex;align-items:center;gap:18px;padding:20px 24px"><span
-                class="num-badge">2</span>
-              <div><b style="font-size:21px">Hệ thống tạo bài đăng riêng cho từng chi nhánh</b>
-                <div style="font-size:16px;color:var(--ink-3);margin-top:2px">Cá nhân hoá theo địa bàn và RM phụ trách.
-                </div>
-              </div>
-            </div>
-            <div style="padding-left:24px;color:var(--blue-300)"><svg class="ic" viewBox="0 0 24 24"
-                style="transform:rotate(90deg)">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg></div>
-            <div class="node"
-              style="display:flex;align-items:center;gap:18px;padding:20px 24px;border-color:var(--blue)"><span
-                class="num-badge">3</span>
-              <div><b style="font-size:21px">Hiển thị ngay trên Google Maps</b>
-                <div style="font-size:16px;color:var(--ink-3);margin-top:2px">Mỗi chi nhánh = một bảng quảng cáo số
-                  sống.</div>
-              </div>
-            </div>
-          </div>
-          <div class="gbp" style="max-width:420px;justify-self:center">
-            <div class="body">
-              <div
-                style="display:flex;align-items:center;gap:10px;color:var(--blue);font-size:14px;font-family:'IBM Plex Mono',monospace;letter-spacing:.05em">
-                <svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px">
-                  <path d="M4 4h13v16H4z" />
-                  <path d="M17 8h3v10a2 2 0 0 1-4 0" />
-                </svg> BÀI ĐĂNG MỚI · TỰ ĐỘNG
-              </div>
-              <div style="font-size:21px;font-weight:700;margin-top:14px;line-height:1.3">Lãi suất vay mua nhà tại Chi
-                nhánh Q1: <span style="color:var(--amber-700)">7.5%/năm</span></div>
-              <p style="font-size:17px;color:var(--ink-2);margin-top:10px;line-height:1.45">Liên hệ RM Nguyễn Văn A để
-                được tư vấn gói phù hợp nhất.</p>
-              <div class="actions" style="margin-top:18px">
-                <div class="act" style="flex:none;padding:11px 22px">Tìm hiểu thêm</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="takeaway"><span class="bar"></span>
-          <p><b>Không ngân hàng nào ở Việt Nam đang làm điều này.</b> MBV sẽ là đầu tiên biến mạng lưới chi nhánh thành
-            kênh truyền thông lãi suất real-time.</p>
-        </div>
-      </div>
-      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
-    </section>
-
-    <!-- ============ SLIDE 17 — SOLUTION #6-8 ============ -->
-    <section data-label="Giải pháp #6–8">
-      <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #6–8 · Thiết kế riêng cho
-            ngân hàng</span><span class="kick-num">17 / 27</span></div>
-        <h2 class="h h-md anim">Ba lớp bảo chứng dành riêng cho <span class="accent">ngành ngân hàng</span>.</h2>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #6–10 · Thiết kế riêng cho bảo hiểm</span><span class="kick-num">17 / 27</span></div>
+        <h2 class="h h-md anim">5 giải pháp đột phá <span class="accent">thiết kế riêng cho Bảo hiểm</span>.</h2>
         <div class="midfill">
           <div class="grid anim d1" style="grid-template-columns:repeat(3,1fr);gap:22px">
             <div class="card" style="display:flex;flex-direction:column">
               <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
-                <path d="M9 11l3 3 8-8" />
-                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M3 10h18M8 2v4M16 2v4" />
               </svg>
-              <div style="font-size:24px;font-weight:700;margin-top:18px">Compliance Workflow</div>
-              <div
-                style="margin-top:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:16px;color:var(--ink-2)">
-                <span class="wstep">Beta soạn</span><span style="color:var(--blue-300)">→</span><span class="wstep">HQ
-                  MBV duyệt</span><span style="color:var(--blue-300)">→</span><span class="wstep"
-                  style="color:var(--good);border-color:var(--good)">Đăng</span>
+              <div style="font-size:24px;font-weight:700;margin-top:18px">Life Event Auto-Content</div>
+              <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
+                <div class="airow">T6: "Vừa có em bé? 3 gói BH quan trọng nhất"</div>
+                <div class="airow">T9: "Con vào lớp 1? BH giáo dục 18 năm"</div>
+                <div class="airow">T12: "Tổng kết — Đã đủ bảo vệ chưa?"</div>
               </div>
-              <p style="font-size:17px;color:var(--ink-2);margin-top:auto;padding-top:18px;line-height:1.45">Mọi nội
-                dung qua phê duyệt. Template phản hồi đánh giá đã pre-approved.</p>
+              <p style="font-size:17px;color:var(--ink-2);margin-top:auto;padding-top:18px;line-height:1.45">Tự động đăng bài GBP theo sự kiện cuộc sống — sinh con, kết hôn, khai giảng.</p>
             </div>
             <div class="card" style="display:flex;flex-direction:column">
               <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
                 <path d="M3 3v18h18" />
                 <path d="M7 14l3-3 3 2 5-6" />
               </svg>
-              <div style="font-size:24px;font-weight:700;margin-top:18px">Branch Health Score</div>
-              <div style="margin-top:18px;display:flex;align-items:center;gap:16px">
-                <div
-                  style="font-family:'IBM Plex Mono',monospace;font-size:52px;font-weight:600;color:var(--good);line-height:1">
-                  92<span style="font-size:24px;color:var(--ink-3)">/100</span></div>
-                <div style="flex:1">
-                  <div style="height:10px;background:var(--paper-2);border-radius:6px;overflow:hidden">
-                    <div style="width:92%;height:100%;background:var(--good)"></div>
-                  </div>
-                  <div style="font-size:14px;color:var(--ink-3);margin-top:6px;font-family:'IBM Plex Mono',monospace">
-                    CẢNH BÁO KHI &lt; 70</div>
-                </div>
+              <div style="font-size:24px;font-weight:700;margin-top:18px">Coverage Calculator</div>
+              <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
+                <div class="airow">Khách nhập tuổi + thu nhập + gia đình</div>
+                <div class="airow">Hệ thống gợi ý BH phù hợp</div>
+                <div class="airow">Kết nối TV viên gần nhất</div>
               </div>
-              <p style="font-size:17px;color:var(--ink-2);margin-top:auto;padding-top:18px;line-height:1.45">Mỗi chi
-                nhánh có điểm 0–100. HQ nhận cảnh báo tự động + ranking real-time.</p>
+              <p style="font-size:17px;color:var(--ink-2);margin-top:auto;padding-top:18px;line-height:1.45">Lead chất lượng CAO vì khách đã hiểu nhu cầu trước khi liên hệ.</p>
             </div>
             <div class="card" style="display:flex;flex-direction:column">
               <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
-                <path d="M12 3l2.5 5.5L20 11l-5.5 2.5L12 19l-2.5-5.5L4 11l5.5-2.5z" />
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
               </svg>
-              <div style="font-size:24px;font-weight:700;margin-top:18px">AI Search (GEO)</div>
-              <div style="margin-top:16px;display:flex;flex-direction:column;gap:9px">
-                <div class="airow">ChatGPT</div>
-                <div class="airow">Google AI Overview</div>
-                <div class="airow">Perplexity</div>
-                <div class="airow">Cốc Cốc</div>
+              <div style="font-size:24px;font-weight:700;margin-top:18px">Shadow Coverage Pages</div>
+              <p style="font-size:17px;color:var(--ink-2);margin-top:14px;line-height:1.45">Landing page cho vùng chưa có TV viên → capture leads → kết nối TV viên gần nhất <b>HOẶC recruit TV viên mới</b>. Vừa bán hàng vừa tuyển dụng.</p>
+            </div>
+            <div class="card" style="display:flex;flex-direction:column;grid-column:span 2">
+              <div style="display:flex;align-items:center;gap:18px">
+                <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
+                  <path d="M12 3l2.5 5.5L20 11l-5.5 2.5L12 19l-2.5-5.5L4 11l5.5-2.5z" />
+                </svg>
+                <div>
+                  <div style="font-size:24px;font-weight:700">AI Search (GEO)</div>
+                  <p style="font-size:17px;color:var(--ink-2);margin-top:6px;line-height:1.35">Bảo Việt xuất hiện trên ChatGPT, Google AI Overview, Perplexity khi khách hỏi "nên mua BH gì cho gia đình".</p>
+                </div>
               </div>
-              <p style="font-size:17px;color:var(--ink-2);margin-top:auto;padding-top:18px;line-height:1.45">MBV xuất
-                hiện khi khách hỏi AI về ngân hàng — xu hướng 2025–2026.</p>
+            </div>
+            <div class="card" style="display:flex;flex-direction:column">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 2" />
+              </svg>
+              <div style="font-size:24px;font-weight:700;margin-top:18px">Renewal Reminder CRM</div>
+              <p style="font-size:17px;color:var(--ink-2);margin-top:14px;line-height:1.45">Nhắc gia hạn 30 ngày trước → TV viên tư vấn → gia hạn → xin review. <b>Retention tăng vọt.</b></p>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Mọi nội dung đều qua phê duyệt. Mọi chi nhánh đều được chấm điểm. <b>Mọi xu hướng tương lai đều được
-              cover.</b></p>
+          <p>Mọi giải pháp đều đo lường được. Mọi xu hướng tương lai đều được cover. Và mọi thứ đều xoay quanh MỘT MỤC TIÊU: <b>khách TỰ tìm đến thay vì bị cold call.</b></p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 18 — KPI COMMITMENT ============ -->
     <section data-label="KPI cam kết">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · KPI cam kết</span><span
-            class="kick-num">18 / 27</span></div>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · KPI cam kết</span><span class="kick-num">18 / 27</span></div>
         <h2 class="h h-md anim">Chúng tôi cam kết <span class="accent">bằng con số</span>.</h2>
-        <p class="sub anim" style="margin-top:14px">"Không đo lường được thì không quản lý được." Mục tiêu sau 6 tháng
-          triển khai:</p>
+        <p class="sub anim" style="margin-top:14px">"Không đo lường được thì không quản lý được." Mục tiêu sau 6 tháng triển khai:</p>
         <div class="midfill">
           <div class="card anim d1" style="padding:0;overflow:hidden;width:100%">
             <table class="ctab">
               <thead>
                 <tr>
-                  <th class="lab">Lượt hiển thị & Tiếp cận</th>
+                  <th class="lab">Chỉ số</th>
                   <th>Hiện tại (ước tính)</th>
                   <th class="col-new" style="color:var(--blue)">Mục tiêu 6 tháng</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="lab">Chi nhánh top 3 Google Maps</td>
-                  <td class="old">Chưa tối ưu, hiệu suất thấp</td>
-                  <td class="col-new"><span class="kpibig">+50%</span> <span
-                      style="font-size:16px;color:var(--ink-2)">tăng trưởng trong 6 tháng đầu</span></td>
+                  <td class="lab">VP + TV viên top 3 Google Maps</td>
+                  <td class="old">&lt; 10%</td>
+                  <td class="col-new"><span class="kpibig">≥ 50%</span></td>
                 </tr>
                 <tr>
-                  <td class="lab">Cuộc gọi từ Maps / tháng</td>
-                  <td class="old">Chưa tối ưu, hiệu suất thấp</td>
-                  <td class="col-new"><span class="kpibig">&gt;30%</span> <span
-                      style="font-size:16px;color:var(--ink-2)">tăng trưởng</span></td>
+                  <td class="lab">Cuộc gọi inbound từ Maps / tháng</td>
+                  <td class="old">Gần 0</td>
+                  <td class="col-new"><span class="kpibig">200+ cuộc</span></td>
                 </tr>
                 <tr>
                   <td class="lab">Lượt chỉ đường / tháng</td>
-                  <td class="old">Chưa tối ưu, hiệu suất thấp</td>
-                  <td class="col-new"><span class="kpibig">&gt;30%</span> <span
-                      style="font-size:16px;color:var(--ink-2)">tăng trưởng</span></td>
+                  <td class="old">Không đo</td>
+                  <td class="col-new"><span class="kpibig">500+ lượt</span></td>
                 </tr>
                 <tr>
-                  <td class="lab">Đánh giá trung bình</td>
-                  <td class="old">~3.5★</td>
-                  <td class="col-new"><span class="kpibig">≥ 4★</span></td>
+                  <td class="lab">Đánh giá trung bình TV viên</td>
+                  <td class="old">Chưa có</td>
+                  <td class="col-new"><span class="kpibig">≥ 4.7★</span></td>
                 </tr>
                 <tr>
                   <td class="lab">Phản hồi đánh giá</td>
-                  <td class="old">&lt; 10%</td>
+                  <td class="old">0%</td>
                   <td class="col-new"><span class="kpibig">100% / 24h</span></td>
+                </tr>
+                <tr>
+                  <td class="lab">Tỷ lệ inbound leads / tổng leads</td>
+                  <td class="old">&lt; 5%</td>
+                  <td class="col-new"><span class="kpibig">≥ 30%</span></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Đây không phải lời hứa mơ hồ. <b>Mỗi con số đều hiển thị trên dashboard real-time</b> để HQ MBV kiểm chứng
-            bất cứ lúc nào.</p>
+          <p>Đây không phải lời hứa mơ hồ. <b>Mỗi con số đều hiển thị trên dashboard real-time</b> để HQ Bảo Việt kiểm chứng bất cứ lúc nào.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 19 — ROI ============ -->
     <section class="dark" data-label="ROI minh hoạ">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · ROI minh hoạ</span><span
-            class="kick-num">19 / 27</span></div>
-        <h2 class="h h-md anim">Đầu tư nhỏ, thu về lớn.</h2>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · ROI minh hoạ</span><span class="kick-num">19 / 27</span></div>
+        <h2 class="h h-md anim">Đầu tư nhỏ, thu về lớn — <span class="accent">và bền vững</span>.</h2>
         <div class="split anim d1" style="grid-template-columns:1.4fr 1fr;gap:56px;margin-top:38px;align-items:center">
           <div style="display:flex;flex-direction:column;gap:14px">
-            <div class="roirow"><span class="roilab">Chi phí (100 chi nhánh)</span><span class="roival">~150–250M
-                VNĐ/tháng</span></div>
+            <div class="roirow"><span class="roilab">Chi phí (50 profiles: VP + TV viên)</span><span class="roival">~100–180M VNĐ/tháng</span></div>
             <div class="roiarr"><svg class="ic" viewBox="0 0 24 24" style="transform:rotate(90deg)">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg></div>
             <div class="roirow" style="flex-direction:column;align-items:stretch;gap:8px">
-              <div style="display:flex;align-items:center;justify-content:space-between"><span class="roilab">Enquiries
-                  từ GBP</span><span class="roival">50 enquiries/tháng</span></div>
-              <div style="font-size:15px;color:var(--blue-100);opacity:.75;line-height:1.35">Bao gồm: Lead Forms · Click
-                to Calls · Click to Direction · Website Clicks</div>
+              <div style="display:flex;align-items:center;justify-content:space-between"><span class="roilab">Leads từ GBP</span><span class="roival">50 leads/tháng</span></div>
+              <div style="font-size:15px;color:var(--blue-100);opacity:.75;line-height:1.35">15% convert → 7-8 hợp đồng mới/tháng</div>
             </div>
-            <div class="roirow"><span class="roilab">Tỷ lệ chuyển đổi 20%</span><span class="roival">10 khách
-                mới/tháng</span></div>
-            <div class="roirow"><span class="roilab">Giá trị 1 khách vay mua nhà</span><span class="roival">500M VNĐ
-                <span style="opacity:.6;font-weight:400">(lãi 5 năm)</span></span></div>
+            <div class="roirow"><span class="roilab">Giá trị 1 hợp đồng BH</span><span class="roival">10-50M VNĐ/năm <span style="opacity:.6;font-weight:400">× nhiều năm</span></span></div>
+            <div class="roirow" style="border-color:var(--amber)"><span class="roilab">So sánh cold call</span><span class="roival" style="font-size:18px">200 cuộc/ngày × 2% = 0.4 HĐ<br>GBP: 50 leads × 15% = <b>7.5 HĐ</b></span></div>
           </div>
           <div style="text-align:center">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:.12em;color:var(--amber)">
-              RETURN ON INVESTMENT</div>
-            <div class="bigstat" style="font-size:160px;color:#fff;margin-top:8px">&gt;1,000<span
-                style="font-size:80px">%</span></div>
-            <div
-              style="font-size:20px;color:var(--blue-100);margin-top:10px;max-width:380px;margin-left:auto;margin-right:auto;line-height:1.4">
-              Doanh thu tiềm năng: <b style="color:#fff">hàng tỷ VNĐ/tháng</b></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:.12em;color:var(--amber)">RETURN ON INVESTMENT</div>
+            <div class="bigstat" style="font-size:160px;color:#fff;margin-top:8px">&gt;500<span style="font-size:80px">%</span></div>
+            <div style="font-size:20px;color:var(--blue-100);margin-top:10px;max-width:380px;margin-left:auto;margin-right:auto;line-height:1.4">
+              Hiệu quả <b style="color:#fff">gấp ~19x</b> so với cold call</div>
+            <div style="font-size:17px;color:var(--blue-100);margin-top:16px;opacity:.8;line-height:1.4;max-width:380px;margin-left:auto;margin-right:auto">
+              Chi phí GBP 50 profiles = chi phí 1 TV viên cold call trong 2 tháng — nhưng tạo dòng khách hàng <b style="color:#fff">BỀN VỮNG</b>.</div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Chi phí GBP cho 100 chi nhánh / tháng <b>thấp hơn chi phí một vài cú click Google Ads</b> — nhưng tạo ra
-            dòng khách hàng bền vững.</p>
+          <p>GBP không chỉ tiết kiệm chi phí — nó tạo ra <b>dòng khách hàng bền vững 24/7</b>, không phụ thuộc vào ai gọi bao nhiêu cuộc mỗi ngày.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
-          Beta</span><span>Google Business Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 20 — CHANNEL COMPARISON ============ -->
     <section data-label="So sánh kênh">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · So sánh kênh</span><span
-            class="kick-num">20 / 27</span></div>
-        <h2 class="h h-md anim">Không kênh nào làm được điều <span class="accent">GBP</span> làm.</h2>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · So sánh kênh</span><span class="kick-num">20 / 27</span></div>
+        <h2 class="h h-md anim">Không kênh nào kết hợp được <span class="accent">TẤT CẢ</span> như GBP.</h2>
         <div class="midfill">
           <div class="card anim d1" style="padding:0;overflow:hidden;width:100%">
             <table class="ctab cmp">
               <thead>
                 <tr>
                   <th class="lab">Tiêu chí</th>
-                  <th>Website</th>
-                  <th>App</th>
-                  <th>Google Ads</th>
+                  <th>Cold Call</th>
+                  <th>Facebook</th>
+                  <th>Giới thiệu</th>
                   <th class="hi">GBP · SI + Beta</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="lab">Xuất hiện trên Map Pack</td>
+                  <td class="lab">Khách tìm thấy khi CẦN</td>
                   <td class="x">✕</td>
                   <td class="x">✕</td>
-                  <td class="x">✕</td>
+                  <td class="part">phụ thuộc</td>
                   <td class="hi y">✓</td>
                 </tr>
                 <tr>
-                  <td class="lab">Click-to-Call miễn phí</td>
-                  <td class="x">✕</td>
-                  <td class="x">✕</td>
-                  <td class="part">tốn tiền</td>
-                  <td class="hi y">✓</td>
+                  <td class="lab">Tỷ lệ chuyển đổi</td>
+                  <td class="part">2-5%</td>
+                  <td class="part">3-8%</td>
+                  <td class="part">10-15%</td>
+                  <td class="hi y2">15-25%</td>
                 </tr>
                 <tr>
-                  <td class="lab">Chỉ đường 1 tap</td>
-                  <td class="x">✕</td>
-                  <td class="x">✕</td>
-                  <td class="x">✕</td>
-                  <td class="hi y">✓</td>
-                </tr>
-                <tr>
-                  <td class="lab">Đánh giá từ khách thật</td>
-                  <td class="x">✕</td>
-                  <td class="x">✕</td>
-                  <td class="x">✕</td>
-                  <td class="hi y">✓</td>
-                </tr>
-                <tr>
-                  <td class="lab">Bảo vệ thông tin 24/7</td>
-                  <td class="x">✕</td>
-                  <td class="x">✕</td>
-                  <td class="x">✕</td>
-                  <td class="hi y">✓</td>
-                </tr>
-                <tr>
-                  <td class="lab">Tối ưu AI Search</td>
-                  <td class="x">✕</td>
-                  <td class="x">✕</td>
-                  <td class="x">✕</td>
-                  <td class="hi y">✓</td>
+                  <td class="lab">Độ tin cậy</td>
+                  <td class="x">tự giới thiệu</td>
+                  <td class="part">bạn bè like</td>
+                  <td class="y">quen biết</td>
+                  <td class="hi y2">80+ đánh giá thật</td>
                 </tr>
                 <tr>
                   <td class="lab">Chi phí / lead</td>
-                  <td class="part">Cao</td>
-                  <td class="part">Rất cao</td>
-                  <td class="part">Mỗi click</td>
+                  <td class="part">Rất cao (thời gian)</td>
+                  <td class="part">Trung bình (ads)</td>
+                  <td class="y">Thấp (giới hạn)</td>
                   <td class="hi y2">Fixed, thấp</td>
+                </tr>
+                <tr>
+                  <td class="lab">Data khi NV nghỉ</td>
+                  <td class="x">✕✕</td>
+                  <td class="y">company page</td>
+                  <td class="x">✕</td>
+                  <td class="hi y2">Tổng đài giữ 100%</td>
+                </tr>
+                <tr>
+                  <td class="lab">Đo lường</td>
+                  <td class="x">Rất khó</td>
+                  <td class="part">Chung chung</td>
+                  <td class="x">✕</td>
+                  <td class="hi y2">Dashboard / NV</td>
+                </tr>
+                <tr>
+                  <td class="lab">Phủ sóng khu vực</td>
+                  <td class="x">✕</td>
+                  <td class="x">✕</td>
+                  <td class="x">✕</td>
+                  <td class="hi y">Service Area tự động</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>GBP không thay thế các kênh khác — nó <b>chiếm lĩnh khoảng trống mà không kênh nào với tới được</b>: khoảnh
-            khắc khách tìm "gần đây".</p>
+          <p>GBP không thay thế các kênh khác — nó <b>chiếm lĩnh khoảng trống mà không kênh nào với tới được</b>: khoảnh khắc khách ĐANG CẦN bảo hiểm.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 21 — DASHBOARD PREVIEW ============ -->
     <section class="dark" data-label="Dashboard preview">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · Dashboard
-            preview</span><span class="kick-num">21 / 27</span></div>
-        <h2 class="h h-sm anim">Toàn bộ mạng lưới — trong <span class="accent">một màn hình</span>.</h2>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · Dashboard preview</span><span class="kick-num">21 / 27</span></div>
+        <h2 class="h h-sm anim">Toàn bộ đội ngũ TV viên — trong <span class="accent">một màn hình</span>.</h2>
         <div class="midfill">
-          <div class="anim d1"
-            style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.5);display:flex;flex-direction:column;width:100%">
-            <div style="background:var(--navy-800);padding:16px 28px;display:flex;align-items:center;gap:14px"><svg
-                class="ic" viewBox="0 0 24 24" style="color:var(--amber);width:24px;height:24px">
-                <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
-              </svg><b style="color:#fff;font-size:20px">GBP · Mạng lưới MBV</b><span
-                style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--blue-300)">●
-                REAL-TIME · 112 chi nhánh</span></div>
+          <div class="anim d1" style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.5);display:flex;flex-direction:column;width:100%">
+            <div style="background:var(--navy-800);padding:16px 28px;display:flex;align-items:center;gap:14px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber);width:24px;height:24px">
+                <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
+              </svg><b style="color:#fff;font-size:20px">GBP · Bảo hiểm Bảo Việt</b><span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--blue-300)">● REAL-TIME · 50 profiles</span></div>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)">
               <div class="dpanel">
                 <div class="dph">Overview</div>
                 <div style="display:flex;gap:24px;margin-top:14px">
                   <div>
-                    <div class="dnum">2,840</div>
+                    <div class="dnum">1,420</div>
                     <div class="dlab">Cuộc gọi</div>
                   </div>
                   <div>
-                    <div class="dnum">5,210</div>
+                    <div class="dnum">2,610</div>
                     <div class="dlab">Chỉ đường</div>
                   </div>
                   <div>
-                    <div class="dnum">+612</div>
+                    <div class="dnum">+380</div>
                     <div class="dlab">Đánh giá</div>
                   </div>
                 </div>
               </div>
               <div class="dpanel">
-                <div class="dph">Branch Ranking</div>
-                <div class="drow"><span>Chi nhánh Q1</span><b style="color:var(--good)">96</b></div>
-                <div class="drow"><span>Chi nhánh Q7</span><b style="color:var(--good)">91</b></div>
-                <div class="drow"><span>Chi nhánh Thủ Đức</span><b style="color:var(--amber-700)">74</b></div>
+                <div class="dph">TV viên Ranking</div>
+                <div class="drow"><span>Nguyễn Văn A</span><b style="color:var(--good)">128 calls · TS 92</b></div>
+                <div class="drow"><span>Trần Thị B</span><b style="color:var(--good)">97 calls · TS 88</b></div>
+                <div class="drow"><span>Lê Văn C</span><b style="color:var(--amber-700)">54 calls · TS 74</b></div>
               </div>
               <div class="dpanel">
-                <div class="dph">RM Performance</div>
-                <div class="drow"><span>Nguyễn Văn A</span><b>128 calls</b></div>
-                <div class="drow"><span>Trần Thị B</span><b>97 calls</b></div>
-                <div class="drow"><span>Lê Văn C</span><b>83 calls</b></div>
+                <div class="dph">Văn phòng Performance</div>
+                <div class="drow"><span>VP Quận 1</span><b style="color:var(--good)">4.8★ · 96</b></div>
+                <div class="drow"><span>VP Đà Nẵng</span><b style="color:var(--good)">4.7★ · 91</b></div>
+                <div class="drow"><span>VP Hà Nội</span><b style="color:var(--amber-700)">4.3★ · 74</b></div>
               </div>
               <div class="dpanel">
                 <div class="dph" style="color:var(--bad)">Review Alerts</div>
-                <div class="drow"><span>★ 2.0 · CN Bình Tân</span><b style="color:var(--bad)">Gấp</b></div>
-                <div class="drow"><span>★ 1.0 · CN Gò Vấp</span><b style="color:var(--bad)">Gấp</b></div>
+                <div class="drow"><span>★ 2.0 · VP Bình Tân</span><b style="color:var(--bad)">Gấp</b></div>
+                <div class="drow"><span>★ 1.0 · TV viên D</span><b style="color:var(--bad)">Gấp</b></div>
               </div>
               <div class="dpanel">
                 <div class="dph">Protection Log</div>
-                <div class="drow"><span>Hoàn tác giờ mở cửa</span><b style="color:var(--good)">Đã chặn</b></div>
                 <div class="drow"><span>Sửa SĐT trái phép</span><b style="color:var(--good)">Đã chặn</b></div>
+                <div class="drow"><span>Đánh dấu "đóng cửa"</span><b style="color:var(--good)">Đã chặn</b></div>
               </div>
               <div class="dpanel">
-                <div class="dph">Rate Alert History</div>
-                <div class="drow"><span>Lãi vay mua nhà 7.5%</span><b>112 posts</b></div>
-                <div class="drow"><span>Tiết kiệm 12T: 6.2%</span><b>112 posts</b></div>
+                <div class="dph">Renewal Tracker</div>
+                <div class="drow"><span>Gia hạn tháng 7</span><b>42 hợp đồng</b></div>
+                <div class="drow"><span>Đã liên hệ</span><b style="color:var(--good)">38/42</b></div>
               </div>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Real-time. Mọi chi nhánh. Mọi RM. <b>Từ một dashboard duy nhất</b> — HQ MBV nắm toàn bộ mạng lưới trong tầm
-            tay.</p>
+          <p>Real-time. Mọi văn phòng. Mọi TV viên. Mọi lần gia hạn. <b>Từ 1 dashboard</b> — HQ Bảo Việt nắm toàn bộ trong tầm tay.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
-          Beta</span><span>Google Business Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 22 — OBJECTIONS 1 ============ -->
     <section data-label="Xoá băn khoăn 1">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Xoá băn khoăn · Phần 1</span><span
-            class="kick-num">22 / 27</span></div>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Xoá băn khoăn · Phần 1</span><span class="kick-num">22 / 27</span></div>
         <h2 class="h h-md anim">Chúng tôi hiểu băn khoăn của bạn.</h2>
         <div class="midfill">
           <div class="grid anim d1" style="grid-template-columns:repeat(3,1fr);gap:22px">
             <div class="qa">
               <div class="qmark">Q</div>
-              <div class="qq">"MBV đã có website, cần gì GBP?"</div>
+              <div class="qq">"Bảo Việt đã có website, cần gì GBP?"</div>
               <div class="qa-line"></div>
-              <p class="qans">Website nằm <b>bên dưới</b> Map Pack. GBP xuất hiện <b>trên cùng</b> — và khách gọi điện
-                trực tiếp mà không cần vào website.</p>
+              <p class="qans">Website nằm <b>bên dưới</b> Map Pack. GBP xuất hiện <b>trên cùng</b> — và khách gọi điện trực tiếp mà không cần vào website.</p>
             </div>
             <div class="qa">
               <div class="qmark">Q</div>
               <div class="qq">"GBP miễn phí, tại sao cần trả phí?"</div>
               <div class="qa-line"></div>
-              <p class="qans">GBP là <b>đất trống miễn phí</b>. Chúng tôi là kiến trúc sư + quản lý toà nhà + bảo vệ
-                24/7. Có đất mà không xây nhà thì không ai ở.</p>
+              <p class="qans">GBP là <b>đất trống miễn phí</b>. Chúng tôi là kiến trúc sư + quản lý toà nhà + tổng đài + bảo vệ 24/7 + Trust Score. Có đất mà không xây nhà thì không ai ở.</p>
             </div>
             <div class="qa">
               <div class="qmark">Q</div>
-              <div class="qq">"Compliance nội dung có đảm bảo?"</div>
+              <div class="qq">"Bảo hiểm khó thu review?"</div>
               <div class="qa-line"></div>
-              <p class="qans">Workflow: Beta soạn → <b>HQ MBV duyệt</b> → mới đăng. Template phản hồi đã pre-approved.
-                <b>Zero risk.</b>
-              </p>
+              <p class="qans">Mỗi lần ký hợp đồng mới hoặc gia hạn = <b>cơ hội xin review</b>. Hệ thống auto-request. 1 review = 1 "lời giới thiệu" công khai 24/7.</p>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Mỗi câu hỏi này, chúng tôi đã gặp ở nhiều khách hàng enterprise — và <b>đã có câu trả lời được kiểm
-              chứng</b>.</p>
+          <p>Mỗi câu hỏi này, chúng tôi đã gặp ở nhiều khách hàng enterprise — và <b>đã có câu trả lời được kiểm chứng</b>.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 23 — OBJECTIONS 2 ============ -->
     <section data-label="Xoá băn khoăn 2">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Xoá băn khoăn · Phần 2</span><span
-            class="kick-num">23 / 27</span></div>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Xoá băn khoăn · Phần 2</span><span class="kick-num">23 / 27</span></div>
         <h2 class="h h-md anim">…và xoá thêm 3 băn khoăn nữa.</h2>
         <div class="midfill">
           <div class="grid anim d1" style="grid-template-columns:repeat(3,1fr);gap:22px">
             <div class="qa">
               <div class="qmark">Q</div>
-              <div class="qq">"Sợ nhân viên nghỉ mất data?"</div>
+              <div class="qq">"TV viên nghỉ mất data?"</div>
               <div class="qa-line"></div>
-              <p class="qans">Tổng đài tập trung giữ mọi data. GBP ownership linh hoạt, thuộc về MBV. <b>Zero risk.</b>
-              </p>
+              <p class="qans">Tổng đài tập trung giữ mọi data. GBP chuyển giao trong 24h. Quy trình chuẩn hoá. <b>Zero risk.</b></p>
             </div>
             <div class="qa">
               <div class="qmark">Q</div>
-              <div class="qq">"Sợ Google thay đổi chính sách?"</div>
+              <div class="qq">"Cold call vẫn hiệu quả mà?"</div>
               <div class="qa-line"></div>
-              <p class="qans">Team Beta theo dõi guidelines 24/7. Chi nhánh ngân hàng là <b>entity hợp lệ nhất</b> trên
-                GBP — rủi ro thấp nhất.</p>
+              <p class="qans">GBP <b>KHÔNG thay thế</b> cold call. GBP BỔ SUNG kênh inbound. TV viên vừa cold call vừa có khách TỰ GỌI ĐẾN. <b>Cả hai kênh cùng hoạt động.</b></p>
             </div>
             <div class="qa">
               <div class="qmark">Q</div>
@@ -2851,8 +2706,7 @@
               <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
                 <div class="tline"><span>Tuần 1–2</span> Profile hoàn thiện</div>
                 <div class="tline"><span>Tháng 1–2</span> Xuất hiện Map Pack</div>
-                <div class="tline" style="color:var(--good)"><span style="background:var(--good);color:#fff">Tháng
-                    3–6</span> ROI rõ ràng</div>
+                <div class="tline" style="color:var(--good)"><span style="background:var(--good);color:#fff">Tháng 3–6</span> ROI rõ ràng</div>
               </div>
             </div>
           </div>
@@ -2861,135 +2715,119 @@
           <p>Khi mọi rủi ro lớn đã được xử lý <b>trước khi bạn hỏi</b> — quyết định trở nên dễ dàng hơn rất nhiều.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 24 — ROADMAP ============ -->
     <section data-label="Lộ trình 4 giai đoạn">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Lộ trình triển khai</span><span
-            class="kick-num">24 / 27</span></div>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Lộ trình triển khai</span><span class="kick-num">24 / 27</span></div>
         <h2 class="h h-md anim">Pilot trước, scale sau — <span class="accent">zero risk</span>.</h2>
         <div class="midfill">
           <div class="anim d1" style="display:grid;grid-template-columns:1fr 1fr;gap:22px">
             <div class="phase">
-              <div class="ph-top"><span class="ph-num">01</span><span class="ph-when">Tuần 1–4</span><span
-                  class="ph-prog"><i style="width:25%"></i></span></div>
-              <div class="ph-title">Pilot 10 chi nhánh</div>
-              <p class="ph-desc">Setup + Verify + Go-live. Bài đăng &amp; Q&A đầu tiên.</p>
+              <div class="ph-top"><span class="ph-num">01</span><span class="ph-when">Tuần 1–4</span><span class="ph-prog"><i style="width:25%"></i></span></div>
+              <div class="ph-title">Pilot 1 văn phòng + 10 TV viên</div>
+              <p class="ph-desc">Setup SAB GBP + Verify + Trust Score + Go-live. Bài đăng &amp; Q&A đầu tiên.</p>
             </div>
             <div class="phase">
-              <div class="ph-top"><span class="ph-num">02</span><span class="ph-when">Tuần 5–8</span><span
-                  class="ph-prog"><i style="width:50%"></i></span></div>
+              <div class="ph-top"><span class="ph-num">02</span><span class="ph-when">Tuần 5–8</span><span class="ph-prog"><i style="width:50%"></i></span></div>
               <div class="ph-title">Ổn định</div>
-              <p class="ph-desc">Thu đánh giá, phản hồi 100%, tracking Map Pack ranking.</p>
+              <p class="ph-desc">Thu đánh giá (10 reviews/TV viên), Coverage Calculator live, 100% phản hồi.</p>
             </div>
             <div class="phase">
-              <div class="ph-top"><span class="ph-num">03</span><span class="ph-when">Tháng 3–4</span><span
-                  class="ph-prog"><i style="width:75%"></i></span></div>
-              <div class="ph-title">Mở rộng 50+ chi nhánh</div>
-              <p class="ph-desc">+20 RM · Rate Alert · Branch Health Score go-live.</p>
+              <div class="ph-top"><span class="ph-num">03</span><span class="ph-when">Tháng 3–4</span><span class="ph-prog"><i style="width:75%"></i></span></div>
+              <div class="ph-title">Mở rộng 3+ VP + 30 TV viên</div>
+              <p class="ph-desc">Renewal Reminder CRM + AI Search active + Mở rộng vùng phục vụ.</p>
             </div>
             <div class="phase last">
-              <div class="ph-top"><span class="ph-num" style="background:var(--good)">04</span><span
-                  class="ph-when">Tháng 5–6</span><span class="ph-prog"><i style="width:100%"></i></span></div>
-              <div class="ph-title">Toàn hệ thống 100%</div>
-              <p class="ph-desc">AI Search active + Full ROI report + chiến lược Năm 2.</p>
+              <div class="ph-top"><span class="ph-num" style="background:var(--good)">04</span><span class="ph-when">Tháng 5–6</span><span class="ph-prog"><i style="width:100%"></i></span></div>
+              <div class="ph-title">Toàn hệ thống</div>
+              <p class="ph-desc">Shadow Coverage + Full ROI report + Đề xuất scale tỉnh/thành khác.</p>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Bạn chỉ scale khi <b>đã thấy kết quả thật từ pilot</b>. Mỗi giai đoạn là một điểm kiểm chứng — không cam
-            kết toàn bộ trước.</p>
+          <p>Bạn chỉ scale khi <b>ĐÃ THẤY KẾT QUẢ từ pilot</b>. Mỗi giai đoạn là một điểm kiểm chứng — không cam kết toàn bộ trước.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- ============ SLIDE 25 — FIRST MOVER ============ -->
     <section data-label="Lợi thế cạnh tranh">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Lợi thế cạnh tranh ·
-            First-mover</span><span class="kick-num">25 / 27</span></div>
-        <h2 class="h h-md anim" style="max-width:1500px">MBV có thể là ngân hàng <span class="accent">đầu tiên</span>
-          tối ưu GBP tại Việt Nam.</h2>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Lợi thế cạnh tranh · First-mover</span><span class="kick-num">25 / 27</span></div>
+        <h2 class="h h-md anim" style="max-width:1500px">Bảo Việt có cơ hội trở thành công ty bảo hiểm <span class="accent">ĐẦU TIÊN</span> tối ưu GBP tại Việt Nam.</h2>
         <div class="midfill">
-          <div class="grid anim d1" style="grid-template-columns:repeat(3,1fr);gap:22px">
+          <div class="grid anim d1" style="grid-template-columns:repeat(2,1fr);gap:22px">
             <div class="card" style="display:flex;flex-direction:column">
               <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber-700)">
-                <path
-                  d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.7V17a2 2 0 0 1-1 1.7L8 19v1h8v-1l-1-.3a2 2 0 0 1-1-1.7v-2.3M6 4h12v5a6 6 0 0 1-12 0z" />
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.7V17a2 2 0 0 1-1 1.7L8 19v1h8v-1l-1-.3a2 2 0 0 1-1-1.7v-2.3M6 4h12v5a6 6 0 0 1-12 0z" />
               </svg>
-              <div style="font-size:25px;font-weight:700;margin-top:18px">First-mover</div>
-              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">Ngân hàng VN chưa ai tối ưu
-                GBP. <b>MBV chiếm trước = chiếm lâu dài.</b></p>
+              <div style="font-size:25px;font-weight:700;margin-top:18px">🏆 First-mover</div>
+              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">Manulife, Prudential, AIA chưa ai làm → <b>Bảo Việt chiếm trước = chiếm lâu dài.</b></p>
             </div>
             <div class="card" style="display:flex;flex-direction:column">
               <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber-700)">
                 <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
                 <path d="M9 12l2 2 4-4" />
               </svg>
-              <div style="font-size:25px;font-weight:700;margin-top:18px">Moat — hào phòng thủ</div>
-              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">Fintech/portal <b>không
-                  thể</b> tạo GBP — chỉ chi nhánh thật mới có thể.</p>
+              <div style="font-size:25px;font-weight:700;margin-top:18px">🛡️ Moat — hào phòng thủ</div>
+              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">App/website <b>KHÔNG THỂ</b> tạo GBP — chỉ TV viên thật với physical presence mới có thể.</p>
             </div>
             <div class="card" style="display:flex;flex-direction:column">
               <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber-700)">
                 <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
                 <circle cx="12" cy="12" r="3" />
               </svg>
-              <div style="font-size:25px;font-weight:700;margin-top:18px">Blue ocean</div>
-              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">Chưa RM ngân hàng nào có GBP
-                cá nhân. <b>MBV sẽ là tiên phong.</b></p>
+              <div style="font-size:25px;font-weight:700;margin-top:18px">🌊 Blue ocean</div>
+              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">Gần như <b>KHÔNG CÓ</b> TV viên BH nào ở VN có GBP cá nhân → blue ocean 100%.</p>
+            </div>
+            <div class="card" style="display:flex;flex-direction:column">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber-700)">
+                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+              </svg>
+              <div style="font-size:25px;font-weight:700;margin-top:18px">💰 Inbound > Outbound</div>
+              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">1 inbound lead = <b>5-10x giá trị</b> 1 cold call lead (khách đã có nhu cầu + đã xem đánh giá).</p>
             </div>
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>Nhưng cơ hội first-mover <b>có thời hạn</b>. Khi đối thủ bắt đầu, chi phí sẽ cao hơn và hiệu quả sẽ thấp
-            hơn.</p>
+          <p>Nhưng cơ hội first-mover <b>có thời hạn</b>. Khi Manulife hoặc Prudential bắt đầu → chi phí sẽ cao hơn, hiệu quả sẽ thấp hơn.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
-    <!-- ============ SLIDE 26 — MAP PACK SCENARIO (VISION) ============ -->
+    <!-- ============ SLIDE 26 — MAP PACK VISION ============ -->
     <section data-label="Bức tranh thành công">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bức tranh thành công · Map Pack của
-            MBV</span><span class="kick-num">26 / 27</span></div>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bức tranh thành công · Map Pack của Bảo Việt</span><span class="kick-num">26 / 27</span></div>
         <div class="split tilt" style="gap:60px;align-items:center;margin-top:4px">
           <div>
-            <h2 class="h h-md anim">Hình dung Map Pack khi <span class="accent">MBV dẫn đầu</span>.</h2>
-            <p class="sub anim" style="margin-top:22px">Khách tìm "vay mua nhà lãi suất thấp Quận 1" — MBV chiếm 2/3
-              top, đối thủ bị đẩy xuống dưới.</p>
+            <h2 class="h h-md anim">Khi Bảo Việt tối ưu đầy đủ — <span class="accent">Đối thủ mất 70% traffic</span>.</h2>
+            <p class="sub anim" style="margin-top:22px">Khách tìm "tư vấn bảo hiểm gia đình Quận 1" — Bảo Việt chiếm 2/3 top, đối thủ bị đẩy xuống dưới.</p>
             <div class="anim d2" style="display:flex;gap:40px;margin-top:40px">
               <div>
-                <div class="bigstat" style="font-size:96px;color:var(--blue)">2<span
-                    style="font-size:48px;color:var(--ink-3)">/3</span></div>
-                <div style="font-size:19px;color:var(--ink-2);margin-top:4px;max-width:240px">vị trí Map Pack thuộc về
-                  MBV</div>
+                <div class="bigstat" style="font-size:96px;color:var(--blue)">2<span style="font-size:48px;color:var(--ink-3)">/3</span></div>
+                <div style="font-size:19px;color:var(--ink-2);margin-top:4px;max-width:240px">vị trí Map Pack thuộc về Bảo Việt</div>
               </div>
               <div>
-                <div class="bigstat" style="font-size:96px;color:var(--amber-700)">70<span
-                    style="font-size:48px">%</span></div>
-                <div style="font-size:19px;color:var(--ink-2);margin-top:4px;max-width:240px">traffic chuyển từ đối thủ
-                  sang MBV</div>
+                <div class="bigstat" style="font-size:96px;color:var(--amber-700)">70<span style="font-size:48px">%</span></div>
+                <div style="font-size:19px;color:var(--ink-2);margin-top:4px;max-width:240px">traffic chuyển từ đối thủ sang Bảo Việt</div>
               </div>
             </div>
           </div>
           <div class="anim d1" style="width:100%">
-            <div class="pill blue" style="margin-bottom:14px">Search: "vay mua nhà lãi suất thấp Quận 1"</div>
+            <div class="pill blue" style="margin-bottom:14px">Search: "tư vấn bảo hiểm gia đình Quận 1"</div>
             <div class="mp">
               <div class="res win"><span class="rank">1</span><span class="thumb"><svg class="ic" viewBox="0 0 24 24">
-                    <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
+                    <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
                   </svg></span>
                 <div class="meta">
-                  <div class="t">MBV — Chi nhánh Quận 1</div>
-                  <div class="s">Vay mua nhà từ 7.5%/năm <span style="color:var(--amber-700);font-weight:600">· Rate
-                      Alert</span></div>
+                  <div class="t">Bảo hiểm Bảo Việt — Văn phòng Q1</div>
+                  <div class="s">Chuyên: Nhân thọ, Giáo dục, Sức khoẻ <span style="color:var(--star);font-weight:600">· 4.7★ · 100 reviews</span></div>
                 </div>
               </div>
               <div class="res win"><span class="rank">2</span><span class="thumb"><svg class="ic" viewBox="0 0 24 24">
@@ -2997,17 +2835,17 @@
                     <path d="M4 21a8 8 0 0 1 16 0" />
                   </svg></span>
                 <div class="meta">
-                  <div class="t">RM Nguyễn Văn A — MBV Q1</div>
+                  <div class="t">TV viên Nguyễn Văn A — Bảo Việt</div>
                   <div class="s"><span class="stars"><svg viewBox="0 0 24 24">
                         <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
-                      </svg></span>4.9 · Chuyên vay mua nhà, 8 năm KN</div>
+                      </svg></span>4.9 · Chuyên BH trẻ em, gia đình <span style="color:var(--amber-700);font-weight:600">· Trust Score 92</span></div>
                 </div>
               </div>
               <div class="res"><span class="rank">3</span><span class="thumb"><svg class="ic" viewBox="0 0 24 24">
                     <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
                   </svg></span>
                 <div class="meta">
-                  <div class="t" style="color:var(--ink-3)">Ngân hàng đối thủ</div>
+                  <div class="t" style="color:var(--ink-3)">Đối thủ Y</div>
                   <div class="s">Thông tin cơ bản, ít đánh giá</div>
                 </div>
               </div>
@@ -3015,21 +2853,17 @@
           </div>
         </div>
         <div class="takeaway"><span class="bar"></span>
-          <p>MBV chiếm 2/3 top 3. Đối thủ bị đẩy xuống dưới. <b>70% traffic thuộc về MBV</b> — đây là kết quả của việc
-            tối ưu đầy đủ.</p>
+          <p>Bảo Việt chiếm 2/3 top 3. Đối thủ bị đẩy xuống dưới. <b>70% traffic thuộc về Bảo Việt</b> — đây không phải mơ ước, đây là kết quả tự nhiên của việc tối ưu đầy đủ.</p>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
-          Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
-    <!-- ============ SLIDE 26 — CALL TO ACTION ============ -->
+    <!-- ============ SLIDE 27 — CALL TO ACTION ============ -->
     <section class="dark" data-label="Call to Action">
       <div class="frame with-foot">
-        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bước tiếp theo</span><span
-            class="kick-num">27 / 27</span></div>
-        <h2 class="h h-sm anim" style="max-width:1400px">Bắt đầu với <span class="accent">Audit miễn phí</span> — thấy
-          cơ hội trước khi quyết định.</h2>
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bước tiếp theo</span><span class="kick-num">27 / 27</span></div>
+        <h2 class="h h-sm anim" style="max-width:1400px">Bắt đầu với <span class="accent">Audit miễn phí</span> — thấy cơ hội trước khi quyết định.</h2>
         <div class="midfill" style="gap:22px">
           <div class="anim d1" style="display:flex;gap:16px">
             <div class="cta-step active">
@@ -3037,17 +2871,17 @@
                   <path d="M20 6L9 17l-5-5" />
                 </svg></div>
               <div class="cs-t">Audit miễn phí <span>3–5 ngày</span></div>
-              <p>Phân tích 5 chi nhánh MBV vs 5 chi nhánh đối thủ → báo cáo chi tiết.</p>
+              <p>Phân tích GBP 3 văn phòng Bảo Việt + TV viên vs đối thủ (Manulife, Prudential, AIA) → báo cáo chi tiết.</p>
             </div>
             <div class="cta-step">
               <div class="cs-ic">2</div>
               <div class="cs-t">Buổi Demo <span>60 phút</span></div>
-              <p>Demo live search "ngân hàng gần [vị trí MBV]" → thấy cơ hội thật.</p>
+              <p>Demo live search "tư vấn bảo hiểm [quận]" → thấy cơ hội thật — blue ocean trống trơn.</p>
             </div>
             <div class="cta-step">
               <div class="cs-ic">3</div>
-              <div class="cs-t">Pilot 3 tháng <span>10 CN + 5 RM</span></div>
-              <p>Đo KPIs thực tế, báo cáo ROI minh bạch.</p>
+              <div class="cs-t">Pilot 3 tháng <span>1 VP + 10 TV viên</span></div>
+              <p>Tạo SAB profiles, Trust Score, đo KPIs, báo cáo ROI minh bạch.</p>
             </div>
             <div class="cta-step">
               <div class="cs-ic">4</div>
@@ -3056,35 +2890,29 @@
             </div>
           </div>
           <div class="anim d2" style="display:flex;gap:10px;flex-wrap:wrap">
-            <span class="commit">KPI rõ ràng</span><span class="commit">Báo cáo minh bạch</span><span
-              class="commit">Compliance</span><span class="commit">Không mất data</span><span class="commit">Bảo vệ
-              24/7</span><span class="commit">Account Manager riêng</span>
+            <span class="commit">KPI rõ ràng</span><span class="commit">Báo cáo minh bạch</span><span class="commit">Không mất data khi NV nghỉ</span><span class="commit">Bảo vệ 24/7</span><span class="commit">Account Manager riêng</span><span class="commit">Blue ocean guarantee</span>
           </div>
         </div>
-        <div class="anim d3"
-          style="display:flex;align-items:center;gap:24px;background:var(--amber);border-radius:18px;padding:28px 38px">
+        <div class="anim d3" style="display:flex;align-items:center;gap:24px;background:var(--amber);border-radius:18px;padding:28px 38px">
           <div style="flex:1">
-            <div
-              style="font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.1em;color:var(--navy-900);opacity:.7">
-              CÂU HỎI DUY NHẤT</div>
-            <div style="font-size:34px;font-weight:800;color:var(--navy-900);margin-top:6px;line-height:1.1">Xin phép
-              hẹn 1 buổi audit miễn phí trong tuần tới?</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.1em;color:var(--navy-900);opacity:.7">CÂU HỎI DUY NHẤT</div>
+            <div style="font-size:34px;font-weight:800;color:var(--navy-900);margin-top:6px;line-height:1.1">Xin phép hẹn 1 buổi audit miễn phí trong tuần tới?</div>
           </div>
           <svg class="ic" viewBox="0 0 24 24" style="width:52px;height:52px;color:var(--navy-900);stroke-width:2.2">
             <path d="M5 12h14M13 6l6 6-6 6" />
           </svg>
         </div>
       </div>
-      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
-          Beta</span><span>Google Business Profile cho <b>MBV</b></span></div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface × Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
     </section>
 
     <!-- SLIDES -->
   </deck-stage>
 
   <script type="application/json" id="speaker-notes">
-["Chào các anh chị. Trước khi em giới thiệu mình là ai, em muốn bắt đầu bằng một câu hỏi. Ngay lúc này, khi mình đang ngồi đây, có hàng nghìn người Việt đang mở Google và gõ ‘ngân hàng gần đây'. Câu hỏi duy nhất em muốn các anh chị giữ trong đầu suốt 30 phút tới là: trong những lần tìm kiếm đó, MBV có xuất hiện không? Em xin phép không nói về công ty em vội — em muốn nói về khách hàng của các anh chị trước.","Đây là con số quan trọng nhất hôm nay. 70% lượt click rơi vào đúng 3 kết quả đầu tiên trên Google Maps — cái mà Google gọi là Map Pack. 30% còn lại chia cho tất cả website phía dưới. Nói cách khác: nếu chi nhánh MBV không nằm trong top 3 này, các anh chị không phải đang cạnh tranh yếu — mà gần như vô hình. Và điều đáng sợ là chuyện này xảy ra trước cả khi khách kịp nhìn thấy website đẹp của MBV.","Em kể một câu chuyện. Anh Minh — một khách hàng điển hình. Anh ấy mới lập công ty, cần mở tài khoản doanh nghiệp. Anh ấy làm gì? Không gọi tổng đài, không vào website — anh ấy mở Google, gõ ‘ngân hàng gần đây'. Google hiện ba lựa chọn. MBV có chi nhánh cách đó 400 mét, nhưng không nằm trong ba cái đó. Anh Minh đến ngân hàng đối thủ, gọi một tap, chỉ đường một tap. Điểm mấu chốt em muốn nhấn mạnh: anh Minh không ghét MBV — anh ấy chỉ đơn giản là không thấy MBV. Và mỗi ngày có hàng nghìn anh Minh như vậy.","Nhiều anh chị sẽ nghĩ: ‘MBV có website rồi mà'. Đúng. Nhưng vấn đề là thứ tự. Google Maps luôn xuất hiện TRƯỚC website. Bên trái là Map Pack — chỉ ba ngân hàng, có nút gọi, nút chỉ đường ngay trên màn hình đầu tiên, ăn 70% click. Bên phải là website — khách phải cuộn qua, click vào, rồi tự đi tìm chi nhánh, năm bảy bước. Dù website MBV đẹp đến đâu, nó vẫn nằm bên dưới. Cuộc đua thắng thua diễn ra ở Map Pack.","Tại sao khách lại chọn Maps? Vì nó nhanh hơn. Nhìn bảng này: gọi điện — một tap so với tìm trang liên hệ, copy số. Chỉ đường — một tap so với tìm quận, copy địa chỉ. Xem đánh giá — thấy ngay 4.7 sao so với không có gì. Đặt lịch — một tap so với điền form chờ xác nhận. Quy luật rất đơn giản và em xin nhấn mạnh: khách hàng luôn chọn con đường ngắn nhất, luôn luôn. Mỗi bước thừa là một cơ hội để họ bỏ sang đối thủ.","Vậy cụ thể MBV đang gặp những gì? Em liệt kê bảy vấn đề — các anh chị đọc nhanh thôi. Thông tin thiếu, giờ mở cửa sai, đánh giá xấu không ai phản hồi, không có ảnh chuyên nghiệp, ai cũng sửa được thông tin, quản lý rời rạc, và RM thì hoàn toàn vô hình online. Điều em muốn các anh chị cảm nhận: không vấn đề nào quá lớn. Nhưng cộng lại, mỗi ngày, ở mỗi chi nhánh, chúng âm thầm chuyển khách của MBV sang cho đối thủ — và không ai trong tổ chức nhìn thấy con số đó.","Giờ em giải thích GBP là gì, thật đơn giản. Hãy hình dung nó như một tấm danh thiếp khổng lồ mà Google tự động dựng lên mỗi khi có người tìm kiếm — hoàn toàn miễn phí. Nó gồm chín thành phần các anh chị thấy trên màn hình: tên, sao, địa chỉ, giờ, điện thoại, ảnh, đánh giá, tin mới, hỏi đáp. Điểm quan trọng: tấm danh thiếp này LUÔN được dựng. Câu hỏi duy nhất là — nó đang hiển thị MBV, hay đang hiển thị đối thủ? Thông tin sai hoặc thiếu, Google sẽ chọn người khác.","Một câu hỏi hay gặp: ‘GBP với website khác gì nhau?'. Em xin trả lời bằng bảng này. Cách cũ: khách phải biết tên MBV mới tìm được; phải chạy quảng cáo tốn tiền; mình tự nói về mình. Cách mới với GBP: Google tự hiển thị khi khách ở gần; miễn phí; và đánh giá là khách hàng thật nói, không phải mình tự khen. GBP không thay thế website — nó là cái cửa trước mà khách bước qua đầu tiên. Website là phòng khách phía sau. MBV cần cả hai, nhưng đúng thứ tự.","Vậy làm sao để vào top 3? Google xếp hạng dựa trên ba yếu tố: độ liên quan, khoảng cách, và độ nổi bật. Từ ba yếu tố đó, bên em xây dựng phương pháp tối ưu gọi là 5R — các anh chị thấy bên phải. Mỗi chữ R ứng với một yếu tố của Google, nhưng quan trọng hơn: mỗi chữ R là một con số đo được. Triết lý của bên em là ‘không đo lường được thì không quản lý và tối ưu được' — nên mọi chỉ số 5R đều hiển thị real-time trên dashboard mà lát nữa em sẽ cho các anh chị xem.","Giờ là giải pháp. Bên em là sự kết hợp của hai đơn vị: SingleInterface mang đến nền tảng công nghệ GBP để quản lý hàng trăm chi nhánh từ một dashboard; Beta mang đến dịch vụ — tối ưu nội dung, bảo vệ, tổng đài, RM profile, AI search. Em muốn nhấn mạnh phần dưới: nếu chỉ dùng một bên thì chưa đủ. Một mình platform thì thiếu nội dung và bảo vệ. Một mình dịch vụ thì khó scale 100 chi nhánh. Kết hợp lại — đó là một cộng một bằng ba: quản lý enterprise cộng tối ưu sâu cộng bảo vệ cộng compliance.","Đây là ý tưởng chiến lược cốt lõi: mô hình Hub và Spoke. Mỗi chi nhánh là một cửa hàng số. Mỗi RM cũng là một điểm hiện diện riêng. Càng nhiều điểm hiện diện chất lượng, MBV càng chiếm nhiều vị trí trên Maps, và đối thủ càng khó chen vào. Hãy tưởng tượng khi khách search ‘vay mua nhà Quận 1' — MBV chiếm hai trong ba vị trí Map Pack: một là chi nhánh, một là RM. Đối thủ chỉ còn đúng một slot.","Giải pháp đầu tiên, cũng là nền tảng: tối ưu chi nhánh. Bên trái là một profile bị bỏ rơi — tên chung chung, một danh mục, mô tả trống, không ảnh, 3.5 sao, không bài đăng. Bên phải là sau khi tối ưu — tên rõ ràng, bốn danh mục, mô tả riêng, hơn 50 ảnh, 4.5 sao với phản hồi trong 24 giờ, bài đăng đều đặn. Em muốn các anh chị hiểu: tối ưu không phải chỉ là điền thông tin. Đó là một chiến lược nội dung riêng cho từng chi nhánh — và đây chính là thứ không thể làm thủ công ở quy mô 100 chi nhánh.","Giải pháp thứ hai, và đây là phần em tâm đắc nhất: RM Profile. Mỗi Relationship Manager trở thành một cố vấn tài chính có mặt trên Google Maps. Nhìn bên trái: khi khách tìm ‘tư vấn vay mua nhà Quận 1', họ thấy chi nhánh MBV ở vị trí một, RM Nguyễn Văn A ở vị trí hai — MBV chiếm hai phần ba. Và đây là điểm vàng: hiện tại CHƯA có RM ngân hàng nào ở Việt Nam có GBP cá nhân. Đây là đại dương xanh. MBV có thể là người đầu tiên.","Giải pháp thứ ba xử lý một rủi ro mà ít anh chị biết. Ngay lúc này, bất kỳ ai — kể cả đối thủ — đều có thể vào sửa thông tin chi nhánh MBV trên Google qua tính năng ‘Suggest an edit'. Và Google không cho phép tắt tính năng này. Họ có thể đổi giờ, đổi số điện thoại, thậm chí đánh dấu ‘đã đóng cửa vĩnh viễn'. Giải pháp của bên em: hệ thống quét mỗi 15 phút, tự động hoàn tác nếu sai, báo HQ nếu cần xem xét, và ghi log tất cả. Với 100 chi nhánh, kiểm tra thủ công là bất khả thi — bảo vệ tự động là bắt buộc.","Giải pháp thứ tư giải quyết một nỗi đau rất thực tế của ngân hàng: nhân sự nghỉ việc. Bên trái — không có tổng đài: khách gọi vào số cá nhân của RM, RM nghỉ và mang theo số, MBV mất khách vĩnh viễn. Bên phải — có tổng đài Beta: GBP hiển thị số tổng đài tập trung, RM nghỉ thì cuộc gọi tự chuyển sang RM mới, zero data loss. Thông điệp đơn giản: khách hàng thuộc về MBV, không thuộc về một nhân viên. Và mọi cuộc gọi đều được đo lường.","Giải pháp thứ năm — phần sáng tạo. Khi HQ cập nhật lãi suất mới, một lần thôi, hệ thống tự động tạo bài đăng riêng cho từng chi nhánh và hiển thị ngay trên Google Maps, như cái bài đăng các anh chị thấy bên phải: ‘Lãi suất vay mua nhà tại Chi nhánh Q1: 7.5% — liên hệ RM Nguyễn Văn A'. Tức là biến 100 chi nhánh thành 100 bảng quảng cáo số cập nhật real-time. Em xin nhấn mạnh: không một ngân hàng nào ở Việt Nam đang làm điều này. MBV sẽ là đầu tiên.","Ba giải pháp cuối em gói gọn trong một slide vì chúng đều được thiết kế riêng cho ngành ngân hàng. Một: Compliance Workflow — mọi nội dung đều qua quy trình Beta soạn, HQ MBV duyệt, rồi mới đăng. Hai: Branch Health Score — mỗi chi nhánh có điểm 0 đến 100, HQ nhận cảnh báo tự động khi điểm dưới 70. Ba: AI Search — đảm bảo MBV xuất hiện khi khách hỏi ChatGPT, Google AI hay Perplexity, đây là xu hướng của 2025-2026. Tóm lại: mọi nội dung được duyệt, mọi chi nhánh được chấm điểm, mọi xu hướng tương lai được cover.","Giờ em chuyển sang phần các anh chị quan tâm nhất: con số. Bên em không nói chung chung, bên em cam kết bằng KPI cụ thể sau 6 tháng. Chi nhánh vào top 3 Maps: từ dưới 20% lên ít nhất 60%. Cuộc gọi từ Maps: từ chỗ không đo được lên 500 cuộc mỗi tháng. Lượt chỉ đường: 1.000 lượt. Đánh giá trung bình: lên 4.5 sao. Phản hồi đánh giá: 100% trong 24 giờ. Và đây không phải lời hứa suông — mỗi con số đều hiển thị trên dashboard real-time để HQ kiểm chứng bất cứ lúc nào.","Còn về ROI thì sao? Em làm một phép tính minh hoạ. Chi phí cho 100 chi nhánh khoảng 150 đến 250 triệu một tháng. Với 50 leads mỗi tháng, chuyển đổi 20%, ra 10 khách mới. Mỗi khách vay mua nhà có giá trị khoảng 500 triệu lãi trong 5 năm. Kết quả: ROI trên 1.000%. Câu em muốn các anh chị nhớ: chi phí GBP cho cả 100 chi nhánh trong một tháng còn thấp hơn chi phí một vài cú click Google Ads — nhưng nó tạo ra dòng khách hàng bền vững, không phải trả tiền theo từng click.","Có anh chị sẽ hỏi: ‘sao không chạy quảng cáo, không làm app cho rồi?'. Em xin so sánh thẳng. Map Pack — chỉ GBP làm được. Click-to-call miễn phí — chỉ GBP. Chỉ đường một tap, đánh giá khách thật, bảo vệ 24/7, AI search — đều chỉ GBP. Còn chi phí mỗi lead: website cao, app rất cao, Ads thì trả từng click; GBP thì cố định và thấp. GBP không thay thế các kênh khác — nó chiếm lĩnh đúng cái khoảng trống mà không kênh nào với tới được: khoảnh khắc khách tìm ‘gần đây'.","Và đây là thứ HQ MBV sẽ thấy hằng ngày — một dashboard duy nhất cho toàn mạng lưới. Tổng quan cuộc gọi, chỉ đường, đánh giá. Xếp hạng chi nhánh theo Health Score. Hiệu suất từng RM. Cảnh báo đánh giá 1-2 sao cần xử lý gấp. Log các chỉnh sửa trái phép đã bị chặn. Lịch sử bài đăng lãi suất tự động. Tất cả real-time, mọi chi nhánh, mọi RM. Toàn bộ mạng lưới nằm gọn trong tầm tay các anh chị.","Em biết các anh chị đang có những băn khoăn, nên em xin chủ động trả lời trước. ‘MBV có website rồi, cần gì GBP?' — Website nằm dưới Map Pack, GBP nằm trên cùng và khách gọi trực tiếp. ‘GBP miễn phí mà, sao phải trả phí?' — GBP là đất trống miễn phí; bên em là kiến trúc sư, người quản lý toà nhà và bảo vệ; có đất mà không xây nhà thì không ai ở. ‘Compliance có đảm bảo không?' — mọi nội dung đều qua HQ duyệt trước khi đăng, template đã pre-approved, zero risk.","Em xin xoá nốt ba băn khoăn nữa. ‘Sợ nhân viên nghỉ mất data?' — tổng đài tập trung giữ mọi data, ownership thuộc về MBV, zero risk. ‘Sợ Google đổi chính sách?' — team Beta theo dõi guidelines 24/7, và chi nhánh ngân hàng là loại hình hợp lệ nhất trên GBP nên rủi ro thấp nhất. ‘Bao lâu thấy kết quả?' — tuần một hai profile hoàn thiện, tháng một hai bắt đầu lên Map Pack, tháng ba đến sáu ROI rõ ràng. Khi mọi rủi ro lớn đã được xử lý trước khi các anh chị hỏi, thì quyết định trở nên dễ dàng hơn nhiều.","Và để các anh chị hoàn toàn yên tâm, đây là lộ trình. Bốn giai đoạn trong 6 tháng. Giai đoạn một: pilot 10 chi nhánh, setup và go-live. Giai đoạn hai: ổn định, thu đánh giá, track ranking. Giai đoạn ba: mở rộng 50 chi nhánh, thêm RM, bật Rate Alert và Health Score. Giai đoạn bốn: toàn hệ thống, AI Search và báo cáo ROI đầy đủ. Điểm cốt lõi: các anh chị chỉ scale khi đã thấy kết quả thật từ pilot. Mỗi giai đoạn là một điểm kiểm chứng — không ai bắt MBV cam kết toàn bộ ngay từ đầu.","Trước khi đến bước cuối, em muốn nhắc lại tại sao thời điểm này quan trọng. MBV có cơ hội trở thành ngân hàng đầu tiên ở Việt Nam tối ưu GBP. Ba lợi thế: first-mover — ai chiếm trước thì chiếm lâu dài; moat — fintech và portal không thể tạo GBP vì không có chi nhánh thật, chỉ ngân hàng thật mới làm được; và blue ocean — chưa RM ngân hàng nào có GBP cá nhân. Nhưng em phải nói thật: cơ hội first-mover có thời hạn. Khi đối thủ bắt đầu, chi phí sẽ cao hơn và hiệu quả sẽ thấp hơn.","[Slide dự phòng — minh hoạ kết quả cuối cùng] Đây là bức tranh khi MBV tối ưu đầy đủ. Khách tìm ‘vay mua nhà lãi suất thấp Quận 1': vị trí một là chi nhánh MBV với bài Rate Alert lãi suất 7.5%, vị trí hai là RM Nguyễn Văn A 4.9 sao, vị trí ba mới đến đối thủ. MBV chiếm hai phần ba top 3, đối thủ bị đẩy xuống dưới, và 70% traffic chuyển về MBV. Đây không phải mơ ước — đây là kết quả tự nhiên của việc tối ưu đầy đủ và bài bản. Cảm ơn các anh chị, em sẵn sàng cho phần hỏi đáp.","Vậy bước tiếp theo là gì? Em không xin các anh chị ký hợp đồng hôm nay. Em chỉ xin một thứ nhỏ thôi: cho bên em làm một buổi Audit miễn phí trong 3 đến 5 ngày — bên em phân tích 5 chi nhánh MBV so với 5 chi nhánh đối thủ và đưa ra báo cáo chi tiết. Từ đó mới đến demo, rồi pilot, rồi scale. Bên em cam kết: KPI rõ ràng, báo cáo minh bạch, compliance, không mất data, bảo vệ 24/7, account manager riêng. Nên câu hỏi duy nhất em xin phép hỏi hôm nay là: các anh chị cho phép bên em hẹn một buổi audit miễn phí trong tuần tới chứ?"]
-</script>
+["Chào các anh chị. Trước khi em giới thiệu mình là ai, em muốn bắt đầu bằng một câu hỏi. Ngay lúc này, khi mình đang ngồi đây, có hàng nghìn người Việt đang mở Google và gõ 'tư vấn bảo hiểm gần đây'. Câu hỏi duy nhất em muốn các anh chị giữ trong đầu suốt 30 phút tới là: trong những lần tìm kiếm đó, tư vấn viên Bảo Việt có xuất hiện không?","Đây là con số quan trọng nhất hôm nay. 95% cold call bị từ chối — TV viên gọi 200 cuộc mỗi ngày mà chỉ 5% nghe. Nhưng bên kia, 88% người tìm kiếm trên Google Maps hành động trong 24 giờ — họ gọi hoặc đến trực tiếp. Nếu TV viên Bảo Việt xuất hiện lúc khách ĐANG CẦN bảo hiểm, tỷ lệ chuyển đổi có thể đạt 15-25%, gấp 5-10 lần cold call. Đây không phải thay thế cold call — đây là mở thêm MỘT kênh inbound hoàn toàn mới.","Em kể một câu chuyện. Chị Lan vừa sinh con đầu lòng, muốn mua bảo hiểm cho bé. Chị ấy mở Google, gõ 'tư vấn bảo hiểm cho trẻ em gần đây'. Google Maps hiện 3 kết quả — một TV viên công ty X có 4.9 sao, 80 đánh giá, ghi rõ 'Chuyên BH trẻ em'. Bảo Việt KHÔNG CÓ trong danh sách. Chị Lan gọi công ty X, một tap duy nhất. Điểm mấu chốt: chị Lan không ghét Bảo Việt. Chị ấy chỉ đơn giản là KHÔNG THẤY TV viên Bảo Việt. Và đặc biệt trong bảo hiểm, khách tìm NGƯỜI — ai tư vấn cho tôi — chứ không tìm thương hiệu.","Nhiều anh chị sẽ nghĩ 'Bảo Việt có website rồi mà'. Đúng. Nhưng vấn đề là thứ tự. Google Maps luôn xuất hiện TRƯỚC website. Bên trái là Map Pack — chỉ 3 kết quả, nút gọi và chỉ đường ngay, ăn phần lớn hành động. Bên phải là website — khách phải cuộn, click, tìm trang đại lý, rồi mới liên hệ được. Dù website Bảo Việt đẹp đến đâu, nó vẫn nằm bên dưới.","Tại sao khách chọn Maps? Vì nhanh hơn. Gọi TV viên — một tap so với tìm trang Đại lý, copy số. Chỉ đường — một tap so với tìm quận, copy địa chỉ. Xem đánh giá — thấy ngay 4.9 sao, 'tận tâm, giải thích rõ ràng' so với không có gì. Đặt lịch — một tap so với điền form. Khách hàng luôn chọn con đường ngắn nhất — đặc biệt khi họ muốn tìm ai đó ĐÁNG TIN để giao phó tài chính gia đình.","Vậy cụ thể Bảo Việt đang gặp những gì? Bảy vấn đề. TV viên không hiện diện online, 95% cold call bị từ chối, TV viên nghỉ thì mất khách hàng, không có đánh giá cá nhân nên rào cản 'có tin được không' rất lớn, thông tin văn phòng sai hoặc thiếu, không đo lường được hiệu quả online từng người, và cuối cùng — Manulife, Prudential, AIA chưa ai làm, đây là cơ hội first-mover nhưng có thời hạn. Không vấn đề nào quá lớn, nhưng cộng lại, chúng âm thầm chuyển khách sang đối thủ mỗi ngày.","Giờ em giải thích GBP là gì, thật đơn giản. Hãy hình dung nó như một tấm danh thiếp thông minh mà Google tự động dựng lên — miễn phí. Với TV viên bảo hiểm, nó gồm 8 thành phần: tên TV viên + Bảo Việt, sao đánh giá, vùng phục vụ, số tổng đài, ảnh, đánh giá từ khách, bài viết chuyên môn, và Q&A. Đặc biệt, TV viên dùng SAB — Service Area Business — ẩn địa chỉ nhà, chỉ hiện vùng phục vụ. Tấm danh thiếp này LUÔN được dựng — câu hỏi là nó hiển thị TV viên Bảo Việt, hay đối thủ?","Một câu hỏi quan trọng: 'Khác gì cold call?' Khác hoàn toàn. Cách cũ: khách phải quen biết hoặc bị cold call, tỷ lệ 2-5%, mình tự giới thiệu, 200 cuộc gọi bị 95% từ chối. Cách mới với GBP: Google TỰ hiển thị khi khách ĐANG CẦN bảo hiểm, tỷ lệ 15-25%, 80 khách hàng thật chứng nhận bằng đánh giá, GBP miễn phí + khách tự gọi đến. Quan trọng: GBP không thay thế cold call — nó mở thêm kênh inbound. Cả hai kênh cùng hoạt động.","Vậy làm sao để vào top 3? Google xếp hạng dựa trên ba yếu tố: Relevance — TV viên có đúng loại BH khách cần không; Distance — có phục vụ khu vực của khách không; và Prominence — có uy tín không. Bên em tối ưu bằng phương pháp 5R: Radius — mở rộng vùng phục vụ; Relevance — tối ưu danh mục Insurance Agent, mô tả, chuyên môn; Reviews — thu đánh giá cá nhân; Recency — đăng bài Life Event theo mùa; và Ratings — nâng điểm đánh giá trung bình, theo dõi xu hướng rating. Triết lý: không đo lường được thì không quản lý được — mọi chỉ số 5R đều hiển thị real-time trên dashboard.","Giải pháp: sự kết hợp của SingleInterface là Platform — dashboard, bulk update, analytics, protection, AI Search; và Beta là Services — tổng đài, TV viên profile, Trust Score, landing page, Life Event, Renewal CRM. Một bên không đủ. Kết hợp lại mới tạo ra giải pháp enterprise toàn diện. Slogan: công nghệ quản lý + dịch vụ tối ưu = khách hàng tự tìm đến thay vì bị cold call.","Mô hình Hub and Spoke. Bảo Việt HQ quản lý toàn bộ. Mỗi văn phòng có GBP riêng. Và quan trọng hơn — mỗi TV viên cũng có GBP cá nhân dạng SAB, ẩn địa chỉ nhà, chỉ hiện vùng phục vụ. TV viên A chuyên nhân thọ và trẻ em ở Q1-Q3-Q5, TV viên B chuyên sức khoẻ và gia đình ở Q7-Bình Thạnh. Khi khách search 'tư vấn bảo hiểm gia đình Quận 3', Bảo Việt chiếm 2/3 Map Pack — văn phòng slot 1, TV viên slot 2. Đối thủ chỉ còn 1 slot.","Giải pháp đầu tiên: tối ưu văn phòng. Bên trái là trước — tên chung chung 'Bảo Việt', 1 danh mục, mô tả trống, 0 ảnh, dưới 3 sao, 0 bài đăng, 0 Q&A. Bên phải là sau — 'Bảo hiểm Bảo Việt — Văn phòng Quận 1', 3+ danh mục, 750 ký tự mô tả riêng, 30+ ảnh chuyên nghiệp, 4.7 sao, 2-4 bài/tuần, 10+ Q&A như 'Nên mua BH gì cho con nhỏ?'. Đây không phải chỉ điền thông tin — đó là chiến lược nội dung từ dịch vụ Nhân thọ, Sức khoẻ, Xe cơ giới đến landing page chuẩn Local SEO.","Đây là slide QUAN TRỌNG NHẤT — TV viên Profile. Trong bảo hiểm, khách mua dựa trên trust vào NGƯỜI, không phải logo. Mỗi TV viên sẽ có GBP cá nhân: 'Nguyễn Văn A — Tư vấn Bảo hiểm Bảo Việt', Insurance Agent, SAB Q1-Q3-Q5, 4.9 sao, 80 đánh giá, chuyên BH nhân thọ trẻ em gia đình, số tổng đài. Khi khách search, Bảo Việt chiếm 2/3 Map Pack — văn phòng slot 1, TV viên slot 2, đối thủ slot 3. Hiện tại GẦN NHƯ KHÔNG CÓ TV viên BH nào ở Việt Nam có GBP cá nhân. Blue ocean 100%. Ai làm trước, chiếm trước.","Trust Score — đây là breakthrough RIÊNG cho ngành bảo hiểm. Rào cản số 1 khi mua bảo hiểm là 'có tin được không?' Trust Score 92 trên 100 tổng hợp từ 5 yếu tố: số năm kinh nghiệm 20%, số khách hàng đã phục vụ 20%, điểm đánh giá Google 30%, chứng chỉ chuyên môn MDRT-TOT 15%, và tốc độ phản hồi 15%. Khi khách hàng thấy Trust Score 92/100 dựa trên 80+ đánh giá thật — 'có tin được không?' không còn là câu hỏi nữa. Slide này hoàn toàn mới, không có trong bất kỳ pitch nào khác.","GBP Protection. Google KHÔNG cho phép tắt 'Suggest an edit'. Bất kỳ ai — kể cả đối thủ — có thể đổi số điện thoại TV viên, thậm chí đánh dấu 'đã đóng cửa vĩnh viễn'. Platform quét mỗi 15 phút, nếu phát hiện chỉnh sửa trái phép thì tự động hoàn tác, nếu cần xem xét thì thông báo HQ duyệt, tất cả đều ghi log. Với 50+ profiles, không thể kiểm tra thủ công — protection tự động là bắt buộc.","TV viên nghỉ việc KHÔNG BẰNG mất khách hàng. Bên trái: không có tổng đài — khách gọi số cá nhân TV viên, TV viên nghỉ, mất liên lạc vĩnh viễn, khách lapse hợp đồng. Bên phải: có tổng đài Beta — GBP hiển thị số tổng đài, TV viên nghỉ thì cuộc gọi tự động chuyển TV viên mới, zero data loss, khách được phục vụ liền mạch. Ngành bảo hiểm có turnover cao nhất — tổng đài là THIẾT YẾU, không phải nice-to-have.","Năm giải pháp đột phá thiết kế riêng cho bảo hiểm. Một, Life Event Auto-Content — tự động đăng bài theo sự kiện cuộc sống: tháng 6 'Vừa có em bé?', tháng 9 'Con vào lớp 1?', tháng 12 'Đã đủ bảo vệ chưa?'. Hai, Coverage Calculator — khách nhập tuổi, thu nhập, gia đình, hệ thống gợi ý BH phù hợp, kết nối TV viên gần nhất — lead chất lượng cao vì khách đã hiểu nhu cầu. Ba, Shadow Coverage Pages — landing page cho vùng chưa có TV viên, vừa capture leads vừa recruit TV viên mới. Bốn, AI Search — Bảo Việt xuất hiện trên ChatGPT, Perplexity khi khách hỏi 'nên mua BH gì'. Năm, Renewal Reminder CRM — nhắc gia hạn 30 ngày trước, TV viên tư vấn, gia hạn, xin review. Tất cả xoay quanh một mục tiêu: khách TỰ tìm đến.","Chúng tôi cam kết bằng con số. Văn phòng + TV viên top 3 Google Maps: từ dưới 10% lên ít nhất 50%. Cuộc gọi inbound từ Maps: từ gần 0 lên hơn 200 cuộc/tháng. Lượt chỉ đường: từ không đo lên hơn 500 lượt/tháng. Đánh giá trung bình TV viên: từ chưa có lên ít nhất 4.7 sao. Phản hồi đánh giá: từ 0% lên 100% trong 24 giờ. Tỷ lệ inbound leads trên tổng leads: từ dưới 5% lên ít nhất 30%. Mỗi con số đều hiển thị real-time trên dashboard.","ROI minh hoạ. Chi phí khoảng 100-180 triệu đồng/tháng cho 50 profiles gồm văn phòng và TV viên. 50 leads/tháng, 15% convert thành 7-8 hợp đồng mới. Giá trị mỗi hợp đồng: phí bảo hiểm 10-50 triệu/năm nhân nhiều năm. ROI hơn 500%. So sánh: cold call 200 cuộc/ngày nhân 2% bằng 0.4 hợp đồng; GBP 50 leads nhân 15% bằng 7.5 hợp đồng — hiệu quả gấp khoảng 19 lần. Chi phí GBP 50 profiles bằng chi phí 1 TV viên cold call trong 2 tháng — nhưng tạo dòng khách hàng bền vững.","So sánh 4 kênh: Cold Call, Facebook, Giới thiệu, và GBP. Chỉ GBP mới kết hợp được tất cả: khách tìm thấy đúng lúc CẦN, tỷ lệ chuyển đổi 15-25%, 80+ đánh giá từ khách thật, chi phí fixed thấp, tổng đài giữ 100% data khi nhân viên nghỉ, dashboard đo lường chi tiết từng người, và Service Area phủ sóng tự động. GBP không thay thế các kênh khác — nó chiếm lĩnh khoảng trống mà không kênh nào với tới được: khoảnh khắc khách ĐANG CẦN bảo hiểm.","Dashboard preview. Toàn bộ đội ngũ trong 1 màn hình. Overview: tổng calls, directions, reviews toàn mạng lưới. TV viên Ranking: xếp hạng theo calls, reviews, Trust Score — ai hiệu quả, ai cần hỗ trợ. Văn phòng Performance: so sánh từng văn phòng. Review Alerts: đánh giá 1-2 sao cần xử lý gấp. Protection Log: chỉnh sửa trái phép đã bị chặn. Và Renewal Tracker — lịch gia hạn sắp tới và trạng thái. Real-time, mọi văn phòng, mọi TV viên, mọi lần gia hạn, từ 1 dashboard.","Chúng tôi hiểu băn khoăn. Một, 'Bảo Việt đã có website, cần gì GBP?' — website nằm bên dưới Map Pack, GBP xuất hiện trên cùng và khách gọi trực tiếp. Hai, 'GBP miễn phí, tại sao trả phí?' — GBP là đất trống miễn phí, chúng tôi là kiến trúc sư, quản lý toà nhà, tổng đài, bảo vệ 24/7, Trust Score. Ba, 'Bảo hiểm khó thu review?' — mỗi lần ký hợp đồng hoặc gia hạn là cơ hội xin review, hệ thống auto-request, mỗi review là một lời giới thiệu công khai 24/7.","Thêm 3 băn khoăn nữa. Bốn, 'TV viên nghỉ mất data?' — tổng đài giữ mọi data, GBP chuyển giao trong 24 giờ, zero risk. Năm, 'Cold call vẫn hiệu quả mà?' — đúng, nhưng GBP KHÔNG thay thế cold call, GBP BỔ SUNG kênh inbound, cả hai cùng hoạt động. Sáu, 'Mất bao lâu?' — tuần 1-2 profile hoàn thiện, tháng 1-2 xuất hiện Map Pack, tháng 3-6 ROI rõ ràng.","Lộ trình 4 giai đoạn. Giai đoạn 1 tuần 1-4: pilot 1 văn phòng + 10 TV viên, setup SAB GBP, verify, Trust Score, go-live. Giai đoạn 2 tuần 5-8: ổn định, thu 10 reviews mỗi TV viên, Coverage Calculator live, phản hồi 100%. Giai đoạn 3 tháng 3-4: mở rộng 3+ văn phòng + 30 TV viên, Renewal Reminder CRM, AI Search. Giai đoạn 4 tháng 5-6: toàn hệ thống + Shadow Coverage + Full ROI report + đề xuất scale tỉnh thành khác. Bạn chỉ scale khi đã thấy kết quả từ pilot. Mỗi giai đoạn là một điểm kiểm chứng.","Bảo Việt có 4 lợi thế cạnh tranh. Một, First-mover: Manulife, Prudential, AIA chưa ai làm — chiếm trước là chiếm lâu dài. Hai, Moat: app và website không thể tạo GBP, chỉ TV viên thật mới có thể. Ba, Blue ocean: gần như không có TV viên BH nào ở Việt Nam có GBP cá nhân — 100% blue ocean. Bốn, Inbound lớn hơn Outbound: 1 inbound lead giá trị gấp 5-10 lần 1 cold call lead vì khách đã có nhu cầu và đã xem đánh giá. Nhưng cơ hội first-mover có thời hạn — khi Manulife hoặc Prudential bắt đầu, chi phí sẽ cao hơn.","Đây là bức tranh khi Bảo Việt tối ưu đầy đủ. Khách search 'tư vấn bảo hiểm gia đình Quận 1'. Kết quả: slot 1 — Bảo hiểm Bảo Việt Văn phòng Q1, chuyên Nhân thọ Giáo dục Sức khoẻ, 4.7 sao, 100 reviews. Slot 2 — TV viên Nguyễn Văn A Bảo Việt, chuyên BH trẻ em gia đình, 4.9 sao, Trust Score 92. Slot 3 — đối thủ Y, thông tin cơ bản, ít đánh giá. Bảo Việt chiếm 2/3, đối thủ bị đẩy xuống, 70% traffic thuộc về Bảo Việt. Đây không phải mơ ước — đây là kết quả tự nhiên của việc tối ưu đầy đủ.","Bước tiếp theo rất đơn giản. Bước 1: Audit miễn phí trong 3-5 ngày — phân tích GBP 3 văn phòng Bảo Việt + TV viên so với đối thủ Manulife, Prudential, AIA — báo cáo chi tiết. Bước 2: buổi demo 60 phút, demo live search 'tư vấn bảo hiểm' + quận, thấy cơ hội thật. Bước 3: pilot 3 tháng với 1 văn phòng + 10 TV viên, tạo SAB profiles, Trust Score, đo KPIs, báo cáo ROI. Bước 4: scale toàn hệ thống nếu thành công. Cam kết: KPI rõ ràng, báo cáo minh bạch, không mất data, bảo vệ 24/7, Account Manager riêng, blue ocean guarantee. Câu hỏi duy nhất: xin phép hẹn 1 buổi audit miễn phí trong tuần tới? Cảm ơn các anh chị, em sẵn sàng cho phần hỏi đáp."]
+  </script>
+
   <script src="deck-stage.js"></script>
 </body>
 
