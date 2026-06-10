@@ -1856,7 +1856,7 @@
           </div>
           <div class="anim d2" style="max-width:480px;justify-self:center;width:100%">
             <div class="gbp">
-              <div class="photo" style="background-image:url('loc.jpg');background-size:cover;background-position:center;color:transparent">
+              <div class="photo" data-bg-name="loc" style="background-size:cover;background-position:center;color:transparent">
               </div>
               <div class="body">
                 <div class="name">Bảo Việt Nhân thọ — CN Quận 1</div>
@@ -2302,7 +2302,7 @@
           </div>
           <div class="anim d2" style="max-width:440px;justify-self:center;width:100%">
             <div class="gbp">
-              <div class="photo" style="height:120px;background-image:url('man.jpg');background-size:cover;background-position:center top;color:transparent"></div>
+              <div class="photo" data-bg-name="man" style="height:120px;background-size:cover;background-position:center top;color:transparent"></div>
               <div class="body">
                 <div class="name">Nguyễn Văn A</div>
                 <div class="cat">Tư vấn BH Bảo Việt · Insurance Agent</div>
@@ -3196,6 +3196,25 @@
   </script>
 
   <script src="deck-stage.js"></script>
+<script>
+/* Auto-detect .png/.jpg for loc & man images (slide 7 & 13) */
+(function(){
+  document.querySelectorAll('[data-bg-name]').forEach(function(el){
+    var name = el.getAttribute('data-bg-name');
+    var exts = ['png','jpg'];
+    var tried = 0;
+    function tryNext(){
+      if(tried >= exts.length) return;
+      var img = new Image();
+      var src = name + '.' + exts[tried];
+      img.onload = function(){ el.style.backgroundImage = "url('" + src + "')"; };
+      img.onerror = function(){ tried++; tryNext(); };
+      img.src = src;
+    }
+    tryNext();
+  });
+})();
+</script>
 </body>
 
 </html>
