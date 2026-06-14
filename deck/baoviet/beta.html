@@ -1,0 +1,2436 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảo Việt × SingleInterface — Google Business Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    deck-stage:not(:defined) {
+      visibility: hidden
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --navy-900: #081a31;
+      --navy-800: #0e2949;
+      --navy-700: #143a63;
+      --navy-600: #1c4b7d;
+      --blue: #2b6cb0;
+      --blue-300: #7fb0e0;
+      --blue-100: #d6e6f6;
+      --amber: #f6ad55;
+      --amber-700: #c97e2c;
+      --paper: #f4f7fb;
+      --paper-2: #eaf0f8;
+      --card: #ffffff;
+      --ink: #0d2138;
+      --ink-2: #3c5168;
+      --ink-3: #6b7e93;
+      --line: #dde6f0;
+      --line-dark: rgba(255, 255, 255, .14);
+      --good: #2f8f6b;
+      --bad: #c0492f;
+      --star: #f0a92b;
+
+      --pad-x: 96px;
+      --pad-y: 74px;
+      --maxw: 1728px;
+    }
+
+    html,
+    body {
+      background: #05101f;
+      font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility
+    }
+
+    /* ---------- slide frame ---------- */
+    section {
+      background: var(--paper);
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .frame {
+      position: absolute;
+      inset: 0;
+      padding: var(--pad-y) var(--pad-x);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .frame.center {
+      justify-content: center
+    }
+
+    .midfill {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center
+    }
+
+    /* dark variant */
+    section.dark {
+      background: radial-gradient(120% 120% at 80% -10%, var(--navy-700) 0%, var(--navy-900) 60%);
+      color: #eaf1fa
+    }
+
+    section.dark .h,
+    section.dark .kick-text {
+      color: #fff
+    }
+
+    section.dark .sub {
+      color: var(--blue-100)
+    }
+
+    section.dark .foot {
+      color: rgba(255, 255, 255, .5)
+    }
+
+    section.dark .foot b {
+      color: rgba(255, 255, 255, .8)
+    }
+
+    /* ---------- chrome ---------- */
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px
+    }
+
+    .kick-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--amber);
+      transform: rotate(45deg);
+      flex: none
+    }
+
+    .kick-text {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      white-space: nowrap
+    }
+
+    .kick-num {
+      margin-left: auto;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 18px;
+      letter-spacing: .1em;
+      color: var(--ink-3)
+    }
+
+    section.dark .kick-num {
+      color: rgba(255, 255, 255, .45)
+    }
+
+    .h {
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -.018em;
+      color: var(--ink);
+      text-wrap: balance
+    }
+
+    .h-xl {
+      font-size: 88px
+    }
+
+    .h-lg {
+      font-size: 66px
+    }
+
+    .h-md {
+      font-size: 52px
+    }
+
+    .h-sm {
+      font-size: 40px
+    }
+
+    .sub {
+      font-size: 27px;
+      font-weight: 400;
+      color: var(--ink-2);
+      line-height: 1.4;
+      max-width: 1180px
+    }
+
+    .accent {
+      color: var(--amber-700)
+    }
+
+    section.dark .accent {
+      color: var(--amber)
+    }
+
+    .hl {
+      background: linear-gradient(transparent 62%, rgba(246, 173, 85, .42) 62%);
+      padding: 0 .04em
+    }
+
+    /* takeaway strip */
+    .takeaway {
+      margin-top: auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding-top: 30px
+    }
+
+    .takeaway .bar {
+      width: 6px;
+      align-self: stretch;
+      background: var(--amber);
+      flex: none;
+      border-radius: 3px
+    }
+
+    .takeaway p {
+      font-size: 25px;
+      line-height: 1.42;
+      font-weight: 500;
+      color: var(--ink)
+    }
+
+    section.dark .takeaway p {
+      color: #fff
+    }
+
+    .takeaway b {
+      font-weight: 700
+    }
+
+    /* footer */
+    .foot {
+      position: absolute;
+      left: var(--pad-x);
+      right: var(--pad-x);
+      bottom: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px;
+      letter-spacing: .08em;
+      color: var(--ink-3)
+    }
+
+    .foot b {
+      font-weight: 600;
+      color: var(--ink-2)
+    }
+
+    .frame.with-foot {
+      padding-bottom: 96px
+    }
+
+    /* wordmark */
+    .wm {
+      font-weight: 800;
+      letter-spacing: -.02em
+    }
+
+    .wm .x {
+      color: var(--amber);
+      font-weight: 500;
+      margin: 0 .28em
+    }
+
+    /* ---------- cards & grids ---------- */
+    .grid {
+      display: grid;
+      gap: 22px
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 30px 32px
+    }
+
+    section.dark .card {
+      background: rgba(255, 255, 255, .05);
+      border-color: var(--line-dark)
+    }
+
+    .num-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 20px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: var(--navy-800);
+      color: #fff;
+      flex: none
+    }
+
+    section.dark .num-badge {
+      background: var(--amber);
+      color: var(--navy-900)
+    }
+
+    /* pill */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase
+    }
+
+    .pill.amber {
+      background: rgba(246, 173, 85, .16);
+      color: var(--amber-700)
+    }
+
+    .pill.blue {
+      background: var(--blue-100);
+      color: var(--blue)
+    }
+
+    section.dark .pill.blue {
+      background: rgba(127, 176, 224, .18);
+      color: var(--blue-300)
+    }
+
+    /* icon */
+    .ic {
+      width: 30px;
+      height: 30px;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: none
+    }
+
+    .ic-lg {
+      width: 40px;
+      height: 40px;
+      stroke-width: 1.7
+    }
+
+    /* stars */
+    .stars {
+      display: inline-flex;
+      gap: 3px;
+      color: var(--star)
+    }
+
+    .stars svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor
+    }
+
+    /* ---------- GBP business card mockup ---------- */
+    .gbp {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px -28px rgba(8, 26, 49, .45);
+      width: 100%
+    }
+
+    .gbp .photo {
+      height: 150px;
+      background-image: repeating-linear-gradient(135deg, #dbe6f2 0 14px, #e8f0f8 14px 28px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #90a6bd;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      letter-spacing: .08em;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .gbp .body {
+      padding: 22px 26px
+    }
+
+    .gbp .name {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15
+    }
+
+    .gbp .cat {
+      font-size: 16px;
+      color: var(--ink-3);
+      margin-top: 3px
+    }
+
+    .gbp .rate {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 19px
+    }
+
+    .gbp .rate .score {
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .gbp .rate .count {
+      color: var(--ink-3);
+      font-size: 16px
+    }
+
+    .gbp .rows {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px
+    }
+
+    .gbp .row {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      font-size: 17px;
+      color: var(--ink-2)
+    }
+
+    .gbp .row .ic {
+      width: 21px;
+      height: 21px;
+      stroke-width: 2;
+      color: var(--blue)
+    }
+
+    .gbp .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px
+    }
+
+    .gbp .act {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      padding: 13px 6px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue)
+    }
+
+    .gbp .act .ic {
+      width: 23px;
+      height: 23px;
+      color: var(--blue)
+    }
+
+    /* map pack result row */
+    .mp {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden
+    }
+
+    .mp .res {
+      display: flex;
+      gap: 18px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+      align-items: center
+    }
+
+    .mp .res:last-child {
+      border-bottom: 0
+    }
+
+    .mp .res.win {
+      background: linear-gradient(90deg, rgba(246, 173, 85, .12), transparent 70%);
+      border-left: 5px solid var(--amber)
+    }
+
+    .mp .res .rank {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 18px;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--paper-2);
+      color: var(--ink-2);
+      flex: none
+    }
+
+    .mp .res.win .rank {
+      background: var(--amber);
+      color: var(--navy-900)
+    }
+
+    .mp .res .thumb {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      background: repeating-linear-gradient(135deg, #dbe6f2 0 9px, #e8f0f8 9px 18px);
+      flex: none;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .mp .res .thumb .ic {
+      color: var(--navy-600);
+      width: 26px;
+      height: 26px
+    }
+
+    .mp .res .meta {
+      flex: 1;
+      min-width: 0
+    }
+
+    .mp .res .meta .t {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15
+    }
+
+    .mp .res .meta .s {
+      font-size: 16px;
+      color: var(--ink-3);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    /* abstract map backdrop */
+    .mapbg {
+      position: relative;
+      background: #e9eff5;
+      background-image: linear-gradient(rgba(180, 198, 216, .5) 1px, transparent 1px), linear-gradient(90deg, rgba(180, 198, 216, .5) 1px, transparent 1px);
+      background-size: 46px 46px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      overflow: hidden
+    }
+
+    /* comparison table */
+    .ctab {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 19px
+    }
+
+    .ctab th,
+    .ctab td {
+      text-align: left;
+      padding: 18px 24px;
+      vertical-align: middle
+    }
+
+    .ctab thead th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink-3)
+    }
+
+    .ctab tbody tr {
+      background: #fff
+    }
+
+    .ctab tbody td {
+      border-top: 1px solid var(--line)
+    }
+
+    .ctab .lab {
+      font-weight: 600;
+      color: var(--ink);
+      width: 24%
+    }
+
+    .ctab .old {
+      color: var(--ink-2)
+    }
+
+    .ctab .new {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .ctab .col-new {
+      background: rgba(43, 108, 176, .05)
+    }
+
+    /* flow chips */
+    .flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0
+    }
+
+    .flow .step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .flow .arr {
+      display: flex;
+      align-items: center;
+      color: var(--blue-300);
+      padding: 0 10px
+    }
+
+    .flow .arr .ic {
+      width: 38px;
+      height: 38px;
+      stroke-width: 2
+    }
+
+    /* simple two-col split */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      flex: 1;
+      min-height: 0
+    }
+
+    .split.tilt {
+      grid-template-columns: 1.05fr .95fr
+    }
+
+    /* big stat */
+    .bigstat {
+      font-weight: 800;
+      line-height: .92;
+      letter-spacing: -.03em;
+      font-variant-numeric: tabular-nums
+    }
+
+    /* 9-component chips */
+    .chip9 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 15px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink)
+    }
+
+    .chip9 .ic {
+      width: 21px;
+      height: 21px;
+      stroke-width: 2;
+      color: var(--blue);
+      flex: none
+    }
+
+    /* 5R cells */
+    .r5 {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--line-dark);
+      border-radius: 14px;
+      padding: 16px 20px
+    }
+
+    .r5 .r5h {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: nowrap
+    }
+
+    .r5 .r5h b {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .r5 .map {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--amber);
+      letter-spacing: .02em;
+      white-space: nowrap
+    }
+
+    .r5 p {
+      font-size: 16px;
+      color: var(--blue-100);
+      margin-top: 6px;
+      line-height: 1.4
+    }
+
+    /* diagram node */
+    .node {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px 24px
+    }
+
+    section.dark .node {
+      background: rgba(255, 255, 255, .05);
+      border-color: var(--line-dark)
+    }
+
+    /* before/after rows */
+    .ba {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 18px
+    }
+
+    .ba span {
+      color: var(--ink-3);
+      font-weight: 500;
+      flex: none
+    }
+
+    .ba em {
+      font-style: normal;
+      color: var(--ink-2);
+      text-align: right;
+      font-weight: 500
+    }
+
+    .ba.good em {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    /* KPI big target */
+    .kpibig {
+      font-weight: 800;
+      font-size: 30px;
+      color: var(--blue);
+      font-variant-numeric: tabular-nums
+    }
+
+    /* ROI rows */
+    .roirow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--line-dark);
+      border-radius: 13px;
+      padding: 18px 24px
+    }
+
+    .roilab {
+      font-size: 20px;
+      color: var(--blue-100)
+    }
+
+    .roival {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      text-align: right
+    }
+
+    .roiarr {
+      display: flex;
+      justify-content: center;
+      color: var(--amber)
+    }
+
+    .roiarr .ic {
+      width: 30px;
+      height: 30px
+    }
+
+    /* comparison matrix */
+    .ctab.cmp th,
+    .ctab.cmp td {
+      text-align: center;
+      padding: 15px 16px
+    }
+
+    .ctab.cmp .lab {
+      text-align: left
+    }
+
+    .ctab.cmp thead th {
+      font-size: 15px
+    }
+
+    .ctab.cmp .x {
+      color: #c9d3de;
+      font-size: 19px;
+      font-weight: 700
+    }
+
+    .ctab.cmp .y {
+      color: var(--good);
+      font-size: 19px;
+      font-weight: 700
+    }
+
+    .ctab.cmp .y2 {
+      color: var(--good);
+      font-weight: 700;
+      font-size: 19px
+    }
+
+    .ctab.cmp .part {
+      color: var(--amber-700);
+      font-size: 19px;
+      font-weight: 600
+    }
+
+    .ctab.cmp th.hi {
+      background: var(--navy-800);
+      color: #fff;
+      border-radius: 10px 10px 0 0
+    }
+
+    .ctab.cmp td.hi {
+      background: rgba(43, 108, 176, .08)
+    }
+
+    /* dashboard panels */
+    .dpanel {
+      background: #fff;
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      min-height: 150px
+    }
+
+    .dph {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 16px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      font-weight: 600
+    }
+
+    .dnum {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1;
+      font-variant-numeric: tabular-nums
+    }
+
+    .dlab {
+      font-size: 15px;
+      color: var(--ink-3);
+      margin-top: 3px
+    }
+
+    .drow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 18px;
+      color: var(--ink-2);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--paper-2)
+    }
+
+    .drow:last-child {
+      border-bottom: 0
+    }
+
+    .drow b {
+      color: var(--ink);
+      font-weight: 700
+    }
+
+    /* Q&A cards */
+    .qa {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 30px 30px;
+      display: flex;
+      flex-direction: column
+    }
+
+    .qmark {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: var(--navy-800);
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .qq {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 18px;
+      line-height: 1.25
+    }
+
+    .qa-line {
+      height: 1px;
+      background: var(--line);
+      margin: 18px 0
+    }
+
+    .qans {
+      font-size: 19px;
+      color: var(--ink-2);
+      line-height: 1.5
+    }
+
+    .tline {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 17px;
+      color: var(--ink-2)
+    }
+
+    .tline span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 7px;
+      background: var(--paper-2);
+      color: var(--ink-2);
+      flex: none;
+      white-space: nowrap
+    }
+
+    /* roadmap phases */
+    .phase {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden
+    }
+
+    .phase::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: var(--amber)
+    }
+
+    .phase.last::before {
+      background: var(--good)
+    }
+
+    .ph-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px
+    }
+
+    .ph-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 20px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--navy-800);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: none
+    }
+
+    .ph-when {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-2);
+      letter-spacing: .04em;
+      background: var(--paper-2);
+      padding: 7px 14px;
+      border-radius: 8px;
+      white-space: nowrap
+    }
+
+    .ph-prog {
+      height: 6px;
+      border-radius: 3px;
+      background: var(--paper-2);
+      overflow: hidden;
+      margin-left: auto;
+      width: 130px;
+      flex: none
+    }
+
+    .ph-prog i {
+      display: block;
+      height: 100%;
+      background: var(--amber);
+      border-radius: 3px
+    }
+
+    .phase.last .ph-prog i {
+      background: var(--good)
+    }
+
+    .ph-title {
+      font-size: 25px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.18
+    }
+
+    .ph-desc {
+      font-size: 18px;
+      color: var(--ink-2);
+      margin-top: 10px;
+      line-height: 1.45
+    }
+
+    /* CTA steps */
+    .cta-step {
+      flex: 1;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--line-dark);
+      border-radius: 16px;
+      padding: 22px 24px
+    }
+
+    .cta-step.active {
+      background: rgba(246, 173, 85, .1);
+      border-color: var(--amber)
+    }
+
+    .cs-ic {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, .1);
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .cta-step.active .cs-ic {
+      background: var(--amber);
+      color: var(--navy-900)
+    }
+
+    .cta-step.active .cs-ic .ic {
+      width: 24px;
+      height: 24px;
+      stroke-width: 3
+    }
+
+    .cs-t {
+      font-size: 21px;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 16px;
+      line-height: 1.2
+    }
+
+    .cs-t span {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--amber);
+      margin-top: 4px;
+      letter-spacing: .03em
+    }
+
+    .cta-step p {
+      font-size: 16px;
+      color: var(--blue-100);
+      margin-top: 10px;
+      line-height: 1.4
+    }
+
+    .commit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border: 1px solid var(--line-dark);
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #eaf1fa
+    }
+
+    .commit::before {
+      content: "✓";
+      color: var(--good);
+      font-weight: 700
+    }
+
+    /* trust score gauge */
+    .ts-gauge {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: conic-gradient(var(--good) 0% 92%, var(--paper-2) 92% 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: none
+    }
+
+    .ts-inner {
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center
+    }
+
+    .ts-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 18px
+    }
+
+    .ts-row:last-child {
+      border-bottom: 0
+    }
+
+    .ts-lab {
+      font-weight: 600;
+      color: var(--ink);
+      flex: 1;
+      min-width: 0
+    }
+
+    .ts-weight {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--ink-3);
+      flex: none;
+      width: 45px;
+      text-align: right
+    }
+
+    .ts-bar {
+      flex: none;
+      width: 120px;
+      height: 8px;
+      background: var(--paper-2);
+      border-radius: 4px;
+      overflow: hidden
+    }
+
+    .ts-bar i {
+      display: block;
+      height: 100%;
+      border-radius: 4px;
+      background: var(--good)
+    }
+
+    .ts-val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--ink);
+      flex: none;
+      width: 55px;
+      text-align: right
+    }
+
+    section.dark .ts-row {
+      border-color: var(--line-dark)
+    }
+
+    section.dark .ts-lab {
+      color: #fff
+    }
+
+    section.dark .ts-weight {
+      color: var(--blue-100)
+    }
+
+    section.dark .ts-bar {
+      background: rgba(255, 255, 255, .1)
+    }
+
+    section.dark .ts-val {
+      color: #fff
+    }
+
+    section.dark .ts-gauge {
+      background: conic-gradient(var(--good) 0% 92%, rgba(255, 255, 255, .1) 92% 100%)
+    }
+
+    section.dark .ts-inner {
+      background: var(--navy-800)
+    }
+
+    /* entrance anim */
+    @media (prefers-reduced-motion:no-preference) {
+      [data-deck-active] .anim {
+        opacity: 0;
+        transform: translateY(16px);
+        animation: rise .6s cubic-bezier(.2, .7, .3, 1) forwards
+      }
+
+      [data-deck-active] .anim:nth-child(2) {
+        animation-delay: .07s
+      }
+
+      [data-deck-active] .anim:nth-child(3) {
+        animation-delay: .14s
+      }
+
+      [data-deck-active] .anim:nth-child(4) {
+        animation-delay: .21s
+      }
+
+      [data-deck-active] .d1 {
+        animation-delay: .1s
+      }
+
+      [data-deck-active] .d2 {
+        animation-delay: .2s
+      }
+
+      [data-deck-active] .d3 {
+        animation-delay: .3s
+      }
+
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <deck-stage width="1920" height="1080">
+
+    <!-- ============ SLIDE 1 — TITLE ============ -->
+    <section class="dark" data-label="Title">
+      <div class="frame center">
+        <div class="kicker anim">
+          <span class="kick-dot"></span>
+          <span class="kick-text">Đề xuất chiến lược · Google Business Profile</span>
+        </div>
+        <h1 class="h h-xl anim" style="max-width:1500px">Hàng nghìn người tìm <span class="accent">"tư vấn
+            bảo hiểm gần đây"</span>.<br>Bảo Việt có xuất hiện không?</h1>
+        <p class="sub anim" style="margin-top:30px;font-size:30px">Giải pháp tối ưu Google Business Profile cho Bảo
+          hiểm Bảo Việt — để mỗi tư vấn viên trở thành chuyên gia đáng tin cậy trên Google Maps.</p>
+        <div class="anim" style="margin-top:64px;display:flex;align-items:center;gap:34px">
+          <span class="wm" style="font-size:34px;color:#fff">SingleInterface<span class="x">×</span>Beta</span>
+          <span style="width:1px;height:38px;background:rgba(255,255,255,.2)"></span>
+          <span
+            style="font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:.1em;color:rgba(255,255,255,.55)">06
+            · 2026</span>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
+          Beta</span><span>Đề xuất gửi <b>Bảo hiểm Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 2 — COLD CALL vs MAPS ============ -->
+    <section data-label="95% cold call vs 88% Maps">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Khoảnh khắc quyết định</span><span
+            class="kick-num">02 / 17</span></div>
+        <h2 class="h h-md anim" style="max-width:1500px"><span class="hl">95% cold call bị từ chối.</span> Nhưng 88%
+          người tìm trên Google Maps <span class="accent">hành động trong 24h</span>.</h2>
+        <div class="midfill">
+          <div class="split anim d1" style="gap:48px;align-items:stretch;flex:none">
+            <div class="card"
+              style="padding:40px 38px;border-color:rgba(192,73,47,.3);background:rgba(192,73,47,.04);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--bad)">
+                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                <path d="M1 1l22 22" style="stroke-width:2.5" />
+              </svg>
+              <div style="font-size:20px;font-weight:600;color:var(--bad);margin-top:14px;margin-bottom:14px">COLD CALL</div>
+              <div class="bigstat" style="font-size:120px;color:var(--bad)">95<span style="font-size:54px">%</span>
+              </div>
+              <div style="font-size:22px;font-weight:700;color:var(--ink);margin-top:12px">bị từ chối</div>
+              <p style="font-size:18px;color:var(--ink-2);margin-top:10px;line-height:1.4">TV viên gọi <b>200
+                  cuộc/ngày</b>, chỉ 5% nghe. Thời gian lãng phí, khách hàng khó chịu.</p>
+            </div>
+            <div class="card"
+              style="padding:40px 38px;border-color:rgba(47,143,107,.3);background:rgba(47,143,107,.04);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--good)">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <div style="font-size:20px;font-weight:600;color:var(--good);margin-top:14px;margin-bottom:14px">GOOGLE MAPS</div>
+              <div class="bigstat" style="font-size:120px;color:var(--good)">88<span style="font-size:54px">%</span>
+              </div>
+              <div style="font-size:22px;font-weight:700;color:var(--ink);margin-top:12px">hành động trong 24h</div>
+              <p style="font-size:18px;color:var(--ink-2);margin-top:10px;line-height:1.4">Khách <b>TỰ tìm đến</b>, ĐÃ
+                CÓ nhu cầu. Tỷ lệ chuyển đổi <b>15-25%</b>.</p>
+              <div style="font-size:15px;color:var(--ink-3);margin-top:6px">Nguồn: Google/comScore</div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Nếu TV viên Bảo Việt xuất hiện trên Google Maps khi khách <b>ĐANG CẦN</b> bảo hiểm → tỷ lệ chuyển đổi
+            15-25%. <b>Gấp 5-10 lần cold call.</b></p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 3 — GBP LÀ GÌ (MOVED UP) ============ -->
+    <section data-label="GBP là gì">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải thích siêu đơn giản</span><span
+            class="kick-num">03 / 17</span></div>
+        <div class="split tilt" style="gap:64px;align-items:center;margin-top:6px">
+          <div>
+            <h2 class="h h-md anim">Google Business Profile = <span class="accent">tấm danh thiếp thông minh</span>
+              trên Google Maps.</h2>
+            <p class="sub anim" style="margin-top:22px">Google tự động dựng "danh thiếp" này khi ai đó tìm kiếm — hoàn
+              toàn <b>miễn phí</b>. Với chi nhánh Bảo Việt, nó gồm 8 thành phần:</p>
+            <div class="anim d1" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px">
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <path d="M9 22V12h6v10" />
+                </svg> Tên chi nhánh + Bảo Việt</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24" style="fill:currentColor;stroke:none">
+                  <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                </svg> 4.5★ (120 đánh giá)</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg> Địa chỉ chi nhánh</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg> Giờ làm việc (T2–T7)</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path
+                    d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                </svg> Hotline chi nhánh</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <rect x="2" y="5" width="20" height="15" rx="2" />
+                  <circle cx="12" cy="13" r="3" />
+                </svg> Ảnh văn phòng & nhân sự</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg> "Nhân viên tư vấn nhiệt tình"</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <path d="M14 2v6h6" />
+                  <path d="M16 13H8M16 17H8M10 9H8" />
+                </svg> Danh sách dịch vụ BH</div>
+            </div>
+          </div>
+          <div class="anim d2" style="max-width:480px;justify-self:center;width:100%">
+            <div class="gbp">
+              <div class="photo" data-bg-name="loc" style="background-size:cover;background-position:center;color:transparent">
+              </div>
+              <div class="body">
+                <div class="name">Bảo Việt Nhân thọ — CN Quận 1</div>
+                <div class="cat">Insurance Company · 123 Nguyễn Huệ, Q1, TP.HCM</div>
+                <div class="rate"><span class="stars"><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                    </svg></span><span class="score">4.5</span><span class="count">· 120 đánh giá</span></div>
+                <div class="rows">
+                  <div class="row"><svg class="ic" viewBox="0 0 24 24">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg> 123 Nguyễn Huệ, Quận 1, TP.HCM</div>
+                  <div class="row"><svg class="ic" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg> Giờ mở cửa: T2–T7, 8:00–17:30</div>
+                  <div class="row"><svg class="ic" viewBox="0 0 24 24">
+                      <path
+                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                    </svg> (028) 3827 xxxx</div>
+                </div>
+                <div class="actions">
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <path
+                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                    </svg> Gọi</div>
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <path d="M3 11l19-9-9 19-2-8-8-2z" />
+                    </svg> Chỉ đường</div>
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg> Website</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Google <b>TỰ ĐỘNG</b> hiển thị "tấm danh thiếp" này — MIỄN PHÍ. Nhưng nếu chi nhánh Bảo Việt không tối ưu
+            profile → <b>Google hiển thị ĐỐI THỦ hoặc AI đề xuất chi nhánh khác.</b></p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 4 — CHỊ LAN STORY ============ -->
+    <section data-label="Kịch bản Chị Lan">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Đặt mình vào vị trí khách
+            hàng</span><span class="kick-num">04 / 17</span></div>
+        <h2 class="h h-md anim" style="max-width:1400px">Hãy gặp <span class="accent">chị Lan</span> — một khách hàng
+          Bảo Việt chưa bao giờ có.</h2>
+        <div class="midfill">
+          <div class="flow anim d1">
+            <div class="step">
+              <span class="num-badge">1</span>
+              <div class="card" style="padding:26px 28px">
+                <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21a8 8 0 0 1 16 0" />
+                </svg>
+                <div style="font-size:22px;font-weight:700;margin-top:16px">Vừa sinh con đầu lòng</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">Chị Lan muốn mua bảo hiểm
+                  cho bé — an tâm cho tương lai con.</p>
+              </div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div class="step">
+              <span class="num-badge">2</span>
+              <div class="card" style="padding:26px 28px">
+                <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M21 21l-4.3-4.3" />
+                </svg>
+                <div style="font-size:22px;font-weight:700;margin-top:16px">Search "tư vấn BH cho trẻ em gần đây"</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">Mở Google trên điện thoại —
+                  đúng như 9/10 người Việt khác.</p>
+              </div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div class="step">
+              <span class="num-badge">3</span>
+              <div class="card"
+                style="padding:26px 28px;border-color:rgba(192,73,47,.3);background:rgba(192,73,47,.04)">
+                <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--bad)">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <div style="font-size:22px;font-weight:700;margin-top:16px">Maps hiện 3 TV viên — không có Bảo Việt
+                </div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">TV viên công ty X: 4.9★, 80
+                  reviews, "Chuyên BH trẻ em".</p>
+              </div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div class="step">
+              <span class="num-badge" style="background:var(--bad)">4</span>
+              <div class="card"
+                style="padding:26px 28px;border-color:rgba(192,73,47,.3);background:rgba(192,73,47,.04)">
+                <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--bad)">
+                  <path
+                    d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                </svg>
+                <div style="font-size:22px;font-weight:700;margin-top:16px">Gọi TV viên công ty X</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">1 tap gọi điện. Bảo Việt mất
+                  khách này — vĩnh viễn.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Chị Lan có nhu cầu mua bảo hiểm. <b>Chỉ đơn giản là chị ấy không tìm thấy BH Bảo Việt khi tìm kiếm trên các công cụ search.</b> Và mỗi ngày có
+            hàng nghìn "chị Lan" như vậy.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 5 — MAPS + 1 TAP (MERGED) ============ -->
+    <section data-label="Maps trước Website + 1 tap">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Trật tự hiển thị trên
+            Google</span><span class="kick-num">05 / 17</span></div>
+        <h2 class="h h-md anim">Google Maps xuất hiện <span class="accent">TRƯỚC</span> website — và chỉ cần <span class="hl">1 tap</span>.</h2>
+        <div class="midfill">
+          <div class="split anim d1" style="gap:40px;align-items:stretch;flex:none">
+            <div style="display:flex;flex-direction:column">
+              <div class="pill amber" style="align-self:flex-start;margin-bottom:18px"><svg class="ic"
+                  viewBox="0 0 24 24" style="width:18px;height:18px;color:var(--amber-700)">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg> Trên cùng · Map Pack</div>
+              <div class="card"
+                style="flex:1;border-color:rgba(246,173,85,.4);background:linear-gradient(180deg,rgba(246,173,85,.07),#fff);display:flex;flex-direction:column">
+                <div style="font-size:24px;font-weight:700">Chỉ 3 TV viên / văn phòng được hiển thị</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px">Tên · sao đánh giá · nút gọi · nút chỉ đường — ngay màn hình đầu tiên.</p>
+                <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px">
+                  <div style="display:flex;align-items:center;gap:13px;font-size:18px"><svg class="ic"
+                      viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--good)">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg> Gọi TV viên: <b style="color:var(--good)">1 tap</b></div>
+                  <div style="display:flex;align-items:center;gap:13px;font-size:18px"><svg class="ic"
+                      viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--good)">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg> Chỉ đường: <b style="color:var(--good)">1 tap</b></div>
+                  <div style="display:flex;align-items:center;gap:13px;font-size:18px"><svg class="ic"
+                      viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--good)">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg> Xem đánh giá: <b style="color:var(--star)">4.9★</b> ngay</div>
+                </div>
+                <div style="margin-top:auto;padding-top:20px;display:flex;align-items:baseline;gap:12px"><span
+                    class="bigstat" style="font-size:72px;color:var(--amber-700)">88%</span><span
+                    style="font-size:19px;color:var(--ink-2);font-weight:600">hành động trong 24h</span></div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column">
+              <div class="pill blue" style="align-self:flex-start;margin-bottom:18px"><svg class="ic"
+                  viewBox="0 0 24 24" style="width:18px;height:18px">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20" />
+                </svg> Bên dưới · Website</div>
+              <div class="card" style="flex:1;display:flex;flex-direction:column">
+                <div style="font-size:24px;font-weight:700">Tất cả website xếp hàng phía dưới</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px">Khách phải cuộn qua Map Pack, click vào web, rồi tự đi tìm tư vấn viên.</p>
+                <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px">
+                  <div style="display:flex;align-items:center;gap:13px;font-size:18px;color:var(--ink-2)"><svg
+                      class="ic" viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--bad)">
+                      <path d="M18 6L6 18M6 6l12 12" />
+                    </svg> Gọi TV viên: <b>5-7 bước</b></div>
+                  <div style="display:flex;align-items:center;gap:13px;font-size:18px;color:var(--ink-2)"><svg
+                      class="ic" viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--bad)">
+                      <path d="M18 6L6 18M6 6l12 12" />
+                    </svg> Chỉ đường: <b>copy paste địa chỉ</b></div>
+                  <div style="display:flex;align-items:center;gap:13px;font-size:18px;color:var(--ink-2)"><svg
+                      class="ic" viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--bad)">
+                      <path d="M18 6L6 18M6 6l12 12" />
+                    </svg> Xem đánh giá: <b>không có</b></div>
+                </div>
+                <div style="margin-top:auto;padding-top:20px;display:flex;align-items:baseline;gap:12px"><span
+                    class="bigstat" style="font-size:72px;color:var(--ink-3)">5–7</span><span
+                    style="font-size:19px;color:var(--ink-2);font-weight:600">bước mới liên hệ được</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Khách hàng luôn chọn con đường ngắn nhất. <b>Luôn luôn.</b> Dù website Bảo Việt đẹp đến đâu, nó vẫn nằm <b>bên dưới</b> Google Maps.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 6 — 7 CHALLENGES ============ -->
+    <section class="dark" data-label="7 thách thức">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Điều đang xảy ra ngay lúc
+            này</span><span class="kick-num">06 / 17</span></div>
+        <h2 class="h h-md anim">7 vấn đề đang khiến Bảo Việt <span class="accent">mất khách mỗi ngày</span>.</h2>
+        <div class="midfill">
+          <div class="grid anim d1" style="grid-template-columns:repeat(4,1fr);gap:16px">
+            <div class="card" style="padding:22px 24px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3" />
+              </svg>
+              <div style="font-size:19px;font-weight:700;margin-top:12px">TV viên không hiện diện online</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:6px;line-height:1.4">Khách tìm "tư vấn BH gần đây" → không thấy Bảo Việt.</p>
+            </div>
+            <div class="card" style="padding:22px 24px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <path
+                  d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+              </svg>
+              <div style="font-size:19px;font-weight:700;margin-top:12px">95% cold call bị từ chối</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:6px;line-height:1.4">Lãng phí 80% thời gian đội ngũ sales mỗi ngày.</p>
+            </div>
+            <div class="card" style="padding:22px 24px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+              <div style="font-size:19px;font-weight:700;margin-top:12px">TV viên nghỉ → mất khách</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:6px;line-height:1.4">Khách mất liên lạc → chuyển sang đối thủ hoặc lapse.</p>
+            </div>
+            <div class="card" style="padding:22px 24px"><svg class="ic" viewBox="0 0 24 24"
+                style="color:var(--amber);fill:var(--amber);stroke:none">
+                <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+              </svg>
+              <div style="font-size:19px;font-weight:700;margin-top:12px">Không có đánh giá cá nhân</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:6px;line-height:1.4">Rào cản "có tin được không?" rất lớn.</p>
+            </div>
+            <div class="card" style="padding:22px 24px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 9.9-1" />
+              </svg>
+              <div style="font-size:19px;font-weight:700;margin-top:12px">Thông tin văn phòng sai/thiếu</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:6px;line-height:1.4">Ai cũng sửa được — kể cả đối thủ.</p>
+            </div>
+            <div class="card" style="padding:22px 24px"><svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <path d="M3 3v18h18" />
+                <path d="M7 14l3-3 3 2 5-6" />
+              </svg>
+              <div style="font-size:19px;font-weight:700;margin-top:12px">Không đo lường hiệu quả</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:6px;line-height:1.4">Không biết TV viên nào hiệu quả, ai cần hỗ trợ.</p>
+            </div>
+            <div class="card"
+              style="padding:22px 24px;background:var(--amber);border-color:var(--amber);grid-column:span 2;display:flex;align-items:center;gap:24px">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--navy-900)">
+                <path
+                  d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.7V17a2 2 0 0 1-1 1.7L8 19v1h8v-1l-1-.3a2 2 0 0 1-1-1.7v-2.3M6 4h12v5a6 6 0 0 1-12 0z" />
+              </svg>
+              <div>
+                <div style="font-size:22px;font-weight:700;color:var(--navy-900)">Đối thủ chưa ai làm — cơ hội first-mover</div>
+                <p style="font-size:17px;color:var(--navy-800);margin-top:4px">Manulife, Prudential, AIA chưa tối ưu GBP — nhưng có thời hạn.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Không một vấn đề nào lớn. Nhưng cộng lại, chúng âm thầm <b>chuyển khách hàng của bạn sang cho đối thủ</b>
+            — mà không ai trong Bảo Việt nhìn thấy.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
+          Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 7 — SOLUTION OVERVIEW ============ -->
+    <section data-label="Giải pháp tổng quan">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giới thiệu giải pháp</span><span
+            class="kick-num">07 / 17</span></div>
+        <h2 class="h h-md anim"><span class="wm" style="font-weight:800">SingleInterface <span class="x"
+              style="color:var(--amber-700)">×</span> Beta</span> — Nền tảng + Dịch vụ.</h2>
+        <div class="midfill" style="gap:24px">
+          <div class="anim d1" style="display:flex;align-items:stretch;gap:20px">
+            <div class="node"
+              style="flex:.8;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--navy-800);color:#fff;border-color:var(--navy-700)">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber)">
+                <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
+              </svg>
+              <div style="font-size:24px;font-weight:700;margin-top:12px">Bảo hiểm Bảo Việt</div>
+              <div style="font-size:16px;color:var(--blue-100);margin-top:4px">HQ + Văn phòng + TV viên</div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div style="flex:1.5;display:flex;flex-direction:column;gap:14px">
+              <div class="node" style="border-color:var(--blue);background:rgba(43,108,176,.06)">
+                <div style="display:flex;align-items:center;gap:10px"><span class="pill blue"
+                    style="padding:5px 12px;font-size:14px">Platform</span><b
+                    style="font-size:20px;color:var(--blue)">SingleInterface</b></div>
+                <p style="font-size:17px;color:var(--ink-2);margin-top:8px;line-height:1.4">Dashboard tập trung · Bulk
+                  update · Analytics · Protection · Content · AI Search (Gemini, ChatGPT, Perplexity)</p>
+              </div>
+              <div class="node" style="border-color:var(--amber-700);background:rgba(246,173,85,.08)">
+                <div style="display:flex;align-items:center;gap:10px"><span class="pill amber"
+                    style="padding:5px 12px;font-size:14px">SERVICES</span><b
+                    style="font-size:20px;color:var(--amber-700)">Dịch vụ mở rộng</b></div>
+                <p style="font-size:17px;color:var(--ink-2);margin-top:8px;line-height:1.4">Tổng đài · TV viên Profile ·
+                  Trust Score · Landing Page · Life Event · Renewal CRM</p>
+              </div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div class="node"
+              style="flex:.85;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <div style="font-size:20px;font-weight:700;margin-top:12px">Google Business Profile</div>
+              <div style="font-size:16px;color:var(--ink-3);margin-top:4px">50+ profiles trên Maps</div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div class="node"
+              style="flex:.8;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--good);color:#fff;border-color:var(--good)">
+              <svg class="ic ic-lg" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21a8 8 0 0 1 16 0" />
+              </svg>
+              <div style="font-size:20px;font-weight:700;margin-top:12px">Khách hàng</div>
+              <div style="font-size:16px;color:rgba(255,255,255,.85);margin-top:4px">TỰ GỌI ĐẾN</div>
+            </div>
+          </div>
+          <div class="grid anim d2" style="grid-template-columns:1fr 1fr 1.1fr;gap:16px">
+            <div class="card" style="padding:20px 24px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--ink-3);letter-spacing:.06em">
+                CHỈ Platform</div>
+              <div style="font-size:19px;font-weight:600;margin-top:6px">= Quản lý bulk + tối ưu nội dung + bảo vệ + AI
+                Search.</div>
+            </div>
+            <div class="card" style="padding:20px 24px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--ink-3);letter-spacing:.06em">
+                CHỈ Services</div>
+              <div style="font-size:19px;font-weight:600;margin-top:6px">= Tổng đài, TV viên, Trust Score — nhưng thiếu
+                nền tảng scale.</div>
+            </div>
+            <div class="card"
+              style="padding:20px 24px;background:var(--navy-800);border-color:var(--navy-800);color:#fff">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--amber);letter-spacing:.06em">
+                KẾT HỢP · 1 + 1 = 3</div>
+              <div style="font-size:19px;font-weight:700;margin-top:6px">Nền tảng + Protection + Tổng đài + Trust Score
+                + Life Event + CRM.</div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p><b>Công nghệ quản lý + Dịch vụ tối ưu = Khách hàng tự tìm đến thay vì bị cold call.</b> Một bên không đủ —
+            sức mạnh nằm ở sự kết hợp.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 8 — HUB & SPOKE + TV VIÊN PROFILE (MERGED) ============ -->
+    <section data-label="Hub & Spoke + TV viên Profile">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #1 · BREAKTHROUGH</span><span
+            class="kick-num">08 / 17</span></div>
+        <h2 class="h h-sm anim">Mỗi văn phòng + mỗi TV viên = <span class="accent">chiếm 2/3 Map Pack</span>.</h2>
+        <div class="midfill">
+          <div class="split anim d1" style="grid-template-columns:1fr 1.1fr;gap:48px;flex:none">
+          <div>
+            <div class="pill amber" style="margin-bottom:20px">Hub & Spoke · Mô hình mạng lưới</div>
+            <p class="sub" style="font-size:19px;margin-bottom:24px;line-height:1.5">Mỗi TV viên có GBP riêng dạng SAB (Service Area Business) — ẩn địa chỉ nhà, chỉ hiện vùng phục vụ.</p>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div class="node" style="padding:20px 24px;display:flex;align-items:center;gap:16px;background:var(--navy-800);color:#fff;border-color:var(--navy-700)">
+                <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber);width:28px;height:28px">
+                  <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
+                </svg>
+                <div><b style="font-size:20px">Bảo Việt HQ</b><span style="font-size:16px;color:var(--blue-100);margin-left:10px">Quản lý toàn mạng lưới</span></div>
+              </div>
+              <div style="display:flex;gap:12px">
+                <div class="node" style="flex:1;padding:18px 20px"><b style="font-size:18px">VP Quận 1</b><div style="font-size:16px;color:var(--ink-3);margin-top:4px">4.7★</div></div>
+                <div class="node" style="flex:1;padding:18px 20px"><b style="font-size:18px">VP Đà Nẵng</b><div style="font-size:16px;color:var(--ink-3);margin-top:4px">4.5★</div></div>
+                <div class="node" style="flex:1;padding:18px 20px"><b style="font-size:18px">VP Hà Nội</b><div style="font-size:16px;color:var(--ink-3);margin-top:4px">4.6★</div></div>
+              </div>
+              <div class="node" style="padding:20px 24px;border-color:var(--amber-700);background:rgba(246,173,85,.07);display:flex;align-items:center;gap:16px">
+                <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber-700);width:28px;height:28px">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21a8 8 0 0 1 16 0" />
+                </svg>
+                <div><b style="font-size:19px">TV viên Nguyễn Văn A</b><div style="font-size:16px;color:var(--ink-3);margin-top:2px">SAB: Q1/Q3/Q5 · Chuyên: Nhân thọ, Trẻ em · 4.9★</div></div>
+              </div>
+              <div class="node" style="padding:20px 24px;border-color:var(--amber-700);background:rgba(246,173,85,.07);display:flex;align-items:center;gap:16px">
+                <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber-700);width:28px;height:28px">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21a8 8 0 0 1 16 0" />
+                </svg>
+                <div><b style="font-size:19px">TV viên Trần Thị B</b><div style="font-size:16px;color:var(--ink-3);margin-top:2px">SAB: Q7/BT · Chuyên: Sức khoẻ, Gia đình · 4.8★</div></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="pill blue" style="margin-bottom:20px">Search: "tư vấn bảo hiểm cho trẻ em Quận 1"</div>
+            <div class="mp">
+              <div class="res win" style="padding:18px 20px"><span class="rank" style="font-size:20px">1</span>
+                <div class="meta">
+                  <div class="t" style="font-size:19px">Bảo hiểm Bảo Việt — Văn phòng Q1</div>
+                  <div class="s" style="font-size:16px;margin-top:4px">Chuyên: Nhân thọ, Giáo dục, Sức khoẻ · 4.7★</div>
+                </div>
+              </div>
+              <div class="res win" style="padding:18px 20px"><span class="rank" style="font-size:20px">2</span>
+                <div class="meta">
+                  <div class="t" style="font-size:19px">TV viên Nguyễn Văn A — Bảo Việt</div>
+                  <div class="s" style="font-size:16px;margin-top:4px">Chuyên BH trẻ em, gia đình · 4.9★ · 80 reviews</div>
+                </div>
+              </div>
+              <div class="res" style="padding:18px 20px"><span class="rank" style="font-size:20px">3</span>
+                <div class="meta">
+                  <div class="t" style="font-size:19px;color:var(--ink-3)">Đối thủ X</div>
+                  <div class="s" style="font-size:16px;margin-top:4px">Thông tin cơ bản, ít đánh giá</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:28px;display:flex;gap:40px;justify-content:center">
+              <div style="text-align:center">
+                <div class="bigstat" style="font-size:80px;color:var(--blue)">2<span style="font-size:40px;color:var(--ink-3)">/3</span></div>
+                <div style="font-size:18px;color:var(--ink-2)">Map Pack thuộc Bảo Việt</div>
+              </div>
+              <div style="text-align:center">
+                <div class="bigstat" style="font-size:80px;color:var(--amber-700)">70<span style="font-size:40px">%</span></div>
+                <div style="font-size:18px;color:var(--ink-2)">traffic chuyển sang Bảo Việt</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Hiện tại <b>GẦN NHƯ KHÔNG CÓ</b> TV viên BH nào ở VN có GBP cá nhân → <b>blue ocean 100%</b>. Ai làm trước, chiếm trước.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 9 — TRUST SCORE + PROTECTION (MERGED) ============ -->
+    <section class="dark" data-label="Trust Score + Protection">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #2 · Premium Security</span><span
+            class="kick-num">09 / 17</span></div>
+        <h2 class="h h-sm anim"><span class="accent">Trust Score</span> xoá rào cản "có tin được không?" — <span class="accent">Protection</span> bảo vệ 24/7.</h2>
+        <div class="midfill">
+          <div class="split anim d1" style="grid-template-columns:1.1fr 1fr;gap:48px;flex:none">
+          <div>
+            <div class="pill amber" style="margin-bottom:20px">Trust Score · Riêng cho ngành Bảo hiểm</div>
+            <div class="card" style="background:rgba(255,255,255,.06);border-color:var(--line-dark);padding:28px 30px">
+              <div class="ts-row" style="padding:12px 0"><span class="ts-lab" style="font-size:18px">Số năm kinh nghiệm</span><span class="ts-weight" style="font-size:16px">20%</span><span
+                  class="ts-bar"><i style="width:80%"></i></span><span class="ts-val" style="font-size:18px">80</span></div>
+              <div class="ts-row" style="padding:12px 0"><span class="ts-lab" style="font-size:18px">Số khách hàng đã phục vụ</span><span
+                  class="ts-weight" style="font-size:16px">20%</span><span class="ts-bar"><i style="width:90%"></i></span><span
+                  class="ts-val" style="font-size:18px">90</span></div>
+              <div class="ts-row" style="padding:12px 0"><span class="ts-lab" style="font-size:18px">Điểm đánh giá Google</span><span
+                  class="ts-weight" style="font-size:16px">30%</span><span class="ts-bar"><i style="width:98%"></i></span><span
+                  class="ts-val" style="font-size:18px">98</span></div>
+              <div class="ts-row" style="padding:12px 0"><span class="ts-lab" style="font-size:18px">Chứng chỉ (MDRT, TOT)</span><span
+                  class="ts-weight" style="font-size:16px">15%</span><span class="ts-bar"><i style="width:100%"></i></span><span
+                  class="ts-val" style="font-size:18px">100</span></div>
+              <div class="ts-row" style="padding:12px 0"><span class="ts-lab" style="font-size:18px">Tốc độ phản hồi</span><span class="ts-weight" style="font-size:16px">15%</span><span
+                  class="ts-bar"><i style="width:95%"></i></span><span class="ts-val" style="font-size:18px">95</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:24px;margin-top:28px">
+              <div class="ts-gauge" style="width:110px;height:110px">
+                <div class="ts-inner" style="width:84px;height:84px">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:32px;font-weight:800;color:#fff;line-height:1">92</div>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:24px;font-weight:800;color:var(--good)">🟢 ĐÁNG TIN CẬY</div>
+                <p style="font-size:18px;color:var(--blue-100);margin-top:8px;line-height:1.45">Khi khách thấy Trust Score 92/100 + 80 đánh giá thật → "có tin được không?" biến mất.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="pill blue" style="margin-bottom:20px">GBP Protection · Bảo vệ 24/7</div>
+            <p style="font-size:19px;color:var(--blue-100);margin-bottom:24px;line-height:1.5">Google <b style="color:#fff">không cho phép tắt</b> "Suggest an edit". Đối thủ có thể đổi số điện thoại, đánh dấu "đã đóng cửa".</p>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div class="node" style="padding:20px 24px;display:flex;align-items:center;gap:16px"><svg class="ic"
+                  viewBox="0 0 24 24" style="width:28px;height:28px;color:var(--bad)">
+                  <path
+                    d="M10.3 3.9l-8 13.8A1.5 1.5 0 0 0 3.7 20h16.6a1.5 1.5 0 0 0 1.3-2.3l-8-13.8a1.5 1.5 0 0 0-2.6 0z" />
+                  <path d="M12 9v4M12 17h.01" />
+                </svg>
+                <div style="font-size:18px"><b>Ai đó sửa thông tin</b> <span style="color:var(--blue-100)">trên GBP</span></div>
+              </div>
+              <div class="node" style="padding:20px 24px;display:flex;align-items:center;gap:16px;border-color:var(--blue)"><svg
+                  class="ic" viewBox="0 0 24 24" style="width:28px;height:28px;color:var(--blue-300)">
+                  <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <div style="font-size:18px"><b>Quét mỗi 15 phút</b> <span style="color:var(--blue-100)">24/7, toàn mạng lưới</span></div>
+              </div>
+              <div class="node" style="padding:20px 24px;display:flex;align-items:center;gap:16px;border-color:var(--good)"><svg
+                  class="ic" viewBox="0 0 24 24" style="width:28px;height:28px;color:var(--good)">
+                  <path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.4 2.6L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+                <div style="font-size:18px"><b style="color:var(--good)">Tự động hoàn tác</b> <span style="color:var(--blue-100)">+ ghi log + thông báo HQ</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Trust Score xây <b>NIỀM TIN</b>. Protection <b>BẢO VỆ</b> niềm tin đó. Với 50+ profiles, cả hai đều <b>BẮT BUỘC</b>.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
+          Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 10 — TỔNG ĐÀI + LIFECYCLE (MERGED) ============ -->
+    <section data-label="Tổng đài + Lifecycle">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #3 · Data Safety + Growth</span><span
+            class="kick-num">10 / 17</span></div>
+        <h2 class="h h-sm anim">TV viên nghỉ <span class="accent">KHÔNG BẰNG</span> mất khách — và <span class="accent">Life Event</span> tự động tìm khách mới.</h2>
+        <div class="midfill">
+          <div class="split anim d1" style="grid-template-columns:1fr 1fr;gap:48px;flex:none">
+          <div>
+            <div class="pill amber" style="margin-bottom:20px">Tổng đài tập trung · Zero Data Loss</div>
+            <div class="split" style="gap:16px;grid-template-columns:1fr 1fr">
+              <div class="card" style="padding:24px 26px;border-color:rgba(192,73,47,.3);background:rgba(192,73,47,.04)">
+                <div style="font-size:17px;font-weight:600;color:var(--bad);margin-bottom:14px">❌ KHÔNG CÓ TỔNG ĐÀI</div>
+                <div style="font-size:18px;color:var(--ink-2);line-height:1.5">
+                  Khách gọi số cá nhân TV viên → TV viên nghỉ → <b style="color:var(--bad)">mất liên lạc vĩnh viễn</b> → khách lapse hợp đồng.
+                </div>
+              </div>
+              <div class="card" style="padding:24px 26px;border-color:rgba(47,143,107,.3);background:rgba(47,143,107,.04)">
+                <div style="font-size:17px;font-weight:600;color:var(--good);margin-bottom:14px">✓ CÓ TỔNG ĐÀI BETA</div>
+                <div style="font-size:18px;color:var(--ink-2);line-height:1.5">
+                  GBP hiển thị số tổng đài → TV viên nghỉ → <b style="color:var(--good)">tự động chuyển TV viên mới</b> → zero data loss.
+                </div>
+              </div>
+            </div>
+            <div class="card" style="margin-top:20px;padding:24px 28px;background:var(--navy-800);border-color:var(--navy-700);color:#fff">
+              <div style="font-size:20px;font-weight:700">Ngành BH có turnover CAO NHẤT</div>
+              <p style="font-size:18px;color:var(--blue-100);margin-top:8px">Tổng đài là <b style="color:#fff">THIẾT YẾU</b>, không phải nice-to-have.</p>
+            </div>
+          </div>
+          <div>
+            <div class="pill blue" style="margin-bottom:20px">Life Event + Renewal CRM</div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div class="card" style="padding:22px 26px;display:flex;align-items:center;gap:18px">
+                <svg class="ic" viewBox="0 0 24 24" style="width:36px;height:36px;color:var(--blue)"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><circle cx="12" cy="8" r="2" fill="currentColor"/></svg>
+                <div><b style="font-size:19px">Tháng 6 · "Vừa có em bé?"</b><div style="font-size:17px;color:var(--ink-3);margin-top:4px">Auto-post BH trẻ em → capture leads</div></div>
+              </div>
+              <div class="card" style="padding:22px 26px;display:flex;align-items:center;gap:18px">
+                <svg class="ic" viewBox="0 0 24 24" style="width:36px;height:36px;color:var(--blue)"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h6"/></svg>
+                <div><b style="font-size:19px">Tháng 9 · "Con vào lớp 1?"</b><div style="font-size:17px;color:var(--ink-3);margin-top:4px">Auto-post BH giáo dục → timing chuẩn</div></div>
+              </div>
+              <div class="card" style="padding:22px 26px;display:flex;align-items:center;gap:18px">
+                <svg class="ic" viewBox="0 0 24 24" style="width:36px;height:36px;color:var(--blue)"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+                <div><b style="font-size:19px">Renewal Reminder · 30 ngày trước</b><div style="font-size:17px;color:var(--ink-3);margin-top:4px">Nhắc gia hạn → TV viên tư vấn → xin review</div></div>
+              </div>
+            </div>
+            <div style="margin-top:20px;padding:20px 24px;background:var(--paper-2);border-radius:12px">
+              <div style="font-size:18px;color:var(--ink-2)"><b style="color:var(--ink)">Tỷ lệ duy trì HĐ Bảo Việt:</b> 92% (2024). Renewal CRM giữ con số này và <b>tăng thêm</b>.</div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Tổng đài <b>BẢO VỆ</b> khách hàng hiện tại. Life Event + Renewal <b>TÌM THÊM</b> khách mới + giữ chân khách cũ. Vòng lặp hoàn hảo.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 11 — DASHBOARD PREVIEW ============ -->
+    <section class="dark" data-label="Dashboard preview">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · Dashboard
+            preview</span><span class="kick-num">11 / 17</span></div>
+        <h2 class="h h-sm anim">Toàn bộ đội ngũ TV viên — trong <span class="accent">một màn hình</span>.</h2>
+        <div class="midfill">
+          <div class="anim d1"
+            style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.5);display:flex;flex-direction:column;width:100%">
+            <div style="background:var(--navy-800);padding:16px 28px;display:flex;align-items:center;gap:14px"><svg
+                class="ic" viewBox="0 0 24 24" style="color:var(--amber);width:24px;height:24px">
+                <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
+              </svg><b style="color:#fff;font-size:20px">GBP · Bảo hiểm Bảo Việt</b><span
+                style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--blue-300)">●
+                REAL-TIME · 50 profiles</span></div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)">
+              <div class="dpanel">
+                <div class="dph">Overview</div>
+                <div style="display:flex;gap:24px;margin-top:14px">
+                  <div>
+                    <div class="dnum">1,420</div>
+                    <div class="dlab">Cuộc gọi</div>
+                  </div>
+                  <div>
+                    <div class="dnum">2,610</div>
+                    <div class="dlab">Chỉ đường</div>
+                  </div>
+                  <div>
+                    <div class="dnum">+380</div>
+                    <div class="dlab">Đánh giá</div>
+                  </div>
+                </div>
+              </div>
+              <div class="dpanel">
+                <div class="dph">TV viên Ranking</div>
+                <div class="drow"><span>Nguyễn Văn A</span><b style="color:var(--good)">128 calls · TS 92</b></div>
+                <div class="drow"><span>Trần Thị B</span><b style="color:var(--good)">97 calls · TS 88</b></div>
+                <div class="drow"><span>Lê Văn C</span><b style="color:var(--amber-700)">54 calls · TS 74</b></div>
+              </div>
+              <div class="dpanel">
+                <div class="dph">Văn phòng Performance</div>
+                <div class="drow"><span>VP Quận 1</span><b style="color:var(--good)">4.8★ · 96</b></div>
+                <div class="drow"><span>VP Đà Nẵng</span><b style="color:var(--good)">4.7★ · 91</b></div>
+                <div class="drow"><span>VP Hà Nội</span><b style="color:var(--amber-700)">4.3★ · 74</b></div>
+              </div>
+              <div class="dpanel">
+                <div class="dph" style="color:var(--bad)">Review Alerts</div>
+                <div class="drow"><span>★ 2.0 · VP Bình Tân</span><b style="color:var(--bad)">Gấp</b></div>
+                <div class="drow"><span>★ 1.0 · TV viên D</span><b style="color:var(--bad)">Gấp</b></div>
+              </div>
+              <div class="dpanel">
+                <div class="dph">Protection Log</div>
+                <div class="drow"><span>Sửa SĐT trái phép</span><b style="color:var(--good)">Đã chặn</b></div>
+                <div class="drow"><span>Đánh dấu "đóng cửa"</span><b style="color:var(--good)">Đã chặn</b></div>
+              </div>
+              <div class="dpanel">
+                <div class="dph">Renewal Tracker</div>
+                <div class="drow"><span>Gia hạn tháng 7</span><b>42 hợp đồng</b></div>
+                <div class="drow"><span>Đã liên hệ</span><b style="color:var(--good)">38/42</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Real-time. Mọi văn phòng. Mọi TV viên. Mọi lần gia hạn. <b>Từ 1 dashboard</b> — HQ Bảo Việt nắm toàn bộ
+            trong tầm tay.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
+          Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 12 — FIRST MOVER (MOVED UP) ============ -->
+    <section data-label="Lợi thế First-mover">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Lợi thế cạnh tranh ·
+            First-mover</span><span class="kick-num">12 / 17</span></div>
+        <h2 class="h h-md anim" style="max-width:1500px">Bảo Việt có cơ hội trở thành công ty bảo hiểm <span
+            class="accent">ĐẦU TIÊN</span> tối ưu GBP tại Việt Nam.</h2>
+        <div class="midfill">
+          <div class="grid anim d1" style="grid-template-columns:repeat(2,1fr);gap:22px">
+            <div class="card" style="display:flex;flex-direction:column">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber-700)">
+                <path
+                  d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.7V17a2 2 0 0 1-1 1.7L8 19v1h8v-1l-1-.3a2 2 0 0 1-1-1.7v-2.3M6 4h12v5a6 6 0 0 1-12 0z" />
+              </svg>
+              <div style="font-size:25px;font-weight:700;margin-top:18px">First-mover</div>
+              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">Manulife, Prudential, AIA
+                chưa ai làm → <b>Bảo Việt chiếm trước = chiếm lâu dài.</b></p>
+            </div>
+            <div class="card" style="display:flex;flex-direction:column">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber-700)">
+                <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+              <div style="font-size:25px;font-weight:700;margin-top:18px">Moat — hào phòng thủ</div>
+              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">App/website <b>KHÔNG THỂ</b>
+                tạo GBP — chỉ TV viên thật với physical presence mới có thể.</p>
+            </div>
+            <div class="card" style="display:flex;flex-direction:column">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber-700)">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <div style="font-size:25px;font-weight:700;margin-top:18px">Blue ocean</div>
+              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">Gần như <b>KHÔNG CÓ</b> TV
+                viên BH nào ở VN có GBP cá nhân → blue ocean 100%.</p>
+            </div>
+            <div class="card" style="display:flex;flex-direction:column">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber-700)">
+                <path
+                  d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+              </svg>
+              <div style="font-size:25px;font-weight:700;margin-top:18px">Inbound > Outbound</div>
+              <p style="font-size:19px;color:var(--ink-2);margin-top:10px;line-height:1.45">1 inbound lead = <b>5-10x
+                  giá trị</b> 1 cold call lead (khách đã có nhu cầu + đã xem đánh giá).</p>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Nhưng cơ hội first-mover <b>có thời hạn</b>. Khi Manulife hoặc Prudential bắt đầu → chi phí sẽ cao hơn,
+            hiệu quả sẽ thấp hơn.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 13 — KPI + ROI (MERGED) ============ -->
+    <section class="dark" data-label="KPI + ROI">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · KPI + ROI</span><span
+            class="kick-num">13 / 17</span></div>
+        <h2 class="h h-sm anim">Chúng tôi cam kết <span class="accent">bằng con số</span> — và ROI <span class="accent">>500%</span>.</h2>
+        <div class="midfill">
+          <div class="split anim d1" style="grid-template-columns:1.2fr 1fr;gap:48px;flex:none">
+          <div>
+            <div class="pill amber" style="margin-bottom:20px">KPI cam kết sau 6 tháng</div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div class="roirow" style="padding:18px 24px"><span class="roilab" style="font-size:18px">VP + TV viên top 3 Maps</span><span class="roival" style="font-size:18px">tăng <b style="color:var(--good)">≥20%</b></span></div>
+              <div class="roirow" style="padding:18px 24px"><span class="roilab" style="font-size:18px">Cuộc gọi inbound / tháng</span><span class="roival" style="font-size:18px">tăng <b style="color:var(--good)">≥20%</b></span></div>
+              <div class="roirow" style="padding:18px 24px"><span class="roilab" style="font-size:18px">Lượt chỉ đường / tháng</span><span class="roival" style="font-size:18px">tăng <b style="color:var(--good)">≥20%</b></span></div>
+              <div class="roirow" style="padding:18px 24px"><span class="roilab" style="font-size:18px">Đánh giá trung bình TV viên</span><span class="roival" style="font-size:18px"><b style="color:var(--star)">≥4.0★</b></span></div>
+              <div class="roirow" style="padding:18px 24px"><span class="roilab" style="font-size:18px">Tỷ lệ inbound / tổng leads</span><span class="roival" style="font-size:18px">tăng <b style="color:var(--good)">≥20%</b></span></div>
+            </div>
+          </div>
+          <div style="text-align:center">
+            <div class="pill blue" style="margin-bottom:20px">ROI minh hoạ</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:.12em;color:var(--amber);margin-top:20px">RETURN ON INVESTMENT</div>
+            <div class="bigstat" style="font-size:140px;color:#fff;margin-top:8px">&gt;500<span style="font-size:70px">%</span></div>
+            <div style="font-size:20px;color:var(--blue-100);margin-top:14px;max-width:380px;margin-left:auto;margin-right:auto;line-height:1.45">
+              Hiệu quả <b style="color:#fff">gấp ~19x</b> so với cold call
+            </div>
+            <div style="background:rgba(255,255,255,.05);border:1px solid var(--line-dark);border-radius:12px;padding:20px 24px;margin-top:24px;text-align:left;max-width:380px;margin-left:auto;margin-right:auto">
+              <div style="font-size:17px;color:var(--blue-100);line-height:1.6">
+                <b style="color:#fff">Cold call:</b> 200 cuộc/ngày × 2% = 0.4 HĐ<br>
+                <b style="color:#fff">GBP:</b> 50 leads × 15% = <b style="color:var(--good)">7.5 HĐ</b>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Mỗi con số đều hiển thị <b>real-time trên dashboard</b>. Chi phí GBP 50 profiles = chi phí 1 TV viên cold call 2 tháng — nhưng tạo dòng khách <b>BỀN VỮNG</b>.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
+          Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 14 — SO SÁNH KÊNH ============ -->
+    <section data-label="So sánh kênh">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bằng chứng · So sánh kênh</span><span
+            class="kick-num">14 / 17</span></div>
+        <h2 class="h h-md anim">Không kênh nào kết hợp được <span class="accent">TẤT CẢ</span> như GBP.</h2>
+        <div class="midfill">
+          <div class="card anim d1" style="padding:0;overflow:hidden;width:100%">
+            <table class="ctab cmp">
+              <thead>
+                <tr>
+                  <th class="lab">Tiêu chí</th>
+                  <th>Cold Call</th>
+                  <th>Facebook</th>
+                  <th>Giới thiệu</th>
+                  <th class="hi">GBP · SI + Beta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="lab">Khách tìm thấy khi CẦN</td>
+                  <td class="x">✕</td>
+                  <td class="x">✕</td>
+                  <td class="part">phụ thuộc</td>
+                  <td class="hi y">✓</td>
+                </tr>
+                <tr>
+                  <td class="lab">Tỷ lệ chuyển đổi</td>
+                  <td class="part">2-5%</td>
+                  <td class="part">3-8%</td>
+                  <td class="part">10-15%</td>
+                  <td class="hi y2">15-25%</td>
+                </tr>
+                <tr>
+                  <td class="lab">Độ tin cậy</td>
+                  <td class="x">tự giới thiệu</td>
+                  <td class="part">bạn bè like</td>
+                  <td class="y">quen biết</td>
+                  <td class="hi y2">80+ đánh giá thật</td>
+                </tr>
+                <tr>
+                  <td class="lab">Chi phí / lead</td>
+                  <td class="part">Rất cao (thời gian)</td>
+                  <td class="part">Trung bình (ads)</td>
+                  <td class="y">Thấp (giới hạn)</td>
+                  <td class="hi y2">Fixed, thấp</td>
+                </tr>
+                <tr>
+                  <td class="lab">Data khi NV nghỉ</td>
+                  <td class="x">✕✕</td>
+                  <td class="y">company page</td>
+                  <td class="x">✕</td>
+                  <td class="hi y2">Tổng đài giữ 100%</td>
+                </tr>
+                <tr>
+                  <td class="lab">Đo lường</td>
+                  <td class="x">Rất khó</td>
+                  <td class="part">Chung chung</td>
+                  <td class="x">✕</td>
+                  <td class="hi y2">Dashboard / NV</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>GBP không thay thế các kênh khác — nó <b>chiếm lĩnh khoảng trống mà không kênh nào với tới được</b>: khoảnh
+            khắc khách ĐANG CẦN bảo hiểm.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 15 — XOÁ BĂN KHOĂN (MERGED) ============ -->
+    <section data-label="Xoá băn khoăn">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Xoá băn khoăn</span><span
+            class="kick-num">15 / 17</span></div>
+        <h2 class="h h-md anim">Chúng tôi hiểu băn khoăn của bạn — và đã có câu trả lời.</h2>
+        <div class="midfill">
+          <div class="grid anim d1" style="grid-template-columns:repeat(3,1fr);gap:20px">
+            <div class="qa" style="padding:24px 26px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"Bảo Việt đã có website, cần gì GBP?"</div>
+              <div class="qa-line" style="margin:14px 0"></div>
+              <p class="qans" style="font-size:17px">Website nằm <b>bên dưới</b> Map Pack. GBP xuất hiện <b>trên cùng</b> — khách gọi trực tiếp mà không cần vào website.</p>
+            </div>
+            <div class="qa" style="padding:24px 26px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"GBP miễn phí, tại sao trả phí?"</div>
+              <div class="qa-line" style="margin:14px 0"></div>
+              <p class="qans" style="font-size:17px">GBP là <b>đất trống miễn phí</b>. Chúng tôi là kiến trúc sư + quản lý toà nhà + tổng đài + bảo vệ 24/7 + Trust Score.</p>
+            </div>
+            <div class="qa" style="padding:24px 26px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"Bảo hiểm khó thu review?"</div>
+              <div class="qa-line" style="margin:14px 0"></div>
+              <p class="qans" style="font-size:17px">Mỗi lần ký/gia hạn = <b>cơ hội xin review</b>. Hệ thống auto-request. 1 review = lời giới thiệu công khai 24/7.</p>
+            </div>
+            <div class="qa" style="padding:24px 26px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"TV viên nghỉ mất data?"</div>
+              <div class="qa-line" style="margin:14px 0"></div>
+              <p class="qans" style="font-size:17px">Tổng đài giữ mọi data. GBP chuyển giao trong 24h. Quy trình chuẩn hoá. <b>Zero risk.</b></p>
+            </div>
+            <div class="qa" style="padding:24px 26px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"Cold call vẫn hiệu quả mà?"</div>
+              <div class="qa-line" style="margin:14px 0"></div>
+              <p class="qans" style="font-size:17px">GBP <b>KHÔNG thay thế</b> cold call. GBP BỔ SUNG kênh inbound. <b>Cả hai kênh cùng hoạt động.</b></p>
+            </div>
+            <div class="qa" style="padding:24px 26px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"Mất bao lâu thấy kết quả?"</div>
+              <div class="qa-line" style="margin:14px 0"></div>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+                <div class="tline" style="font-size:17px"><span style="font-size:14px">Tuần 1–2</span> Profile hoàn thiện</div>
+                <div class="tline" style="font-size:17px"><span style="font-size:14px">Tháng 1–2</span> Xuất hiện Map Pack</div>
+                <div class="tline" style="font-size:17px;color:var(--good)"><span style="background:var(--good);color:#fff;font-size:14px">Tháng 3–6</span> ROI rõ ràng</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Mỗi câu hỏi này, chúng tôi đã gặp ở nhiều khách hàng enterprise — và <b>đã có câu trả lời được kiểm chứng</b>.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 16 — LỘ TRÌNH ============ -->
+    <section data-label="Lộ trình triển khai">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Lộ trình triển khai</span><span
+            class="kick-num">16 / 17</span></div>
+        <h2 class="h h-md anim">Pilot 50 profiles → Roll out <span class="accent">toàn hệ thống</span>.</h2>
+        <div class="midfill">
+          <div class="anim d1" style="display:grid;grid-template-columns:1fr 1fr;gap:22px">
+            <div class="phase">
+              <div class="ph-top"><span class="ph-num">01</span><span class="ph-when">Tháng 1–3</span><span
+                  class="ph-prog"><i style="width:50%"></i></span></div>
+              <div class="ph-title">Pilot 50 profiles</div>
+              <p class="ph-desc">5 văn phòng + 45 TV viên SAB · Trust Score · Tổng đài · Go-live. Thu reviews, đo KPIs real-time trên dashboard.</p>
+            </div>
+            <div class="phase last">
+              <div class="ph-top"><span class="ph-num" style="background:var(--good)">02</span><span
+                  class="ph-when">Tháng 4–6</span><span class="ph-prog"><i style="width:100%"></i></span></div>
+              <div class="ph-title">Roll out toàn hệ thống</div>
+              <p class="ph-desc">Mở rộng toàn bộ 76 công ty thành viên · ~400 VP khu vực · Renewal CRM · AI Search · Shadow Coverage · Full ROI report.</p>
+            </div>
+          </div>
+          <div class="anim d2" style="display:flex;gap:18px;margin-top:22px">
+            <div class="card" style="flex:1;padding:20px 24px;text-align:center">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--ink-3);letter-spacing:.06em">MẠNG LƯỚI BẢO VIỆT NHÂN THỌ</div>
+              <div style="display:flex;justify-content:center;gap:36px;margin-top:14px">
+                <div><div class="bigstat" style="font-size:48px;color:var(--blue)">76</div><div style="font-size:16px;color:var(--ink-2)">công ty thành viên</div></div>
+                <div><div class="bigstat" style="font-size:48px;color:var(--blue)">~400</div><div style="font-size:16px;color:var(--ink-2)">VP khu vực</div></div>
+                <div><div class="bigstat" style="font-size:48px;color:var(--good)">92%</div><div style="font-size:16px;color:var(--ink-2)">tỷ lệ duy trì HĐ</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Pilot 50 profiles để <b>chứng minh ROI bằng số liệu thật</b>. Sau đó roll out toàn bộ mạng lưới — zero risk, maximum impact.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>Google Business
+          Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 17 — CALL TO ACTION ============ -->
+    <section class="dark" data-label="Call to Action">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bước tiếp theo</span><span
+            class="kick-num">17 / 17</span></div>
+        <h2 class="h h-sm anim" style="max-width:1400px">Các anh chị đã thấy cơ hội — <span class="accent">approve Pilot</span> ngay hôm nay.</h2>
+        <div class="midfill" style="gap:22px">
+          <div class="anim d1" style="display:flex;gap:16px">
+            <div class="cta-step active">
+              <div class="cs-ic"><svg class="ic" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg></div>
+              <div class="cs-t">Buổi đầu tiên <span>60 phút</span></div>
+              <p>Audit 3 VP + TV viên vs đối thủ + Demo live search "tư vấn BH [quận]" → thấy cơ hội thật ngay tại chỗ.</p>
+            </div>
+            <div class="cta-step">
+              <div class="cs-ic">2</div>
+              <div class="cs-t">Pilot <span>50 profiles · 3 tháng</span></div>
+              <p>5 VP + 45 TV viên SAB · Trust Score · Tổng đài · Dashboard real-time. GBP tối ưu tăng visibility <b>280%</b>.</p>
+            </div>
+            <div class="cta-step">
+              <div class="cs-ic">3</div>
+              <div class="cs-t">Roll out toàn hệ thống</div>
+              <p>Mở rộng 76 CTTV · ~400 VP khu vực. Profile tối ưu nhận <b>gấp 7x clicks</b>.</p>
+            </div>
+          </div>
+          <div class="anim d2" style="display:flex;gap:10px;flex-wrap:wrap">
+            <span class="commit">KPI rõ ràng</span><span class="commit">Báo cáo minh bạch</span><span
+              class="commit">Không mất data khi NV nghỉ</span><span class="commit">Bảo vệ 24/7</span><span
+              class="commit">Account Manager riêng</span><span class="commit">Blue ocean guarantee</span>
+          </div>
+        </div>
+        <div class="anim d3"
+          style="display:flex;align-items:center;gap:24px;background:var(--amber);border-radius:18px;padding:28px 38px">
+          <div style="flex:1">
+            <div
+              style="font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.1em;color:var(--navy-900);opacity:.7">
+              URGENCY · Q3/2026</div>
+            <div style="font-size:32px;font-weight:800;color:var(--navy-900);margin-top:6px;line-height:1.1">Pilot ngay tháng 7 để kịp mùa back-to-school tháng 9.</div>
+            <div style="font-size:18px;color:var(--navy-800);margin-top:8px">Câu hỏi duy nhất: <b>50 hay 100 profiles?</b></div>
+          </div>
+          <svg class="ic" viewBox="0 0 24 24" style="width:52px;height:52px;color:var(--navy-900);stroke-width:2.2">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
+          Beta</span><span>Google Business Profile cho <b>Bảo Việt</b></span></div>
+    </section>
+
+  </deck-stage>
+
+  <script type="application/json" id="speaker-notes">
+["Chào các anh chị. Trước khi em giới thiệu mình là ai, em muốn bắt đầu bằng một câu hỏi. Ngay lúc này, khi mình đang ngồi đây, có hàng nghìn người Việt đang mở Google và gõ 'tư vấn bảo hiểm gần đây'. Câu hỏi duy nhất em muốn các anh chị giữ trong đầu suốt buổi hôm nay là: trong những lần tìm kiếm đó, Bảo Việt có xuất hiện không?",
+"Đây là con số quan trọng nhất hôm nay. 95% cold call bị từ chối — TV viên gọi 200 cuộc mỗi ngày mà chỉ 5% nghe. Nhưng bên kia, 88% người tìm kiếm trên Google Maps hành động trong 24 giờ — họ gọi hoặc đến trực tiếp. Nếu TV viên Bảo Việt xuất hiện lúc khách ĐANG CẦN bảo hiểm, tỷ lệ chuyển đổi có thể đạt 15-25%, gấp 5-10 lần cold call.",
+"Trước khi đi tiếp, em giải thích GBP là gì — thật đơn giản. Hãy hình dung nó như một tấm danh thiếp thông minh mà Google tự động dựng lên — miễn phí. Với TV viên bảo hiểm, nó gồm 8 thành phần: tên, sao đánh giá, vùng phục vụ, số tổng đài, ảnh, đánh giá từ khách, bài viết chuyên môn, và Q&A. Tấm danh thiếp này LUÔN được dựng — câu hỏi là nó hiển thị TV viên Bảo Việt, hay đối thủ?",
+"Em kể một câu chuyện. Chị Lan vừa sinh con đầu lòng, muốn mua bảo hiểm cho bé. Chị mở Google, gõ 'tư vấn bảo hiểm cho trẻ em gần đây'. Google Maps hiện 3 kết quả — một TV viên công ty X có 4.9 sao, 80 đánh giá, ghi rõ 'Chuyên BH trẻ em'. Bảo Việt KHÔNG CÓ trong danh sách. Chị Lan gọi công ty X, một tap duy nhất. Điểm mấu chốt: chị Lan có nhu cầu mua bảo hiểm. Chỉ đơn giản là chị ấy không tìm thấy TV viên Bảo Việt. Và mỗi ngày có hàng nghìn người như chị Lan.",
+"Tại sao Maps? Vì Google Maps luôn xuất hiện TRƯỚC website. Map Pack — chỉ 3 kết quả, nút gọi và chỉ đường ngay, 1 tap là xong. Website — khách phải cuộn, click, tìm trang đại lý, 5-7 bước mới liên hệ được. Dù website Bảo Việt đẹp đến đâu, khách hàng luôn chọn con đường ngắn nhất.",
+"Vậy cụ thể Bảo Việt đang gặp những gì? Bảy vấn đề: TV viên không hiện diện online, 95% cold call bị từ chối, TV viên nghỉ thì mất khách, không có đánh giá cá nhân, thông tin văn phòng sai/thiếu, không đo lường được hiệu quả online, và quan trọng nhất — Manulife, Prudential, AIA chưa ai làm. Đây là cơ hội first-mover nhưng có thời hạn.",
+"Giải pháp: sự kết hợp của SingleInterface là Platform — dashboard, bulk update, analytics, protection, AI Search; và Beta là Services — tổng đài, TV viên profile, Trust Score, landing page, Life Event, Renewal CRM. Công nghệ quản lý + dịch vụ tối ưu = khách hàng tự tìm đến thay vì bị cold call.",
+"Đây là slide QUAN TRỌNG NHẤT — mô hình Hub and Spoke + TV viên Profile. Mỗi văn phòng có GBP riêng. Và quan trọng hơn — mỗi TV viên cũng có GBP cá nhân dạng SAB, ẩn địa chỉ nhà, chỉ hiện vùng phục vụ. Khi khách search 'tư vấn bảo hiểm gia đình Quận 1', Bảo Việt chiếm 2/3 Map Pack — văn phòng slot 1, TV viên slot 2. Hiện tại GẦN NHƯ KHÔNG CÓ TV viên BH nào ở Việt Nam có GBP cá nhân. Blue ocean 100%.",
+"Trust Score + Protection — hai giải pháp premium. Trust Score 92/100 tổng hợp từ 5 yếu tố: số năm kinh nghiệm, số khách hàng, điểm Google, chứng chỉ MDRT-TOT, và tốc độ phản hồi. Khi khách thấy Trust Score 92 + 80 đánh giá thật → 'có tin được không?' biến mất. Và Protection quét mỗi 15 phút, tự động hoàn tác nếu ai đó sửa thông tin trái phép. Với 50+ profiles, cả hai đều BẮT BUỘC.",
+"Tổng đài + Life Event + Renewal — vòng lặp hoàn hảo. Không có tổng đài: TV viên nghỉ → mất liên lạc vĩnh viễn → khách lapse. Có tổng đài Beta: TV viên nghỉ → tự động chuyển TV viên mới → zero data loss. Ngành BH có turnover cao nhất — tổng đài là THIẾT YẾU. Thêm Life Event tự động đăng bài theo mùa, và Renewal Reminder 30 ngày trước gia hạn. Tổng đài BẢO VỆ khách hiện tại. Life Event + Renewal TÌM THÊM và GIỮ CHÂN.",
+"Dashboard preview — toàn bộ đội ngũ trong 1 màn hình. Overview: tổng calls, directions, reviews. TV viên Ranking: ai hiệu quả, ai cần hỗ trợ. Review Alerts: đánh giá 1-2 sao cần xử lý gấp. Protection Log: chỉnh sửa trái phép đã bị chặn. Renewal Tracker: lịch gia hạn sắp tới. Real-time, mọi văn phòng, mọi TV viên, từ 1 dashboard.",
+"Bảo Việt có 4 lợi thế first-mover: Một, Manulife, Prudential, AIA chưa ai làm — chiếm trước là chiếm lâu dài. Hai, app và website không thể tạo GBP — chỉ TV viên thật mới có thể. Ba, gần như không có TV viên BH nào ở Việt Nam có GBP cá nhân — 100% blue ocean. Bốn, 1 inbound lead giá trị gấp 5-10 lần cold call. Nhưng cơ hội first-mover có thời hạn — khi Manulife bắt đầu, chi phí sẽ cao hơn.",
+"KPI + ROI. VP + TV viên top 3 Maps: từ dưới 10% lên ít nhất 50%. Cuộc gọi inbound: từ ~0 lên 200+/tháng. Đánh giá trung bình: từ 0 lên 4.7 sao. ROI hơn 500%. So sánh: cold call 200 cuộc/ngày × 2% = 0.4 hợp đồng; GBP 50 leads × 15% = 7.5 hợp đồng — hiệu quả gấp ~19 lần. Chi phí GBP 50 profiles = chi phí 1 TV viên cold call 2 tháng — nhưng tạo dòng khách bền vững.",
+"So sánh 4 kênh: Cold Call, Facebook, Giới thiệu, và GBP. Chỉ GBP mới kết hợp được tất cả: khách tìm thấy đúng lúc CẦN, tỷ lệ chuyển đổi 15-25%, 80+ đánh giá thật, chi phí fixed thấp, tổng đài giữ 100% data, dashboard đo lường chi tiết. GBP không thay thế các kênh khác — nó chiếm lĩnh khoảng trống mà không kênh nào với tới được.",
+"Xoá 6 băn khoăn phổ biến: Website đã có rồi → GBP xuất hiện TRÊN website. GBP miễn phí → chúng tôi là kiến trúc sư + bảo vệ 24/7. Khó thu review → mỗi lần ký/gia hạn là cơ hội. TV viên nghỉ mất data → tổng đài giữ 100%. Cold call vẫn hiệu quả → GBP BỔ SUNG, không thay thế. Bao lâu thấy kết quả → tuần 1-2 profile xong, tháng 3-6 ROI rõ ràng.",
+"Lộ trình 2 giai đoạn. Giai đoạn 1 tháng 1-3: pilot 50 profiles gồm 5 văn phòng + 45 TV viên SAB, Trust Score, tổng đài, đo KPIs real-time. Giai đoạn 2 tháng 4-6: roll out toàn bộ 76 công ty thành viên với ~400 VP khu vực. Mạng lưới Bảo Việt hiện có 76 CTTV, ~400 VP, tỷ lệ duy trì HĐ 92%. Pilot để chứng minh ROI bằng số liệu thật, sau đó roll out — zero risk, maximum impact.",
+"Bước tiếp theo: pilot tháng 7 để kịp mùa back-to-school tháng 9. Bước 1: buổi hôm nay — audit + demo live search. Bước 2: pilot 50 profiles trong 3 tháng. Bước 3: roll out toàn bộ. Cam kết: KPI rõ ràng, báo cáo minh bạch, không mất data, bảo vệ 24/7, Account Manager riêng, blue ocean guarantee. Câu hỏi duy nhất: pilot với 50 hay 100 profiles? Cảm ơn các anh chị."]
+  </script>
+
+  <script src="deck-stage.js"></script>
+<script>
+/* Auto-detect .png/.jpg for loc & man images */
+(function(){
+  document.querySelectorAll('[data-bg-name]').forEach(function(el){
+    var name = el.getAttribute('data-bg-name');
+    var exts = ['png','jpg'];
+    var tried = 0;
+    function tryNext(){
+      if(tried >= exts.length) return;
+      var img = new Image();
+      var src = name + '.' + exts[tried];
+      img.onload = function(){ el.style.backgroundImage = "url('" + src + "')"; };
+      img.onerror = function(){ tried++; tryNext(); };
+      img.src = src;
+    }
+    tryNext();
+  });
+})();
+</script>
+</body>
+
+</html>
