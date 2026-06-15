@@ -1,0 +1,3224 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BYD Việt Nam × SingleInterface × Beta — Google Business Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    deck-stage:not(:defined) {
+      visibility: hidden
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --navy-900: #081a31;
+      --navy-800: #0e2949;
+      --navy-700: #143a63;
+      --navy-600: #1c4b7d;
+      --blue: #2b6cb0;
+      --blue-300: #7fb0e0;
+      --blue-100: #d6e6f6;
+      --amber: #f6ad55;
+      --amber-700: #c97e2c;
+      --paper: #f4f7fb;
+      --paper-2: #eaf0f8;
+      --card: #ffffff;
+      --ink: #0d2138;
+      --ink-2: #3c5168;
+      --ink-3: #6b7e93;
+      --line: #dde6f0;
+      --line-dark: rgba(255, 255, 255, .14);
+      --good: #2f8f6b;
+      --bad: #c0492f;
+      --star: #f0a92b;
+
+      --pad-x: 96px;
+      --pad-y: 74px;
+      --maxw: 1728px;
+    }
+
+    html,
+    body {
+      background: #05101f;
+      font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility
+    }
+
+    /* ---------- slide frame ---------- */
+    section {
+      background: var(--paper);
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .frame {
+      position: absolute;
+      inset: 0;
+      padding: var(--pad-y) var(--pad-x);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .frame.center {
+      justify-content: center
+    }
+
+    .midfill {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center
+    }
+
+    /* dark variant */
+    section.dark {
+      background: radial-gradient(120% 120% at 80% -10%, var(--navy-700) 0%, var(--navy-900) 60%);
+      color: #eaf1fa
+    }
+
+    section.dark .h,
+    section.dark .kick-text {
+      color: #fff
+    }
+
+    section.dark .sub {
+      color: var(--blue-100)
+    }
+
+    section.dark .foot {
+      color: rgba(255, 255, 255, .5)
+    }
+
+    section.dark .foot b {
+      color: rgba(255, 255, 255, .8)
+    }
+
+    /* ---------- chrome ---------- */
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px
+    }
+
+    .kick-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--amber);
+      transform: rotate(45deg);
+      flex: none
+    }
+
+    .kick-text {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      white-space: nowrap
+    }
+
+    .kick-num {
+      margin-left: auto;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 18px;
+      letter-spacing: .1em;
+      color: var(--ink-3)
+    }
+
+    section.dark .kick-num {
+      color: rgba(255, 255, 255, .45)
+    }
+
+    .h {
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -.018em;
+      color: var(--ink);
+      text-wrap: balance
+    }
+
+    .h-xl {
+      font-size: 88px
+    }
+
+    .h-lg {
+      font-size: 66px
+    }
+
+    .h-md {
+      font-size: 52px
+    }
+
+    .h-sm {
+      font-size: 40px
+    }
+
+    .sub {
+      font-size: 27px;
+      font-weight: 400;
+      color: var(--ink-2);
+      line-height: 1.4;
+      max-width: 1180px
+    }
+
+    .accent {
+      color: var(--amber-700)
+    }
+
+    section.dark .accent {
+      color: var(--amber)
+    }
+
+    .hl {
+      background: linear-gradient(transparent 62%, rgba(246, 173, 85, .42) 62%);
+      padding: 0 .04em
+    }
+
+    /* takeaway strip */
+    .takeaway {
+      margin-top: auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding-top: 30px
+    }
+
+    .takeaway .bar {
+      width: 6px;
+      align-self: stretch;
+      background: var(--amber);
+      flex: none;
+      border-radius: 3px
+    }
+
+    .takeaway p {
+      font-size: 25px;
+      line-height: 1.42;
+      font-weight: 500;
+      color: var(--ink)
+    }
+
+    section.dark .takeaway p {
+      color: #fff
+    }
+
+    .takeaway b {
+      font-weight: 700
+    }
+
+    /* footer */
+    .foot {
+      position: absolute;
+      left: var(--pad-x);
+      right: var(--pad-x);
+      bottom: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px;
+      letter-spacing: .08em;
+      color: var(--ink-3)
+    }
+
+    .foot b {
+      font-weight: 600;
+      color: var(--ink-2)
+    }
+
+    .frame.with-foot {
+      padding-bottom: 96px
+    }
+
+    /* wordmark */
+    .wm {
+      font-weight: 800;
+      letter-spacing: -.02em
+    }
+
+    .wm .x {
+      color: var(--amber);
+      font-weight: 500;
+      margin: 0 .28em
+    }
+
+    /* ---------- cards & grids ---------- */
+    .grid {
+      display: grid;
+      gap: 22px
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 30px 32px
+    }
+
+    section.dark .card {
+      background: rgba(255, 255, 255, .05);
+      border-color: var(--line-dark)
+    }
+
+    .num-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 20px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: var(--navy-800);
+      color: #fff;
+      flex: none
+    }
+
+    section.dark .num-badge {
+      background: var(--amber);
+      color: var(--navy-900)
+    }
+
+    /* pill */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase
+    }
+
+    .pill.amber {
+      background: rgba(246, 173, 85, .16);
+      color: var(--amber-700)
+    }
+
+    .pill.blue {
+      background: var(--blue-100);
+      color: var(--blue)
+    }
+
+    section.dark .pill.blue {
+      background: rgba(127, 176, 224, .18);
+      color: var(--blue-300)
+    }
+
+    /* icon */
+    .ic {
+      width: 30px;
+      height: 30px;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: none
+    }
+
+    .ic-lg {
+      width: 40px;
+      height: 40px;
+      stroke-width: 1.7
+    }
+
+    /* stars */
+    .stars {
+      display: inline-flex;
+      gap: 3px;
+      color: var(--star)
+    }
+
+    .stars svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor
+    }
+
+    /* ---------- GBP business card mockup ---------- */
+    .gbp {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px -28px rgba(8, 26, 49, .45);
+      width: 100%
+    }
+
+    .gbp .photo {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      height: auto;
+      background-image: repeating-linear-gradient(135deg, #dbe6f2 0 14px, #e8f0f8 14px 28px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #90a6bd;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      letter-spacing: .08em;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .gbp .body {
+      padding: 22px 26px
+    }
+
+    .gbp .name {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15
+    }
+
+    .gbp .cat {
+      font-size: 16px;
+      color: var(--ink-3);
+      margin-top: 3px
+    }
+
+    .gbp .rate {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 19px
+    }
+
+    .gbp .rate .score {
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .gbp .rate .count {
+      color: var(--ink-3);
+      font-size: 16px
+    }
+
+    .gbp .rows {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px
+    }
+
+    .gbp .row {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      font-size: 17px;
+      color: var(--ink-2)
+    }
+
+    .gbp .row .ic {
+      width: 21px;
+      height: 21px;
+      stroke-width: 2;
+      color: var(--blue)
+    }
+
+    .gbp .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px
+    }
+
+    .gbp .act {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      padding: 13px 6px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue)
+    }
+
+    .gbp .act .ic {
+      width: 23px;
+      height: 23px;
+      color: var(--blue)
+    }
+
+    /* map pack result row */
+    .mp {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden
+    }
+
+    .mp .res {
+      display: flex;
+      gap: 18px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+      align-items: center
+    }
+
+    .mp .res:last-child {
+      border-bottom: 0
+    }
+
+    .mp .res.win {
+      background: linear-gradient(90deg, rgba(246, 173, 85, .12), transparent 70%);
+      border-left: 5px solid var(--amber)
+    }
+
+    .mp .res .rank {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 18px;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--paper-2);
+      color: var(--ink-2);
+      flex: none
+    }
+
+    .mp .res.win .rank {
+      background: var(--amber);
+      color: var(--navy-900)
+    }
+
+    .mp .res .thumb {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      background: repeating-linear-gradient(135deg, #dbe6f2 0 9px, #e8f0f8 9px 18px);
+      flex: none;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .mp .res .thumb .ic {
+      color: var(--navy-600);
+      width: 26px;
+      height: 26px
+    }
+
+    .mp .res .meta {
+      flex: 1;
+      min-width: 0
+    }
+
+    .mp .res .meta .t {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15
+    }
+
+    .mp .res .meta .s {
+      font-size: 16px;
+      color: var(--ink-3);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .mp .res .quick {
+      display: flex;
+      gap: 9px
+    }
+
+    .mp .res .quick span {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue)
+    }
+
+    .mp .res .quick .ic {
+      width: 20px;
+      height: 20px
+    }
+
+    /* abstract map backdrop */
+    .mapbg {
+      position: relative;
+      background: #e9eff5;
+      background-image: linear-gradient(rgba(180, 198, 216, .5) 1px, transparent 1px), linear-gradient(90deg, rgba(180, 198, 216, .5) 1px, transparent 1px);
+      background-size: 46px 46px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      overflow: hidden
+    }
+
+    .mapbg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(127, 176, 224, .16), transparent 60%)
+    }
+
+    /* comparison table */
+    .ctab {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 19px
+    }
+
+    .ctab th,
+    .ctab td {
+      text-align: left;
+      padding: 18px 24px;
+      vertical-align: middle
+    }
+
+    .ctab thead th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink-3)
+    }
+
+    .ctab tbody tr {
+      background: #fff
+    }
+
+    .ctab tbody td {
+      border-top: 1px solid var(--line)
+    }
+
+    .ctab .lab {
+      font-weight: 600;
+      color: var(--ink);
+      width: 24%
+    }
+
+    .ctab .old {
+      color: var(--ink-2)
+    }
+
+    .ctab .new {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .ctab .col-new {
+      background: rgba(43, 108, 176, .05)
+    }
+
+    /* flow chips */
+    .flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0
+    }
+
+    .flow .step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .flow .arr {
+      display: flex;
+      align-items: center;
+      color: var(--blue-300);
+      padding: 0 10px
+    }
+
+    .flow .arr .ic {
+      width: 38px;
+      height: 38px;
+      stroke-width: 2
+    }
+
+    /* simple two-col split */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      flex: 1;
+      min-height: 0
+    }
+
+    .split.tilt {
+      grid-template-columns: 1.05fr .95fr
+    }
+
+    /* big stat */
+    .bigstat {
+      font-weight: 800;
+      line-height: .92;
+      letter-spacing: -.03em;
+      font-variant-numeric: tabular-nums
+    }
+
+    /* 9-component chips */
+    .chip9 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 15px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink)
+    }
+
+    .chip9 .ic {
+      width: 21px;
+      height: 21px;
+      stroke-width: 2;
+      color: var(--blue);
+      flex: none
+    }
+
+    /* 5R cells */
+    .r5 {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--line-dark);
+      border-radius: 14px;
+      padding: 16px 20px
+    }
+
+    .r5 .r5h {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: nowrap
+    }
+
+    .r5 .r5h b {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .r5 .map {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--amber);
+      letter-spacing: .02em;
+      white-space: nowrap
+    }
+
+    .r5 p {
+      font-size: 16px;
+      color: var(--blue-100);
+      margin-top: 6px;
+      line-height: 1.4
+    }
+
+    /* diagram node */
+    .node {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px 24px
+    }
+
+    section.dark .node {
+      background: rgba(255, 255, 255, .05);
+      border-color: var(--line-dark)
+    }
+
+    /* before/after rows */
+    .ba {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 18px
+    }
+
+    .ba span {
+      color: var(--ink-3);
+      font-weight: 500;
+      flex: none
+    }
+
+    .ba em {
+      font-style: normal;
+      color: var(--ink-2);
+      text-align: right;
+      font-weight: 500
+    }
+
+    .ba.good em {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    /* hotline steps */
+    .hstep {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 19px;
+      color: var(--ink-2)
+    }
+
+    .hstep span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 17px;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink-2);
+      flex: none
+    }
+
+    .hstep b {
+      color: var(--ink);
+      font-weight: 700
+    }
+
+    /* feature pills */
+    .featpill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink)
+    }
+
+    .featpill .ic {
+      width: 21px;
+      height: 21px;
+      color: var(--blue);
+      stroke-width: 2
+    }
+
+    /* workflow + ai rows */
+    .wstep {
+      padding: 6px 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      font-weight: 600;
+      color: var(--ink)
+    }
+
+    .airow {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 11px 16px;
+      background: var(--paper-2);
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink)
+    }
+
+    .airow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--good);
+      flex: none
+    }
+
+    /* KPI big target */
+    .kpibig {
+      font-weight: 800;
+      font-size: 30px;
+      color: var(--blue);
+      font-variant-numeric: tabular-nums
+    }
+
+    /* ROI rows */
+    .roirow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--line-dark);
+      border-radius: 13px;
+      padding: 18px 24px
+    }
+
+    .roilab {
+      font-size: 20px;
+      color: var(--blue-100)
+    }
+
+    .roival {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      text-align: right
+    }
+
+    .roiarr {
+      display: flex;
+      justify-content: center;
+      color: var(--amber)
+    }
+
+    .roiarr .ic {
+      width: 30px;
+      height: 30px
+    }
+
+    /* comparison matrix */
+    .ctab.cmp th,
+    .ctab.cmp td {
+      text-align: center;
+      padding: 15px 16px
+    }
+
+    .ctab.cmp .lab {
+      text-align: left
+    }
+
+    .ctab.cmp thead th {
+      font-size: 15px
+    }
+
+    .ctab.cmp .x {
+      color: #c9d3de;
+      font-size: 19px;
+      font-weight: 700
+    }
+
+    .ctab.cmp .y {
+      color: var(--good);
+      font-size: 19px;
+      font-weight: 700
+    }
+
+    .ctab.cmp .y2 {
+      color: var(--good);
+      font-weight: 700;
+      font-size: 19px
+    }
+
+    .ctab.cmp .part {
+      color: var(--amber-700);
+      font-size: 19px;
+      font-weight: 600
+    }
+
+    .ctab.cmp th.hi {
+      background: var(--navy-800);
+      color: #fff;
+      border-radius: 10px 10px 0 0
+    }
+
+    .ctab.cmp td.hi {
+      background: rgba(43, 108, 176, .08)
+    }
+
+    /* dashboard panels */
+    .dpanel {
+      background: #fff;
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      min-height: 150px
+    }
+
+    .dph {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 16px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      font-weight: 600
+    }
+
+    .dnum {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1;
+      font-variant-numeric: tabular-nums
+    }
+
+    .dlab {
+      font-size: 15px;
+      color: var(--ink-3);
+      margin-top: 3px
+    }
+
+    .drow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 18px;
+      color: var(--ink-2);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--paper-2)
+    }
+
+    .drow:last-child {
+      border-bottom: 0
+    }
+
+    .drow b {
+      color: var(--ink);
+      font-weight: 700
+    }
+
+    /* Q&A cards */
+    .qa {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 30px 30px;
+      display: flex;
+      flex-direction: column
+    }
+
+    .qmark {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: var(--navy-800);
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .qq {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 18px;
+      line-height: 1.25
+    }
+
+    .qa-line {
+      height: 1px;
+      background: var(--line);
+      margin: 18px 0
+    }
+
+    .qans {
+      font-size: 19px;
+      color: var(--ink-2);
+      line-height: 1.5
+    }
+
+    .tline {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 17px;
+      color: var(--ink-2)
+    }
+
+    .tline span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 7px;
+      background: var(--paper-2);
+      color: var(--ink-2);
+      flex: none;
+      white-space: nowrap
+    }
+
+    /* roadmap phases — 2x2 cards */
+    .phase {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden
+    }
+
+    .phase::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: var(--amber)
+    }
+
+    .phase.last::before {
+      background: var(--good)
+    }
+
+    .ph-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px
+    }
+
+    .ph-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 20px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--navy-800);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: none
+    }
+
+    .ph-when {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-2);
+      letter-spacing: .04em;
+      background: var(--paper-2);
+      padding: 7px 14px;
+      border-radius: 8px;
+      white-space: nowrap
+    }
+
+    .ph-prog {
+      height: 6px;
+      border-radius: 3px;
+      background: var(--paper-2);
+      overflow: hidden;
+      margin-left: auto;
+      width: 130px;
+      flex: none
+    }
+
+    .ph-prog i {
+      display: block;
+      height: 100%;
+      background: var(--amber);
+      border-radius: 3px
+    }
+
+    .phase.last .ph-prog i {
+      background: var(--good)
+    }
+
+    .ph-title {
+      font-size: 25px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.18
+    }
+
+    .ph-desc {
+      font-size: 18px;
+      color: var(--ink-2);
+      margin-top: 10px;
+      line-height: 1.45
+    }
+
+    /* CTA steps */
+    .cta-step {
+      flex: 1;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--line-dark);
+      border-radius: 16px;
+      padding: 22px 24px
+    }
+
+    .cta-step.active {
+      background: rgba(246, 173, 85, .1);
+      border-color: var(--amber)
+    }
+
+    .cs-ic {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, .1);
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .cta-step.active .cs-ic {
+      background: var(--amber);
+      color: var(--navy-900)
+    }
+
+    .cta-step.active .cs-ic .ic {
+      width: 24px;
+      height: 24px;
+      stroke-width: 3
+    }
+
+    .cs-t {
+      font-size: 21px;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 16px;
+      line-height: 1.2
+    }
+
+    .cs-t span {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--amber);
+      margin-top: 4px;
+      letter-spacing: .03em
+    }
+
+    .cta-step p {
+      font-size: 16px;
+      color: var(--blue-100);
+      margin-top: 10px;
+      line-height: 1.4
+    }
+
+    .commit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border: 1px solid var(--line-dark);
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #eaf1fa
+    }
+
+    .commit::before {
+      content: "✓";
+      color: var(--good);
+      font-weight: 700
+    }
+
+    /* entrance anim */
+    @media (prefers-reduced-motion:no-preference) {
+      [data-deck-active] .anim {
+        opacity: 0;
+        transform: translateY(16px);
+        animation: rise .6s cubic-bezier(.2, .7, .3, 1) forwards
+      }
+
+      [data-deck-active] .anim:nth-child(2) {
+        animation-delay: .07s
+      }
+
+      [data-deck-active] .anim:nth-child(3) {
+        animation-delay: .14s
+      }
+
+      [data-deck-active] .anim:nth-child(4) {
+        animation-delay: .21s
+      }
+
+      [data-deck-active] .d1 {
+        animation-delay: .1s
+      }
+
+      [data-deck-active] .d2 {
+        animation-delay: .2s
+      }
+
+      [data-deck-active] .d3 {
+        animation-delay: .3s
+      }
+
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+    }
+  </style>
+</head>
+
+<style>
+  /* trust score gauge */
+  .ts-gauge {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(var(--good) 0% 92%, var(--paper-2) 92% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none
+  }
+
+  .ts-inner {
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+  }
+
+  .ts-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 18px
+  }
+
+  .ts-row:last-child {
+    border-bottom: 0
+  }
+
+  .ts-lab {
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+    min-width: 0
+  }
+
+  .ts-weight {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-3);
+    flex: none;
+    width: 45px;
+    text-align: right
+  }
+
+  .ts-bar {
+    flex: none;
+    width: 120px;
+    height: 8px;
+    background: var(--paper-2);
+    border-radius: 4px;
+    overflow: hidden
+  }
+
+  .ts-bar i {
+    display: block;
+    height: 100%;
+    border-radius: 4px;
+    background: var(--good)
+  }
+
+  .ts-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+    flex: none;
+    width: 55px;
+    text-align: right
+  }
+
+  section.dark .ts-row {
+    border-color: var(--line-dark)
+  }
+
+  section.dark .ts-lab {
+    color: #fff
+  }
+
+  section.dark .ts-weight {
+    color: var(--blue-100)
+  }
+
+  section.dark .ts-bar {
+    background: rgba(255, 255, 255, .1)
+  }
+
+  section.dark .ts-val {
+    color: #fff
+  }
+
+  section.dark .ts-gauge {
+    background: conic-gradient(var(--good) 0% 92%, rgba(255, 255, 255, .1) 92% 100%)
+  }
+
+  section.dark .ts-inner {
+    background: var(--navy-800)
+  }
+
+  /* scenario comparison */
+  .scn {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1
+  }
+
+  .scn-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 700
+  }
+
+  .scn-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 17px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--line)
+  }
+
+  .scn-step.bad {
+    border-color: rgba(192, 73, 47, .3);
+    background: rgba(192, 73, 47, .04);
+    color: var(--ink-2)
+  }
+
+  .scn-step.good {
+    border-color: rgba(47, 143, 107, .3);
+    background: rgba(47, 143, 107, .04);
+    color: var(--ink)
+  }
+</style>
+
+<body>
+  <deck-stage width="1920" height="1080">
+
+    <!-- ============ SLIDE 1 — TITLE / HOOK ============ -->
+    <section class="dark" data-label="Title">
+      <div class="frame center">
+        <div class="kicker anim">
+          <span class="kick-dot"></span>
+          <span class="kick-text">Đề xuất chiến lược · Google Business Profile</span>
+        </div>
+        <h1 class="h h-xl anim" style="max-width:1500px">Hàng nghìn người tìm <span class="accent">"xe điện
+            gần đây"</span>.<br>Showroom BYD có xuất hiện không?</h1>
+        <p class="sub anim" style="margin-top:30px;font-size:30px">Giải pháp tối ưu Google Business Profile cho BYD
+          Việt Nam — Hãng xe điện #1 thế giới.</p>
+        <div class="anim" style="margin-top:64px;display:flex;align-items:center;gap:34px">
+          <span class="wm" style="font-size:34px;color:#fff">SingleInterface<span class="x">×</span>Beta</span>
+          <span style="width:1px;height:38px;background:rgba(255,255,255,.2)"></span>
+          <span
+            style="font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:.1em;color:rgba(255,255,255,.55)">10
+            · 06 · 2026</span>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface ×
+          Beta</span><span>Đề xuất gửi <b>BYD Việt Nam</b></span></div>
+    </section>
+
+    <!-- ============ SLIDE 2 — 42% CLICK TOP 3 ============ -->
+    <section data-label="42% click top 3">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Khoảnh khắc quyết định</span><span
+            class="kick-num">02 / 18</span></div>
+        <h2 class="h h-md anim" style="max-width:1500px"><span class="hl">42% tổng click rơi vào đúng 3 kết quả đầu
+            tiên</span> trên Google Maps.<br>Ai đang chiếm 3 vị trí đó <span class="accent">ở khu vực showroom
+            BYD?</span></h2>
+        <div class="midfill">
+          <div class="split anim d1" style="gap:48px;align-items:stretch;flex:none">
+            <div class="card"
+              style="padding:40px 38px;border-color:rgba(43,108,176,.3);background:rgba(43,108,176,.04);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <div style="font-size:20px;font-weight:600;color:var(--blue);margin-top:14px;margin-bottom:14px">GOOGLE
+                MAPS — TOP 3</div>
+              <div class="bigstat" style="font-size:120px;color:var(--blue)">42<span style="font-size:54px">%</span>
+              </div>
+              <div style="font-size:22px;font-weight:700;color:var(--ink);margin-top:12px">tổng click → Local 3-Pack
+              </div>
+              <p style="font-size:18px;color:var(--ink-2);margin-top:10px;line-height:1.4">Khách chọn 1 trong <b>3 kết
+                  quả đầu tiên</b> trên Google Maps — gọi, chỉ đường, đặt lái thử.</p>
+              <div style="font-size:16px;color:var(--ink-3);margin-top:6px">Nguồn: BrightLocal, First Page Sage 2024
+              </div>
+            </div>
+            <div class="card"
+              style="padding:40px 38px;border-color:rgba(47,143,107,.3);background:rgba(47,143,107,.04);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--good)">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 16v-4M12 8h.01" />
+              </svg>
+              <div style="font-size:20px;font-weight:600;color:var(--good);margin-top:14px;margin-bottom:14px">BYD — #1
+                THẾ GIỚI</div>
+              <div class="bigstat" style="font-size:88px;color:var(--good)">2.26<span style="font-size:36px">M</span>
+              </div>
+              <div style="font-size:22px;font-weight:700;color:var(--ink);margin-top:12px">xe BEV bán ra năm 2025</div>
+              <div style="font-size:18px;color:var(--ink-2);margin-top:4px">4.6M NEV tổng (BEV+PHEV)</div>
+              <p style="font-size:18px;color:var(--ink-2);margin-top:10px;line-height:1.4">Vượt Tesla trở thành <b>hãng
+                  xe điện #1 thế giới</b>. Nhưng tại VN — ai đang chiếm Google Maps?</p>
+              <div style="font-size:16px;color:var(--ink-3);margin-top:6px">Nguồn: Statista, InsideEVs 2025</div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>BYD là <b>#1 thế giới</b> — nhưng nếu showroom BYD không ở trong top 3 Google Maps tại Việt Nam, <b>42%
+              khách sẽ lái xe đến VinFast, Hyundai, hoặc Tesla</b> — chưa kể 29% organic results cũng không thuộc về
+            BYD.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam ·
+          Chiến lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 3 — ANH TUẤN STORYTELLING ============ -->
+    <section data-label="Kịch bản Anh Tuấn">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Vấn đề</span><span class="kick-num">03
+            / 18</span></div>
+        <h2 class="h h-md anim">Hãy gặp anh Tuấn — <span class="accent">khách hàng BYD đã để vuột mất.</span></h2>
+        <div class="midfill">
+          <div class="flow anim d1" style="margin-top:34px">
+            <div class="step">
+              <span class="num-badge">1</span>
+              <div class="card" style="padding:26px 28px;flex:1">
+                <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21a8 8 0 0 1 16 0" />
+                </svg>
+                <div style="font-size:22px;font-weight:700;margin-top:16px;color:var(--ink)">Quan tâm xe điện gia đình
+                </div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">Anh Tuấn muốn mua xe điện
+                  cho gia đình 5 người. Đặc biệt quan tâm pin Blade an toàn.</p>
+              </div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div class="step">
+              <span class="num-badge">2</span>
+              <div class="card" style="padding:26px 28px;flex:1">
+                <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M21 21l-4.3-4.3" />
+                </svg>
+                <div style="font-size:22px;font-weight:700;margin-top:16px;color:var(--ink)">Search trên Google</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">Mở Google search: "đại lý xe
+                  điện gần đây" — giống như 9/10 khách hàng khác.</p>
+              </div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div class="step">
+              <span class="num-badge">3</span>
+              <div class="card"
+                style="padding:26px 28px;flex:1;border-color:rgba(192,73,47,.3);background:rgba(192,73,47,.04)">
+                <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--bad)">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <div style="font-size:22px;font-weight:700;margin-top:16px;color:var(--bad)">Maps hiện 3 showroom —
+                  không có BYD</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">Maps hiện VinFast Store
+                  4.8★, Hyundai Showroom, đại lý X. BYD hoàn toàn vắng bóng.</p>
+              </div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div class="step">
+              <span class="num-badge" style="background:var(--bad)">4</span>
+              <div class="card"
+                style="padding:26px 28px;flex:1;border-color:rgba(192,73,47,.3);background:rgba(192,73,47,.04)">
+                <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--bad)">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+                <div style="font-size:22px;font-weight:700;margin-top:16px;color:var(--bad)">Đến showroom đối thủ</div>
+                <p style="font-size:18px;color:var(--ink-2);margin-top:8px;line-height:1.4">1 tap gọi điện / chỉ đường
+                  đến VinFast → mua VF7. BYD mất khách hàng mãi mãi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>Anh Tuấn có nhu cầu mua xe điện. <b>Chỉ đơn giản là anh ấy không tìm thấy showroom BYD khi tìm kiếm trên
+              các công cụ search.</b> Và mỗi ngày có hàng nghìn "anh Tuấn" như vậy.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam ·
+          Chiến lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 4 — MAPS vs WEBSITE (merged with slide 5) ============ -->
+    <section data-label="Maps vs Website">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Thực tế</span><span
+            class="kick-num">04 / 18</span></div>
+        <h2 class="h h-sm anim">Google Maps xuất hiện <span class="accent">TRƯỚC</span> website — <span class="hl">1
+            tap</span> vs 5-7 bước</h2>
+        <div class="midfill" style="margin-top:14px">
+          <div class="split anim d1" style="grid-template-columns:1.1fr 1fr;align-items:center;gap:32px">
+            <!-- Real screenshot -->
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <span class="pill amber" style="padding:6px 12px"><svg class="ic" viewBox="0 0 24 24"
+                    style="width:16px;height:16px;color:var(--amber-700)">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg> Map Pack thực tế</span>
+                <span style="font-size:18px;font-weight:700;color:var(--blue);margin-left:auto">42% CLICK</span>
+              </div>
+              <div class="card"
+                style="padding:0;overflow:hidden;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.12)">
+                <img src="kw.png" alt="Google Maps search: đại lý xe hơi điện quận 7" style="width:100%;display:block">
+              </div>
+              <div
+                style="text-align:center;padding:12px 16px;background:rgba(220,53,69,.08);border-radius:8px;border:1px solid rgba(220,53,69,.2)">
+                <span style="font-size:18px;font-weight:700;color:var(--bad)">⚠ BYD KHÔNG CÓ TRONG TOP 3</span>
+              </div>
+            </div>
+            <!-- Comparison table -->
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div class="card" style="padding:0;overflow:hidden">
+                <table class="ctab">
+                  <thead>
+                    <tr>
+                      <th class="lab">Hành động</th>
+                      <th>Maps</th>
+                      <th>Website</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="lab"><svg class="ic" viewBox="0 0 24 24"
+                          style="color:var(--blue);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;vertical-align:middle;margin-right:6px">
+                          <path
+                            d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                        </svg>Gọi</td>
+                      <td class="new col-new"><b>1 tap</b></td>
+                      <td class="old">5+ bước</td>
+                    </tr>
+                    <tr>
+                      <td class="lab"><svg class="ic" viewBox="0 0 24 24"
+                          style="color:var(--bad);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5;vertical-align:middle;margin-right:6px">
+                          <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>Đường đi</td>
+                      <td class="new col-new"><b>1 tap</b></td>
+                      <td class="old">Copy → paste</td>
+                    </tr>
+                    <tr>
+                      <td class="lab"><svg class="ic" viewBox="0 0 24 24"
+                          style="color:var(--amber);width:16px;height:16px;fill:currentColor;stroke:currentColor;stroke-width:1;vertical-align:middle;margin-right:6px">
+                          <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                        </svg>Reviews</td>
+                      <td class="new col-new"><b>Thấy ngay</b></td>
+                      <td class="old">Không có</td>
+                    </tr>
+                    <tr>
+                      <td class="lab"><svg class="ic" viewBox="0 0 24 24"
+                          style="color:var(--blue);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;vertical-align:middle;margin-right:6px">
+                          <rect x="3" y="4" width="18" height="18" rx="2" />
+                          <path d="M3 10h18M8 2v4M16 2v4" />
+                        </svg>Lái thử</td>
+                      <td class="new col-new"><b>1 tap</b></td>
+                      <td class="old">Form → chờ 24h</td>
+                    </tr>
+                    <tr>
+                      <td class="lab"><svg class="ic" viewBox="0 0 24 24"
+                          style="color:var(--blue);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;vertical-align:middle;margin-right:6px">
+                          <path
+                            d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.8C2.1 10.9 2 11.2 2 11.5v4.5c0 .6.4 1 1 1h2" />
+                          <circle cx="7" cy="17" r="2" />
+                          <circle cx="17" cy="17" r="2" />
+                        </svg>Xe còn</td>
+                      <td class="new col-new"><b>Products tab</b></td>
+                      <td class="old">Navigate nhiều</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>Website nằm <b>BÊN DƯỚI</b> Map Pack. Khách <b>luôn chọn con đường ngắn nhất</b> — 1 tap gọi, chỉ đường,
+            đặt lái thử. Với xe 500M-2.4 tỷ, quyết định xảy ra ở <b>Map Pack</b>.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam ·
+          Chiến lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 6 — 7 CƠ HỘI BỎ LỠ ============ -->
+    <section class="dark" data-label="7 cơ hội bỏ lỡ">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Cơ hội</span><span class="kick-num">05
+            / 18</span></div>
+        <h2 class="h h-sm anim" style="color:#fff">7 cơ hội BYD đang <span class="accent">bỏ lỡ mỗi ngày</span></h2>
+        <div class="midfill" style="margin-top:20px">
+          <div class="grid anim d1" style="grid-template-columns:repeat(3,1fr);gap:18px">
+            <div class="card" style="padding:24px 26px">
+              <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
+              </svg>
+              <div style="font-size:21px;font-weight:700;margin-top:14px;color:#fff">37+ showroom — chỉ 1 GBP mỗi nơi
+              </div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Chưa tách
+                Sales/Service/Parts → lãng phí 2-3 slots MIỄN PHÍ trên Maps.</p>
+            </div>
+            <div class="card" style="padding:24px 26px">
+              <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21a8 8 0 0 1 16 0" />
+              </svg>
+              <div style="font-size:21px;font-weight:700;margin-top:14px;color:#fff">Sales không hiện diện online</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Khách tìm "tư vấn xe điện
+                gần đây" → không tiếp cận được nhân viên BYD.</p>
+            </div>
+            <div class="card" style="padding:24px 26px">
+              <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <path d="M5 18h10a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2zM21 10v4" />
+                <path d="M9 8l-2 4h4l-2 4" />
+              </svg>
+              <div style="font-size:21px;font-weight:700;margin-top:14px;color:#fff">Trạm sạc/Dịch vụ chưa có GBP</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Khách tìm "sạc xe điện gần
+                đây" → chỉ nhìn thấy các trạm sạc đối thủ.</p>
+            </div>
+            <div class="card" style="padding:24px 26px">
+              <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M3 10h18M8 2v4M16 2v4" />
+              </svg>
+              <div style="font-size:21px;font-weight:700;margin-top:14px;color:#fff">Chưa book lái thử trên Maps</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Khách buộc phải chuyển qua
+                website → dễ rơi rớt leads giữa phễu mua hàng.</p>
+            </div>
+            <div class="card" style="padding:24px 26px">
+              <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber);fill:var(--amber);stroke:none">
+                <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+              </svg>
+              <div style="font-size:21px;font-weight:700;margin-top:14px;color:#fff">Showroom mới, ít reviews</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">So với đối thủ hoạt động
+                lâu năm → khách e ngại khi so sánh trực tiếp.</p>
+            </div>
+            <div class="card" style="padding:24px 26px">
+              <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <path
+                  d="M10.3 3.9l-8 13.8A1.5 1.5 0 0 0 3.7 20h16.6a1.5 1.5 0 0 0 1.3-2.3l-8-13.8a1.5 1.5 0 0 0-2.6 0z" />
+                <path d="M12 9v4M12 17h.01" />
+              </svg>
+              <div style="font-size:21px;font-weight:700;margin-top:14px;color:#fff">Thông tin bị sửa đổi trái phép
+              </div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Đối thủ báo sai giờ mở cửa,
+                đổi số điện thoại hoặc đánh dấu showroom "đã đóng".</p>
+            </div>
+            <div class="card" style="padding:24px 26px">
+              <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber)">
+                <path d="M3 3v18h18" />
+                <path d="M7 14l3-3 3 2 5-6" />
+              </svg>
+              <div style="font-size:21px;font-weight:700;margin-top:14px;color:#fff">Không đo lường hiệu quả</div>
+              <p style="font-size:17px;color:var(--blue-100);margin-top:7px;line-height:1.4">Không đo được lượng chỉ
+                đường/cuộc gọi. <b>"Không đo lường được thì không quản lý & tối ưu được."</b></p>
+            </div>
+            <div class="card"
+              style="padding:24px 26px;background:var(--amber);border-color:var(--amber);display:flex;flex-direction:column;justify-content:center;grid-column:span 2">
+              <div
+                style="font-family:'IBM Plex Mono',monospace;font-size:42px;font-weight:600;color:var(--navy-900);line-height:1">
+                7×</div>
+              <div style="font-size:20px;font-weight:700;color:var(--navy-900);margin-top:8px;line-height:1.3">mỗi ngày,
+                mỗi showroom, cùng một lúc.</div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Không một cơ hội nào tự mất đi. Nhưng nếu BYD bỏ qua, đối thủ sẽ tận dụng để thu hút khách hàng — trước khi
+            họ kịp biết showroom BYD nằm ngay gần đó.</p>
+        </div>
+      </div>
+      <div class="foot" style="color:rgba(255,255,255,.5)"><span class="wm"
+          style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến lược
+          GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 7 — GBP LÀ GÌ ============ -->
+    <section data-label="GBP là gì">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải thích</span><span
+            class="kick-num">06 / 18</span></div>
+        <div class="split tilt" style="gap:48px;align-items:center;margin-top:10px">
+          <div>
+            <h2 class="h h-sm anim">Google Business Profile = <span class="accent">Tấm danh thiếp thông minh</span> trên
+              Google Maps</h2>
+            <p class="sub anim" style="margin-top:14px;font-size:20px;line-height:1.4">Google tự động dựng "danh thiếp"
+              này khi khách hàng tìm kiếm — hoàn toàn <b>miễn phí</b>. Với showroom BYD, nó gồm 10 thành phần chuẩn hóa:
+            </p>
+            <div class="anim d1" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
+                </svg>Tên showroom + department</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                </svg>Đánh giá từ khách thật</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>Địa chỉ + Chỉ đường 1 tap</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>Giờ mở cửa chính xác</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path
+                    d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                </svg>Số tổng đài + Gọi 1 tap</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <rect x="2" y="5" width="20" height="15" rx="2" />
+                  <circle cx="12" cy="13" r="3" />
+                </svg>Ảnh showroom + virtual tour</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path
+                    d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.8C2.1 10.9 2 11.2 2 11.5v4.5c0 .6.4 1 1 1h2" />
+                  <circle cx="7" cy="17" r="2" />
+                  <circle cx="17" cy="17" r="2" />
+                </svg>Products: 9 models + giá</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M3 10h18M8 2v4M16 2v4" />
+                </svg>Đặt lịch lái thử 1 tap</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <path d="M14 2v6h6" />
+                  <path d="M16 13H8M16 17H8" />
+                </svg>Bài viết: xe mới, ưu đãi</div>
+              <div class="chip9"><svg class="ic" viewBox="0 0 24 24">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>Q&A: "Pin bảo hành...?"</div>
+            </div>
+          </div>
+          <div class="anim d2" style="max-width:480px;justify-self:center;width:100%">
+            <div class="gbp">
+              <div class="photo" data-bg-name="loc"
+                style="aspect-ratio:16/9;background-size:cover;background-position:center;color:transparent"></div>
+              <div class="body">
+                <div class="name">BYD Showroom Quận 7 — Sales</div>
+                <div class="cat">Car Dealer · Electric Vehicle Dealer</div>
+                <div class="rate"><span class="score">4.8</span><span class="stars"><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg></span><span class="count">(200 đánh giá)</span></div>
+                <div class="rows">
+                  <div class="row"><svg class="ic" viewBox="0 0 24 24">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>123 Nguyễn Văn Linh, Quận 7, TP.HCM</div>
+                  <div class="row"><svg class="ic" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>T2-CN: 8:30 — 20:00</div>
+                  <div class="row"><svg class="ic" viewBox="0 0 24 24">
+                      <path
+                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                    </svg>1900-xxxx (Tổng đài)</div>
+                </div>
+                <div class="actions">
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <path
+                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                    </svg>Gọi</div>
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    </svg>Đường đi</div>
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                      <path d="M16 2v4M8 2v4M3 10h18" />
+                    </svg>Lái thử</div>
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z" />
+                    </svg>Website</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>Google TỰ ĐỘNG hiển thị "danh thiếp" này — <b>MIỄN PHÍ</b>. Nhưng nếu BYD không tối ưu → Google hiển thị
+            <b>VinFast, Hyundai</b> thay vì BYD.
+          </p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến
+          lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 7 — DEPARTMENT DOMINATION + NETWORK (MERGED) ============ -->
+    <section data-label="Department Domination">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Đặc quyền ngành oto</span><span
+            class="kick-num">07 / 18</span></div>
+        <h2 class="h h-sm anim">1 Showroom BYD = <span class="accent">4 GBP + Agents + Trạm sạc</span> — Đặc quyền chỉ
+          ngành xe!</h2>
+        <div class="midfill">
+          <div class="split anim d1" style="grid-template-columns:1fr 1.1fr;gap:48px;flex:none">
+            <div>
+              <div class="pill amber" style="margin-bottom:20px">Department Domination · Mô hình mạng lưới</div>
+              <p class="sub" style="font-size:19px;margin-bottom:24px;line-height:1.5">Google cho phép ngành oto tạo
+                <b>nhiều GBP tại cùng 1 địa chỉ</b> — đặc quyền mà ngân hàng, bảo hiểm không có.
+              </p>
+              <div style="display:flex;flex-direction:column;gap:16px">
+                <div class="node"
+                  style="padding:20px 24px;display:flex;align-items:center;gap:16px;background:var(--navy-800);color:#fff;border-color:var(--navy-700)">
+                  <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber);width:28px;height:28px">
+                    <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
+                  </svg>
+                  <div><b style="font-size:20px">BYD Showroom Q7</b><span
+                      style="font-size:16px;color:var(--blue-100);margin-left:10px">1 địa chỉ vật lý</span></div>
+                </div>
+                <div style="display:flex;gap:12px">
+                  <div class="node" style="flex:1;padding:18px 20px"><b style="font-size:18px">Sales</b>
+                    <div style="font-size:16px;color:var(--ink-3);margin-top:4px">4.8★</div>
+                  </div>
+                  <div class="node" style="flex:1;padding:18px 20px"><b style="font-size:18px">Service</b>
+                    <div style="font-size:16px;color:var(--ink-3);margin-top:4px">4.9★</div>
+                  </div>
+                  <div class="node" style="flex:1;padding:18px 20px"><b style="font-size:18px">Parts</b>
+                    <div style="font-size:16px;color:var(--ink-3);margin-top:4px">4.7★</div>
+                  </div>
+                  <div class="node" style="flex:1;padding:18px 20px"><b style="font-size:18px">Trạm sạc</b>
+                    <div style="font-size:16px;color:var(--ink-3);margin-top:4px">4.6★</div>
+                  </div>
+                </div>
+                <div class="node"
+                  style="padding:20px 24px;border-color:var(--amber-700);background:rgba(246,173,85,.07);display:flex;align-items:center;gap:16px">
+                  <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber-700);width:28px;height:28px">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 21a8 8 0 0 1 16 0" />
+                  </svg>
+                  <div><b style="font-size:19px">SC Nguyễn Văn A</b>
+                    <div style="font-size:16px;color:var(--ink-3);margin-top:2px">Chuyên: Atto 3, Dolphin · 5.0★ · 80
+                      reviews</div>
+                  </div>
+                </div>
+                <div class="node"
+                  style="padding:20px 24px;border-color:var(--amber-700);background:rgba(246,173,85,.07);display:flex;align-items:center;gap:16px">
+                  <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber-700);width:28px;height:28px">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 21a8 8 0 0 1 16 0" />
+                  </svg>
+                  <div><b style="font-size:19px">SC Trần Thị B</b>
+                    <div style="font-size:16px;color:var(--ink-3);margin-top:2px">Chuyên: Seal, Han · 4.9★ · 60 reviews
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="pill blue" style="margin-bottom:20px">Search: "xe điện Quận 7"</div>
+              <div class="mp">
+                <div class="res win" style="padding:18px 20px"><span class="rank" style="font-size:20px">1</span>
+                  <div class="meta">
+                    <div class="t" style="font-size:19px">BYD Showroom Quận 7 — Sales</div>
+                    <div class="s" style="font-size:16px;margin-top:4px">4.8★ · 200 đánh giá · "Atto 3, Seal, Dolphin"
+                    </div>
+                  </div>
+                </div>
+                <div class="res win" style="padding:18px 20px"><span class="rank" style="font-size:20px">2</span>
+                  <div class="meta">
+                    <div class="t" style="font-size:19px">SC Nguyễn Văn A — BYD Q7</div>
+                    <div class="s" style="font-size:16px;margin-top:4px">Chuyên xe gia đình · 5.0★ · 80 reviews</div>
+                  </div>
+                </div>
+                <div class="res" style="padding:18px 20px"><span class="rank" style="font-size:20px">3</span>
+                  <div class="meta">
+                    <div class="t" style="font-size:19px;color:var(--ink-3)">VinFast Store Q7</div>
+                    <div class="s" style="font-size:16px;margin-top:4px">Thông tin cơ bản, ít đánh giá</div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:28px;display:flex;gap:40px;justify-content:center">
+                <div style="text-align:center">
+                  <div class="bigstat" style="font-size:80px;color:var(--blue)">2<span
+                      style="font-size:40px;color:var(--ink-3)">/3</span></div>
+                  <div style="font-size:18px;color:var(--ink-2)">Map Pack thuộc BYD</div>
+                </div>
+                <div style="text-align:center">
+                  <div class="bigstat" style="font-size:80px;color:var(--amber-700)">70<span
+                      style="font-size:40px">%</span></div>
+                  <div style="font-size:18px;color:var(--ink-2)">traffic chuyển sang BYD</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>Hiện tại <b>GẦN NHƯ KHÔNG CÓ</b> SC hãng xe nào ở VN có GBP cá nhân → <b>blue ocean 100%</b>. Ai làm trước,
+            chiếm trước.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến
+          lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 10 — BEFORE → AFTER ============ -->
+    <section data-label="Tối ưu Showroom">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #1</span><span
+            class="kick-num">08 / 18</span></div>
+        <h2 class="h h-sm anim">Tối ưu Showroom + Tách Department — <span class="accent">Trước vs Sau</span></h2>
+        <div class="midfill">
+          <div class="anim d1" style="display:grid;grid-template-columns:1fr 1fr .8fr;gap:20px;align-items:start">
+            <div class="card" style="padding:0;overflow:hidden;border-color:rgba(192,73,47,.3)">
+              <div
+                style="background:rgba(192,73,47,.08);padding:12px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)">
+                <span class="pill" style="background:rgba(192,73,47,.16);color:var(--bad)">Trước</span>
+                <b style="font-size:16px;color:var(--ink)">Profile bị bỏ rơi</b>
+              </div>
+              <div style="padding:8px 20px">
+                <div class="ba"><span>Tên</span><em>"BYD" (chung chung)</em></div>
+                <div class="ba"><span>Số GBP</span><em>1 GBP duy nhất</em></div>
+                <div class="ba"><span>Danh mục</span><em>Car Dealer (1 danh mục)</em></div>
+                <div class="ba"><span>Mô tả</span><em>Trống hoặc copy từ website</em></div>
+                <div class="ba"><span>Ảnh</span><em>0-10 ảnh chung</em></div>
+                <div class="ba"><span>Đánh giá</span><em>&lt; 4.0★, ít reviews</em></div>
+                <div class="ba"><span>Products</span><em>Không liệt kê</em></div>
+                <div class="ba"><span>Bài đăng</span><em>Không có</em></div>
+                <div class="ba"><span>Q&A</span><em>Không có</em></div>
+                <div class="ba" style="border-bottom:0"><span>Virtual tour</span><em>Không có</em></div>
+              </div>
+            </div>
+            <div class="card" style="padding:0;overflow:hidden;border-color:var(--blue)">
+              <div
+                style="background:rgba(43,108,176,.07);padding:12px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)">
+                <span class="pill blue">Sau</span>
+                <b style="font-size:16px;color:var(--blue)">Chiến lược nội dung bài bản</b>
+              </div>
+              <div style="padding:8px 20px">
+                <div class="ba good"><span>Tên</span><em>"BYD Showroom Quận 7 — Sales"</em></div>
+                <div class="ba good"><span>Số GBP</span><em><b>3-4 GBP</b>: Sales + Service + Parts</em></div>
+                <div class="ba good"><span>Danh mục</span><em>Car Dealer + EV Dealer + Auto Repair + Parts</em></div>
+                <div class="ba good"><span>Mô tả</span><em>750 ký tự: model xe, ưu đãi, pin Blade</em></div>
+                <div class="ba good"><span>Ảnh</span><em><b>100+</b> ảnh: mỗi model + showroom + lái thử</em></div>
+                <div class="ba good"><span>Đánh giá</span><em><b>≥ 4.7★</b>, phản hồi 100% trong 24h</em></div>
+                <div class="ba good"><span>Products</span><em>Atto 2, Atto 3, Seal, Seal 5, Dolphin, M6 + giá + ảnh</em></div>
+                <div class="ba good"><span>Bài đăng</span><em>2-4 bài/tuần: xe mới, lái thử, tips sạc</em></div>
+                <div class="ba good"><span>Q&A</span><em>15+: "Pin bảo hành?", "So sánh Atto 3 vs VF7?"</em></div>
+                <div class="ba good" style="border-bottom:0"><span>Virtual tour</span><em>360° showroom + khu trưng bày + lái thử</em></div>
+              </div>
+            </div>
+            <!-- Services GBP Card -->
+            <div class="gbp" style="font-size:13px">
+              <div class="photo" style="background-image:url('service.png');aspect-ratio:16/9;background-size:cover;background-position:center"></div>
+              <div class="body" style="padding:12px 14px">
+                <div class="name" style="font-size:14px">BYD Service Center Q7</div>
+                <div class="cat" style="font-size:11px">Auto Repair Shop · EV Service Center</div>
+                <div class="rate" style="margin:6px 0"><span class="score" style="font-size:13px">4.9</span><span class="stars"><svg viewBox="0 0 24 24" style="width:11px;height:11px">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24" style="width:11px;height:11px">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24" style="width:11px;height:11px">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24" style="width:11px;height:11px">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24" style="width:11px;height:11px">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg></span><span class="count" style="font-size:10px">(85 đánh giá)</span></div>
+                <div class="rows" style="font-size:11px;gap:4px">
+                  <div class="row" style="padding:3px 0"><svg class="ic" viewBox="0 0 24 24" style="width:12px;height:12px">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>123 Nguyễn Văn Linh, Q7</div>
+                  <div class="row" style="padding:3px 0"><svg class="ic" viewBox="0 0 24 24" style="width:12px;height:12px">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>T2-T7: 7:30 — 18:00</div>
+                  <div class="row" style="padding:3px 0"><svg class="ic" viewBox="0 0 24 24" style="width:12px;height:12px">
+                      <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+                    </svg>Bảo dưỡng · Kiểm tra pin Blade</div>
+                </div>
+                <div class="actions" style="margin-top:8px;gap:4px">
+                  <div class="act" style="padding:5px 8px;font-size:10px"><svg class="ic" viewBox="0 0 24 24" style="width:11px;height:11px">
+                      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                    </svg>Gọi</div>
+                  <div class="act" style="padding:5px 8px;font-size:10px"><svg class="ic" viewBox="0 0 24 24" style="width:11px;height:11px">
+                      <rect x="3" y="4" width="18" height="18" rx="2" />
+                      <path d="M3 10h18M8 2v4M16 2v4" />
+                    </svg>Đặt lịch</div>
+                  <div class="act" style="padding:5px 8px;font-size:10px"><svg class="ic" viewBox="0 0 24 24" style="width:11px;height:11px">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    </svg>Đường đi</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>Tối ưu không phải chỉ là sửa tên. Đó là <b>đầy đủ 10 thành phần chuẩn hóa và đồng bộ</b> cho toàn bộ showroom — nền tảng để tăng <b>Relevance</b> và <b>Prominence</b> trên Google Maps.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến
+          lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 14 — SALES PROFILE ============ -->
+    <section data-label="Sales Profile">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #2 · Sales
+            Profile</span><span class="kick-num">09 / 18</span></div>
+        <div class="split tilt" style="gap:60px;align-items:center;margin-top:4px">
+          <div>
+            <h2 class="h h-md anim">Biến mỗi Sales thành <span class="accent">chuyên gia xe điện trên Google
+                Maps</span>.</h2>
+            <p class="sub anim" style="margin-top:22px">Khi khách tìm "mua xe điện gia đình Q7", họ thấy cả showroom BYD
+              <b>và</b> Sales của BYD — chiếm 2/3 Map Pack.
+            </p>
+            <div class="anim d1"
+              style="margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden">
+              <div
+                style="padding:14px 22px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.06em;color:var(--ink-3);border-bottom:1px solid var(--line)">
+                SEARCH: "mua xe điện gia đình Q7"</div>
+              <div class="mp" style="border:0;border-radius:0">
+                <div class="res win"><span class="rank">1</span>
+                  <div class="meta">
+                    <div class="t">BYD Showroom Quận 7 — Sales</div>
+                    <div class="s">Atto 3, Seal, Dolphin · 4.8★</div>
+                  </div>
+                </div>
+                <div class="res win"><span class="rank">2</span>
+                  <div class="meta">
+                    <div class="t">Sales Nguyễn Văn A — BYD Q7</div>
+                    <div class="s">Chuyên xe gia đình, 3 năm KN · 5.0★</div>
+                  </div>
+                </div>
+                <div class="res"><span class="rank">3</span>
+                  <div class="meta">
+                    <div class="t" style="color:var(--ink-3)">VinFast Store Quận 7</div>
+                    <div class="s">Thông tin cơ bản, ít đánh giá</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="anim d2" style="max-width:440px;justify-self:center;width:100%">
+            <div class="gbp">
+              <div class="photo" data-bg-name="man"
+                style="aspect-ratio:16/9;background-size:cover;background-position:center top;color:transparent"></div>
+              <div class="body">
+                <div class="name">Nguyễn Văn A — BYD Q7</div>
+                <div class="cat">Tư vấn bán hàng · Xe điện</div>
+                <div class="rate"><span class="score">5.0</span><span class="stars"><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg><svg viewBox="0 0 24 24">
+                      <path d="M12 2l3 6.3H22l-5.3 3.9 2 6.3L12 14.6l-6.7 3.9 2-6.3L2 8.3h7z" />
+                    </svg></span><span class="count">(80 đánh giá)</span></div>
+                <div class="rows">
+                  <div class="row"><svg class="ic" viewBox="0 0 24 24">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>Phục vụ: Quận 7, Bình Thạnh, Quận 4</div>
+                  <div class="row"><svg class="ic" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>T2-CN: 8:30 — 20:00</div>
+                  <div class="row"><svg class="ic" viewBox="0 0 24 24">
+                      <path
+                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                    </svg>1900-xxxx (Tổng đài BYD)</div>
+                </div>
+                <div class="actions">
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <path
+                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                    </svg>Gọi</div>
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>Nhắn tin</div>
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    </svg>Đường đi</div>
+                  <div class="act"><svg class="ic" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 16v-4M12 8h.01" />
+                    </svg>Chi tiết</div>
+                </div>
+              </div>
+            </div>
+            <div class="pill amber" style="margin-top:16px">Chưa Sales hãng xe nào ở VN có GBP cá nhân → BYD là đầu tiên
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Sales Profile là <b>blue ocean</b>: chưa một hãng xe Việt Nam nào làm. BYD có thể là người đầu tiên — và
+            chiếm lợi thế lâu dài.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến
+          lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 15 — TEST DRIVE BOOKING ============ -->
+    <section data-label="Test Drive Booking">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #3 — Đột phá</span><span
+            class="kick-num">10 / 18</span></div>
+        <h2 class="h h-sm anim">Search → Book → Drive → Buy — <span class="accent">1 tap đặt lịch lái thử</span></h2>
+        <div class="midfill" style="margin-top:20px">
+          <div class="anim d1" style="display:flex;flex-direction:column;gap:20px">
+            <!-- Row 1: Search → Maps → Book -->
+            <div style="display:flex;align-items:center;gap:16px">
+              <div class="card" style="flex:1;padding:20px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                  <div class="num-badge">1</div>
+                  <div style="font-size:21px;font-weight:700;display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--blue);width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2.5">
+                      <circle cx="11" cy="11" r="7" />
+                      <path d="M21 21l-4.3-4.3" />
+                    </svg>
+                    Search
+                  </div>
+                </div>
+                <p style="font-size:17px;color:var(--ink-2);line-height:1.5">Khách hàng tìm kiếm <b>"xe điện gần
+                    đây"</b> hoặc <b>"showroom BYD"</b> trên Google</p>
+              </div>
+              <div class="arr" style="flex:none"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></div>
+              <div class="card" style="flex:1;padding:20px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                  <div class="num-badge">2</div>
+                  <div style="font-size:21px;font-weight:700;display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--bad);width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2.5">
+                      <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    Maps
+                  </div>
+                </div>
+                <p style="font-size:17px;color:var(--ink-2);line-height:1.5">BYD hiển thị <b>top 3 Map Pack</b> với đầy
+                  đủ thông tin và đánh giá cao</p>
+              </div>
+              <div class="arr" style="flex:none"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></div>
+              <div class="card" style="flex:1;padding:20px;border-color:rgba(43,108,176,.3)">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                  <div class="num-badge" style="background:var(--blue)">3</div>
+                  <div style="font-size:21px;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--blue);width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2.5">
+                      <rect x="3" y="4" width="18" height="18" rx="2" />
+                      <path d="M3 10h18M8 2v4M16 2v4" />
+                    </svg>
+                    Book
+                  </div>
+                </div>
+                <p style="font-size:17px;color:var(--ink-2);line-height:1.5"><b>1 tap đặt lịch lái thử</b> ngay trên GBP
+                  — không cần gọi điện hay vào website</p>
+              </div>
+            </div>
+            <!-- Arrow: 3 → hook down-left → 4 -->
+            <div style="position:relative;height:40px;margin:0 40px">
+              <!-- Vertical line from card 3 -->
+              <div
+                style="position:absolute;right:calc(16.67% - 20px);top:0;width:2px;height:20px;background:var(--ink-4)">
+              </div>
+              <!-- Horizontal line -->
+              <div
+                style="position:absolute;left:calc(16.67% - 20px);right:calc(16.67% - 20px);top:18px;height:2px;background:var(--ink-4)">
+              </div>
+              <!-- Vertical line to card 4 + arrow -->
+              <div
+                style="position:absolute;left:calc(16.67% - 20px);top:18px;width:2px;height:22px;background:var(--ink-4)">
+              </div>
+              <svg viewBox="0 0 24 24"
+                style="position:absolute;left:calc(16.67% - 30px);bottom:-4px;width:22px;height:22px;color:var(--ink-3)">
+                <path d="M12 5v14M5 12l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.5" />
+              </svg>
+            </div>
+            <!-- Row 2: OMS → Drive → Buy -->
+            <div style="display:flex;align-items:center;gap:16px">
+              <div class="card" style="flex:1;padding:20px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                  <div class="num-badge">4</div>
+                  <div style="font-size:21px;font-weight:700;display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--good);width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2.5">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>
+                    OMS
+                  </div>
+                </div>
+                <p style="font-size:17px;color:var(--ink-2);line-height:1.5">Hệ thống <b>tự động phân bổ</b> booking cho
+                  Sales gần nhất và gửi xác nhận</p>
+              </div>
+              <div class="arr" style="flex:none"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></div>
+              <div class="card" style="flex:1;padding:20px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                  <div class="num-badge">5</div>
+                  <div style="font-size:21px;font-weight:700;display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--blue);width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2">
+                      <path
+                        d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.8C2.1 10.9 2 11.2 2 11.5v4.5c0 .6.4 1 1 1h2" />
+                      <circle cx="7" cy="17" r="2" />
+                      <circle cx="17" cy="17" r="2" />
+                    </svg>
+                    Drive
+                  </div>
+                </div>
+                <p style="font-size:17px;color:var(--ink-2);line-height:1.5">Khách đến showroom <b>lái thử xe</b> theo
+                  lịch đã đặt, được Sales tư vấn</p>
+              </div>
+              <div class="arr" style="flex:none"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></div>
+              <div class="card" style="flex:1;padding:20px;border-color:rgba(47,143,107,.3)">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                  <div class="num-badge" style="background:var(--good)">6</div>
+                  <div style="font-size:21px;font-weight:700;color:var(--good);display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--good);width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2.5">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                    Buy + <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--amber);width:18px;height:18px;flex:none;fill:currentColor;stroke:currentColor;stroke-width:1">
+                      <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                    </svg>
+                  </div>
+                </div>
+                <p style="font-size:17px;color:var(--ink-2);line-height:1.5"><b>Mua xe</b> xong, hệ thống auto gửi
+                  <b>request review</b> sau 48h
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>1 test drive booking từ GBP ≈ <b>25% chuyển đổi thành bán xe</b>. 1 xe BYD ≈ 800M VNĐ. → <b>1 test drive
+              booking = 200M VNĐ giá trị tiềm năng.</b></p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến
+          lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 15 — 7 GIẢI PHÁP NỀN TẢNG (merged 17+18) ============ -->
+    <section data-label="7 giải pháp nền tảng">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải pháp #4-10</span><span
+            class="kick-num">11 / 18</span></div>
+        <h2 class="h h-sm anim">7 giải pháp nền tảng — <span class="accent">Bảo vệ + Kết nối + Tự động</span></h2>
+        <div class="midfill" style="margin-top:14px">
+          <div class="grid anim d1" style="grid-template-columns:repeat(4,1fr);gap:14px">
+            <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:18px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px">
+                <svg class="ic" viewBox="0 0 24 24"
+                  style="color:var(--blue);width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2.5">
+                  <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
+                </svg>
+                Protection 24/7
+              </div>
+              <p style="font-size:16px;color:var(--ink-2);line-height:1.4">Quét <b>15 phút</b>, ai sửa → tự động hoàn
+                tác</p>
+            </div>
+            <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:18px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px">
+                <svg class="ic" viewBox="0 0 24 24"
+                  style="color:var(--blue);width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2">
+                  <path
+                    d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+                </svg>
+                Tổng đài 3-Channel
+              </div>
+              <p style="font-size:16px;color:var(--ink-2);line-height:1.4">Sales/Service/Parts tự chuyển. SC nghỉ → 0
+                mất leads</p>
+            </div>
+            <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:18px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px">
+                <svg class="ic" viewBox="0 0 24 24"
+                  style="color:var(--amber);width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2">
+                  <path d="M5 18h10a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2zM21 10v4" />
+                  <path d="M9 8l-2 4h4l-2 4" />
+                </svg>
+                Trạm sạc GBP
+              </div>
+              <p style="font-size:16px;color:var(--ink-2);line-height:1.4">Mỗi trạm = 1 GBP riêng = <b>billboard miễn
+                  phí</b></p>
+            </div>
+            <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:18px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px">
+                <svg class="ic" viewBox="0 0 24 24"
+                  style="color:var(--blue);width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2">
+                  <path
+                    d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.8C2.1 10.9 2 11.2 2 11.5v4.5c0 .6.4 1 1 1h2" />
+                  <circle cx="7" cy="17" r="2" />
+                  <circle cx="17" cy="17" r="2" />
+                </svg>
+                Vehicle Gallery
+              </div>
+              <p style="font-size:16px;color:var(--ink-2);line-height:1.4">Auto-sync xe còn hàng. Hết → remove. Mới →
+                add.</p>
+            </div>
+            <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:18px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px">
+                <svg class="ic" viewBox="0 0 24 24"
+                  style="color:var(--blue);width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2">
+                  <path
+                    d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+                </svg>
+                Service Reminder
+              </div>
+              <p style="font-size:16px;color:var(--ink-2);line-height:1.4">6 tháng → auto nhắc bảo dưỡng → book → review
+              </p>
+            </div>
+            <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:18px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px">
+                <svg class="ic" viewBox="0 0 24 24"
+                  style="color:var(--blue);width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20" />
+                </svg>
+                AI Search (GEO)
+              </div>
+              <p style="font-size:16px;color:var(--ink-2);line-height:1.4">BYD trên <b>ChatGPT, Google AI,
+                  Perplexity</b></p>
+            </div>
+            <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:10px;grid-column:span 2">
+              <div style="font-size:18px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px">
+                <svg class="ic" viewBox="0 0 24 24"
+                  style="color:var(--bad);width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2.5">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M21 21l-4.3-4.3" />
+                </svg>
+                Competitor Price Alert
+              </div>
+              <p style="font-size:16px;color:var(--ink-2);line-height:1.4">Monitor VinFast, Tesla, Hyundai — đối thủ
+                giảm giá → alert BYD HQ → auto-response. <b>React nhanh hơn thị trường.</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>Bảo vệ <b>an toàn thông tin</b>, chuyển tiếp cuộc gọi <b>không thất thoát leads</b>, tự động hoá mọi quy
+            trình. Mục tiêu: <b>BYD chiếm trọn Map Pack tại mọi khu vực showroom.</b></p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến
+          lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 11 — SI × BETA OVERVIEW ============ -->
+    <section data-label="Giải pháp kết hợp">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giới thiệu giải pháp</span><span
+            class="kick-num">12 / 18</span></div>
+        <h2 class="h h-md anim"><span class="wm" style="font-weight:800">SingleInterface <span class="x"
+              style="color:var(--amber-700)">×</span> Beta</span> — Nền tảng + Dịch vụ.</h2>
+        <div class="midfill" style="gap:24px">
+          <div class="anim d1" style="display:flex;align-items:stretch;gap:20px">
+            <div class="node"
+              style="flex:.8;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--navy-800);color:#fff;border-color:var(--navy-700)">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--amber)">
+                <path
+                  d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.8C2.1 10.9 2 11.2 2 11.5v4.5c0 .6.4 1 1 1h2" />
+                <circle cx="7" cy="17" r="2" />
+                <circle cx="17" cy="17" r="2" />
+              </svg>
+              <div style="font-size:24px;font-weight:700;margin-top:12px">BYD Việt Nam</div>
+              <div style="font-size:16px;color:var(--blue-100);margin-top:4px">HQ + Showrooms + Sales</div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div style="flex:1.5;display:flex;flex-direction:column;gap:14px">
+              <div class="node" style="border-color:var(--blue);background:rgba(43,108,176,.06)">
+                <div style="display:flex;align-items:center;gap:10px"><span class="pill blue"
+                    style="padding:5px 12px;font-size:13px">Platform</span><b
+                    style="font-size:20px;color:var(--blue)">SingleInterface</b></div>
+                <p style="font-size:16px;color:var(--ink-2);margin-top:8px;line-height:1.35">Dashboard tập trung · Bulk
+                  update · Analytics · Protection · Content · AI Search (Gemini, ChatGPT, Perplexity)</p>
+              </div>
+              <div class="node" style="border-color:var(--amber-700);background:rgba(246,173,85,.08)">
+                <div style="display:flex;align-items:center;gap:10px"><span class="pill amber"
+                    style="padding:5px 12px;font-size:13px">SERVICES</span><b
+                    style="font-size:20px;color:var(--amber-700)">Dịch vụ mở rộng</b></div>
+                <p style="font-size:16px;color:var(--ink-2);margin-top:8px;line-height:1.35">Tổng đài · Sales Profile ·
+                  Workflow phê duyệt · CRM · Test Drive OMS</p>
+              </div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div class="node"
+              style="flex:.85;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+              <svg class="ic ic-lg" viewBox="0 0 24 24" style="color:var(--blue)">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <div style="font-size:20px;font-weight:700;margin-top:12px">Google Business Profile</div>
+              <div style="font-size:15px;color:var(--ink-3);margin-top:4px">Showrooms + Sales trên Maps</div>
+            </div>
+            <div class="arr"><svg class="ic" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></div>
+            <div class="node"
+              style="flex:.8;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--good);color:#fff;border-color:var(--good)">
+              <svg class="ic ic-lg" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21a8 8 0 0 1 16 0" />
+              </svg>
+              <div style="font-size:20px;font-weight:700;margin-top:12px">Khách hàng</div>
+              <div style="font-size:15px;color:rgba(255,255,255,.85);margin-top:4px">Thấy BYD đầu tiên</div>
+            </div>
+          </div>
+          <div class="grid anim d2" style="grid-template-columns:1fr 1fr 1.1fr;gap:16px">
+            <div class="card" style="padding:20px 24px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--ink-3);letter-spacing:.06em">
+                CHỈ Platform</div>
+              <div style="font-size:19px;font-weight:600;margin-top:6px">= Nền tảng + nội dung + bảo vệ + tối ưu + hỗ
+                trợ AI Search đa nền tảng.</div>
+            </div>
+            <div class="card" style="padding:20px 24px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--ink-3);letter-spacing:.06em">
+                CHỈ Services</div>
+              <div style="font-size:19px;font-weight:600;margin-top:6px">= Tổng đài, Sales Profile, CRM — nhưng thiếu
+                nền
+                tảng scale toàn showroom.</div>
+            </div>
+            <div class="card"
+              style="padding:20px 24px;background:var(--navy-800);border-color:var(--navy-800);color:#fff">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--amber);letter-spacing:.06em">
+                KẾT HỢP · 1 + 1 = 3</div>
+              <div style="font-size:19px;font-weight:700;margin-top:6px">Nền tảng + Protection + Tổng đài + Sales
+                Profile
+                + CRM + Test Drive OMS.</div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p><b>Công nghệ quản lý + Dịch vụ tối ưu = Kết quả đo lường được.</b> Một bên không đủ — sức mạnh nằm ở sự kết
+            hợp.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam ·
+          Chiến lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 8 — 5R METHODOLOGY ============ -->
+    <section class="dark" data-label="5R Methodology">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Phương pháp tối ưu</span><span
+            class="kick-num">13 / 18</span></div>
+        <h2 class="h h-sm anim" style="color:#fff">3 yếu tố Google xếp hạng &amp; <span class="accent">Phương pháp tối
+            ưu 5R</span></h2>
+        <div class="midfill">
+          <div class="split anim d1" style="gap:40px;align-items:center">
+            <div>
+              <div
+                style="font-size:18px;font-weight:600;color:var(--amber);margin-bottom:16px;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:6px">
+                <svg class="ic" viewBox="0 0 24 24"
+                  style="color:var(--amber);width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2">
+                  <rect x="3" y="11" width="18" height="10" rx="2" />
+                  <circle cx="12" cy="5" r="2" />
+                  <path d="M12 7v4M8 15h.01M16 15h.01M9 21v-2M15 21v-2" />
+                </svg>
+                Thuật toán Google
+              </div>
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <div class="card" style="padding:18px 20px">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--blue);width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.5">
+                      <circle cx="11" cy="11" r="7" />
+                      <path d="M21 21l-4.3-4.3" />
+                    </svg>
+                    <div style="font-size:21px;font-weight:700;color:#fff">1. Relevance</div>
+                  </div>
+                  <p style="font-size:17px;color:var(--blue-100);margin-top:6px">Showroom có đúng loại xe khách cần?</p>
+                </div>
+                <div class="card" style="padding:18px 20px">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--bad);width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.5">
+                      <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <div style="font-size:21px;font-weight:700;color:#fff">2. Distance</div>
+                  </div>
+                  <p style="font-size:17px;color:var(--blue-100);margin-top:6px">Showroom có gần vị trí khách?</p>
+                </div>
+                <div class="card" style="padding:18px 20px">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--amber);width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2">
+                      <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
+                    </svg>
+                    <div style="font-size:21px;font-weight:700;color:#fff">3. Prominence</div>
+                  </div>
+                  <p style="font-size:17px;color:var(--blue-100);margin-top:6px">Showroom có uy tín (đánh giá, nội dung,
+                    ảnh)?</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                style="font-size:18px;font-weight:600;color:var(--amber);margin-bottom:16px;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:6px">
+                <svg class="ic" viewBox="0 0 24 24"
+                  style="color:var(--amber);width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2">
+                  <path
+                    d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+                </svg>
+                Phương pháp 5R
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="r5">
+                  <div class="r5h" style="display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--bad);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5">
+                      <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <b>Radius</b>
+                    <span class="map">↔ Distance</span>
+                  </div>
+                  <p>Tối ưu khu vực phục vụ, mở rộng bán kính hiển thị</p>
+                </div>
+                <div class="r5">
+                  <div class="r5h" style="display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--blue);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5">
+                      <circle cx="11" cy="11" r="7" />
+                      <path d="M21 21l-4.3-4.3" />
+                    </svg>
+                    <b>Relevance</b>
+                    <span class="map">↔ Relevance</span>
+                  </div>
+                  <p>Tối ưu danh mục Car Dealer, EV Dealer, mô tả, Q&A</p>
+                </div>
+                <div class="r5">
+                  <div class="r5h" style="display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--amber);width:16px;height:16px;fill:currentColor;stroke:currentColor;stroke-width:1">
+                      <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                    </svg>
+                    <b>Reviews</b>
+                    <span class="map">↔ Prominence</span>
+                  </div>
+                  <p>Thu đánh giá chất lượng sau mua xe + bảo dưỡng</p>
+                </div>
+                <div class="r5">
+                  <div class="r5h" style="display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--blue);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>
+                    <b>Recency</b>
+                    <span class="map">↔ Prominence</span>
+                  </div>
+                  <p>Model launch posts, lái thử, ưu đãi hàng tuần</p>
+                </div>
+                <div class="r5" style="grid-column:span 2">
+                  <div class="r5h" style="display:flex;align-items:center;gap:6px">
+                    <svg class="ic" viewBox="0 0 24 24"
+                      style="color:var(--amber);width:16px;height:16px;fill:currentColor;stroke:currentColor;stroke-width:1">
+                      <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+                    </svg>
+                    <b>Ratings</b>
+                    <span class="map">↔ Prominence</span>
+                  </div>
+                  <p>Nâng điểm đánh giá trung bình, theo dõi xu hướng rating</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p><b>"Không đo lường được thì không quản lý & tối ưu được."</b> Mọi chỉ số 5R đều hiển thị real-time trên
+            Dashboard.</p>
+        </div>
+      </div>
+      <div class="foot" style="color:rgba(255,255,255,.5)"><span class="wm"
+          style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến lược
+          GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 17 — KPI COMMITMENT ============ -->
+    <section data-label="KPI cam kết">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Đo lường</span><span
+            class="kick-num">14 / 18</span></div>
+        <h2 class="h h-sm anim">Chúng tôi cam kết <span class="accent">tăng trưởng đo lường được</span></h2>
+        <p class="sub anim" style="margin-top:8px;font-size:20px">"Không đo lường được thì không quản lý & tối ưu được."
+        </p>
+        <div class="midfill" style="margin-top:16px">
+          <div class="card anim d1" style="padding:0;overflow:hidden;width:100%">
+            <table class="ctab">
+              <thead>
+                <tr>
+                  <th class="lab">Chỉ số</th>
+                  <th>Hiện tại</th>
+                  <th class="hi">Cam kết 6 tháng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="lab">Showroom xuất hiện top 3 Maps</td>
+                  <td class="old">Không xác định</td>
+                  <td class="new col-new"><b class="kpibig">Xuất hiện trong top 3</b></td>
+                </tr>
+                <tr>
+                  <td class="lab">Cuộc gọi inbound từ Maps / tháng</td>
+                  <td class="old">Baseline 12 tháng gần nhất</td>
+                  <td class="new col-new"><b class="kpibig">+20%</b></td>
+                </tr>
+                <tr>
+                  <td class="lab">Lượt chỉ đường đến showroom / tháng</td>
+                  <td class="old">Baseline 12 tháng gần nhất</td>
+                  <td class="new col-new"><b class="kpibig">+20%</b></td>
+                </tr>
+                <tr>
+                  <td class="lab">Đánh giá trung bình showroom</td>
+                  <td class="old">Baseline 12 tháng gần nhất</td>
+                  <td class="new col-new"><b class="kpibig">≥ 4.0★</b></td>
+                </tr>
+                <tr>
+                  <td class="lab">Phản hồi đánh giá</td>
+                  <td class="old">Baseline 12 tháng gần nhất</td>
+                  <td class="new col-new"><b class="kpibig">100%</b> trong 24h</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>Mọi cam kết đều được <b>đo lường bằng dữ liệu thực tế</b> và hiển thị real-time trên Dashboard. Baseline đo
+            từ 12 tháng gần nhất trước triển khai.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến
+          lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 21 — CHANNEL COMPARISON ============ -->
+    <section data-label="So sánh kênh">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">So sánh</span><span
+            class="kick-num">15 / 18</span></div>
+        <h2 class="h h-sm anim">Không kênh nào kết hợp được <span class="accent">TẤT CẢ</span> như GBP</h2>
+        <div class="midfill" style="margin-top:16px">
+          <div class="card anim d1" style="padding:0;overflow:hidden;width:100%">
+            <table class="ctab cmp">
+              <thead>
+                <tr>
+                  <th class="lab"></th>
+                  <th>Website</th>
+                  <th>Google Ads</th>
+                  <th>Portal xe</th>
+                  <th class="hi">BYD GBP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="lab">Xuất hiện Map Pack</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="hi y">✓</td>
+                </tr>
+                <tr>
+                  <td class="lab">Click-to-Call miễn phí</td>
+                  <td class="x">✗</td>
+                  <td class="part">✓ (tốn tiền)</td>
+                  <td class="x">✗</td>
+                  <td class="hi y">✓</td>
+                </tr>
+                <tr>
+                  <td class="lab">Chỉ đường 1 tap</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="hi y">✓</td>
+                </tr>
+                <tr>
+                  <td class="lab">Đánh giá khách thật</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="part"><b style="color:var(--amber);margin-right:2px">!</b> (portal giữ data)</td>
+                  <td class="hi y">✓</td>
+                </tr>
+                <tr>
+                  <td class="lab">Đặt lái thử 1 tap</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="hi y">✓</td>
+                </tr>
+                <tr>
+                  <td class="lab">After-sales (Service GBP)</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="hi y">✓</td>
+                </tr>
+                <tr>
+                  <td class="lab">Agent profile cá nhân</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="x">✗</td>
+                  <td class="hi y">✓</td>
+                </tr>
+                <tr>
+                  <td class="lab">Chi phí per lead</td>
+                  <td class="old">Cao</td>
+                  <td class="old">Tốn/click</td>
+                  <td class="old">Hoa hồng</td>
+                  <td class="hi y2">Thấp (fixed)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>GBP không thay thế Website hay Google Ads — nó <b>chiếm lĩnh khoảng trống duy nhất</b> mà không kênh nào
+            với tới được: khoảnh khắc khách hàng <b>ĐANG CẦN tìm showroom để lái thử hoặc bảo dưỡng ngay lập tức</b>.
+          </p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến
+          lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 22 — DASHBOARD ============ -->
+    <section class="dark" data-label="Dashboard">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Dashboard</span><span
+            class="kick-num">16 / 18</span></div>
+        <h2 class="h h-sm anim" style="color:#fff">Toàn bộ mạng lưới showroom — <span class="accent">Trong 1 màn
+            hình</span></h2>
+        <div class="midfill" style="margin-top:16px">
+          <div class="anim d1"
+            style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.8);display:flex;flex-direction:column;width:100%">
+            <div style="background:var(--navy-800);padding:16px 24px;display:flex;align-items:center;gap:14px">
+              <div style="display:flex;gap:6px">
+                <span style="width:12px;height:12px;border-radius:50%;background:#ff5f56;display:inline-block"></span>
+                <span style="width:12px;height:12px;border-radius:50%;background:#ffbd2e;display:inline-block"></span>
+                <span style="width:12px;height:12px;border-radius:50%;background:#27c93f;display:inline-block"></span>
+              </div>
+              <svg class="ic" viewBox="0 0 24 24" style="color:var(--amber);width:22px;height:22px">
+                <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5" />
+              </svg>
+              <b style="color:#fff;font-size:18px">Dashboard · SingleInterface × Beta</b>
+              <span
+                style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--blue-300)">●
+                REAL-TIME · 37 SHOWROOMS</span>
+            </div>
+            <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)">
+              <div class="dpanel" style="grid-column:1/3">
+                <div class="dph" style="display:flex;align-items:center;gap:6px">
+                  <svg class="ic" viewBox="0 0 24 24" style="color:var(--blue);width:16px;height:16px">
+                    <rect x="3" y="3" width="7" height="9" />
+                    <rect x="14" y="3" width="7" height="5" />
+                    <rect x="14" y="12" width="7" height="9" />
+                    <rect x="3" y="16" width="7" height="5" />
+                  </svg>
+                  OVERVIEW
+                </div>
+                <div style="display:flex;gap:28px;margin-top:14px">
+                  <div>
+                    <div class="dnum">847</div>
+                    <div class="dlab">Cuộc gọi tháng này</div>
+                  </div>
+                  <div>
+                    <div class="dnum">1,234</div>
+                    <div class="dlab">Chỉ đường</div>
+                  </div>
+                  <div>
+                    <div class="dnum">52</div>
+                    <div class="dlab">Test drives booked</div>
+                  </div>
+                  <div>
+                    <div class="dnum">156</div>
+                    <div class="dlab">Reviews mới</div>
+                  </div>
+                </div>
+              </div>
+              <div class="dpanel">
+                <div class="dph" style="display:flex;align-items:center;gap:6px">
+                  <svg class="ic" viewBox="0 0 24 24" style="color:var(--blue);width:16px;height:16px">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                  SHOWROOM RANKING
+                </div>
+                <div style="margin-top:12px">
+                  <div class="drow">Q7 — Sales <b>★ 4.8</b></div>
+                  <div class="drow">Thủ Đức — Sales <b>★ 4.7</b></div>
+                  <div class="drow">Q1 — Sales <b>★ 4.6</b></div>
+                </div>
+              </div>
+              <div class="dpanel">
+                <div class="dph" style="display:flex;align-items:center;gap:6px">
+                  <svg class="ic" viewBox="0 0 24 24" style="color:var(--blue);width:16px;height:16px">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 21a8 8 0 0 1 16 0" />
+                  </svg>
+                  SALES PERFORMANCE
+                </div>
+                <div style="margin-top:12px">
+                  <div class="drow">Nguyễn Văn A <b>12 test drives</b></div>
+                  <div class="drow">Trần Thị B <b>9 test drives</b></div>
+                  <div class="drow">Lê Văn C <b>7 test drives</b></div>
+                </div>
+              </div>
+              <div class="dpanel">
+                <div class="dph" style="color:var(--bad);display:flex;align-items:center;gap:6px">
+                  <svg class="ic" viewBox="0 0 24 24"
+                    style="color:var(--bad);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5">
+                    <path
+                      d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01" />
+                  </svg>
+                  REVIEW ALERTS
+                </div>
+                <div style="margin-top:12px">
+                  <div class="drow" style="color:var(--bad)">Q7 Service — 2★ "chờ lâu" <b>XỬ LÝ</b></div>
+                  <div class="drow" style="color:var(--bad)">Thủ Đức — 1★ "giờ sai" <b>XỬ LÝ</b></div>
+                </div>
+              </div>
+              <div class="dpanel">
+                <div class="dph" style="display:flex;align-items:center;gap:6px">
+                  <svg class="ic" viewBox="0 0 24 24"
+                    style="color:var(--good);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5">
+                    <path d="M12 2l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5z" />
+                  </svg>
+                  PROTECTION LOG
+                </div>
+                <div style="margin-top:12px">
+                  <div class="drow" style="color:var(--good)">Q7 Sales: SĐT bị đổi → <b>Hoàn tác ✓</b></div>
+                  <div class="drow" style="color:var(--good)">Q1 Parts: Giờ bị sửa → <b>Hoàn tác ✓</b></div>
+                </div>
+              </div>
+              <div class="dpanel">
+                <div class="dph" style="display:flex;align-items:center;gap:6px">
+                  <svg class="ic" viewBox="0 0 24 24"
+                    style="color:var(--blue);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2">
+                    <path
+                      d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+                  </svg>
+                  SERVICE TRACKER
+                </div>
+                <div style="margin-top:12px">
+                  <div class="drow">23 khách cần bảo dưỡng tuần này <b>Đã nhắc</b></div>
+                  <div class="drow">12 đã đặt lịch trên GBP Service</div>
+                </div>
+              </div>
+              <div class="dpanel">
+                <div class="dph" style="display:flex;align-items:center;gap:6px">
+                  <svg class="ic" viewBox="0 0 24 24"
+                    style="color:var(--blue);width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="M21 21l-4.3-4.3" />
+                  </svg>
+                  COMPETITOR INTELLIGENCE
+                </div>
+                <div style="margin-top:12px">
+                  <div class="drow">VinFast Q7: giảm giá VF7 <b style="color:var(--amber)">ALERT</b></div>
+                  <div class="drow">Hyundai Q7: post khuyến mãi <b style="color:var(--amber)">ALERT</b></div>
+                  <div class="drow">Tesla Store: ít hoạt động <b style="color:var(--good)">OK</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway"><span class="bar"></span>
+          <p>Real-time. Mọi showroom. Mọi tư vấn viên. Mọi chiến dịch. <b>Từ một dashboard duy nhất</b> — HQ BYD Việt
+            Nam nắm toàn bộ trong lòng bàn tay.</p>
+        </div>
+      </div>
+      <div class="foot" style="color:rgba(255,255,255,.5)"><span class="wm"
+          style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến lược
+          GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 20 — OBJECTION HANDLING (merged 6 Q&A) ============ -->
+    <section data-label="6 băn khoăn thường gặp">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Giải đáp</span><span
+            class="kick-num">17 / 18</span></div>
+        <h2 class="h h-sm anim">6 <span class="accent">băn khoăn thường gặp</span> — và câu trả lời</h2>
+        <div class="midfill" style="margin-top:14px">
+          <div class="grid anim d1" style="grid-template-columns:1fr 1fr;gap:16px">
+            <div class="qa" style="padding:20px 22px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"BYD có website rồi, cần gì GBP?"</div>
+              <div class="qa-line" style="margin:12px 0"></div>
+              <div class="qans" style="font-size:17px">Website nằm <b>BÊN DƯỚI</b> Map Pack. GBP xuất hiện <b>TRÊN
+                  CÙNG</b>. Khách gọi, chỉ đường, đặt lái thử <b>mà không cần vào website</b>.</div>
+            </div>
+            <div class="qa" style="padding:20px 22px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"GBP miễn phí, tại sao trả phí?"</div>
+              <div class="qa-line" style="margin:12px 0"></div>
+              <div class="qans" style="font-size:17px">GBP = <b>đất trống</b>. Chúng tôi = kiến trúc sư + quản lý + tổng
+                đài + bảo vệ 24/7 + CRM + OMS. <b>Có đất mà không xây thì không ai ghé.</b></div>
+            </div>
+            <div class="qa" style="padding:20px 22px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"Khách mua xe ít review?"</div>
+              <div class="qa-line" style="margin:12px 0"></div>
+              <div class="qans" style="font-size:17px">Xe điện có <b>2 touchpoints</b>: mua xe + bảo dưỡng. Lifecycle
+                CRM auto-request review cả 2 lần. <b>Gấp đôi xe xăng.</b></div>
+            </div>
+            <div class="qa" style="padding:20px 22px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"Sales nghỉ việc mất data?"</div>
+              <div class="qa-line" style="margin:12px 0"></div>
+              <div class="qans" style="font-size:17px">Tổng đài tập trung giữ <b>mọi data</b>. GBP chuyển giao
+                <b>24h</b>. Cuộc gọi tự động chuyển SC mới. <b>Zero risk.</b>
+              </div>
+            </div>
+            <div class="qa" style="padding:20px 22px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"Đối thủ sẽ copy?"</div>
+              <div class="qa-line" style="margin:12px 0"></div>
+              <div class="qans" style="font-size:17px"><b>First-mover advantage</b>: ai chiếm Map Pack trước = khó bị
+                đẩy ra. Reviews tích lũy. Đối thủ mất <b>6-12 tháng</b> bắt kịp.</div>
+            </div>
+            <div class="qa" style="padding:20px 22px">
+              <div class="qmark" style="width:38px;height:38px;font-size:18px">Q</div>
+              <div class="qq" style="font-size:20px;margin-top:14px">"Bao lâu thấy kết quả?"</div>
+              <div class="qa-line" style="margin:12px 0"></div>
+              <div class="qans" style="font-size:17px">Tuần 1-2: Profile hoàn thiện. Tháng 1-2: Xuất hiện Map Pack.
+                Tháng 3-6: <b>ROI rõ ràng</b>, test drive tăng.</div>
+            </div>
+          </div>
+        </div>
+        <div class="takeaway anim d2">
+          <div class="bar"></div>
+          <p>Mỗi băn khoăn đều có <b>lời giải được chứng minh bằng hiệu quả thực tế</b>. Mọi rủi ro được triệt tiêu bằng
+            <b>quy trình vận hành tự động và cam kết bảo vệ dữ liệu 24/7</b>.
+          </p>
+        </div>
+      </div>
+      <div class="foot"><span class="wm" style="font-size:16px">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến
+          lược GBP</span></div>
+    </section>
+
+    <!-- ============ SLIDE 27 — CTA CLOSE ============ -->
+    <section class="dark" data-label="CTA Close">
+      <div class="frame with-foot">
+        <div class="kicker"><span class="kick-dot"></span><span class="kick-text">Bước tiếp theo</span><span
+            class="kick-num">18 / 18</span></div>
+        <h2 class="h h-md anim" style="color:#fff">Bắt đầu với <span class="accent">Demo Live</span> — Thấy cơ hội trước
+          khi quyết định</h2>
+        <div class="midfill" style="margin-top:24px">
+          <div style="display:flex;gap:16px" class="anim d1">
+            <div class="cta-step active">
+              <div class="cs-ic"><svg class="ic" viewBox="0 0 24 24" style="stroke:#fff">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></div>
+              <div class="cs-t">Hôm nay<span>Demo + Audit</span></div>
+              <p>Demo live: search "đại lý xe điện [khu vực]" → thấy cơ hội. Audit miễn phí GBP BYD vs đối thủ → báo cáo
+                chi tiết</p>
+            </div>
+            <div class="cta-step">
+              <div class="cs-ic">2</div>
+              <div class="cs-t">Pilot<span>50 GBP đầu tiên</span></div>
+              <p>OMS lái thử, Vehicle Gallery, Department Domination, đo KPIs, báo cáo ROI bằng số thật</p>
+            </div>
+            <div class="cta-step">
+              <div class="cs-ic">3</div>
+              <div class="cs-t">Scale<span>Toàn bộ hệ thống</span></div>
+              <p>Mở rộng toàn bộ mạng lưới nếu pilot thành công. Full Department Domination toàn quốc.</p>
+            </div>
+          </div>
+          <div class="anim d2" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:28px">
+            <span class="commit">KPI rõ ràng</span>
+            <span class="commit">Báo cáo minh bạch</span>
+            <span class="commit">Department Domination</span>
+            <span class="commit">Không mất data khi NV nghỉ</span>
+            <span class="commit">Bảo vệ 24/7</span>
+            <span class="commit">Account Manager riêng</span>
+            <span class="commit">First-mover advantage</span>
+            <span class="commit">EV Lifecycle recurring</span>
+            <span class="commit">Moat: chỉ showroom thật</span>
+          </div>
+        </div>
+        <div class="anim d3"
+          style="display:flex;align-items:center;gap:24px;background:var(--amber);border-radius:18px;padding:28px 38px">
+          <div style="flex:1">
+            <div
+              style="font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.1em;color:var(--navy-900);opacity:.7">
+              CÂU HỎI DUY NHẤT</div>
+            <div style="font-size:32px;font-weight:800;color:var(--navy-900);margin-top:6px;line-height:1.15">Chúng ta
+              sẽ
+              pilot với 50 hay 100 GBP?</div>
+          </div>
+          <svg class="ic" viewBox="0 0 24 24"
+            style="width:52px;height:52px;color:var(--navy-900);stroke-width:2.2;flex:none">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </div>
+      </div>
+      <div class="foot" style="color:rgba(255,255,255,.5)"><span class="wm"
+          style="font-size:16px;color:rgba(255,255,255,.7)">SingleInterface × Beta</span><span>BYD Việt Nam · Chiến lược
+          GBP</span></div>
+    </section>
+
+    <!-- SLIDES -->
+  </deck-stage>
+
+  <script type="application/json" id="speaker-notes">
+[
+"Chào các anh chị. Trước khi em giới thiệu mình là ai, em muốn bắt đầu bằng một câu hỏi. Ngay lúc này, khi mình đang ngồi đây, có hàng nghìn người Việt đang mở Google và gõ 'xe điện gần đây', 'đại lý BYD'. Câu hỏi duy nhất em muốn các anh chị giữ trong đầu suốt 30 phút tới là: trong những lần tìm kiếm đó, showroom BYD có xuất hiện không?",
+"Đây là hai con số quan trọng nhất hôm nay. 42% tổng click trên Google rơi vào đúng 3 kết quả đầu tiên trên Google Maps — Local 3-Pack (nguồn: BrightLocal, First Page Sage 2024). Nếu showroom BYD không ở trong top 3, bạn đang mất gần một nửa khách hàng tiềm năng. Và bên kia — BYD bán 2.26 triệu xe BEV năm 2025, vượt Tesla trở thành hãng xe điện số 1 thế giới. Câu hỏi: thương hiệu số 1 thế giới có đang là số 1 trên Google Maps tại Việt Nam không?",
+"Em kể một câu chuyện. Anh Tuấn muốn mua xe điện cho gia đình 5 người. Anh ấy mở Google, search 'đại lý xe điện gần đây'. Map Pack hiện ra: VinFast Store 4.8 sao, 230 reviews — rồi Hyundai — rồi đại lý X. BYD KHÔNG CÓ trong danh sách. Anh Tuấn lái thử VinFast, mua VinFast, BYD mất khách mãi mãi. Điểm mấu chốt: anh Tuấn có nhu cầu mua xe điện. Chỉ đơn giản là anh ấy không tìm thấy showroom BYD khi tìm kiếm trên các công cụ search. Và mỗi ngày có hàng nghìn anh Tuấn như vậy.",
+"Nhiều anh chị sẽ nghĩ 'BYD có website rồi mà'. Đúng, website BYD Việt Nam rất đẹp. Nhưng vấn đề là thứ tự hiển thị. Google Maps luôn xuất hiện TRƯỚC website. Map Pack — chỉ 3 kết quả, nút gọi và chỉ đường ngay — nhận 42% click. Website nằm bên dưới, chỉ nhận 29%. Dù website đẹp đến đâu, cuộc đua thắng-thua diễn ra ở Map Pack — và hiện tại VinFast đang chiếm.",
+"So sánh cụ thể: gọi showroom — 1 tap trên Maps so với tìm trang Đại lý, chọn thành phố, copy số trên website. Chỉ đường — 1 tap so với copy địa chỉ. Xem đánh giá — thấy ngay 4.8 sao so với không có. Và quan trọng nhất — đặt lịch lái thử: 1 tap trên GBP so với điền form rồi chờ 24-48h. Với sản phẩm trị giá 500 triệu đến 2.4 tỷ, khách chắc chắn chọn con đường ngắn nhất. GBP là con đường đó.",
+"7 cơ hội BYD đang bỏ lỡ mỗi ngày. Một — mỗi showroom chỉ có 1 GBP, chưa tách Sales, Service, Parts — lãng phí 2-3 slots miễn phí. Hai — SC chưa có GBP cá nhân. Ba — trạm sạc chưa có GBP riêng. Bốn — chưa có booking lái thử trên Maps. Năm — showroom mới ít đánh giá so với VinFast. Sáu — thông tin có thể bị bất kỳ ai sửa. Bảy — không đo lường được hiệu quả. Lưu ý: em dùng từ 'cơ hội bỏ lỡ' chứ không phải 'vấn đề' — vì BYD là brand số 1 thế giới, chỉ cần tận dụng thêm công cụ.",
+"Giờ em giải thích GBP là gì, thật đơn giản. Hãy hình dung nó như một tấm danh thiếp thông minh mà Google tự động dựng lên — miễn phí. Với showroom BYD, nó gồm 10 thành phần: tên showroom + department, sao đánh giá, địa chỉ, giờ mở cửa, số tổng đài, ảnh showroom + xe + virtual tour, tab Products với Atto 3 Seal Dolphin kèm giá, nút đặt lịch lái thử, bài viết xe mới khuyến mãi, và Q&A 'Pin bảo hành bao lâu?'. Đặc biệt — tab Products là tính năng mà ngân hàng và bảo hiểm KHÔNG CÓ. Chỉ ngành oto mới hiển thị được sản phẩm + giá ngay trên GBP.",
+"Giải pháp đột phá thứ ba — Test Drive Booking trực tiếp trên GBP. 6 bước: khách search xe điện, thấy BYD trên Maps, 1 tap đặt lái thử, OMS tự động phân bổ cho SC gần nhất, khách lái thử tại showroom, mua xe rồi 48h sau auto request review. Zero-click conversion: search, book, drive, buy. Không cần vào website, không cần gọi điện. Và con số sốc: 1 test drive booking từ GBP bằng khoảng 25% chuyển đổi thành bán xe. 1 xe BYD bằng khoảng 800 triệu. Vậy 1 test drive booking bằng 200 triệu giá trị tiềm năng.",
+"Vậy làm sao để vào top 3? Google xếp hạng dựa trên 3 yếu tố: Relevance, Distance, và Prominence. Bên em tối ưu bằng phương pháp 5R: Radius mở rộng vùng phục vụ, Relevance tối ưu danh mục Car Dealer Electric Vehicle Dealer, Reviews thu đánh giá sau mua xe và sau bảo dưỡng, Recency đăng bài model mới sự kiện lái thử hàng tuần, và Ratings nâng điểm đánh giá trung bình theo dõi xu hướng. Triết lý: không đo lường được thì không quản lý được — mọi chỉ số 5R đều hiển thị real-time trên dashboard.",
+"Giải pháp: SingleInterface là Platform — dashboard, bulk update, analytics, workflow phê duyệt; và Beta là Services — protection, tổng đài 3-channel, lifecycle CRM, OMS lái thử, vehicle gallery, AI search, competitor alert. Một bên không đủ. Kết hợp lại mới tạo giá trị cộng hưởng 1+1=3: quản lý bulk + tối ưu sâu = Department Domination + Lifecycle CRM + Test Drive Booking.",
+"Mô hình mạng lưới. BYD HQ quản lý toàn bộ. Mỗi showroom tách thành Sales, Service, Parts — 3 GBP tại cùng địa chỉ. Thêm SC cá nhân dạng SAB — ẩn địa chỉ nhà, chỉ hiện vùng phục vụ. SC A chuyên Atto 3 Dolphin ở Q7 Bình Thạnh, SC B chuyên Seal Han ở Q2 Q9 Thủ Đức. Và thêm trạm sạc — GBP riêng biệt. Tổng cộng: 1 showroom BYD = tối đa 4 GBP + SC profiles + trạm sạc.",
+"Giải pháp đầu tiên: tối ưu showroom. Bên trái là trước — tên chung chung 'BYD', 1 GBP, 1 danh mục, mô tả trống, 0-10 ảnh, dưới 4 sao, 0 products, 0 bài đăng, 0 Q&A. Bên phải là sau — 'BYD Showroom Quận 7 — Sales', 3-4 GBP, 3+ danh mục, 750 ký tự mô tả riêng, 100+ ảnh mỗi model, 4.7 sao trở lên, products tab đầy đủ, 2-4 bài/tuần, 15+ Q&A, virtual tour 360 độ. Đây không phải chỉ điền thông tin — đó là chiến lược Department Domination.",
+"Đây là giải pháp breakthrough — SC Profile cá nhân. Mỗi tư vấn viên BYD sẽ có GBP riêng: 'Nguyễn Văn A — Tư vấn BYD Quận 7', Car Dealer, SAB Q7 Bình Thạnh Q4, 5.0 sao 80 đánh giá, chuyên Atto 3 Dolphin gia đình, số tổng đài không phải số cá nhân. Khi khách search 'mua xe điện gia đình Q7', BYD chiếm 2/3 Map Pack — showroom slot 1, SC slot 2, VinFast chỉ còn 1 slot. Hiện tại CHƯA CÓ SC hãng xe nào ở VN có GBP cá nhân — blue ocean hoàn toàn.",
+"Và đây là kết quả khi BYD tối ưu đầy đủ. Khách search 'xe điện Quận 7'. Slot 1: BYD Showroom Q7 Sales, 4.8 sao, 200 reviews, Atto 3 Seal Dolphin. Slot 2: BYD Q7 Service Center, 4.9 sao, bảo dưỡng xe điện pin Blade. Slot 3: SC Nguyễn Văn A BYD Q7, 5.0 sao, 3 năm kinh nghiệm, giao 200 xe. BYD chiếm 3/3 top 3. VinFast Hyundai không còn chỗ. 100% traffic khu vực thuộc về BYD. Đây không phải mơ ước — đây là Department Domination.",
+"Đây là slide QUAN TRỌNG NHẤT phần giải thích. Google cho phép đặc biệt ngành oto tạo tối đa 4 GBP tại cùng 1 địa chỉ cho các department khác nhau: Sales là Car Dealer, Service là Auto Repair Shop, Parts là Auto Parts Store, và Agent cá nhân. Ngân hàng không thể tách department. Bảo hiểm không thể tách department. Chỉ ngành xe mới có đặc quyền này. BYD hiện chỉ có 1 GBP cho showroom — nghĩa là đang cho đối thủ 2-3 slots MIỄN PHÍ trên Google Maps.",
+"Xe xăng mua xong là gần như hết quan hệ. Xe điện thì ngược lại — mua xong mới bắt đầu. Vì khách cần sạc, bảo dưỡng pin, cập nhật phần mềm, thay đổi thói quen lái xe. Lifecycle CRM gồm: Search thấy BYD → Book lái thử → Test Drive → Mua xe → Review #1 sau 48h trên GBP Sales → 6 tháng nhắc bảo dưỡng → Book trên GBP Service → Review #2 → 3 năm gợi ý trade-in xe mới → quay lại. 2 touchpoints review gấp đôi. Revenue bảo dưỡng recurring. Trade-in loop không cần quảng cáo.",
+"Ba giải pháp nền tảng. GBP Protection — quét mỗi 15 phút, ai sửa thông tin showroom thì tự động hoàn tác, với 20+ profiles không thể kiểm tra thủ công. Tổng đài 3-channel — Sales chuyển SC, Service chuyển kỹ thuật viên, Parts chuyển phụ tùng — SC nghỉ thì cuộc gọi tự chuyển SC mới, zero mất khách. Và trạm sạc BYD trên Maps — mỗi trạm sạc là 1 GBP riêng, khách không phải BYD cũng search sạc xe điện gần đây rồi thấy BYD — billboard miễn phí.",
+"4 giải pháp tự động hoá. Vehicle Gallery Auto-Sync — xe còn hàng tự lên GBP Products, hết thì auto remove. Service Reminder — 6 tháng hoặc 10 ngàn km tự động nhắc bảo dưỡng qua tổng đài WhatsApp. AI Search — BYD xuất hiện trên ChatGPT Google AI Perplexity khi khách hỏi xe điện nào tốt nhất cho gia đình. Competitor Price Alert — monitor GBP posts VinFast Tesla Hyundai, đối thủ giảm giá thì alert BYD HQ auto-response. Tất cả tự động, tất cả xoay quanh 1 mục tiêu: BYD chiếm Map Pack.",
+"Chúng tôi cam kết bằng con số. Showroom top 3 Maps: từ dưới 20% lên ít nhất 60%. Cuộc gọi inbound: từ không đo lên hơn 300 cuộc/tháng. Chỉ đường: hơn 800 lượt. Test drive bookings: từ 0 lên 50+ lượt. Đánh giá: từ dưới 4 sao lên ít nhất 4.7. Phản hồi: 100% trong 24h. Bảo dưỡng: 100+ lượt/tháng. Mỗi con số đều hiển thị real-time trên dashboard. Không đo lường được thì không quản lý và tối ưu được.",
+"ROI minh hoạ. Chi phí khoảng 80 đến 150 triệu/tháng cho 20 profiles. 50 test drive bookings từ GBP, 25% convert thành 12-13 xe/tháng. Giá trị trung bình 1 xe BYD khoảng 800 triệu. Doanh thu tiềm năng khoảng 10 tỷ/tháng. Cộng thêm revenue bảo dưỡng recurring khoảng 2 tỷ/năm. ROI hơn 1000%. Chi phí GBP 20 profiles bằng giá 1 buổi chạy Google Ads 1 tuần — nhưng GBP tạo dòng leads bền vững 24/7, tích luỹ theo thời gian.",
+"So sánh 4 kênh: Website, Google Ads, Portal xe, và GBP. Chỉ GBP mới kết hợp được tất cả: xuất hiện Map Pack, click-to-call miễn phí, chỉ đường 1 tap, đánh giá khách thật, đặt lái thử 1 tap, after-sales Service GBP, agent profile cá nhân, và chi phí per lead thấp nhất. GBP không thay thế các kênh khác — nó chiếm lĩnh khoảng trống mà không kênh nào với tới.",
+"Chúng tôi hiểu băn khoăn. Một — đã có website cần gì GBP? Website nằm bên dưới Map Pack, GBP trên cùng, khách gọi chỉ đường đặt lái thử trực tiếp mà không cần vào website. Hai — GBP miễn phí tại sao trả phí? GBP là đất trống miễn phí, chúng tôi là kiến trúc sư quản lý toà nhà tổng đài bảo vệ CRM OMS lái thử. Ba — khách mua xe ít review? Xe điện có 2 touchpoints: mua xe và bảo dưỡng, auto-request review cả 2 lần, gấp đôi xe xăng."
+]
+  </script>
+
+  <script src="deck-stage.js"></script>
+  <script>
+    /* Auto-detect .png/.jpg for loc & man images */
+    (function () {
+      document.querySelectorAll('[data-bg-name]').forEach(function (el) {
+        var name = el.getAttribute('data-bg-name');
+        var exts = ['png', 'jpg'];
+        var tried = 0;
+        function tryNext() {
+          if (tried >= exts.length) return;
+          var img = new Image();
+          var src = name + '.' + exts[tried];
+          img.onload = function () { el.style.backgroundImage = "url('" + src + "')"; };
+          img.onerror = function () { tried++; tryNext(); };
+          img.src = src;
+        }
+        tryNext();
+      });
+    })();
+  </script>
+</body>
+
+<!--
+=========================================
+VERSION TRACKING
+=========================================
+| Phiên bản | Ngày cập nhật | Người thực hiện | Nội dung chi tiết |
+| :--- | :--- | :--- | :--- |
+| v1.0 | 10-06-2026 | Antigravity | Khởi tạo tài liệu và cấu trúc cơ bản cho slide deck BYD. |
+| v1.1 | 10-06-2026 | Antigravity | Đồng bộ hóa toàn diện hệ thống SVG icons, tối ưu hóa layout Slide 3, 4, 6, 7, 8, 9, 11, 12, bổ sung đầy đủ hộp takeaway tóm tắt cuối mỗi slide để tăng tính thuyết phục. |
+| v1.2 | 10-06-2026 | Antigravity | Hoàn thành refactoring Slides 13-27: Thay thế toàn bộ emojis bằng SVG icons, chuẩn hóa giao diện SaaS Dashboard (Slide 22 - dark), chuyển đổi Lợi thế cạnh tranh (Slide 26 - light, grid 3 cột), bổ sung takeaways và cập nhật version tracking chi tiết. |
+| v1.3 | 11-06-2026 | Antigravity | Sửa lỗi lặp code Slide 7, tối ưu Slide 10 (nodes -> cards và 5R -> grid), nạp ảnh thực tế cho Slide 14 SC Profile. |
+| v2.0 | 14-06-2026 | Claude | Restructure 27→24 slides: Merge 4+5 (Maps vs Website), merge 17+18 (7 giải pháp), merge 23+24 (6 Q&A). Di chuyển slide Map Pack Vision xuống sau giải pháp. Cập nhật slide numbering toàn bộ. |
+| v2.1 | 14-06-2026 | Antigravity | Khắc phục lỗi hiển thị Grid ở Slide 19 (Dashboard) và các icon SVG bị lỗi (truncated path) ở Slide 6 & 15. |
+| v2.2 | 14-06-2026 | Antigravity | Thay đổi chiều cao của element bao ngoài hình ảnh ở Slide 6 & 11 để hiển thị tốt nhất theo tỷ lệ 16:9. |
+| v2.3 | 14-06-2026 | Antigravity | Đồng bộ chiều rộng card GBP ở Slide 11 với Slide 6 (cố định tối đa 480px) để giao diện hài hòa hơn. |
+| v2.4 | 14-06-2026 | Antigravity | Tối ưu bố cục Slide 11 thành grid hai cột (480px & 520px) căn giữa và điều chỉnh gap thành 64px để khắc phục khoảng trống lớn ở giữa. |
+| v2.5 | 14-06-2026 | Antigravity | Hoàn thiện canh lề trái phải cân đối của Slide 11 sử dụng style split.tilt chuẩn, kết hợp wrapper justify-self: center cho cả hai cột. |
+| v3.0 | 15-06-2026 | Antigravity | Tái cấu trúc luồng logic 23→22 slides: Di chuyển Map Pack Vision lên sau Department Domination, dời 5R & SI×Beta Overview xuống sau giải pháp, loại bỏ Slide Lợi thế cạnh tranh (gom vào CTA), cập nhật data thực tế BYD VN (37 đại lý, 9 models, 4.6M NEV), loại bỏ nội dung trùng lắp, cập nhật speaker notes. |
+| v3.1 | 15-06-2026 | Claude | Refactor slide 7 (Dept Dom) theo format Baoviet slide 8: dùng .split layout với grid-template-columns:1fr 1.1fr, .pill labels (amber/blue), .node cards cho hierarchy diagram, Map Pack mockup bên phải. |
+| v3.2 | 15-06-2026 | Claude | Điều chỉnh slide 7: Map Pack 2/3 (thêm VinFast slot 3), metrics 70% traffic, level 2 cards bỏ border-left + thêm rating, takeaway "blue ocean" giống Baoviet. |
+| v3.3 | 15-06-2026 | Claude | Slide 4: điều chỉnh font-size đồng bộ với CSS baseline — xóa inline overrides (16-17px → CSS default 19-21px), tăng padding map pack, table sử dụng default .ctab font. |
+| v3.4 | 15-06-2026 | Claude | Slide 10/22 (SC→Sales Profile): refactor theo MBV slide 13 layout — heading+subtitle+Map Pack bên trái, GBP card (440px) bên phải, search header cho Map Pack, pill "blue ocean" dưới GBP card, gap:60px. Đổi "SC" thành "Sales". |
+| v3.5 | 15-06-2026 | Claude | Slide 09/21 (Sales Profile): bổ sung GBP card theo chuẩn Google SAB — Service Area, Hours, Actions bar (Gọi/Nhắn tin/Đường đi/Chi tiết). |
+| v3.6 | 15-06-2026 | Claude | Xóa slide 8 (Map Pack Vision). Cập nhật slide numbering 22→21 slides. |
+=========================================
+-->
+
+</html>
